@@ -28,11 +28,17 @@ theme = 'PaperMod'
   [params.profileMode]
     enabled = true
     title = "Raj Champaneriya"
-    subtitle = "Principal Consultant / Architect | Azure | Enterprise Architecture"
-    imageUrl = ""
-    imageWidth = 120
-    imageHeight = 120
-    imageTitle = ""
+    subtitle = """
+I'm a hands-on Solution Architect who enjoys solving hard problems — the kind where legacy systems, business pressure, and scale collide.
+
+Over the last 13+ years, I've helped enterprises modernize platforms, adopt cloud and AI responsibly, and turn technical complexity into business advantage. I believe good architecture is invisible, scalable, and boring in production — and that's a compliment.
+
+When I'm not designing systems, I mentor engineers, write about architecture, and experiment with AI-driven tools that make teams faster and decisions smarter.
+"""
+    imageUrl = "/images/profile.jpg"
+    imageWidth = 225
+    imageHeight = 200
+    imageTitle = "Raj Champaneriya"
     buttons = [
       { name = "Blog", url = "/blog" },
       { name = "Projects", url = "/projects" },
