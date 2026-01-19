@@ -108,6 +108,8 @@ hugo new talks/YYYY-MM-DD-event-name.md
 - **GitHub**: [github.com/rajchampaneriyar](https://github.com/rajchampaneriyar)
 - **LinkedIn**: [linkedin.com/in/rajchampaneriyar](https://linkedin.com/in/rajchampaneriyar)
 
+> **Note**: Use GitHub username `rajchampaneriyar` when creating your repository for a professional brand aligned with enterprise architecture and consulting.
+
 ## 📜 License
 
 Content is © Raj Champaneriyar. All opinions expressed are my own.

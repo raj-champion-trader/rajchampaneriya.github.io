@@ -1,6 +1,6 @@
 baseURL = 'https://rajchampaneriyar.github.io/'
 languageCode = 'en-us'
-title = 'Architecture & Engineering Journal'
+title = 'Raj Champaneriyar - Architecture & Engineering'
 theme = 'PaperMod'
 
 [params]
