@@ -1,0 +1,67 @@
+# Hugo site build artifacts
+hugo-site/public/
+hugo-site/resources/
+hugo-site/.hugo_build.lock
+.hugo_build.lock
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.code-workspace
+
+# Temporary files
+*.tmp
+*.log
+*.cache
+.sass-cache/
+
+# Video production files (large binary files)
+04-videos/audio/*.wav
+04-videos/audio/*.mp3
+04-videos/published/*.mp4
+04-videos/published/*.mov
+04-videos/published/*.avi
+
+# Keep smaller files and placeholders
+!04-videos/**/.gitkeep
+
+# Node modules and package locks (if added later)
+node_modules/
+package-lock.json
+yarn.lock
+.pnpm-store/
+
+# Environment and secret files
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Build outputs
+dist/
+build/
+out/
+
+# Hugo specific
+.hugo_build.lock
+resources/_gen/
+public/
+jsconfig.json
+
+# Git merge files
+*.orig
