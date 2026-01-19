@@ -23,8 +23,10 @@ This repository serves as a comprehensive content creation and knowledge managem
 ├── 07-automation/         # Templates, checklists, and scripts
 ├── 08-backlog/            # Ideas and content pipeline
 ├── 09-assets/             # Images, diagrams, and visual assets
+├── docs/                  # Documentation (deployment guides, planning docs)
 ├── hugo-site/             # Hugo static site generator
-└── tasks/                 # Implementation planning and tracking
+├── scripts/               # Deployment and automation scripts
+└── tasks/                 # Technical documentation and backlog
 ```
 
 ## 📝 Content Pillars
@@ -98,9 +100,19 @@ hugo new talks/YYYY-MM-DD-event-name.md
 
 ## 📖 Documentation
 
+- **Quick Start**: See [docs/QUICKSTART.md](docs/QUICKSTART.md) for fast deployment guide
+- **Deployment**: See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for comprehensive deployment instructions
 - **Planning**: See [tasks/plan-summary.md](tasks/plan-summary.md) for comprehensive implementation plan
 - **Templates**: See [07-automation/templates/](07-automation/templates/) for content templates
 - **Guidelines**: See [00-about/content-philosophy.md](00-about/content-philosophy.md) for content principles
+
+## 🚀 Deployment
+
+Use the deployment script to quickly publish your site to GitHub Pages:
+
+```bash
+./scripts/deploy.sh
+```
 
 ## 🔗 Links
 
