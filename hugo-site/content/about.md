@@ -51,8 +51,8 @@ Currently working in enterprise architecture and cloud consulting, with focus on
 
 ## Contact
 
-- **GitHub**: [github.com/rajchampaneriyar](https://github.com/rajchampaneriyar)
-- **LinkedIn**: [linkedin.com/in/rajchampaneriyar](https://linkedin.com/in/rajchampaneriyar)
+- **GitHub**: [github.com/rajchampaneriya](https://github.com/rajchampaneriya)
+- **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **Email**: your-email@example.com
 
 ---
