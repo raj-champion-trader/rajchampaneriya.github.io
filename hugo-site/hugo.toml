@@ -1,6 +1,9 @@
+baseURL = 'https://rajc.work/'
 languageCode = 'en-us'
 title = 'Raj Champaneriya - Architecture & Engineering'
 theme = 'PaperMod'
+relativeURLs = false
+canonifyURLs = true
 
 [params]
   description = "Principal Consultant / Architect specializing in Azure cloud solutions and enterprise architecture"
