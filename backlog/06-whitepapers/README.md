@@ -1,6 +1,6 @@
 # Whitepapers - L3 Level Thinking
 
-Summaries and analysis of technical whitepapers from AWS, Azure, IBM, and industry sources.
+Summaries and analysis of technical whitepapers from AWS, Azure, and industry sources.
 
 ## Purpose
 
@@ -25,7 +25,7 @@ Detailed notes, annotations, and working thoughts.
 ### Sources
 - AWS whitepapers
 - Azure architecture documentation
-- IBM technical papers
+- Technical papers
 - Google Cloud papers
 - Industry research (Gartner, Forrester)
 - Academic papers on distributed systems
@@ -46,7 +46,7 @@ For each paper, include:
 ```markdown
 # [Paper Title]
 
-**Source**: [AWS/Azure/IBM/etc.]  
+**Source**: [AWS/Azure/etc.]  
 **Date**: [Publication date]  
 **Link**: [URL]
 

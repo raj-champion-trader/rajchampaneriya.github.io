@@ -66,7 +66,7 @@ scripts/ → audio/ → diagrams/ → published/
 - **Audio**: Audacity
 - **Diagrams**: Excalidraw
 - **Video Editing**: CapCut
-- **Microphone**: [TBD - after IBM headphone arrives]
+- **Microphone**: TBD
 
 ---
 

@@ -6,7 +6,7 @@ Professional knowledge system for thought leadership, architecture maturity, and
 
 This repository serves as a comprehensive content creation and knowledge management system, designed for:
 - **Thought leadership** in enterprise architecture
-- **Architecture maturity** (TOGAF / IBM DE path)
+- **Architecture maturity** (TOGAF)
 - **Sustainable content creation** (blog, video, talks)
 - **Professional credibility** building
 
@@ -86,9 +86,9 @@ hugo new projects/project-name.md
 hugo new talks/YYYY-MM-DD-event-name.md
 ```
 
-## 📊 IBM DE Alignment
+## 📊 Alignment
 
-| IBM Expectation | Evidence |
+| Expectation | Evidence |
 |----------------|----------|
 | Thought leadership | Blogs + POV articles |
 | Architecture maturity | Architecture katas |

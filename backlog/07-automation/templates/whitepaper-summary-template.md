@@ -6,7 +6,7 @@ Template for summarizing and analyzing technical whitepapers.
 
 # [Paper Title]
 
-**Source**: [AWS / Azure / IBM / Google Cloud / Academic / Other]  
+**Source**: [AWS / Azure / Google Cloud / Academic / Other]  
 **Authors**: [Author names if relevant]  
 **Publication Date**: [Date]  
 **Link**: [URL to paper]  

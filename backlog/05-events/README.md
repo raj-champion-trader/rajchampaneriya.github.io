@@ -6,7 +6,6 @@ Document all speaking engagements, talks, workshops, and professional events.
 
 This folder is your **trust builder** and **credibility proof**:
 - Shows leadership visibility
-- Critical for IBM internal reviews
 - Valuable for future consulting work
 - Demonstrates influence and reach
 
@@ -64,7 +63,6 @@ Each event gets its own markdown file: `YYYY-MM-DD-event-name.md`
 
 ✅ **Include**:
 - Conference talks (even short ones)
-- Internal IBM presentations
 - Meetup presentations
 - Panel discussions
 - Workshop facilitation

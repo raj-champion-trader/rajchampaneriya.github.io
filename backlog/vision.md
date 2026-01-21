@@ -72,7 +72,7 @@ This content system exists to transform experience into influence, credibility, 
 
 ### Career Milestones
 
-**IBM Path: Distinguished Engineer (L3)**
+**Enterprise Architect**
 - Content demonstrates depth of technical expertise
 - Architecture katas show systems-level thinking
 - Event documentation proves influence and visibility
@@ -85,7 +85,7 @@ This content system exists to transform experience into influence, credibility, 
 - Sought after for technical advisory
 
 **Skills Development**
-- Master TOGAF and IBM architecture methodology
+- Master TOGAF architecture methodology
 - Deepen Azure solutions architecture expertise
 - Develop clear, compelling communication style
 - Build portfolio of significant architectural decisions

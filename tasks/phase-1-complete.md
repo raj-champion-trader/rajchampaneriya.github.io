@@ -210,7 +210,7 @@ To go from local to live on GitHub Pages:
 
 ### Professional Presence
 - ✅ Clean, architecture-focused design
-- ✅ IBM DE alignment (TOGAF, maturity signals)
+- ✅ TOGAF alignment (maturity signals)
 - ✅ Independent content ownership
 
 ### Technical Infrastructure
@@ -262,7 +262,7 @@ hugo --minify
 📝 **Sustainable content framework** - Templates, rotation, workflow  
 🚀 **Production-ready infrastructure** - Hugo + GitHub Pages + Actions  
 📚 **Comprehensive documentation** - Guides, templates, and plans  
-🎯 **IBM DE alignment** - Structure supports career progression  
+🎯 **TOGAF DE alignment** - Structure supports career progression  
 💪 **Content ownership** - Independent of employer branding  
 
 ---

@@ -53,7 +53,7 @@ Video production hub - scripts, audio, diagrams, published content.
 #### [`05-events/`](05-events/)
 Documentation of speaking engagements, talks, and professional events.
 - **Frequency**: As they occur
-- **Value**: Credibility proof, IBM review material, trust builder
+- **Value**: Credibility proof, Review material, trust builder
 
 #### [`06-whitepapers/`](06-whitepapers/)
 Summaries and analysis of technical whitepapers with commentary.

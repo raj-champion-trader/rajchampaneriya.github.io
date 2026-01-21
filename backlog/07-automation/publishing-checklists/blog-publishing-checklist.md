@@ -130,7 +130,7 @@ Use this checklist every time you publish a blog post to ensure consistency and 
 - [ ] **Link to full post** in final tweet
 - [ ] **Relevant hashtags** used
 
-### Internal Sharing (IBM)
+### Internal Sharing
 - [ ] **Shared in relevant Slack channels** (if appropriate)
 - [ ] **Added to personal wiki/portfolio**
 

@@ -13,7 +13,6 @@ Structured problem-solving exercises that show:
 ## Value Proposition
 
 This content type is **gold** for:
-- IBM Distinguished Engineer path
 - Interviews for senior architect roles
 - Demonstrating senior-level thinking
 - Standing out from typical blogs

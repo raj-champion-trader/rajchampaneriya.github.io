@@ -1,7 +1,7 @@
 # Implementation Plan Summary
 
 ## Overview
-Build a professional technical content system for thought leadership, architecture maturity (TOGAF/IBM DE path), and sustainable content creation.
+Build a professional technical content system for thought leadership, architecture maturity (TOGAF path), and sustainable content creation.
 
 ---
 
@@ -75,7 +75,7 @@ Establish 6-bucket weekly rotation:
 ### 3.2 Video Production Pipeline
 - [ ] Install Audacity for audio
 - [ ] Install CapCut for video editing
-- [ ] Purchase microphone (after IBM headphone arrives)
+- [ ] Purchase microphone (TBD)
 - [ ] Create workflow folders: `/scripts`, `/audio`, `/video`, `/diagrams`
 
 ### 3.3 Writing Workflow
@@ -148,9 +148,9 @@ Establish 6-bucket weekly rotation:
 
 ---
 
-## Success Metrics (IBM DE Alignment)
+## Success Metrics (TOGAF Alignment)
 
-| IBM Expectation | Evidence in Content System |
+| TOGAF Expectation | Evidence in Content System |
 |----------------|---------------------------|
 | Thought leadership | Blogs + POV articles |
 | Architecture maturity | Architecture katas |

@@ -13,7 +13,7 @@ Below is a battle-tested GitHub repo structure designed specifically for:
 
 🧠 Thought leadership
 
-🏗 Architecture maturity (TOGAF / IBM DE path)
+🏗 Architecture maturity (TOGAF)
 
 🎙 Video + blog combo
 
@@ -112,7 +112,7 @@ Purpose:
 ✔ Explains why you write
 ✔ Shows your thinking maturity
 ✔ Useful for recruiters / reviewers
-✔ Aligns with IBM DE narrative
+✔ Aligns with DE narrative
 
 This becomes your personal manifesto.
 
@@ -150,7 +150,6 @@ Each blog = one markdown file.
 
 🔹 02-architecture-katas/ — Your Differentiator 🔥
 
-This is gold for IBM / DE path.
 
 Example:
 
@@ -245,7 +244,7 @@ This is 🔥 for:
 
 Leadership visibility
 
-IBM internal reviews
+Internal reviews
 
 Future consulting proof
 
@@ -257,7 +256,7 @@ Future consulting proof
 
 This is where you:
 
-Summarize AWS / Azure / IBM papers
+Summarize AWS / Azure papers
 
 Add your commentary
 
@@ -316,9 +315,9 @@ Images, thumbnails, reused diagrams.
 
 ---
 
-🧭 HOW THIS SUPPORTS YOUR IBM GOAL
+🧭 HOW THIS SUPPORTS YOUR GOAL
 
-IBM Expectation	Your Repo Proves
+Expectation	Your Repo Proves
 
 Thought leadership	Blogs + POV
 Architecture maturity	Katas
@@ -372,7 +371,7 @@ Let me structure this cleanly, in a way that:
 
 keeps you mentally fresh
 
-aligns with IBM DE / TOGAF
+aligns with TOGAF
 
 builds visible credibility
 
@@ -399,7 +398,7 @@ how you trade off
 how you explain complexity
 
 
-That is exactly what IBM looks for in:
+That is exactly what looks for in:
 
 L1 → L2 → L3 progression
 
@@ -432,12 +431,12 @@ Architecture Katas	Design thinking	“I can trade-off”
 Whitepaper Summaries	Industry awareness	“I operate at L3 level”
 
 
-This is literally the IBM DE evaluation rubric in disguise.
+This is literally the evaluation rubric in disguise.
 
 
 ---
 
-🧭 THIRD: MAP THIS TO TOGAF + IBM LEVELS
+🧭 THIRD: MAP THIS TO TOGAF LEVELS
 
 🟦 TOGAF Alignment
 
@@ -456,7 +455,7 @@ You’re unknowingly building a TOGAF portfolio.
 
 ---
 
-🟨 IBM Level Mapping
+🟨 Level Mapping
 
 L1 (Practitioner)
 
@@ -665,7 +664,7 @@ More like: “This guy clearly knows his stuff.”
 
 That’s perfect for:
 
-IBM growth roles
+Growth roles
 
 Pre-sales credibility
 
@@ -689,7 +688,7 @@ Diagrams	Excalidraw
 Versioning	GitHub (main hub)
 Audio	Audacity
 Video	CapCut
-Mic	(Buy after IBM headphone arrives)
+Mic	- TBD
 Automation	GitHub + simple scripts later
 
 
@@ -863,7 +862,7 @@ A calm, intelligent online persona
 
 And the best part?
 
-👉 You’re not dependent on IBM branding.
+👉 You’re not dependent on corporate branding.
 👉 You own the content.
 
 That’s leverage.
@@ -1052,7 +1051,7 @@ Checklist / pattern
 
 Aim: a reader should finish your post and think: “This person can lead architecture decisions.”
 
-8) Content strategy specifically for “IBM brand + beyond”
+8) Content strategy specifically for brand + beyond”
 You’re in growth / pre-sales orbit, so your writing should build trust + authority without revealing client secrets.
 Your 3 content pillars (rotate weekly)
 Architecture Patterns on Azure
@@ -1142,7 +1141,6 @@ Add first “pillar post” (Architecture checklist)
 
 
 Day 3 (launch)
-Add 2 project entries (IMS + one IBM-relevant template you can share)
 
 
 Share one LinkedIn post pointing to the blog
