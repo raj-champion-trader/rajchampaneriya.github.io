@@ -1,6 +1,6 @@
 baseURL = 'https://rajc.work/'
 languageCode = 'en-us'
-title = 'Raj Champaneriya - Architecture & Engineering'
+title = 'Raj Champaneriya Work'
 theme = 'PaperMod'
 relativeURLs = false
 canonifyURLs = true

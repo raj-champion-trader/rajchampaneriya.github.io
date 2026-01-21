@@ -10,6 +10,18 @@
   --link-hover: #1E40AF;
 }
 
+:root[data-theme="dark"]{
+  --theme: #0F172A;        /* dark page background */
+  --entry: #1E293B;        /* dark card background */
+  --primary: #F1F5F9;      /* light text for dark bg */
+  --secondary: #94A3B8;    /* muted light text */
+  --tertiary: #334155;     /* dark borders */
+  --content: #E2E8F0;      /* light post content text */
+  --hljs-bg: #0B1220;      /* code bg stays dark */
+  --link: #60A5FA;         /* lighter blue for dark theme */
+  --link-hover: #93C5FD;   /* even lighter on hover */
+}
+
 body{
   font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
