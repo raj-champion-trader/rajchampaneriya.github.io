@@ -64,3 +64,247 @@ a:hover{
   border-radius: 12px;
   font-weight: 600;
 }
+
+/* ===================================
+   Blog Post Enhancements
+   =================================== */
+
+/* Smooth page entrance animation */
+.post-content {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blog post title styling */
+.post-header h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  animation: fadeInDown 0.5s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Post meta (date, author) styling */
+.post-meta {
+  color: var(--secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.7s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Content paragraphs with better spacing and readability */
+.post-content p {
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  color: var(--content);
+  font-size: 1.05rem;
+}
+
+/* Emphasized text in posts */
+.post-content strong {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Headings in blog posts */
+.post-content h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.015em;
+  color: var(--primary);
+  border-bottom: 2px solid var(--tertiary);
+  padding-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.post-content h2:hover {
+  border-color: var(--link);
+}
+
+.post-content h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+/* Horizontal rule styling */
+.post-content hr {
+  margin: 2.5rem 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--tertiary), transparent);
+  opacity: 0.6;
+}
+
+/* List styling in posts */
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* Blockquote styling for emphasis */
+.post-content blockquote {
+  border-left: 4px solid var(--link);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--secondary);
+  background: var(--entry);
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-content blockquote:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Link styling in post content */
+.post-content a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.post-content a:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
+}
+
+/* Post footer navigation */
+.post-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--tertiary);
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Subtle hover effect on the entire post card */
+.post-single {
+  transition: transform 0.2s ease;
+}
+
+/* Reading time and word count badges */
+.post-meta .meta-item {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--entry);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: background 0.2s ease;
+}
+
+.post-meta .meta-item:hover {
+  background: var(--tertiary);
+}
+
+/* Tags styling */
+.post-tags {
+  margin-top: 2rem;
+  animation: fadeIn 0.9s ease-out;
+}
+
+.post-tags a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  background: var(--entry);
+  border: 1px solid var(--tertiary);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--secondary);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.post-tags a:hover {
+  background: var(--link);
+  color: white;
+  border-color: var(--link);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
+}
+
+/* Table of contents styling */
+.toc {
+  background: var(--entry);
+  border: 1px solid var(--tertiary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 0.5rem;
+}
+
+.toc a {
+  color: var(--secondary);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+}
+
+.toc a:hover {
+  color: var(--link);
+  padding-left: 0.5rem;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .post-content h2 {
+  border-bottom-color: var(--tertiary);
+}
+
+[data-theme="dark"] .post-tags a:hover {
+  box-shadow: 0 4px 8px rgba(96, 165, 250, 0.3);
+}
