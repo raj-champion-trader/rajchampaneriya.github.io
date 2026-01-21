@@ -1,60 +1,24 @@
 ---
 title: "About"
-date: 2026-01-19
-url: "/about/"
-summary: "Learn more about my background and approach to architecture"
 ---
 
-# About Me
+I'm Raj Champaneriya — a Solution Architect focused on cloud modernization and AI-enabled platforms for enterprise environments.
 
-## Positioning Statement
+Over the last 13+ years, I've worked across industries including healthcare, insurance, media, and logistics, helping teams modernize legacy systems, design scalable architectures, and deliver measurable outcomes. My work sits at the intersection of architecture, delivery, and stakeholder alignment — turning ambiguous problem statements into executable technical strategy.
 
-Principal Consultant / Architect specializing in Azure cloud solutions. I help teams ship reliable, scalable systems while navigating complexity with clarity. Currently focused on enterprise architecture patterns and delivery excellence.
+I focus on:
+- **Cloud architecture (Azure/AWS)**: platform foundations, security, networking, reliability, and governance  
+- **Modernization**: .NET modernization, integration, microservices, and cost optimization  
+- **Applied AI**: practical GenAI patterns, RAG architectures, guardrails, and production readiness  
+- **Consulting execution**: framing options, trade-offs, and decisions clearly for technical and business leaders
 
-## Core Strengths
-
-- Cloud architecture on Azure
-- Technical pre-sales and consulting
-- System design and trade-off analysis
-- Team leadership and mentoring
-- Clear technical communication
-
-## What I Write About
-
-### 1. Architecture Patterns
-Practical system design, trade-offs, and decision frameworks for real-world systems.
-
-### 2. Delivery Wisdom
-What works (and what breaks) in actual projects - lessons from the trenches, not textbooks.
-
-### 3. Continuous Learning
-Insights from technical papers, books, and hands-on experience.
-
-## My Approach
-
-I believe in:
-- **Clarity over cleverness** - Show how you think, not how smart you are
-- **Experience over theory** - Share what I've actually done
-- **Quality over quantity** - One strong insight beats ten shallow posts
-- **Long-term thinking** - Building knowledge that compounds
-
-I'm **not** trying to:
-- Go viral or chase follower counts
-- Be a "thought leader" without substance
-- Teach things I haven't used in production
-
-## Background
-
-[TODO: Add your specific professional background]
-
-Currently working in enterprise architecture and cloud consulting, with focus on Azure solutions and delivery excellence. Pursuing Distinguished Engineer path aligned with TOGAF and IBM methodologies.
+This site is my working notebook: architecture notes, reference implementations, diagrams, and lessons learned from building systems that have to survive audits, outages, and Monday morning status calls.
 
 ## Contact
 
-- **GitHub**: [github.com/rajchampaneriya](https://github.com/rajchampaneriya)
+- **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
-- **Email**: your-email@example.com
-
+- **Email**: champaneriyara@gmail.com
 ---
 
 *All opinions expressed on this site are my own.*

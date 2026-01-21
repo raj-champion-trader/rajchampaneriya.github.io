@@ -31,27 +31,27 @@ canonifyURLs = true
     enabled = true
     title = "Raj Champaneriya"
     subtitle = """
-I'm a hands-on Solution Architect who enjoys solving hard problems — the kind where legacy systems, business pressure, and scale collide.
+I’m a hands-on Solution Architect with 13+ years of experience helping enterprises modernize legacy systems, adopt cloud and AI responsibly, and scale without chaos.
 
-Over the last 13+ years, I've helped enterprises modernize platforms, adopt cloud and AI responsibly, and turn technical complexity into business advantage. I believe good architecture is invisible, scalable, and boring in production — and that's a compliment.
+I specialize in designing systems that are reliable, secure, and boring in production — the best kind of architecture.
 
-When I'm not designing systems, I mentor engineers, write about architecture, and experiment with AI-driven tools that make teams faster and decisions smarter.
+When I’m not building platforms, I mentor engineers, write about architecture, and experiment with AI-driven tools that make teams faster and decisions smarter.
 """
     imageUrl = "images/profile.jpg"
     imageWidth = 225
     imageHeight = 175
     imageTitle = "Raj Champaneriya"
     buttons = [
-      { name = "Blog", url = "/blog" },
-      { name = "Projects", url = "/projects" },
-      { name = "Talks", url = "/talks" },
-      { name = "About", url = "/about" }
+      { name = "Writings", url = "/blog" },
+      { name = "Architecture Work", url = "/projects" },
+      { name = "Talks & Sessions", url = "/talks" },
+      { name = "About Me", url = "/about" }
     ]
 
   # Social links
   [[params.socialIcons]]
     name = "github"
-    url = "https://github.com/rajchampaneriya"
+    url = "https://github.com/raj-champion-trader"
 
   [[params.socialIcons]]
     name = "linkedin"
@@ -59,7 +59,7 @@ When I'm not designing systems, I mentor engineers, write about architecture, an
 
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:your-email@example.com"
+    url = "mailto:champaneriyaraj@gmail.com"
 
   [[params.socialIcons]]
     name = "rss"
@@ -69,25 +69,25 @@ When I'm not designing systems, I mentor engineers, write about architecture, an
 [menu]
   [[menu.main]]
     identifier = "blog"
-    name = "Blog"
+    name = "Writings"
     url = "/blog/"
     weight = 10
 
   [[menu.main]]
     identifier = "projects"
-    name = "Projects"
+    name = "Architecture Work"
     url = "/projects/"
     weight = 20
 
   [[menu.main]]
     identifier = "talks"
-    name = "Talks"
+    name = "Talks & Sessions"
     url = "/talks/"
     weight = 30
 
   [[menu.main]]
     identifier = "about"
-    name = "About"
+    name = "About Me"
     url = "/about/"
     weight = 40
 
