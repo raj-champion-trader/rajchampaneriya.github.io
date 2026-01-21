@@ -1,20 +1,23 @@
 ---
 title: "Writings"
 url: "/blog/"
-summary: "Technical articles on architecture, system design, and delivery"
+summary: "Reflections on architecture, systems thinking, and the evolving craft of software engineering"
 ---
 
-# Writings
 
-Explore technical concepts, architectural thinking, and lessons from real delivery experience.
+These are reflections from the practice of building systems—not theories, but patterns observed, decisions tested, and lessons that emerged from real delivery.
 
-## Categories
+I write to clarify my own thinking. If these notes help you question an assumption, refine a mental model, or see a problem from a different angle, they've done their job.
 
-- **Technical Concepts** - Deep dives into architecture and system design
-- **Point of View** - Opinions and perspectives on industry trends
-- **Experience & Learnings** - What worked, what didn't, and why
-- **Book Reviews** - Insights from technical reading mapped to practice
+The craft of software engineering is shifting. AI is reshaping how we work, but the fundamentals—understanding domains, communicating with clarity, solving problems with discipline—remain essential. These writings explore that tension between what's changing and what endures.
+
+## What you'll find here
+
+- **Technical Concepts** - Architecture patterns, system design, and trade-offs that matter
+- **Point of View** - Perspectives on industry shifts, leadership decisions, and engineering culture  
+- **Experience & Learnings** - What worked, what didn't, and what I'd do differently
+- **Book Reviews** - Ideas from technical reading, tested against practice
 
 ---
 
-Check back regularly for new content.
+New posts arrive as clarity emerges—not on a schedule, but when there's something worth saying.
