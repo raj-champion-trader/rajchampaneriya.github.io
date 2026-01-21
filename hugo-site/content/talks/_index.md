@@ -1,10 +1,10 @@
 ---
-title: "Talks & Events"
+title: "Talks & Sessions"
 url: "/talks/"
 summary: "Speaking engagements, presentations, and workshops"
 ---
 
-# Talks & Events
+# Talks & Sessions
 
 Documentation of speaking engagements, conference talks, meetups, and workshops.
 

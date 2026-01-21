@@ -1,10 +1,10 @@
 ---
-title: "Projects"
+title: "Architecture Work"
 url: "/projects/"
 summary: "Architecture work, templates, and reusable assets"
 ---
 
-# Projects
+# Architecture Work
 
 A collection of architectural work, reference implementations, and reusable delivery assets.
 

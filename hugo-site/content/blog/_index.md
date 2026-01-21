@@ -1,10 +1,10 @@
 ---
-title: "Blog"
+title: "Writings"
 url: "/blog/"
 summary: "Technical articles on architecture, system design, and delivery"
 ---
 
-# Blog
+# Writings
 
 Explore technical concepts, architectural thinking, and lessons from real delivery experience.
 

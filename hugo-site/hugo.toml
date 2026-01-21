@@ -29,23 +29,15 @@ canonifyURLs = true
   # Profile mode (for homepage)
   [params.profileMode]
     enabled = true
-    title = "Raj Champaneriya"
-    subtitle = """
-I’m a hands-on Solution Architect with 13+ years of experience helping enterprises modernize legacy systems, adopt cloud and AI responsibly, and scale without chaos.
-
-I specialize in designing systems that are reliable, secure, and boring in production — the best kind of architecture.
-
-When I’m not building platforms, I mentor engineers, write about architecture, and experiment with AI-driven tools that make teams faster and decisions smarter.
-"""
+    title= "Hi, I’m Raj Champaneriya."
+    subtitle = "Solution Architect focused on cloud modernization and AI-enabled platforms for enterprise systems."
     imageUrl = "images/profile.jpg"
     imageWidth = 225
     imageHeight = 175
     imageTitle = "Raj Champaneriya"
     buttons = [
-      { name = "Writings", url = "/blog" },
-      { name = "Architecture Work", url = "/projects" },
-      { name = "Talks & Sessions", url = "/talks" },
-      { name = "About Me", url = "/about" }
+      { name = "View My Work", url = "/projects" },
+      { name = "Read My Blog", url = "/blog" }
     ]
 
   # Social links
