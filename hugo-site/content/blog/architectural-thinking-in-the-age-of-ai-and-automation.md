@@ -1,0 +1,30 @@
+---
+title: "Architectural Thinking in the Age of AI and Automation"
+date: 2026-01-21
+draft: false
+tags: ["architecture", "software engineering", "AI"]
+categories: ["Technical Concepts"]
+summary: "Tying architecture too closely to business processes is a shortcut to brittle systems. A robust architecture must outlive any specific process, adapting to variations and evolving needs."
+---
+
+As architects, we often face the temptation to build systems around business processes. At first glance, this approach seems logical—after all, traditional requirements engineering starts with process mapping. However, there's a deeper truth: tying architecture too closely to business processes is a shortcut to brittle systems and long-term inefficiency.
+
+## Why is this dangerous?
+
+Processes, by nature, are idealized abstractions. They miss the nuances, variations, and human adaptability that keep businesses running smoothly. When processes evolve—and they always do—architectures rigidly tied to them crumble under the weight of change.
+
+This is a point that David L. Parnas, a pioneer in software engineering, emphasized in his seminal work. In his 1971 paper "On the Criteria to Be Used in Decomposing Systems into Modules", Parnas warned against decomposing systems based on processes. He argued that this approach makes code brittle to change and expensive to maintain. Instead, Parnas introduced the concept of information hiding: designing modules around decisions that are likely to change, rather than transient processes. This principle remains a cornerstone of robust software design to this day.
+
+## A better approach?
+
+Start by defining behaviors—observable actions in the system. Codifying these behaviors ensures flexibility and accuracy while making systems resilient to change. Integrate these behavior definitions directly into your CI/CD pipelines to embed accuracy into the very fabric of your development lifecycle.
+
+But there's more. With the rise of Generative AI, we now have tools to take this one step further:
+* Visualize behaviors dynamically, making system interactions easier to understand and debug.
+* Free architects from manual distractions, empowering them to focus on high-value decisions that drive innovation.
+
+## A lesson for modern architects
+
+Mapping processes isn't inherently wrong—it's useful for understanding and optimizing workflows. But processes are abstractions, not architecture blueprints. A robust architecture must outlive any specific process, adapting to variations and evolving needs.
+
+Let's embrace tools and approaches by prioritizing adaptability and scalability, leaving behind distractions that create fragile systems. This is the future of architecture—built on behaviors, enriched by AI, and designed for resilience.
