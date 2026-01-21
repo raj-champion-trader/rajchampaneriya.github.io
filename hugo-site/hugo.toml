@@ -9,6 +9,14 @@ canonifyURLs = true
   description = "Principal Consultant / Architect specializing in Azure cloud solutions and enterprise architecture"
   author = "Raj Champaneriya"
   
+  # Assets (Favicons)
+  [params.assets]
+    favicon = "favicon.svg"
+    favicon16x16 = "favicon.svg"
+    favicon32x32 = "favicon.svg"
+    apple_touch_icon = "favicon.svg"
+    safari_pinned_tab = "safari-pinned-tab.svg"
+  
   # PaperMod settings
   ShowReadingTime = true
   ShowShareButtons = false
