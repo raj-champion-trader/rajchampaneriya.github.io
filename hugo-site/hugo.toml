@@ -116,3 +116,6 @@ canonifyURLs = true
     lineNos = false
     noClasses = false
     style = "monokai"
+
+  [markup.goldmark.renderer]
+    unsafe = true
