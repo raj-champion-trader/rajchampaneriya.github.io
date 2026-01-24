@@ -7,10 +7,13 @@ categories: ["Point of View"]
 summary: "Most people are outsourcing thinking to AI. The real advantage comes from using AI to think better, not less."
 ---
 
-Most people are letting AI destroy their ability to think, training AI to become their own replacement. Tragic, because AI can make you dangerously intelligent.
+Most people use AI to think less.
+That’s why they’ll be replaced.
 
-I started as an AI skeptic. Today, I help organizations use AI to create real impact.
-Along the way, I learned something powerful: the most successful people don’t use AI for shortcuts—they use it to train their thinking and outmaneuver complexity.
+AI isn’t here to make you faster.
+It’s here to make you dangerous — if you know how to think.
+
+I was a skeptic. Now I use AI to sharpen judgment, not outsource it.
 
 In this reflection, I'll break down a counterintuitive system the top 1% use to get smarter faster with AI. Here is the four-step framework.
 
@@ -33,8 +36,6 @@ This curve shows you your **zone of intelligent laziness**.
 There was a Nobel Prize-winning economist and computer scientist and his name was [Herbert A Simon](https://en.wikipedia.org/wiki/Herbert_A._Simon) and he came up with a concept called **satisficing** which pretty much means stop when it's good enough. Satisfy and suffice. Satisfice.
 
 **Now our second curve is the exact opposite. It has uncapped payoff.** This curve stays flat for a long time but then goes to the moon in a hurry. These are tasks like customer interactions, product design, pricing model, finding a co-founder or a life partner. Being 1% better here does not yield 1% better result. It actually solves the rest of the 99% of your problems.
-
-
 [Jony Ive](https://en.wikipedia.org/wiki/Jony_Ive) would obsess for many months on even the internal component design of iPhone. But, you know, [Steve Jobs](https://en.wikipedia.org/wiki/Steve_Jobs) never said, "Hey, this is costing us a lot of money." And who's going to pry open the iPhone? But Steve knew this was the second curve.
 
 So, if the first curve is your **zone of laziness**, your second curve is your **zone of obsession**.

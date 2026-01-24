@@ -4,7 +4,6 @@ url: "/blog/"
 summary: "Reflections on architecture, systems thinking, and the evolving craft of software engineering"
 ---
 
-
 These are not theories.
 They are observations from the work itself.
 
@@ -26,7 +25,5 @@ That is what these writings explore.
 - **Point of View** — Opinions shaped by delivery: leadership decisions, engineering culture, and how teams actually scale.
 - **Experience & Learnings** — What worked, what didn't, and what I'd do differently if I had to build it again.
 - **Book Notes & Reflections** — Ideas from reading, tested against practice — not summaries, but synthesis.
-
----
 
 New posts arrive as clarity emerges—not on a schedule, but when there's something worth saying.

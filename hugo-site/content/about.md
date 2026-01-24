@@ -9,6 +9,7 @@ Over the last 13+ years, I've worked across industries including healthcare, ins
 I believe good architecture should feel invisible to users and obvious to engineers.
 
 I focus on:
+
 - **Cloud architecture (Azure/AWS)**: platform foundations, security, networking, reliability, and governance  
 - **Modernization**: .NET modernization, integration, microservices, and cost optimization  
 - **Applied AI**: practical GenAI patterns, RAG architectures, guardrails, and production readiness  
@@ -20,7 +21,6 @@ This site is my working notebook: architecture notes, reference implementations,
 
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
-- **Email**: champaneriyaraj@gmail.com
----
+- **Email**: [champaneriyaraj@gmail.com](mailto:champaneriyaraj@gmail.com)
 
 *All opinions expressed on this site are my own.*
