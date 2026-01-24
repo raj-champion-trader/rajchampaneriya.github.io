@@ -6,8 +6,54 @@
     user-select: none;
 }
 
+/* Mobile Menu Responsiveness */
 @media screen and (max-width: 768px) {
     .menu-separator {
         display: none;
+    }
+    
+    /* Fix horizontal scroll on mobile */
+    #menu {
+        overflow-x: hidden;
+        white-space: normal;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        margin: 8px var(--gap);
+    }
+    
+    #menu li {
+        margin: 4px 8px !important;
+    }
+    
+    #menu li + li {
+        margin-inline-start: 8px !important;
+    }
+    
+    /* Ensure nav container doesn't overflow */
+    .nav {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Make menu items smaller on mobile */
+    #menu a {
+        font-size: 14px;
+    }
+    
+    /* Center the logo on mobile */
+    .logo {
+        margin: auto;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #menu a {
+        font-size: 13px;
+    }
+    
+    #menu li {
+        margin: 3px 6px !important;
     }
 }

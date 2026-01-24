@@ -1,5 +1,5 @@
 ---
-title: "Architecture Work: Stock Market Simulator"
+title: "Architecture Work: Stock Market Simulator - WIP"
 date: 2026-01-23
 draft: false
 tags: ["architecture", "software engineering", ".NET", "streaming", "real-time"]

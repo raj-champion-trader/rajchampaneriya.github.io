@@ -1,0 +1,101 @@
+/* Architecture Diagram Styling */
+.architecture-diagram {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--entry);
+    border-radius: 8px;
+    border: 1px solid var(--tertiary);
+}
+
+.architecture-diagram svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobile-specific diagram handling */
+@media screen and (max-width: 768px) {
+    .architecture-diagram {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem 0.5rem;
+        margin: 1.5rem -1rem;
+        position: relative;
+    }
+    
+    /* Make SVG maintain its original size on mobile for readability */
+    .architecture-diagram svg {
+        min-width: 600px;
+        max-width: none;
+    }
+    
+    /* Add scroll indicator hint */
+    .architecture-diagram::after {
+        content: '← Scroll to view diagram →';
+        display: block;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--secondary);
+        padding: 0.5rem 0 0.25rem;
+        font-style: italic;
+        opacity: 0.8;
+    }
+    
+    /* Add visual scrollbar styling */
+    .architecture-diagram::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .architecture-diagram::-webkit-scrollbar-track {
+        background: var(--tertiary);
+        border-radius: 4px;
+    }
+    
+    .architecture-diagram::-webkit-scrollbar-thumb {
+        background: var(--secondary);
+        border-radius: 4px;
+    }
+    
+    .architecture-diagram::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .architecture-diagram {
+        margin: 1.5rem -0.75rem;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .architecture-diagram svg {
+        min-width: 500px;
+    }
+    
+    .architecture-diagram::after {
+        font-size: 0.8rem;
+    }
+}
+
+/* Additional support for other diagram types */
+.post-content img[src*="diagram"],
+.post-content img[src*="architecture"] {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--tertiary);
+}
+
+@media screen and (max-width: 768px) {
+    .post-content img[src*="diagram"],
+    .post-content img[src*="architecture"] {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    
+    /* Subtle hint that images are tappable */
+    .post-content img[src*="diagram"]:active,
+    .post-content img[src*="architecture"]:active {
+        transform: scale(0.98);
+    }
+}
