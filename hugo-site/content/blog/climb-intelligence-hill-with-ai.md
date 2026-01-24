@@ -30,13 +30,12 @@ A good way to think about tasks is to see two curves.
 
 This curve shows you your **zone of intelligent laziness**.
 
-There was a Nobel Prize-winning economist and computer scientist and his name was Herbert Simon and he came up with a concept called **satisficing** which pretty much means stop when it's good enough. Satisfy and suffice. Satisfice.
+There was a Nobel Prize-winning economist and computer scientist and his name was [Herbert A Simon](https://en.wikipedia.org/wiki/Herbert_A._Simon) and he came up with a concept called **satisficing** which pretty much means stop when it's good enough. Satisfy and suffice. Satisfice.
 
 **Now our second curve is the exact opposite. It has uncapped payoff.** This curve stays flat for a long time but then goes to the moon in a hurry. These are tasks like customer interactions, product design, pricing model, finding a co-founder or a life partner. Being 1% better here does not yield 1% better result. It actually solves the rest of the 99% of your problems.
 
-Pour your soul into this.
 
-Johnny Ive would obsess for many months on even the internal component design of iPhone. But, you know, Steve Jobs never said, "Hey, this is costing us a lot of money." And who's going to pry open the iPhone? But Steve knew this was the second curve.
+[Jony Ive](https://en.wikipedia.org/wiki/Jony_Ive) would obsess for many months on even the internal component design of iPhone. But, you know, [Steve Jobs](https://en.wikipedia.org/wiki/Steve_Jobs) never said, "Hey, this is costing us a lot of money." And who's going to pry open the iPhone? But Steve knew this was the second curve.
 
 So, if the first curve is your **zone of laziness**, your second curve is your **zone of obsession**.
 
