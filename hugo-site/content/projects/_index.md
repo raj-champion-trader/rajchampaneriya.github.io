@@ -1,24 +1,47 @@
 ---
 title: "Architecture Work"
 url: "/projects/"
-summary: "Architecture work, templates, and reusable assets"
+summary: "Practical architecture, reference implementations, and delivery-grade assets built from real-world experience"
 ---
 
-# Architecture Work
+This space documents how I approach system design — balancing scalability, simplicity, and real-world constraints from enterprise projects.
 
-A collection of architectural work, reference implementations, and reusable delivery assets.
+Practical architecture, reference implementations, and delivery-grade assets built from real-world experience.
 
-## Categories
+## How I Think About Architecture
+
+This section captures how I think about architecture — from design principles to delivery execution.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+
+<div style="padding: 1.5rem; background: var(--entry); border: 1px solid var(--border); border-radius: 8px;">
 
 ### Reference Architectures
-Cloud architecture patterns and templates for Azure solutions.
+
+Cloud-native patterns and Azure-first solution blueprints.
+
+</div>
+
+<div style="padding: 1.5rem; background: var(--entry); border: 1px solid var(--border); border-radius: 8px;">
 
 ### Architecture Katas
-Structured system design exercises demonstrating architectural thinking and trade-off analysis.
+
+Structured system design exercises with trade-off analysis.
+
+</div>
+
+<div style="padding: 1.5rem; background: var(--entry); border: 1px solid var(--border); border-radius: 8px;">
 
 ### Delivery Assets
-Reusable templates, checklists, and frameworks for successful project delivery.
+
+Reusable templates, checklists, and execution frameworks.
+
+</div>
+
+</div>
 
 ---
 
-Projects will be added here as they're documented and made public.
+## Featured Architecture Work
+
+More architecture case studies will be published as they are refined and production-ready.

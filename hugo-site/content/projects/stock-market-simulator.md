@@ -1,12 +1,19 @@
 ---
-title: "Architecture Work: Stock Market Simulator - WIP"
+title: "Stock Market Simulator"
 date: 2026-01-23
 draft: false
-tags: ["architecture", "software engineering", ".NET", "streaming", "real-time"]
+tags: ["architecture", "streaming", "real-time", "software-engineering"]
 categories: ["Architecture Work"]
-summary: "A deep dive into building a real-time stock market data simulation system demonstrating modern streaming architectures, event-driven patterns, and enterprise-grade solution architecture."
+summary: "Real-time market data simulation showcasing modern event-driven architecture"
 weight: 1
 ---
+
+<div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
+
+**Architecture · Streaming · .NET**  
+_Work in Progress_
+
+</div>
 
 ## What is Stock Market Simulator?
 
