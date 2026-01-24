@@ -8,6 +8,7 @@ canonifyURLs = true
 [params]
   description = "Principal Consultant / Architect specializing in Azure cloud solutions and enterprise architecture"
   author = "Raj Champaneriya"
+  mainSections = ["blog"]
   
   # Assets (Favicons)
   [params.assets]

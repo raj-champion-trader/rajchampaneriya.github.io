@@ -1,0 +1,99 @@
+<div class="profile-horizontal">
+    {{- with site.Params.profileMode }}
+    <div class="profile-content">
+        <div class="profile-left">
+            {{- if .imageUrl -}}
+            {{- $img := "" }}
+            {{- if not (urls.Parse .imageUrl).IsAbs }}
+                {{- $img = resources.Get .imageUrl }}
+            {{- end }}
+            {{- if $img }}
+                {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+                {{- if hugo.IsExtended -}}
+                    {{- $processableFormats = $processableFormats | append "webp" -}}
+                {{- end -}}
+                {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+                {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                    {{- if (not (and (not .imageHeight) (not .imageWidth))) }}
+                        {{- $img = $img.Resize (printf "%dx%d" .imageWidth .imageHeight) }}
+                    {{- else if .imageHeight }}
+                        {{- $img = $img.Resize (printf "x%d" .imageHeight) }}
+                    {{ else if .imageWidth }}
+                        {{- $img = $img.Resize (printf "%dx" .imageWidth) }}
+                    {{ else }}
+                        {{- $img = $img.Resize "250x250" }}
+                    {{- end }}
+                {{- end }}
+                <img class="profile-image" draggable="false" src="{{ $img.Permalink }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}" />
+            {{- else }}
+            <img class="profile-image" draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}" />
+            {{- end }}
+            {{- end }}
+        </div>
+        
+        <div class="profile-right">
+            <h1>{{ .title | default site.Title | markdownify }}</h1>
+            <p class="profile-description">{{ .subtitle | markdownify }}</p>
+            
+            <div class="profile-details">
+                <p>In this blog, I journal my learnings and reflections on cloud architecture, software engineering, and enterprise systems modernization.</p>
+                
+                <p>Occasionally I also write about the technology industry, drawing on my experiences in solution architecture and AI-enabled platform development.</p>
+            </div>
+
+            {{- partial "social_icons.html" -}}
+
+            {{- with .buttons }}
+            <div class="buttons">
+                {{- range . }}
+                <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+                    <span class="button-inner">
+                        {{ .name }}
+                        {{- if (findRE "://" .url) }}&nbsp;
+                        <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
+                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                            <path d="M15 3h6v6"></path>
+                            <path d="M10 14L21 3"></path>
+                        </svg>
+                        {{- end }}
+                    </span>
+                </a>
+                {{- end }}
+            </div>
+            {{- end }}
+        </div>
+    </div>
+    {{- end}}
+</div>
+
+<hr class="section-separator" />
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+{{- $recentPosts := first 5 $pages }}
+
+{{- if $recentPosts }}
+<div class="recent-posts-section">
+    <h2>Recent Posts</h2>
+    
+    {{- range $recentPosts }}
+    <article class="post-entry-horizontal">
+        <div class="post-meta-small">
+            {{- if not .Date.IsZero -}}
+            <span>{{ .Date | time.Format "Jan 2, 2006" }}</span>
+            {{- end }}
+            {{- with .Params.categories }}
+            {{- if gt (len .) 0 }}
+            <span class="post-separator">|</span>
+            <span>{{ index . 0 }}</span>
+            {{- end }}
+            {{- end }}
+        </div>
+        <h3 class="post-title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h3>
+    </article>
+    {{- end }}
+</div>
+{{- end }}
