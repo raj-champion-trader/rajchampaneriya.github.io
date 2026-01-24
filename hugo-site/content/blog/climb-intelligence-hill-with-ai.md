@@ -9,13 +9,14 @@ summary: "Most people are letting AI destroy their ability to think, training AI
 
 Most people are letting AI destroy their ability to think, training AI to become their own replacement. Tragic, because AI can make you dangerously intelligent.
 
-I went from being homeless to an MIT grad and running and advising AI companies worth billions. And here's what I've learned. The top 1% use AI backwards. They don't prompt to get answers. They use it to train their brain and outsmart almost any situation.
+I started as an AI skeptic. Today, I help organizations use AI to create real impact.
+Along the way, I learned something powerful: the most successful people don’t use AI for shortcuts—they use it to train their thinking and outmaneuver complexity.
 
 In this reflection, I'll break down a counterintuitive system the top 1% use to get smarter faster with AI. Here is the four-step framework.
 
 ## Step One: Intelligent Laziness
 
-A study in Harvard Business Review found that CEOs waste 72% of their time in meetings that don't move the needle. We've all experienced those meetings, haven't we? The 1-hour meeting that needed only 15 minutes to get to a decision, but it's hard to stop.
+A study in [Harvard Business Review](https://hbr.org/2017/07/stop-the-meeting-madness) found that CEOs waste 72% of their time in meetings that don't move the needle. We've all experienced those meetings, haven't we? The 1-hour meeting that needed only 15 minutes to get to a decision, but it's hard to stop.
 
 So why do some of the most accomplished folks feel trapped this way? Because we all suffer from this biological glitch called **completion bias**. Your brain is wired to seek an immediate dopamine hit that you get from finishing a task. So we end up treating all tasks as equal because we're going to get roughly the same amount of dopamine when you spend time on redrafting an internal email or a million-dollar strategy document.
 

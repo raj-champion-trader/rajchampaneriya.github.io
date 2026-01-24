@@ -1,0 +1,23 @@
+/* Custom styles for social icons in post meta */
+.post-meta-social {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.post-meta-social a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--secondary);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.post-meta-social a:hover {
+    opacity: 1;
+}
+
+.post-meta-social svg {
+    vertical-align: middle;
+}
