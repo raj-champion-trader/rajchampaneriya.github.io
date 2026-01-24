@@ -16,7 +16,7 @@ In this reflection, I'll break down a counterintuitive system the top 1% use to 
 
 ## Step One: Intelligent Laziness
 
-A study in [Harvard Business Review](https://hbr.org/2017/07/stop-the-meeting-madness) found that CEOs waste 72% of their time in meetings that don't move the needle. We've all experienced those meetings, haven't we? The 1-hour meeting that needed only 15 minutes to get to a decision, but it's hard to stop.
+A study in [Harvard Business Review](https://hbr.org/2017/07/stop-the-meeting-madness) found that CEOs waste 57% of their time in meetings that don't move the needle. We've all experienced those meetings, haven't we? The 1-hour meeting that needed only 15 minutes to get to a decision, but it's hard to stop.
 
 So why do some of the most accomplished folks feel trapped this way? Because we all suffer from this biological glitch called **completion bias**. Your brain is wired to seek an immediate dopamine hit that you get from finishing a task. So we end up treating all tasks as equal because we're going to get roughly the same amount of dopamine when you spend time on redrafting an internal email or a million-dollar strategy document.
 
