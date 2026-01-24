@@ -45,9 +45,11 @@ Let's talk about how AI can help. The top 1% use AI on zone one or the zone of l
 
 So how do I decide what to outsource to AI and when? For that I use a very simple framework called **DRAG**. Four categories of work you immediately should delegate to AI so you can stay in your zone of obsession.
 
-**D = Drafting.** This is the blank page problem we all face. It's hardest to get from zero to one. Sometimes AI can help here tremendously. Give it a prompt using the AIM protocol: "Hey AI, act in this role. Use this input and this is your mission." And that way you get started very quickly on that email or code or presentation and the first draft from AI will be crappy and atrocious, but that's fine. Now you have a starting point. You're not staring at a blank page anymore. Now it'll trigger something in your brain and you're off to the races.
+**D = Drafting.** This is the blank page problem we all face. It's hardest to get from zero to one. Sometimes AI can help here tremendously. Give it a prompt using the **AIM** protocol: "Hey AI, **A**ct in this role. Use this **I**nput and this is your **M**ission." And that way you get started very quickly on that email or code or presentation and the first draft from AI will be crappy and atrocious, but that's fine. Now you have a starting point. You're not staring at a blank page anymore. Now it'll trigger something in your brain and you're off to the races.
 
-**R = Research.** This helps you solve the information overload problem. Today, if something requires deep research, it can be dramatically accelerated using AI, summarization, extraction, competitive intel—don't spend time doing that kind of research. Let your friendly neighborhood AI do it for you. When you use the deep research feature on ChatGPT or Gemini or Claude, it fires off hundreds of secondary search queries. It goes out to the web like a spider and finds hundreds of sites, consolidates the results, even checks its own work by asking what's missing and follows up on its own to finally deliver a rich document to you. It's like you just hired a consultant for a week-long research project, but instead you get there in 10 minutes.
+**R = Research.** Most people drown in information. The successful few learn to filter it.
+Today, AI can do the heavy lifting — searching, comparing, summarizing — in minutes instead of days. But wisdom still requires judgment. Trust the tool, verify the result.
+Used correctly, it’s like having a skilled researcher working quietly in the background, freeing you to think, decide, and act.
 
 **A = Analysis.** Let AI take the first pass at analyzing, summarizing, reasoning, especially if it's all unstructured data because AI is going to find patterns that we humans aren't going to be able to. So use it for your advantage.
 
@@ -59,7 +61,7 @@ So be lazy when you can use DRAG. Be obsessed for everything else.
 
 ## Step Two: The Intelligent Hill
 
-For 300 years, Isaac Newton convinced us that universe was a clockwork machine, predictable and certain. But in 1927, another scientist named Heisenberg shattered those classical beliefs. He showed that our universe exists only as a cloud of possibilities at quantum level. It was a profound shift.
+For 300 years, [Isaac Newton](https://en.wikipedia.org/wiki/Isaac_Newton) convinced us that universe was a clockwork machine, predictable and certain. But in 1927, [Heisenberg](https://en.wikipedia.org/wiki/Werner_Heisenberg) revealed that certainty is an illusion at the quantum level. What we call reality exists not as fixed facts, but as probabilities — a discovery that reshaped modern science.
 
 You and I have to make a similar shift when we use AI nowadays.
 
@@ -99,7 +101,7 @@ That last line is the most important one.
 
 **Camp 4: Agents**
 
-According to Salesforce, AI agents help drive $67 billion in global sales during Cyber Week alone. So agents are already here.
+According to [Salesforce](https://www.salesforce.com/in/news/press-releases/2025/12/05/cyber-week-ai-agents-sales/?utm_source=chatgpt.com), AI agents help drive $79.6 billion in global sales during Cyber Week alone. So agents are already here.
 
 The best way to think about agents is to think about who you would hire for a task. So let's say if you wanted to hire a researcher, an analyst, and a copywriter, you can do that with a single agentic prompt that looks like this:
 
@@ -163,9 +165,9 @@ So now we have covered three key steps to learn how the top 1% become smarter by
 
 You know the biggest obstacle to intelligence isn't ignorance, it's ego. That's why the smartest people are obsessed with what they don't know. And this is what I call **the fool's advantage**.
 
-Let me give you an example. Microsoft went from $300 billion to $3 trillion in market cap with just one mental cultural shift.
+Let me give you an example. [Microsoft](https://www.microsoft.com/en-lb/about/company) went from $300 billion to $3 trillion in market cap with just one mental cultural shift.
 
-When Satya Nadella became the CEO of Microsoft in 2014, they had missed two huge disruptions: search and mobile. The cloud race was ongoing but it was slipping away from them with Amazon becoming the 800-pound gorilla and the culture inside the company was toxic and political and everyone was terrified to admit that there were gaps in their knowledge.
+When [Satya Nadella](https://en.wikipedia.org/wiki/Satya_Nadella) became the CEO of Microsoft in 2014, they had missed two huge disruptions: search and mobile. The cloud race was ongoing but it was slipping away from them with Amazon becoming the 800-pound gorilla and the culture inside the company was toxic and political and everyone was terrified to admit that there were gaps in their knowledge.
 
 Satya made one cultural move. He told the entire company: "We're switching from a culture of know-it-alls to learn-it-alls."
 
