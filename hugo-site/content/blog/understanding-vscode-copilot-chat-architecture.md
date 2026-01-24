@@ -16,7 +16,11 @@ Have you ever noticed how we’ve taken a simple concept—telling a computer wh
 
 We’re drowning in acronyms and configuration files, all designed to help us talk to a chatbot that’s essentially a glorified autocomplete on steroids. But here’s the thing: if you don't know where these instructions actually go inside the giant digital haystack we call the "Context Window," you’re just shouting into the void.
 
+![Confused AI With Context](/images/blog/understanding-vscode-copilot-chat-architecture/Confused_AI_With_Context.png)
+
 Let’s dissect this circus.
+
+
 
 ## The Anatomy of the "Context Window" (The Pile)
 
