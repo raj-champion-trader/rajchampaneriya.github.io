@@ -41,11 +41,39 @@
 
 .profile-details {
     margin: 1.5rem 0;
+    max-width: 70ch;
 }
 
 .profile-details p {
     margin: 0 0 1rem 0;
     line-height: 1.7;
+}
+
+.profile-details .content-sections-title {
+    font-size: 1.25rem;
+    margin: 2.5rem 0 1.25rem 0;
+    font-weight: 600;
+}
+
+.profile-details .content-sections {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0;
+}
+
+.profile-details .content-sections li {
+    margin: 0 0 1.25rem 0;
+    line-height: 1.7;
+}
+
+.profile-details .content-sections li strong {
+    font-weight: 600;
+}
+
+.profile-details .publishing-note {
+    margin-top: 2rem;
+    font-style: italic;
+    opacity: 0.9;
 }
 
 /* Social Icons in Profile */
@@ -60,18 +88,18 @@
 
 /* Section Separator */
 .section-separator {
-    margin: 3rem 0;
+    margin: 3.5rem 0;
     border: none;
     border-top: 1px solid var(--border);
-    opacity: 1;
+    opacity: 0.4;
 }
 
 [data-theme="dark"] .section-separator {
-    border-top-color: rgba(255, 255, 255, 0.2);
+    border-top-color: rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="light"] .section-separator {
-    border-top-color: rgba(0, 0, 0, 0.15);
+    border-top-color: rgba(0, 0, 0, 0.12);
 }
 
 /* Recent Posts Section */
@@ -87,17 +115,30 @@
 
 .post-entry-horizontal {
     margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    background: var(--entry);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-entry-horizontal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .post-entry-horizontal:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .post-entry-horizontal:not(:last-child) {
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
 }
 
 .post-meta-small {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--secondary);
     margin-bottom: 0.5rem;
+    opacity: 0.8;
 }
 
 .post-meta-small .post-separator {

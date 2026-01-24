@@ -4,7 +4,7 @@ date: 2026-01-24
 draft: false
 tags: ["AI", "career", "software-engineering"]
 categories: ["Point of View"]
-summary: "Most people are letting AI destroy their ability to think, training AI to become their own replacement. Tragic, because AI can make you dangerously intelligent if you use it correctly."
+summary: "Most people are outsourcing thinking to AI. The real advantage comes from using AI to think better, not less."
 ---
 
 Most people are letting AI destroy their ability to think, training AI to become their own replacement. Tragic, because AI can make you dangerously intelligent.

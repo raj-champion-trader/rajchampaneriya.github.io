@@ -39,7 +39,7 @@ canonifyURLs = true
   [params.profileMode]
     enabled = true
     title= "Hi, I’m Raj Champaneriya."
-    subtitle = "Solution Architect focused on cloud modernization and AI-enabled platforms for enterprise systems."
+    subtitle = "Notes from building systems, navigating complexity, and learning how to think clearly in an AI-accelerated world."
     imageUrl = "images/profile.jpg"
     imageWidth = 225
     imageHeight = 175
@@ -79,12 +79,6 @@ canonifyURLs = true
     name = "Architecture Work"
     url = "/projects/"
     weight = 20
-
-  [[menu.main]]
-    identifier = "talks"
-    name = "Talks & Sessions"
-    url = "/talks/"
-    weight = 30
 
   [[menu.main]]
     identifier = "about"
