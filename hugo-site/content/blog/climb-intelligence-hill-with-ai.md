@@ -4,18 +4,18 @@ date: 2026-01-24
 draft: false
 tags: ["AI", "career", "software-engineering"]
 categories: ["Point of View"]
-summary: "Most people are outsourcing thinking to AI. The real advantage comes from using AI to think better, not less."
+summary: "Many people outsource thinking to AI. The real advantage comes from using AI to think better, not less."
 ---
 
-Most people use AI to think less.
-That’s why they’ll be replaced.
+Many people use AI to think less.
+Over time, this risks atrophying critical thinking skills.
 
-AI isn’t here to make you faster.
-It’s here to make you dangerous — if you know how to think.
+AI isn't just here to make you faster.
+It's here to sharpen your judgment — if you know how to use it thoughtfully.
 
 I was a skeptic. Now I use AI to sharpen judgment, not outsource it.
 
-In this reflection, I'll break down a counterintuitive system the top 1% use to get smarter faster with AI. Here is the four-step framework.
+In this reflection, I'll share a practical framework I've found helpful for getting smarter with AI. Here are the four steps.
 
 ## Step One: Intelligent Laziness
 
@@ -42,23 +42,28 @@ So, if the first curve is your **zone of laziness**, your second curve is your *
 
 ### The DRAG Framework
 
-Let's talk about how AI can help. The top 1% use AI on zone one or the zone of laziness. The more they outsource zone one to AI, the more they can focus on zone 2, the zone of obsession.
+Let's talk about how AI can help. Effective professionals use AI on zone one — the zone of laziness. The more they outsource zone one to AI, the more they can focus on zone two, the zone of obsession.
 
 So how do I decide what to outsource to AI and when? For that I use a very simple framework called **DRAG**. Four categories of work you immediately should delegate to AI so you can stay in your zone of obsession.
 
 **D = Drafting.** This is the blank page problem we all face. It's hardest to get from zero to one. Sometimes AI can help here tremendously. Give it a prompt using the **AIM** protocol: "Hey AI, **A**ct in this role. Use this **I**nput and this is your **M**ission." And that way you get started very quickly on that email or code or presentation and the first draft from AI will be crappy and atrocious, but that's fine. Now you have a starting point. You're not staring at a blank page anymore. Now it'll trigger something in your brain and you're off to the races.
 
-**R = Research.** Most people drown in information. The successful few learn to filter it.
-Today, AI can do the heavy lifting — searching, comparing, summarizing — in minutes instead of days. But wisdom still requires judgment. Trust the tool, verify the result.
+**R = Research.** Most people drown in information. Learning to filter it is a valuable skill.
+Today, AI can do the heavy lifting — searching, comparing, summarizing — in minutes instead of days. But wisdom still requires judgment. Trust the tool, but always verify the result.
+
+**A word of caution:** AI can confidently present outdated, biased, or fabricated information. Cross-reference important claims with primary sources, especially for decisions that matter.
+
 Used correctly, it’s like having a skilled researcher working quietly in the background, freeing you to think, decide, and act.
 
 **A = Analysis.** Let AI take the first pass at analyzing, summarizing, reasoning, especially if it's all unstructured data because AI is going to find patterns that we humans aren't going to be able to. So use it for your advantage.
 
 **G = Grunt work.** Tasks like reformatting, translating, tabulating, cleaning data, and on and on the boring manual work. Just give it to AI.
 
-So what's the key principle behind DRAG? Apply it only when you are in your zone one. That first curve. If it requires human interaction or judgment or intuition or decision-making or taste, that's curve two. That you've got to do it yourself. But you know, I found that 70 or 80% of my repetitive tasks tend to be in zone one. And you might find that too.
+So what's the key principle behind DRAG? Apply it only when you are in your zone one. That first curve. If it requires human interaction, judgment, intuition, decision-making, or taste, that's curve two. That you've got to do yourself.
 
-So be lazy when you can use DRAG. Be obsessed for everything else.
+**Important caveat:** Even in zone one, AI isn't perfect. Review outputs for errors, biases, or inappropriate content before sharing. Your name is still on the work.
+
+I've found that 70-80% of my repetitive tasks tend to be in zone one. You might find that too. So be efficient when you can use DRAG. Be obsessed for everything else.
 
 ## Step Two: The Intelligent Hill
 
@@ -118,15 +123,15 @@ Remember when you were dealing with a drunk genius—make sure you were the one 
 
 So now at this point, everything we've done has made you fast and efficient. You're delegating better, you're prompting smarter, you're moving up the hill, and there is less friction than before.
 
-And that's exactly where most people would stop. But here's the plot twist. The top 1% go one step further. They slow things down deliberately.
+And that's exactly where most people would stop. But here's the plot twist. The most thoughtful AI users go one step further. They slow things down deliberately.
 
-Why is that important? The trick that top 1% know is this: They know when to shift the gear. Because long-term intelligence isn't built through convenience, it's built through resistance.
+Why is that important? They know when to shift gears. Because long-term intelligence isn't built through convenience — it's built through resistance.
 
-### Don't Use AI as a Wheelchair for the Mind
+### Don't Use AI as a Crutch for the Mind
 
-Most people use AI as wheelchair for the mind. And if you sit in a wheelchair when you can still walk, eventually your legs stop working. Atrophy. And today it's happening faster than at any point in human history.
+It's tempting to use AI as a crutch for thinking. And if you lean on a crutch when you don't need one, your mental muscles can weaken over time.
 
-But the top 1% use a very different principle:
+But thoughtful AI users apply a different principle:
 
 **For information tasks, use AI to remove friction.**
 
@@ -136,7 +141,7 @@ When you go to a physical gym, we all know how muscles are built, right? Through
 
 But when it comes to our minds, we do the exact opposite somehow. We avoid resistance. We use AI to outsource our thinking. "Write my LinkedIn post, fix my resume, summarize this book." That's like going to the gym and asking someone else to lift weights on your behalf.
 
-You know, when astronauts spend months in zero gravity, their muscles and bones atrophy dramatically, up to 20%. AI is like zero gravity for your thinking. No friction, no load, no growth.
+When astronauts spend months in zero gravity, their muscles and bones can atrophy significantly. Over-reliance on AI can have a similar effect on thinking — less friction means less growth.
 
 ### AI as Your Spotter
 
@@ -160,7 +165,7 @@ So that truly strengthens and deepens your understanding on that concept.
 
 ## Step Four: The Intelligent Fool
 
-So now we have covered three key steps to learn how the top 1% become smarter by using AI. But there is one internal adjustment that changes everything and that is our final step.
+So now we have covered three key steps to become smarter by using AI. But there is one internal adjustment that changes everything — and that is our final step.
 
 ### The Biggest Obstacle
 
@@ -172,9 +177,9 @@ When [Satya Nadella](https://en.wikipedia.org/wiki/Satya_Nadella) became the CEO
 
 Satya made one cultural move. He told the entire company: "We're switching from a culture of know-it-alls to learn-it-alls."
 
-A complete reboot of Microsoft culture. The smartest people in the room were finally given permission to say, "I don't know," or "I was wrong," and to embrace that beginner's mind.
+People were finally given permission to say, "I don't know," or "I was wrong," and to embrace a beginner's mind.
 
-Now, Wall Street was skeptical at first, but the market cap eventually went from $300 billion to over $3 trillion, and it keeps growing. 10x growth in a decade.
+Of course, Microsoft's turnaround involved many factors — cloud investments, strategic acquisitions, market timing. But this cultural shift in how people approached learning was a meaningful part of the story.
 
 ### Neuroplasticity and Learning
 
@@ -196,12 +201,15 @@ The trick to mastery is going back to simplicity itself. If you examine some of 
 
 And you can't be a genuine student if you're hiding behind a mask of mastery.
 
-## The End of Pretending
+## Summary: Your AI Partnership
 
-You know, the biggest benefit of intelligence is not the end of ignorance. It's the end of pretending.
+Here's what it comes down to:
 
-We're surrounded by endless images of flawless people in their flawless poses, flawlessly photoshopped. But in the end, all art is about asymmetry. We're beautiful because we're broken.
+1. **Be strategically efficient** — Use DRAG to delegate low-value tasks so you can focus on what matters.
+2. **Climb the intelligence hill** — Move from basic prompting to grounded, thoughtful interactions with AI.
+3. **Build your mental gym** — Use AI to challenge yourself, not replace yourself.
+4. **Stay curious** — The willingness to say "I don't know" is the foundation of real growth.
 
-Because the real purpose of intelligence, of this thing called life, is to travel far and wide only to return to yourself and fully accept who you are.
+AI is a powerful tool, but it's still just a tool. Your judgment, creativity, and willingness to learn are what make the difference.
 
-**That is your truest intelligence.**
+**Use AI to think better, not less.**
