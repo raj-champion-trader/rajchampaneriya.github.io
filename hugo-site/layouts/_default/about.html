@@ -1,0 +1,65 @@
+{{- define "main" }}
+
+<article class="about-page">
+    <!-- Intro Section -->
+    <header class="about-intro">
+        <h1>{{ .Title }}</h1>
+        <span class="role-tagline">Solution Architect | Cloud Architecture & AI Solutions Expert</span>
+        
+        <div class="summary-stats">
+            <div class="stat-item"><span class="stat-icon">⚡</span> 13+ Years Exp</div>
+            <div class="stat-item"><span class="stat-icon">💰</span> $15M+ Pipeline Growth</div>
+            <div class="stat-item"><span class="stat-icon">📉</span> 40% Cost Reduction</div>
+            <div class="stat-item"><span class="stat-icon">🚀</span> 37.5% Faster Delivery</div>
+        </div>
+
+        <p class="about-summary">
+            I am a Solution Architect driving digital transformation across Healthcare, Property Insurance, Media, and Logistics sectors for Fortune 500 clients. I combine deep technical expertise in .NET, Cloud Architecture, and Applied AI with strong stakeholder management to deliver measurable business value.
+        </p>
+        
+        <blockquote class="about-quote">
+            "My approach focuses on turning ambiguous problem statements into executable technical strategies—architecting systems that survive audits, outages, and Monday morning status calls."
+        </blockquote>
+
+        <h2>Core Focus</h2>
+        <ul class="focus-list">
+            <li><strong>Cloud Native (Azure/AWS)</strong>: AKS, API Management, Governance & Reliability</li>
+            <li><strong>Modernization</strong>: .NET to Microservices, Strangler-Fig, Legacy VB6/COBOL migration</li>
+            <li><strong>Applied AI</strong>: RAG Architectures, Semantic Kernel, LangGraph, Enterprise GenAI</li>
+            <li><strong>Delivery Excellence</strong>: CQRS, Clean Architecture, DevOps, 99.95% Uptime SLAs</li>
+        </ul>
+
+        <div class="contact-info">
+            <h3>Connect</h3>
+            <div class="contact-links">
+                <span>🐙 <a href="https://github.com/raj-champion-trader" target="_blank">github.com/raj-champion-trader</a></span>
+                <span>💼 <a href="https://linkedin.com/in/rajchampaneriya" target="_blank">linkedin.com/in/rajchampaneriya</a></span>
+                <span>🌐 <a href="https://rajc.work" target="_blank">rajc.work</a></span>
+                <span>📧 <a href="mailto:champaneriyaraj@gmail.com">champaneriyaraj@gmail.com</a></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Timeline Controls -->
+    <div class="timeline-controls">
+        <div class="filters">
+            <button class="btn-filter active" data-filter="all">All</button>
+            <button class="btn-filter" data-filter="role" data-type="role">Roles</button>
+            <button class="btn-filter" data-filter="project" data-type="project">Projects</button>
+            <button class="btn-filter" data-filter="learning" data-type="learning">Learning</button>
+            <button class="btn-filter" data-filter="speaking" data-type="speaking">Speaking</button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search tech or impact (e.g., AI)...">
+        </div>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="timeline" id="timelineContainer">
+        <!-- Items injected by JS -->
+    </div>
+</article>
+
+<script src="/js/about-timeline.js"></script>
+
+{{- end }}

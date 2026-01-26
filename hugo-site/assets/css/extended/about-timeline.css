@@ -1,0 +1,553 @@
+/* ================================================
+   About Page Timeline Styles
+   Compatible with PaperMod dark/light themes
+   ================================================ */
+
+/* --- CSS Variables (PaperMod Compatible) --- */
+.about-page {
+    --accent-blue: #2563eb;
+    --accent-green: #16a34a;
+    --accent-purple: #7c3aed;
+    --accent-yellow: #d97706;
+    
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .about-page {
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Intro Section --- */
+.about-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.about-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.about-intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.role-tagline {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.summary-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.stat-icon {
+    color: var(--accent-blue);
+}
+
+.about-summary {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.about-quote {
+    color: var(--primary);
+    font-style: italic;
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+.about-intro h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.about-intro h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    color: var(--primary);
+}
+
+/* Focus List */
+.focus-list {
+    list-style: none;
+    margin-top: 1rem;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.focus-list li {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.focus-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .focus-list {
+        grid-template-columns: 1fr;
+    }
+    .summary-stats {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--code-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+}
+
+.contact-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+}
+
+.contact-links a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-links a:hover {
+    text-decoration: underline;
+}
+
+/* --- Timeline Controls --- */
+.timeline-controls {
+    position: sticky;
+    top: 60px;
+    z-index: 50;
+    background: var(--theme);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.3s;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+    transform: translateY(-1px);
+}
+
+/* Active Filter States */
+.btn-filter.active[data-filter="all"] {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
+.btn-filter.active[data-filter="role"] {
+    background-color: rgba(37, 99, 235, 0.15);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.btn-filter.active[data-filter="project"] {
+    background-color: rgba(22, 163, 74, 0.15);
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.btn-filter.active[data-filter="learning"] {
+    background-color: rgba(217, 119, 6, 0.15);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+}
+
+.btn-filter.active[data-filter="speaking"] {
+    background-color: rgba(124, 58, 237, 0.15);
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+}
+
+.search-box input {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    width: 220px;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.search-box input::placeholder {
+    color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+    .timeline-controls {
+        flex-direction: column;
+        align-items: stretch;
+        top: 0;
+    }
+    .filters {
+        justify-content: center;
+    }
+    .search-box input {
+        width: 100%;
+    }
+}
+
+/* --- Timeline Structure --- */
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+}
+
+/* The vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--border);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    z-index: 0;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+/* The dots */
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--theme);
+    border: 4px solid var(--secondary);
+    top: 24px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s;
+}
+
+.timeline-item.right .timeline-dot {
+    left: -10px;
+}
+
+/* Color coding dots */
+.timeline-item[data-type="role"] .timeline-dot {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.timeline-item[data-type="project"] .timeline-dot {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+}
+
+.timeline-item[data-type="learning"] .timeline-dot {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.1);
+}
+
+.timeline-item[data-type="speaking"] .timeline-dot {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    background: var(--code-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+/* --- Card Design --- */
+.content-card {
+    padding: 1.5rem;
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.content-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary);
+}
+
+.content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--secondary);
+}
+
+.timeline-item[data-type="role"] .content-card::before {
+    background: var(--accent-blue);
+}
+
+.timeline-item[data-type="project"] .content-card::before {
+    background: var(--accent-green);
+}
+
+.timeline-item[data-type="learning"] .content-card::before {
+    background: var(--accent-yellow);
+}
+
+.timeline-item[data-type="speaking"] .content-card::before {
+    background: var(--accent-purple);
+}
+
+.card-header {
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 0.95rem;
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--secondary);
+}
+
+/* Expanded Details */
+.card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease;
+    opacity: 0;
+    margin-top: 0;
+    border-top: 1px solid transparent;
+}
+
+.content-card.expanded .card-details {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top-color: var(--border);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.detail-col h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.impact-list {
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.impact-list li {
+    margin-bottom: 0.3rem;
+    color: var(--primary);
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.tag {
+    background: var(--theme);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--primary);
+}
+
+.expand-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--secondary);
+    margin-top: 0.8rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+    }
+    
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 22px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+    
+    .about-intro h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Empty State */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary);
+    width: 100%;
+    grid-column: span 2;
+}

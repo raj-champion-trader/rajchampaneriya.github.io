@@ -1,0 +1,61 @@
+{{- define "main" }}
+
+<section class="writings-page">
+    <!-- Introduction -->
+    <header class="writings-intro">
+        <h1>{{ .Title }}</h1>
+        <p class="writings-tagline">
+            Practical insights from the trenches of enterprise delivery.
+            <span class="tagline-sub">Theory is easy; production is hard. No hype, just hard-earned lessons.</span>
+        </p>
+        
+        <div class="writings-description">
+            {{ .Content }}
+        </div>
+    </header>
+
+    <!-- Category Filters -->
+    <div class="category-filters">
+        <button class="filter-btn active" data-filter="all">All Topics</button>
+        {{- $categories := slice }}
+        {{- range .Site.Taxonomies.categories }}
+            {{- $categories = $categories | append .Page.Title }}
+        {{- end }}
+        {{- range (sort .Site.Taxonomies.categories) }}
+        <button class="filter-btn" data-filter="{{ .Page.Title | urlize }}">{{ .Page.Title }}</button>
+        {{- end }}
+    </div>
+
+    <!-- Writings Grid -->
+    <div class="writings-grid" id="writingsGrid">
+        {{- $pages := where .Site.RegularPages "Section" "blog" }}
+        {{- range $pages.ByDate.Reverse }}
+        {{- $category := "general" }}
+        {{- with .Params.categories }}
+            {{- $category = index . 0 | urlize }}
+        {{- end }}
+        <article class="writing-card" data-category="{{ $category }}">
+            <a href="{{ .RelPermalink }}">
+                {{- with .Params.categories }}
+                <span class="card-tag card-tag--{{ index . 0 | urlize }}">{{ index . 0 }}</span>
+                {{- end }}
+                <h3 class="card-title">{{ .Title }}</h3>
+                <p class="card-summary">{{ .Summary | plainify | truncate 120 }}</p>
+                <div class="card-meta">
+                    <span class="read-time">{{ .ReadingTime }} min read</span>
+                    <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                </div>
+            </a>
+        </article>
+        {{- end }}
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results" id="noResults" style="display: none;">
+        No posts found in this category.
+    </div>
+</section>
+
+<script src="/js/writings-filter.js"></script>
+
+{{- end }}

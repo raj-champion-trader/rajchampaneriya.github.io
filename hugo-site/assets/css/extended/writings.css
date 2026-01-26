@@ -1,0 +1,312 @@
+/* ================================================
+   Writings/Blog Section Styles
+   Compatible with PaperMod dark/light themes
+   ================================================ */
+
+/* --- CSS Variables --- */
+.writings-page {
+    --accent-blue: #2563eb;
+    --accent-green: #16a34a;
+    --accent-purple: #7c3aed;
+    --accent-yellow: #d97706;
+    --accent-red: #dc2626;
+    --accent-cyan: #0891b2;
+    
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem 4rem;
+}
+
+/* --- Intro Section --- */
+.writings-intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.writings-intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.writings-tagline {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.5;
+}
+
+.tagline-sub {
+    display: block;
+    font-size: 0.95em;
+    opacity: 0.8;
+    margin-top: 0.3rem;
+}
+
+.writings-description {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+    color: var(--primary);
+    line-height: 1.7;
+}
+
+.writings-description h2 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.writings-description ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.writings-description li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.writings-description li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* --- Category Filters --- */
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+.filter-btn.active {
+    background-color: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+/* --- Writings Grid --- */
+.writings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- Writing Card --- */
+.writing-card {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.writing-card.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+}
+
+.writing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-blue);
+}
+
+.dark .writing-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.writing-card a {
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* --- Card Tag (Category) --- */
+.card-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+    display: inline-block;
+}
+
+/* Category-specific colors */
+.card-tag--technical-concepts,
+.card-tag--architecture {
+    color: var(--accent-blue);
+}
+
+.card-tag--point-of-view,
+.card-tag--leadership {
+    color: var(--accent-purple);
+}
+
+.card-tag--ai,
+.card-tag--technology {
+    color: var(--accent-green);
+}
+
+.card-tag--architecture-work {
+    color: var(--accent-cyan);
+}
+
+.card-tag--book-notes,
+.card-tag--books {
+    color: var(--accent-yellow);
+}
+
+/* --- Card Content --- */
+.writing-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--primary);
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.writing-card:hover .card-title {
+    color: var(--accent-blue);
+}
+
+.card-summary {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    opacity: 0.7;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+}
+
+.read-time::before {
+    content: "📖 ";
+}
+
+.post-date::before {
+    content: "📅 ";
+}
+
+/* --- No Results --- */
+.no-results {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--secondary);
+    font-size: 1.1rem;
+    background: var(--code-bg);
+    border-radius: 10px;
+    border: 1px dashed var(--border);
+    margin-top: 1rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .writings-intro h1 {
+        font-size: 2rem;
+    }
+    
+    .writings-tagline {
+        font-size: 1rem;
+    }
+    
+    .category-filters {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.85rem;
+    }
+    
+    .writings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Animation --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card entrance animation */
+.writing-card {
+    animation: cardFadeIn 0.4s ease-out backwards;
+}
+
+.writing-card:nth-child(1) { animation-delay: 0.05s; }
+.writing-card:nth-child(2) { animation-delay: 0.1s; }
+.writing-card:nth-child(3) { animation-delay: 0.15s; }
+.writing-card:nth-child(4) { animation-delay: 0.2s; }
+.writing-card:nth-child(5) { animation-delay: 0.25s; }
+.writing-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
