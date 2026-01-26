@@ -2,6 +2,7 @@
 title: "Stock Market Simulator"
 date: 2026-01-23
 draft: true
+slug: "stock-market-simulator"
 tags: ["architecture", "streaming", "real-time", "software-engineering"]
 categories: ["Architecture Work"]
 summary: "Real-time market data simulation showcasing modern event-driven architecture"
