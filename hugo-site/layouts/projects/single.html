@@ -1,0 +1,375 @@
+{{- define "main" }}
+
+{{- $currentProject := path.Base .File.Dir }}
+
+<style>
+/* Override main wrapper constraints for project pages */
+.main {
+  max-width: 100% !important;
+  padding: 1rem !important;
+  overflow: visible !important;
+}
+
+.project-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  overflow: visible;
+  align-items: start;
+}
+
+.project-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+  align-self: flex-start;
+  height: auto;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.25rem;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+.project-sidebar h3 {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.project-nav-section {
+  margin-bottom: 1.25rem;
+}
+
+.project-nav-section h4 {
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.project-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-nav-list li {
+  margin-bottom: 0.25rem;
+}
+
+.project-nav-list a {
+  display: block;
+  padding: 0.375rem 0.5rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--content);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  transition: all 0.15s ease;
+  border-left: 2px solid transparent;
+}
+
+.project-nav-list a:hover {
+  background: var(--theme);
+  color: var(--primary);
+  border-left-color: var(--tertiary);
+  padding-left: 0.625rem;
+}
+
+.project-nav-list .post-number {
+  color: var(--secondary);
+  margin-right: 0.35rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.project-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.project-content .post-single {
+  padding: 0;
+}
+
+.project-content .post-header {
+  margin-bottom: 1.5rem;
+}
+
+.project-content .post-title {
+  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-top: 0.875rem;
+  transition: all 0.15s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.github-link:hover {
+  background: var(--entry);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.875rem;
+  margin: 1rem 0 1.5rem 0;
+  padding: 1rem;
+  background: var(--code-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.project-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.project-stat-label {
+  color: var(--secondary);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.project-stat-value {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.project-content .post-content {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.project-content .post-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.875rem;
+  font-size: 1.5rem;
+}
+
+.project-content .post-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .project-container {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  .project-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+  
+  .project-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-content .post-title {
+    font-size: 1.75rem;
+  }
+}
+</style>
+
+<div class="project-container">
+  <!-- Sidebar Navigation -->
+  <aside class="project-sidebar">
+    <h3>Project Contents</h3>
+    
+    <!-- Overview Section -->
+    <div class="project-nav-section">
+      <h4>Overview</h4>
+      <ul class="project-nav-list">
+        <li><a href="#what-is-{{ lower .Title | urlize }}">What is {{ .Title }}?</a></li>
+        <li><a href="#architecture-layers">Architecture</a></li>
+        <li><a href="#system-overview">System Overview</a></li>
+      </ul>
+    </div>
+    
+    <!-- Related Blog Posts -->
+    {{- $relatedPosts := where site.RegularPages ".Params.project" $currentProject }}
+    {{- if gt (len $relatedPosts) 0 }}
+    <div class="project-nav-section">
+      <h4>Related Posts ({{ len $relatedPosts }})</h4>
+      <ul class="project-nav-list">
+        {{- range $index, $post := $relatedPosts }}
+        <li>
+          <a href="{{ $post.Permalink }}">
+            <span class="post-number">{{ add $index 1 }}.</span>
+            {{ $post.Title }}
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+    {{- end }}
+    
+    <!-- GitHub Link -->
+    {{- with .Params.githubRepo }}
+    <a href="{{ . }}" class="github-link" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+      View on GitHub
+    </a>
+    {{- end }}
+  </aside>
+  
+  <!-- Main Project Content -->
+  <div class="project-content">
+    <article class="post-single">
+      <header class="post-header">
+        {{ partial "breadcrumbs.html" . }}
+        <h1 class="post-title entry-hint-parent">
+          {{ .Title }}
+          {{- if .Draft }}
+          <span class="entry-hint" title="Draft">
+            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+              <path d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/>
+            </svg>
+          </span>
+          {{- end }}
+        </h1>
+        {{- if .Description }}
+        <div class="post-description">
+          {{ .Description }}
+        </div>
+        {{- end }}
+        
+        <!-- Project Stats -->
+        <div class="project-stats">
+          {{- $relatedPosts := where site.RegularPages ".Params.project" $currentProject }}
+          <div class="project-stat">
+            <span class="project-stat-label">Blog Posts</span>
+            <span class="project-stat-value">{{ len $relatedPosts }}</span>
+          </div>
+          {{- with .Params.tags }}
+          <div class="project-stat">
+            <span class="project-stat-label">Tags</span>
+            <span class="project-stat-value">{{ len . }}</span>
+          </div>
+          {{- end }}
+          <div class="project-stat">
+            <span class="project-stat-label">Last Updated</span>
+            <span class="project-stat-value">{{ .Date.Format "Jan 2006" }}</span>
+          </div>
+        </div>
+        
+        {{- if not (.Param "hideMeta") }}
+        <div class="post-meta">
+          {{- partial "post_meta.html" . -}}
+          {{- partial "translation_list.html" . -}}
+          {{- partial "edit_post.html" . -}}
+          {{- partial "post_canonical.html" . -}}
+        </div>
+        {{- end }}
+      </header>
+      
+      {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+      
+      {{- if (.Param "ShowToc") }}
+      {{- partial "toc.html" . }}
+      {{- end }}
+
+      {{- if .Content }}
+      <div class="post-content">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" .Content -}}
+        {{- else }}{{ .Content }}{{ end }}
+      </div>
+      {{- end }}
+      
+      <!-- Related Posts Section at Bottom -->
+      {{- if gt (len $relatedPosts) 0 }}
+      <div style="margin-top: 3rem; padding: 2rem; background: var(--entry); border-radius: 8px;">
+        <h2 style="margin-top: 0;">Deep Dive: Related Blog Posts</h2>
+        <p style="color: var(--secondary); margin-bottom: 1.5rem;">
+          Explore these detailed posts that explain concepts using this project as a practical example:
+        </p>
+        <div style="display: grid; gap: 1rem;">
+          {{- range $relatedPosts }}
+          <a href="{{ .Permalink }}" style="display: block; padding: 1rem; background: var(--theme); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; transition: transform 0.2s;">
+            <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.25rem;">{{ .Title }}</div>
+            <div style="font-size: 0.9rem; color: var(--secondary);">{{ .Summary }}</div>
+            <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--tertiary);">
+              {{- range .Params.tags }}
+              <span style="margin-right: 0.5rem;">#{{ . }}</span>
+              {{- end }}
+            </div>
+          </a>
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
+
+      <footer class="post-footer">
+        {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+        <ul class="post-tags">
+          {{- range ($.GetTerms $tags) }}
+          <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+          {{- end }}
+        </ul>
+        {{- if (.Param "ShowPostNavLinks") }}
+        {{- partial "post_nav_links.html" . }}
+        {{- end }}
+        {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+        {{- partial "share_icons.html" . -}}
+        {{- end }}
+      </footer>
+
+      {{- if (.Param "comments") }}
+      {{- partial "comments.html" . }}
+      {{- end }}
+    </article>
+  </div>
+</div>
+
+{{- end }}{{/* end main */}}

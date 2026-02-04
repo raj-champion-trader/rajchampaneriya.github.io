@@ -1,0 +1,607 @@
+---
+title: "Data Migration Without Downtime: Zero-Downtime Schema Changes"
+date: 2026-02-06
+draft: false
+tags: ["database", "migration", "devops", "postgresql", "architecture"]
+categories: ["Technical Concepts"]
+series: ["Stock Market Simulator"]
+project: "stock-market-simulator"
+projectTitle: "Stock Market Simulator"
+projectUrl: "/projects/stock-market-simulator"
+githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
+summary: "Techniques for migrating database schemas and data without taking your application offline, using stock market data as an example"
+weight: 3
+---
+
+## The Migration Challenge
+
+Imagine this scenario: The [Stock Market Simulator](/projects/stock-market-simulator) is running in production, streaming prices to 10,000 concurrent users. You need to:
+- Add a new `sector` column to the `symbols` table
+- Migrate historical data from a flat structure to a time-series optimized schema
+- Change the primary key structure for better partitioning
+
+**The catch?** You can't afford downtime. The market never sleeps.
+
+This post covers battle-tested techniques for zero-downtime migrations.
+
+---
+
+## Why Zero-Downtime Matters
+
+### Cost of Downtime
+```
+Stock Market Simulator:
+- 10,000 concurrent users
+- $0.001 revenue per user per minute
+- 30-minute migration window
+= $300 revenue loss + reputation damage
+```
+
+For financial systems, downtime is unacceptable. Users expect 99.99% uptime (52 minutes/year).
+
+---
+
+## Technique 1: Expand-Contract Pattern
+
+The safest migration pattern for schema changes.
+
+### Problem: Adding a `sector` Column
+
+**Old Schema:**
+```sql
+CREATE TABLE symbols (
+    code VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    exchange VARCHAR(10) NOT NULL
+);
+```
+
+**Desired Schema:**
+```sql
+CREATE TABLE symbols (
+    code VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    exchange VARCHAR(10) NOT NULL,
+    sector VARCHAR(50) NOT NULL  -- NEW COLUMN
+);
+```
+
+### Naive Approach (Causes Downtime)
+```sql
+-- WRONG: This locks the table and fails for existing rows
+ALTER TABLE symbols ADD COLUMN sector VARCHAR(50) NOT NULL;
+```
+**Problem**: 
+- Table lock prevents reads/writes
+- NOT NULL fails on existing rows
+- Can take minutes on large tables
+
+### Expand-Contract Approach
+
+**Phase 1: EXPAND** (Add column as nullable)
+```sql
+-- Migration 1: Add column (no lock, instant)
+ALTER TABLE symbols ADD COLUMN sector VARCHAR(50);
+
+-- Create index concurrently (no lock)
+CREATE INDEX CONCURRENTLY idx_symbols_sector ON symbols(sector);
+```
+**Deploy Version 1.1**:
+```csharp
+public class Symbol
+{
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string Exchange { get; set; }
+    public string? Sector { get; set; }  // Nullable! Old rows have NULL
+}
+
+// Write: Always populate sector
+public async Task CreateSymbol(Symbol symbol)
+{
+    symbol.Sector = symbol.Sector ?? "Unknown";  // Default value
+    await _dbContext.Symbols.AddAsync(symbol);
+    await _dbContext.SaveChangesAsync();
+}
+
+// Read: Handle NULL values
+public string GetSector(Symbol symbol)
+{
+    return symbol.Sector ?? "Unknown";  // Gracefully handle missing data
+}
+```
+
+**Phase 2: Backfill** (Populate existing rows)
+```sql
+-- Background migration (batch updates to avoid locks)
+DO $$
+DECLARE
+    batch_size INT := 1000;
+    rows_affected INT;
+BEGIN
+    LOOP
+        UPDATE symbols
+        SET sector = CASE
+            WHEN code LIKE '%BANK%' THEN 'Banking'
+            WHEN code LIKE '%IT%' THEN 'Technology'
+            ELSE 'Unknown'
+        END
+        WHERE sector IS NULL
+        LIMIT batch_size;
+        
+        GET DIAGNOSTICS rows_affected = ROW_COUNT;
+        EXIT WHEN rows_affected = 0;
+        
+        -- Sleep between batches to avoid overwhelming DB
+        PERFORM pg_sleep(0.5);
+    END LOOP;
+END $$;
+```
+
+**Phase 3: CONTRACT** (Make column NOT NULL)
+```sql
+-- Migration 2: Enforce NOT NULL (safe now, all rows have values)
+ALTER TABLE symbols ALTER COLUMN sector SET NOT NULL;
+
+-- Migration 3: Add check constraint
+ALTER TABLE symbols ADD CONSTRAINT chk_sector 
+    CHECK (sector IN ('Banking', 'Technology', 'Unknown'));
+```
+
+**Deploy Version 1.2**:
+```csharp
+public class Symbol
+{
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string Exchange { get; set; }
+    public string Sector { get; set; }  // Non-nullable now!
+}
+```
+
+### Timeline
+```
+Time    Action                          Downtime
+------------------------------------------------------
+T+0     Deploy v1.1 (sector nullable)   0 seconds
+T+5min  Backfill sector values          0 seconds (background)
+T+30min Deploy v1.2 (sector required)   0 seconds
+```
+
+**Key Insight**: Application code handles both old and new schema during transition.
+
+---
+
+## Technique 2: Shadow Writing (Dual Writes)
+
+For complex schema changes that can't be done with ALTER TABLE.
+
+### Problem: Migrating to Time-Series Optimized Schema
+
+**Old Schema (Flat Structure):**
+```sql
+CREATE TABLE ticks (
+    id BIGSERIAL PRIMARY KEY,
+    symbol VARCHAR(20),
+    price DECIMAL(10,2),
+    volume INT,
+    timestamp TIMESTAMPTZ
+);
+```
+
+**New Schema (TimescaleDB Hypertable):**
+```sql
+CREATE TABLE ticks_v2 (
+    symbol VARCHAR(20) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    volume INT NOT NULL,
+    timestamp TIMESTAMPTZ NOT NULL,
+    PRIMARY KEY (symbol, timestamp)
+);
+
+SELECT create_hypertable('ticks_v2', 'timestamp');
+```
+
+### Dual-Write Strategy
+
+**Phase 1: Create New Table**
+```sql
+CREATE TABLE ticks_v2 (...);
+SELECT create_hypertable('ticks_v2', 'timestamp');
+```
+
+**Phase 2: Write to Both Tables**
+```csharp
+public class TickRepository
+{
+    private readonly bool _enableDualWrite;
+    
+    public async Task SaveTickAsync(StockTick tick)
+    {
+        // Write to old table (primary)
+        await _dbContext.Ticks.AddAsync(tick);
+        await _dbContext.SaveChangesAsync();
+        
+        // Shadow write to new table (secondary)
+        if (_enableDualWrite)
+        {
+            try
+            {
+                await _dbContext.TicksV2.AddAsync(tick);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Shadow write to ticks_v2 failed");
+                // Don't fail the request! Old table is source of truth
+            }
+        }
+    }
+}
+```
+
+**Configuration:**
+```json
+{
+  "Migration": {
+    "EnableDualWrite": true,
+    "ReadFromNewTable": false
+  }
+}
+```
+
+**Phase 3: Backfill Historical Data**
+```sql
+-- Background migration (with progress tracking)
+CREATE TABLE migration_progress (
+    table_name VARCHAR(50),
+    last_migrated_id BIGINT,
+    updated_at TIMESTAMPTZ
+);
+
+-- Batch migration script
+DO $$
+DECLARE
+    batch_size INT := 10000;
+    start_id BIGINT;
+    end_id BIGINT;
+    max_id BIGINT;
+BEGIN
+    -- Get last checkpoint
+    SELECT COALESCE(last_migrated_id, 0) INTO start_id
+    FROM migration_progress WHERE table_name = 'ticks';
+    
+    -- Get max ID to migrate
+    SELECT MAX(id) INTO max_id FROM ticks;
+    
+    WHILE start_id < max_id LOOP
+        end_id := start_id + batch_size;
+        
+        -- Copy batch
+        INSERT INTO ticks_v2 (symbol, price, volume, timestamp)
+        SELECT symbol, price, volume, timestamp
+        FROM ticks
+        WHERE id > start_id AND id <= end_id
+        ON CONFLICT (symbol, timestamp) DO NOTHING;  -- Idempotent!
+        
+        -- Update checkpoint
+        UPDATE migration_progress
+        SET last_migrated_id = end_id, updated_at = NOW()
+        WHERE table_name = 'ticks';
+        
+        -- Log progress
+        RAISE NOTICE 'Migrated up to ID: %, % remaining', 
+            end_id, max_id - end_id;
+        
+        start_id := end_id;
+        PERFORM pg_sleep(0.1);  -- Throttle to avoid overwhelming DB
+    END LOOP;
+END $$;
+```
+
+**Phase 4: Validate Data**
+```sql
+-- Compare row counts
+SELECT 'Old Table' AS source, COUNT(*) FROM ticks
+UNION ALL
+SELECT 'New Table', COUNT(*) FROM ticks_v2;
+
+-- Sample validation (check 1000 random rows)
+WITH random_samples AS (
+    SELECT id FROM ticks TABLESAMPLE BERNOULLI(0.1) LIMIT 1000
+)
+SELECT COUNT(*) AS mismatches
+FROM random_samples rs
+LEFT JOIN ticks t ON t.id = rs.id
+LEFT JOIN ticks_v2 t2 ON t2.symbol = t.symbol AND t2.timestamp = t.timestamp
+WHERE t2.symbol IS NULL OR t2.price != t.price;
+```
+
+**Phase 5: Switch Reads to New Table**
+```csharp
+public class TickRepository
+{
+    public async Task<List<StockTick>> GetRecentTicks(string symbol)
+    {
+        if (_config.ReadFromNewTable)
+        {
+            return await _dbContext.TicksV2
+                .Where(t => t.Symbol == symbol)
+                .OrderByDescending(t => t.Timestamp)
+                .Take(100)
+                .ToListAsync();
+        }
+        else
+        {
+            return await _dbContext.Ticks
+                .Where(t => t.Symbol == symbol)
+                .OrderByDescending(t => t.Timestamp)
+                .Take(100)
+                .ToListAsync();
+        }
+    }
+}
+```
+
+**Configuration Rollout:**
+```json
+// Week 1: 10% of traffic
+{ "ReadFromNewTable": true, "RolloutPercentage": 10 }
+
+// Week 2: 50% of traffic
+{ "ReadFromNewTable": true, "RolloutPercentage": 50 }
+
+// Week 3: 100% of traffic
+{ "ReadFromNewTable": true, "RolloutPercentage": 100 }
+```
+
+**Phase 6: Stop Dual Writes & Drop Old Table**
+```csharp
+// Remove dual-write code
+public async Task SaveTickAsync(StockTick tick)
+{
+    await _dbContext.TicksV2.AddAsync(tick);  // Only new table now
+    await _dbContext.SaveChangesAsync();
+}
+```
+
+```sql
+-- After 2 weeks of successful operation
+DROP TABLE ticks;
+```
+
+---
+
+## Technique 3: Blue-Green Database Migration
+
+For major schema overhauls.
+
+### Setup
+```
+Production (Blue):
+  - Database: db-blue.prod.example.com
+  - Serving 100% traffic
+
+Staging (Green):
+  - Database: db-green.prod.example.com
+  - New schema, empty initially
+```
+
+### Process
+
+**1. Replicate Data (Logical Replication)**
+```sql
+-- On Blue database
+CREATE PUBLICATION blue_pub FOR ALL TABLES;
+
+-- On Green database
+CREATE SUBSCRIPTION green_sub 
+CONNECTION 'host=db-blue.prod.example.com dbname=stocks user=replicator'
+PUBLICATION blue_pub;
+```
+
+**2. Apply Schema Changes to Green**
+```sql
+-- Green database can be modified freely (no traffic yet)
+ALTER TABLE ticks_v2 ADD CONSTRAINT pk_ticks PRIMARY KEY (symbol, timestamp);
+SELECT create_hypertable('ticks_v2', 'timestamp');
+```
+
+**3. Cutover (Switch Connection String)**
+```csharp
+// Configuration change (no code deploy!)
+{
+  "ConnectionStrings": {
+    "StockDatabase": "Host=db-green.prod.example.com;Database=stocks"
+  }
+}
+```
+
+**4. Rollback Plan**
+```csharp
+// If issues detected, instantly rollback
+{
+  "ConnectionStrings": {
+    "StockDatabase": "Host=db-blue.prod.example.com;Database=stocks"
+  }
+}
+```
+
+---
+
+## Technique 4: Online Schema Changes (pg_repack)
+
+For tables that can't tolerate shadow writes.
+
+### Problem: Rebuild Table Without Locks
+
+```bash
+# Install pg_repack extension
+CREATE EXTENSION pg_repack;
+
+# Rebuild table (creates shadow table, swaps in place)
+pg_repack --table=ticks --jobs=4 --no-order
+```
+
+**What pg_repack does:**
+1. Creates a shadow table with new structure
+2. Copies data in batches
+3. Captures concurrent writes via triggers
+4. Swaps tables atomically (brief lock only)
+
+**Downtime**: <1 second for swap operation
+
+---
+
+## Best Practices
+
+### 1. Always Have a Rollback Plan
+```sql
+-- Before migration, take snapshot
+CREATE TABLE ticks_backup AS SELECT * FROM ticks;
+
+-- Or use database snapshots
+SELECT pg_export_snapshot();
+```
+
+### 2. Monitor During Migration
+```csharp
+public class MigrationMonitor
+{
+    public async Task MonitorAsync()
+    {
+        while (_migrationInProgress)
+        {
+            var metrics = new
+            {
+                OldTableRows = await CountRowsAsync("ticks"),
+                NewTableRows = await CountRowsAsync("ticks_v2"),
+                Lag = await GetReplicationLagAsync(),
+                ErrorRate = await GetErrorRateAsync()
+            };
+            
+            _logger.LogInformation("Migration progress: {@Metrics}", metrics);
+            
+            if (metrics.ErrorRate > 0.01)
+            {
+                _logger.LogError("Error rate exceeds threshold, pausing migration");
+                await PauseMigrationAsync();
+            }
+            
+            await Task.Delay(TimeSpan.FromMinutes(1));
+        }
+    }
+}
+```
+
+### 3. Use Feature Flags
+```csharp
+if (_featureFlags.IsEnabled("UseTicks V2"))
+{
+    return await _dbContext.TicksV2.ToListAsync();
+}
+else
+{
+    return await _dbContext.Ticks.ToListAsync();
+}
+```
+
+### 4. Gradual Rollout
+```
+Day 1: Internal users (5% traffic)
+Day 3: Beta users (25% traffic)
+Day 7: All users (100% traffic)
+```
+
+---
+
+## Real-World Example: Stock Market Simulator
+
+Here's how I migrated from flat ticks to TimescaleDB hypertables:
+
+### Week 1: Preparation
+- Created `ticks_v2` table with hypertable
+- Enabled dual writes (shadow mode)
+- Started backfill of historical data (50M rows)
+
+### Week 2: Validation
+- Validated data integrity (row counts, checksums)
+- Tested read performance (6x improvement!)
+- Canary deployment (5% traffic to new table)
+
+### Week 3: Cutover
+- Increased to 50% traffic
+- Monitored error rates (0.001%, acceptable)
+- Full cutover (100% traffic)
+
+### Week 4: Cleanup
+- Stopped dual writes
+- Dropped old table
+- Reclaimed 200GB disk space
+
+**Total Downtime**: 0 seconds
+
+---
+
+## Common Mistakes
+
+### Mistake 1: Not Testing the Rollback
+```sql
+-- Always test rollback BEFORE production
+BEGIN;
+    ALTER TABLE symbols ADD COLUMN sector VARCHAR(50);
+    -- Test application...
+ROLLBACK;  -- Verify rollback works
+```
+
+### Mistake 2: Forgetting Indexes
+```sql
+-- WRONG: Add column without index
+ALTER TABLE symbols ADD COLUMN sector VARCHAR(50);
+
+-- Queries become slow immediately!
+SELECT * FROM symbols WHERE sector = 'Banking';
+```
+
+### Mistake 3: Blocking Transactions
+```sql
+-- WRONG: Lock table during peak hours
+LOCK TABLE ticks IN ACCESS EXCLUSIVE MODE;
+-- Migration runs for 30 minutes, table is unusable
+```
+
+**Solution**: Use `CONCURRENTLY` where possible:
+```sql
+CREATE INDEX CONCURRENTLY idx_ticks_symbol ON ticks(symbol);
+```
+
+---
+
+## Conclusion
+
+Zero-downtime migrations require:
+1. **Planning**: Expand-contract pattern
+2. **Caution**: Dual writes and validation
+3. **Monitoring**: Track progress and errors
+4. **Rollback**: Always have an escape hatch
+
+**Golden Rule**: If you can't rollback in <5 minutes, don't deploy.
+
+For the Stock Market Simulator, these techniques enabled continuous operation while modernizing the database schema—no downtime, no data loss.
+
+---
+
+## Related Posts in This Series
+
+- [PostgreSQL vs Redis for Real-Time Data](/blog/2026/02/postgresql-vs-redis) *(Previous)*
+- [Parallelizing EF Core Queries](/blog/2026/02/parallelizing-ef-core-queries) *(Next)*
+- [SSE vs SignalR for Real-Time Communication](/blog/2026/02/sse-vs-signalr)
+
+## Explore the Full Project
+
+**GitHub Repository**: [Stock Market Simulator](https://github.com/raj-champion-trader/stock-market-simulator)  
+**Architecture Deep Dive**: [Full Project Documentation](/projects/stock-market-simulator)
+
+---
+
+*Questions or feedback? Let's discuss on [GitHub Discussions](https://github.com/raj-champion-trader/stock-market-simulator/discussions).*

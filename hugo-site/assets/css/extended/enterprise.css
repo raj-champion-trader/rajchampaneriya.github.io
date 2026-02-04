@@ -34,8 +34,8 @@ body{
 
 /* Align navigation and main content widths */
 :root {
-  --nav-width: 720px;
-  --main-width: 720px;
+  --nav-width: 1200px;
+  --main-width: 1200px;
 }
 
 code, pre, kbd, samp{

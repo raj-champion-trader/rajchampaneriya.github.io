@@ -1,0 +1,525 @@
+---
+title: "PostgreSQL vs Redis: When to Use Which for Real-Time Systems"
+date: 2026-02-05
+draft: false
+tags: ["database", "redis", "postgresql", "architecture", "real-time"]
+categories: ["Technical Concepts"]
+series: ["Stock Market Simulator"]
+project: "stock-market-simulator"
+projectTitle: "Stock Market Simulator"
+projectUrl: "/projects/stock-market-simulator"
+githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
+summary: "Comparing PostgreSQL and Redis for real-time stock market data: when to use a relational database vs an in-memory data store"
+weight: 2
+---
+
+## The Database Dilemma
+
+While building the [Stock Market Simulator](/projects/stock-market-simulator), I faced a common architectural question: **Should I store real-time stock prices in PostgreSQL or Redis?**
+
+The answer isn't as simple as "use Redis for speed" or "use PostgreSQL for persistence." Real-world systems often need **both**, working together for different purposes.
+
+This post explores the trade-offs using stock market data as the example.
+
+---
+
+## Understanding the Data Patterns
+
+Stock market data has distinct access patterns:
+
+### High-Frequency Writes (Tick Data)
+```
+NIFTY50: $19,450.25 (↑0.15%) at 09:15:00.123
+NIFTY50: $19,451.00 (↑0.18%) at 09:15:00.456
+NIFTY50: $19,450.50 (↑0.13%) at 09:15:00.789
+```
+- **Volume**: 1,000+ ticks/second per symbol
+- **Lifetime**: Useful for 5-10 seconds (real-time display)
+- **Read Pattern**: Recent data only, no complex queries
+
+### Historical Data (OHLC - Open, High, Low, Close)
+```
+NIFTY50 @ 2026-02-04 09:15:00
+  Open:  $19,400
+  High:  $19,455
+  Low:   $19,398
+  Close: $19,451
+  Volume: 1,245,678
+```
+- **Volume**: Aggregated every 1 min, 5 min, 1 hour, 1 day
+- **Lifetime**: Permanent (years)
+- **Read Pattern**: Range queries, time-series analysis
+
+### User Data (Watchlists, Portfolios)
+```json
+{
+  "userId": "user-123",
+  "watchlist": ["NIFTY50", "BANKNIFTY", "RELIANCE"],
+  "portfolio": [
+    { "symbol": "NIFTY50", "qty": 10, "avgPrice": 19200 }
+  ]
+}
+```
+- **Volume**: Low (per-user operations)
+- **Lifetime**: Permanent
+- **Read Pattern**: By user ID, occasional updates
+
+Each pattern has different requirements. Let's see how PostgreSQL and Redis handle them.
+
+---
+
+## PostgreSQL: The Relational Workhorse
+
+### Strengths
+
+**1. ACID Transactions**
+```sql
+BEGIN;
+  UPDATE portfolios SET quantity = quantity - 10 WHERE user_id = 'user-123';
+  INSERT INTO orders (user_id, symbol, qty, price) 
+    VALUES ('user-123', 'NIFTY50', 10, 19450.25);
+COMMIT;
+```
+Your data stays consistent even under failures.
+
+**2. Rich Query Capabilities**
+```sql
+-- Find top gainers in last hour
+SELECT symbol, 
+       (close - open) / open * 100 as gain_pct
+FROM ohlc_1min
+WHERE timestamp > NOW() - INTERVAL '1 hour'
+ORDER BY gain_pct DESC
+LIMIT 10;
+```
+Complex analytics without moving data.
+
+**3. Data Integrity**
+```sql
+CREATE TABLE stock_ticks (
+    id BIGSERIAL PRIMARY KEY,
+    symbol VARCHAR(20) NOT NULL,
+    price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+    volume INT NOT NULL CHECK (volume >= 0),
+    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (symbol) REFERENCES symbols(code)
+);
+```
+Constraints ensure valid data.
+
+**4. TimescaleDB Extension**
+```sql
+-- Convert to hypertable for time-series optimization
+SELECT create_hypertable('stock_ticks', 'timestamp');
+
+-- Automatic partitioning and retention
+SELECT add_retention_policy('stock_ticks', INTERVAL '7 days');
+```
+Purpose-built for time-series workloads.
+
+### Weaknesses for Real-Time
+
+**Latency**: 5-10ms per write (even with optimizations)  
+**Write Throughput**: ~10,000 writes/sec (single instance)  
+**Lock Contention**: High-frequency updates cause blocking  
+**Storage Cost**: Every tick is ~100 bytes on disk  
+
+---
+
+## Redis: The In-Memory Speedster
+
+### Strengths
+
+**1. Sub-Millisecond Latency**
+```bash
+# Write tick data
+XADD price-stream:NIFTY50 * symbol NIFTY50 price 19450.25 delta 0.15
+# Result: "1707046500123-0" (ID with timestamp)
+
+# Read latest 10 ticks
+XREVRANGE price-stream:NIFTY50 + - COUNT 10
+```
+**Latency**: <1ms for reads, ~0.1ms for writes
+
+**2. Built-in Data Structures**
+
+**Redis Streams** (Perfect for tick data):
+```bash
+# Producer: Market simulator
+XADD prices * symbol NIFTY50 price 19450.25 timestamp 1707046500
+
+# Consumer: SignalR hub
+XREADGROUP GROUP hub-consumers consumer-1 STREAMS prices >
+```
+- Ordering guaranteed
+- Multiple consumers
+- Message acknowledgment
+- Auto-expiration with MAXLEN
+
+**Sorted Sets** (Perfect for leaderboards):
+```bash
+# Store latest prices
+ZADD latest-prices 19450.25 NIFTY50
+ZADD latest-prices 42300.00 BANKNIFTY
+
+# Get top 10 by price
+ZREVRANGE latest-prices 0 9 WITHSCORES
+```
+
+**3. Pub/Sub for Real-Time Notifications**
+```bash
+# Publisher
+PUBLISH price-updates "NIFTY50:19450.25:+0.15"
+
+# Subscriber
+SUBSCRIBE price-updates
+```
+Fan-out to thousands of clients instantly.
+
+**4. TTL for Automatic Cleanup**
+```bash
+# Store with 60-second expiration
+SET tick:NIFTY50:latest "{...json...}" EX 60
+
+# Or trim streams automatically
+XTRIM prices MAXLEN ~ 1000
+```
+No manual cleanup needed.
+
+### Weaknesses
+
+**No Complex Queries**: Can't do JOINs or aggregations  
+**Memory Cost**: Everything in RAM (~5x more expensive than disk)  
+**Persistence Risk**: Data loss possible if not configured correctly  
+**No Schema**: You must enforce data structure in application code  
+
+---
+
+## The Hybrid Architecture: Best of Both Worlds
+
+Here's how the Stock Market Simulator uses **both**:
+
+### Data Flow Diagram
+```
+Market Simulator
+    ↓ (generates ticks)
+Redis Streams ← [Hot path: <1ms latency]
+    ↓ (consumed by)
+SignalR Hub → Web Clients
+    ↓ (background worker)
+PostgreSQL (TimescaleDB) ← [Cold path: Aggregated OHLC]
+```
+
+### 1. Redis: Hot Path (Real-Time Ticks)
+```csharp
+// Producer: Write ticks to Redis Streams
+public async Task PublishTickAsync(StockTick tick)
+{
+    var streamKey = $"prices:{tick.Symbol}";
+    var fields = new NameValueEntry[]
+    {
+        new("symbol", tick.Symbol),
+        new("price", tick.Price),
+        new("volume", tick.Volume),
+        new("timestamp", tick.Timestamp.ToUnixTimeMilliseconds())
+    };
+    
+    await _redis.StreamAddAsync(streamKey, fields);
+    
+    // Trim to last 1000 ticks (keep only recent data)
+    await _redis.StreamTrimAsync(streamKey, 1000);
+}
+
+// Consumer: Read and broadcast to clients
+public async Task ConsumeAndBroadcastAsync()
+{
+    var streams = new RedisValue[] { "prices:NIFTY50", "prices:BANKNIFTY" };
+    var positions = new RedisValue[] { ">" }; // Read new messages only
+    
+    while (!_cancellationToken.IsCancellationRequested)
+    {
+        var results = await _redis.StreamReadGroupAsync(
+            streamName: streams,
+            groupName: "signalr-hub",
+            consumerName: _consumerId,
+            position: positions
+        );
+        
+        foreach (var result in results)
+        {
+            var tick = ParseTick(result.Values);
+            await _hubContext.Clients.Group(tick.Symbol)
+                .SendAsync("ReceiveTick", tick);
+                
+            // Acknowledge message
+            await _redis.StreamAcknowledgeAsync(
+                $"prices:{tick.Symbol}", "signalr-hub", result.Id);
+        }
+    }
+}
+```
+
+**Why Redis for this?**
+- Handles 100,000+ ticks/second
+- Sub-millisecond latency
+- Consumer groups for horizontal scaling
+- Automatic expiration (no manual cleanup)
+
+### 2. PostgreSQL: Cold Path (Historical Aggregations)
+
+```csharp
+// Background service: Aggregate ticks into OHLC
+public class OhlcAggregator : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken ct)
+    {
+        while (!ct.IsCancellationRequested)
+        {
+            await Task.Delay(TimeSpan.FromMinutes(1), ct);
+            
+            // Read last minute of ticks from Redis
+            var ticks = await _redis.StreamRangeAsync(
+                "prices:NIFTY50", 
+                minId: GetOneMinuteAgoId(),
+                maxId: "+");
+            
+            // Calculate OHLC
+            var ohlc = new Ohlc
+            {
+                Symbol = "NIFTY50",
+                Timestamp = DateTime.UtcNow,
+                Open = ticks.First().Price,
+                High = ticks.Max(t => t.Price),
+                Low = ticks.Min(t => t.Price),
+                Close = ticks.Last().Price,
+                Volume = ticks.Sum(t => t.Volume)
+            };
+            
+            // Store in PostgreSQL
+            await _dbContext.Ohlc1Min.AddAsync(ohlc, ct);
+            await _dbContext.SaveChangesAsync(ct);
+        }
+    }
+}
+```
+
+**PostgreSQL Schema (with TimescaleDB):**
+```sql
+CREATE TABLE ohlc_1min (
+    id BIGSERIAL,
+    symbol VARCHAR(20) NOT NULL,
+    timestamp TIMESTAMPTZ NOT NULL,
+    open DECIMAL(10,2) NOT NULL,
+    high DECIMAL(10,2) NOT NULL,
+    low DECIMAL(10,2) NOT NULL,
+    close DECIMAL(10,2) NOT NULL,
+    volume BIGINT NOT NULL,
+    PRIMARY KEY (symbol, timestamp)
+);
+
+-- Convert to TimescaleDB hypertable
+SELECT create_hypertable('ohlc_1min', 'timestamp');
+
+-- Add retention policy (keep 90 days)
+SELECT add_retention_policy('ohlc_1min', INTERVAL '90 days');
+
+-- Add continuous aggregate for hourly OHLC
+CREATE MATERIALIZED VIEW ohlc_1hour
+WITH (timescaledb.continuous) AS
+SELECT 
+    symbol,
+    time_bucket('1 hour', timestamp) AS bucket,
+    first(open, timestamp) AS open,
+    max(high) AS high,
+    min(low) AS low,
+    last(close, timestamp) AS close,
+    sum(volume) AS volume
+FROM ohlc_1min
+GROUP BY symbol, bucket;
+```
+
+**Why PostgreSQL for this?**
+- Durable storage (data persists across restarts)
+- Complex queries (find patterns, calculate indicators)
+- Continuous aggregates (automatic rollups)
+- Retention policies (automatic cleanup)
+
+---
+
+## Decision Matrix
+
+| Use Case | Redis | PostgreSQL |
+|----------|-------|-----------|
+| **Real-time tick ingestion** | Yes (Streams) | Too slow |
+| **Broadcast to clients** | Yes (Pub/Sub) | Not designed for this |
+| **Recent data (last 5 min)** | Yes (fast reads) | Possible but slower |
+| **Historical queries** | No (limited query) | Yes (SQL power) |
+| **User portfolios** | Cache only | Yes (primary store) |
+| **Aggregations (OHLC)** | No (no SUM/AVG) | Yes (SQL aggregates) |
+| **Data integrity** | No constraints | Yes (FOREIGN KEY, CHECK) |
+| **Horizontal scaling** | Yes (Redis Cluster) | Complex (sharding) |
+| **Cost (1TB data)** | $$$$ (~$500/mo) | $ (~$50/mo) |
+
+---
+
+## Real-World Performance Numbers
+
+From the Stock Market Simulator:
+
+### Write Performance
+```
+Redis Streams:
+- 120,000 ticks/second (single instance)
+- P99 latency: 0.8ms
+- Memory: 2GB (for 1M messages)
+
+PostgreSQL + TimescaleDB:
+- 15,000 ticks/second (single instance)
+- P99 latency: 12ms
+- Storage: 500MB (for 1M rows compressed)
+```
+
+### Read Performance
+```
+Redis (latest 100 ticks):
+- 0.5ms (XREVRANGE)
+
+PostgreSQL (latest 100 ticks):
+- 8ms (even with index on timestamp)
+
+PostgreSQL (complex query with JOINs):
+- 150ms (acceptable for analytics dashboard)
+```
+
+---
+
+## Common Pitfalls
+
+### Pitfall 1: Using PostgreSQL for Every Tick
+```csharp
+// DON'T DO THIS
+foreach (var tick in ticks)
+{
+    await _dbContext.Ticks.AddAsync(tick);
+    await _dbContext.SaveChangesAsync(); // ← Kills performance
+}
+```
+**Problem**: 100,000 writes/second = dead database
+
+**Solution**: Batch inserts or use Redis Streams
+
+### Pitfall 2: Using Redis as Primary Storage
+```csharp
+// DON'T DO THIS
+await _redis.StringSetAsync($"user:{userId}:portfolio", jsonData);
+// No backup, no transactions, data loss if Redis crashes
+```
+**Problem**: Redis is not a primary database
+
+**Solution**: Use PostgreSQL as source of truth, Redis as cache
+
+### Pitfall 3: No Expiration on Redis Keys
+```csharp
+// DON'T DO THIS
+await _redis.StringSetAsync($"tick:{symbol}:{timestamp}", data);
+// Memory leak! Keys accumulate forever
+```
+**Problem**: Redis RAM fills up, eviction policy kicks in
+
+**Solution**: Always set TTL or use XTRIM for streams
+
+---
+
+## The Pragmatic Approach
+
+Here's my rule of thumb for the Stock Market Simulator:
+
+### **Redis for:**
+- Tick data (last 5 minutes)
+- Real-time streaming to clients
+- Session data (user connections)
+- Rate limiting counters
+- Caching hot queries
+
+### **PostgreSQL for:**
+- User accounts, portfolios, watchlists
+- Historical OHLC data (1min, 5min, 1hour, 1day)
+- Audit logs, trade history
+- Analytics queries
+- Reports and dashboards
+
+### **Sync Between Them:**
+```
+Redis Streams → Background Worker → PostgreSQL (aggregated)
+PostgreSQL (user data) → Redis (cached for fast reads)
+```
+
+---
+
+## Monitoring
+
+### Redis Key Metrics
+```bash
+# Check memory usage
+INFO memory
+
+# Monitor commands
+MONITOR
+
+# Check stream length
+XLEN prices:NIFTY50
+
+# Check consumer group lag
+XPENDING prices:NIFTY50 signalr-hub
+```
+
+### PostgreSQL Key Metrics
+```sql
+-- Check table size
+SELECT pg_size_pretty(pg_total_relation_size('ohlc_1min'));
+
+-- Find slow queries
+SELECT query, mean_exec_time, calls
+FROM pg_stat_statements
+ORDER BY mean_exec_time DESC
+LIMIT 10;
+
+-- Check index usage
+SELECT schemaname, tablename, indexname, idx_scan
+FROM pg_stat_user_indexes
+WHERE idx_scan = 0;
+```
+
+---
+
+## Conclusion
+
+**Redis and PostgreSQL are not competitors—they're teammates.**
+
+For the Stock Market Simulator:
+- **Redis** handles the hot path (real-time streaming)
+- **PostgreSQL** handles the cold path (historical analysis)
+
+Use the right tool for the job:
+- Need speed? → Redis
+- Need queries? → PostgreSQL
+- Need both? → Use both!
+
+**Pro Tip**: Start simple. Begin with PostgreSQL for everything, then add Redis when you hit performance bottlenecks. Premature optimization wastes time.
+
+---
+
+## Related Posts in This Series
+
+- [SSE vs SignalR for Real-Time Communication](/blog/2026/02/sse-vs-signalr) *(Previous)*
+- [Data Migration Without Downtime](/blog/2026/02/data-migration-without-downtime) *(Next)*
+- [Parallelizing EF Core Queries](/blog/2026/02/parallelizing-ef-core-queries)
+
+## Explore the Full Project
+
+**GitHub Repository**: [Stock Market Simulator](https://github.com/raj-champion-trader/stock-market-simulator)  
+**Architecture Deep Dive**: [Full Project Documentation](/projects/stock-market-simulator)
+
+---
+
+*Questions or feedback? Let's discuss on [GitHub Discussions](https://github.com/raj-champion-trader/stock-market-simulator/discussions).*

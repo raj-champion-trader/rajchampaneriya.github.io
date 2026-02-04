@@ -1,12 +1,14 @@
 ---
 title: "Stock Market Simulator"
 date: 2026-01-23
-draft: true
+draft: false
 slug: "stock-market-simulator"
 tags: ["architecture", "streaming", "real-time", "software-engineering"]
 categories: ["Architecture Work"]
 summary: "Real-time market data simulation showcasing modern event-driven architecture"
+githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
 weight: 1
+ShowToc: true
 ---
 
 <div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
