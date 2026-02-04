@@ -10,6 +10,13 @@
   overflow: visible !important;
 }
 
+/* Ensure all parent containers allow sticky positioning */
+#content,
+.main,
+article {
+  overflow: visible !important;
+}
+
 .project-container {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -17,16 +24,21 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 2rem;
-  overflow: visible;
-  align-items: start;
+  overflow: visible !important;
+  /* Remove align-items: start - let the sidebar column stretch full height */
 }
 
+/* This is the grid cell - it stretches to full height of the grid row */
+.project-sidebar-wrapper {
+  /* No height/align-self constraints - stretches to match content column height */
+}
+
+/* This is the actual sticky element inside the wrapper */
 .project-sidebar {
   position: -webkit-sticky;
   position: sticky;
   top: 80px;
-  align-self: flex-start;
-  height: auto;
+  height: fit-content;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -219,23 +231,25 @@
 </style>
 
 <div class="project-container">
-  <!-- Sidebar Navigation -->
-  <aside class="project-sidebar">
-    <h3>Project Contents</h3>
-    
-    <!-- Overview Section -->
-    <div class="project-nav-section">
-      <h4>Overview</h4>
-      <ul class="project-nav-list">
-        <li><a href="#what-is-{{ lower .Title | urlize }}">What is {{ .Title }}?</a></li>
-        <li><a href="#architecture-layers">Architecture</a></li>
-        <li><a href="#system-overview">System Overview</a></li>
-      </ul>
-    </div>
-    
-    <!-- Related Blog Posts -->
-    {{- $relatedPosts := where site.RegularPages ".Params.project" $currentProject }}
-    {{- if gt (len $relatedPosts) 0 }}
+  <!-- Sidebar Wrapper - this stretches to full grid row height -->
+  <div class="project-sidebar-wrapper">
+    <!-- Sidebar Navigation - this is sticky inside the wrapper -->
+    <aside class="project-sidebar">
+      <h3>Project Contents</h3>
+      
+      <!-- Overview Section -->
+      <div class="project-nav-section">
+        <h4>Overview</h4>
+        <ul class="project-nav-list">
+          <li><a href="#what-is-{{ lower .Title | urlize }}">What is {{ .Title }}?</a></li>
+          <li><a href="#architecture-layers">Architecture</a></li>
+          <li><a href="#system-overview">System Overview</a></li>
+        </ul>
+      </div>
+      
+      <!-- Related Blog Posts -->
+      {{- $relatedPosts := where site.RegularPages ".Params.project" $currentProject }}
+      {{- if gt (len $relatedPosts) 0 }}
     <div class="project-nav-section">
       <h4>Related Posts ({{ len $relatedPosts }})</h4>
       <ul class="project-nav-list">
@@ -260,7 +274,8 @@
       View on GitHub
     </a>
     {{- end }}
-  </aside>
+    </aside>
+  </div><!-- End sidebar wrapper -->
   
   <!-- Main Project Content -->
   <div class="project-content">
