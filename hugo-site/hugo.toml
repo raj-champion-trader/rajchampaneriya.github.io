@@ -4,6 +4,7 @@ title = 'Raj Champaneriya Work'
 theme = 'PaperMod'
 relativeURLs = false
 canonifyURLs = true
+buildFuture = true
 
 [params]
   description = "Principal Consultant / Architect specializing in Azure cloud solutions and enterprise architecture"
