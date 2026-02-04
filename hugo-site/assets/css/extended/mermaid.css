@@ -1,0 +1,78 @@
+/* Mermaid diagram styling */
+.mermaid {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--code-bg);
+    border-radius: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.mermaid svg {
+    max-width: none !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure text is visible in nodes */
+.mermaid .nodeLabel,
+.mermaid .label,
+.mermaid .edgeLabel,
+.mermaid text {
+    font-size: 13px !important;
+    font-family: inherit !important;
+}
+
+/* Subgraph labels */
+.mermaid .cluster-label {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+/* Node styling */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+    stroke-width: 1.5px !important;
+}
+
+/* Ensure subgraph content doesn't get clipped */
+.mermaid .cluster rect {
+    rx: 8px;
+    ry: 8px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .mermaid {
+    background: var(--code-bg);
+}
+
+[data-theme="dark"] .mermaid .nodeLabel,
+[data-theme="dark"] .mermaid .label {
+    color: #fff !important;
+    fill: #fff !important;
+}
+
+/* Error styling */
+.mermaid-error {
+    color: #ff6b6b;
+    padding: 1rem;
+    border: 1px solid #ff6b6b;
+    border-radius: 4px;
+    background: rgba(255, 107, 107, 0.1);
+}
+
+/* Responsive adjustments - allow horizontal scroll on small screens */
+@media (max-width: 768px) {
+    .mermaid {
+        padding: 0.5rem;
+    }
+    
+    .mermaid svg {
+        min-width: 600px;
+    }
+}
