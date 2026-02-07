@@ -119,6 +119,9 @@
     opacity: 0.9 !important;
 }
 
+.mermaid .edgeLabel,
+.mermaid .edgeLabel span,
+.mermaid .edgeLabel p,
 .mermaid .edgeLabel .label {
     color: #475569 !important;
     fill: #475569 !important;
@@ -174,6 +177,9 @@
     fill: var(--code-bg) !important;
 }
 
+[data-theme="dark"] .mermaid .edgeLabel,
+[data-theme="dark"] .mermaid .edgeLabel span,
+[data-theme="dark"] .mermaid .edgeLabel p,
 [data-theme="dark"] .mermaid .edgeLabel .label {
     color: #94A3B8 !important;
     fill: #94A3B8 !important;
