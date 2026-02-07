@@ -568,4 +568,4 @@ That's all for today. Hope this was helpful.
 
 ---
 
-*Questions or feedback? Let's discuss on [GitHub Discussions](https://github.com/raj-champion-trader/stock-market-simulator/discussions).*
+*Questions or feedback? Let's discuss on [GitHub Issues](https://github.com/raj-champion-trader/stock-market-simulator/issues).*
