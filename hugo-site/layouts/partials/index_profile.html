@@ -1,7 +1,7 @@
-<div class="profile-horizontal">
+<div class="profile-hero">
     {{- with site.Params.profileMode }}
-    <div class="profile-content">
-        <div class="profile-left">
+    <div class="profile-card">
+        <div class="profile-avatar">
             {{- if .imageUrl -}}
             {{- $img := "" }}
             {{- if not (urls.Parse .imageUrl).IsAbs }}
@@ -31,46 +31,38 @@
             {{- end }}
         </div>
         
-        <div class="profile-right">
-            <h1>{{ .title | default site.Title | markdownify }}</h1>
-            <p class="profile-description">{{ .subtitle | markdownify }}</p>
-            
-            <div class="profile-details">
-                <p>These are observations from building real systems — not theory, not trends. Patterns I've seen hold up, decisions that failed, and lessons that only appear once something breaks in production.</p>
-                
-                <p>I write to sharpen my own thinking. If these notes help you question an assumption, rethink a design, or see a problem more clearly, they've done their job.</p>
-                
-                
-                <p class="publishing-note">I publish when there's something worth saying — not to fill a feed, but to clarify thinking.</p>
-            </div>
+        <div class="profile-info">
+            <h1 class="profile-name">{{ .title | default site.Title | markdownify }}</h1>
+            <p class="profile-role">Principal Consultant &amp; Architect</p>
+            <p class="profile-tagline">{{ .subtitle | markdownify }}</p>
 
-            {{- partial "social_icons.html" -}}
+            <div class="profile-actions">
+                {{- partial "social_icons.html" -}}
 
-            {{- with .buttons }}
-            <div class="buttons">
-                {{- range . }}
-                <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
-                    <span class="button-inner">
-                        {{ .name }}
-                        {{- if (findRE "://" .url) }}&nbsp;
-                        <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
-                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                            <path d="M15 3h6v6"></path>
-                            <path d="M10 14L21 3"></path>
-                        </svg>
-                        {{- end }}
-                    </span>
-                </a>
+                {{- with .buttons }}
+                <div class="buttons">
+                    {{- range . }}
+                    <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+                        <span class="button-inner">
+                            {{ .name }}
+                            {{- if (findRE "://" .url) }}&nbsp;
+                            <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                                <path d="M15 3h6v6"></path>
+                                <path d="M10 14L21 3"></path>
+                            </svg>
+                            {{- end }}
+                        </span>
+                    </a>
+                    {{- end }}
+                </div>
                 {{- end }}
             </div>
-            {{- end }}
         </div>
     </div>
     {{- end}}
 </div>
-
-<hr class="section-separator" />
 
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
@@ -78,18 +70,17 @@
 
 {{- if $recentPosts }}
 <div class="recent-posts-section">
-    <h2>Recent Posts</h2>
+    <h2><span class="section-label">Recent Posts</span></h2>
     
     {{- range $recentPosts }}
     <article class="post-entry-horizontal">
         <div class="post-meta-small">
             {{- if not .Date.IsZero -}}
-            <span>{{ .Date | time.Format "Jan 2, 2006" }}</span>
+            <time>{{ .Date | time.Format "Jan 2, 2006" }}</time>
             {{- end }}
             {{- with .Params.categories }}
             {{- if gt (len .) 0 }}
-            <span class="post-separator">|</span>
-            <span>{{ index . 0 }}</span>
+            <span class="post-category">{{ index . 0 }}</span>
             {{- end }}
             {{- end }}
         </div>

@@ -1,6 +1,6 @@
 baseURL = 'https://rajc.work/'
 languageCode = 'en-us'
-title = 'Raj Champaneriya Work'
+title = 'rajc.work'
 theme = 'PaperMod'
 relativeURLs = false
 canonifyURLs = true
@@ -47,11 +47,11 @@ enableRobotsTXT = true
   # Profile mode (for homepage)
   [params.profileMode]
     enabled = true
-    title= "Hi, I’m Raj Champaneriya."
+    title= "Raj Champaneriya"
     subtitle = "Notes from building systems, navigating complexity, and learning how to think clearly in an AI-accelerated world."
     imageUrl = "images/profile.jpg"
-    imageWidth = 225
-    imageHeight = 175
+    imageWidth = 160
+    imageHeight = 160
     imageTitle = "Raj Champaneriya"
     buttons = [
       { name = "View My Work", url = "/projects" },
