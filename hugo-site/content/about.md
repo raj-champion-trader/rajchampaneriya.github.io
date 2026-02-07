@@ -104,7 +104,7 @@ I've mentored 15+ junior architects and engineers — 85% promoted to senior rol
       <div class="capability-leaves">
         <span class="capability-leaf capability-leaf--blue">ADRs & HLDs</span>
         <span class="capability-leaf capability-leaf--blue">Cross-Functional Teams</span>
-        <span class="capability-leaf capability-leaf--blue">Sprint Velocity</span>
+        <span class="capability-leaf capability-leaf--blue">Dev Prodcutivity</span>
       </div>
     </div>
   </div>
