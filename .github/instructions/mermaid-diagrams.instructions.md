@@ -54,7 +54,17 @@ flowchart TD
 2. **Subgraphs cannot use `classDef`** — leave them unstyled. The global CSS applies appropriate dashed-border cluster styling automatically. Use node colors within subgraphs for visual differentiation.
 3. **Use ` ```mermaid` (no space)** to open fenced code blocks. A space before `mermaid` may break rendering.
 4. **Supported diagram types for classDef**: `flowchart`, `graph`. Sequence diagrams and state diagrams use theme variables automatically — no manual styling needed.
-5. **The `classDef` colors are fallbacks** — they display correctly when viewed outside our site (GitHub preview, RSS). The site's CSS overrides them with proper dark/light mode variants.
+5. **The `classDef` colors are light-mode fallbacks** — they display correctly when viewed outside our site (GitHub preview, RSS). Dark mode theming is handled by JavaScript post-processing in `extend_footer.html`, which applies inline styles to override Mermaid v11's high-specificity SVG `<style>` rules. The CSS file provides additional `[data-theme="dark"]` and `@media (prefers-color-scheme: dark)` selectors as a secondary fallback.
+
+## How dark mode works (architecture note)
+
+Mermaid v11 generates ID-prefixed CSS rules inside each SVG's `<style>` block (e.g., `#mermaid-diagram-0 .primary > * { fill:...; stroke:...; }`). These have ID-level specificity, which beats external class-based CSS selectors even when using `!important`. For that reason:
+
+1. **JavaScript post-processing** in `extend_footer.html` (`applySemanticClassOverrides`) sets inline styles directly on SVG elements after rendering. Inline `!important` styles have the highest possible priority.
+2. **CSS fallback rules** in `mermaid.css` use both `[data-theme="dark"]` selectors and `@media (prefers-color-scheme: dark)` with `:root:not([data-theme="light"])` for edge cases.
+3. **Dark mode stroke-width is `2.5px`** (vs `1.5px` in light mode) for visibility against dark fills.
+
+When adding new semantic classes, update all three locations: the `classDef` block in this doc, `semanticColors` in `extend_footer.html`, and `mermaid.css`.
 
 ## Color palette reference (what CSS applies)
 
@@ -68,7 +78,7 @@ flowchart TD
 | danger | `#fee2e2` | `#dc2626` | `#991b1b` |
 | neutral | `#f1f5f9` | `#64748b` | `#334155` |
 
-### Dark mode (applied automatically by CSS)
+### Dark mode (applied automatically by JS + CSS, stroke-width: 2.5px)
 | Class | Fill | Stroke | Text |
 |-------|------|--------|------|
 | primary | `#1e3a5f` | `#60a5fa` | `#dbeafe` |
@@ -78,4 +88,6 @@ flowchart TD
 | danger | `#7f1d1d` | `#f87171` | `#fee2e2` |
 | neutral | `#1e293b` | `#94a3b8` | `#e2e8f0` |
 
-CSS source: `hugo-site/assets/css/extended/mermaid.css`
+Sources:
+- JS post-processing: `hugo-site/layouts/partials/extend_footer.html` (search `semanticColors`)
+- CSS fallback: `hugo-site/assets/css/extended/mermaid.css`

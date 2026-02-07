@@ -44,15 +44,18 @@ Shows the Stock Market Simulator system and its relationship with users.
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
+
     subgraph External_Users["External Users"]
-        Trader((Trader))
+        Trader(("Trader")):::highlight
     end
 
     subgraph Stock_Market_Simulator["Stock Market Simulator System"]
-        System[Stock Market Simulator<br/>Real-time market data<br/>streaming system]
+        System["Stock Market Simulator<br/>Real-time market data<br/>streaming system"]:::primary
     end
 
-    Trader -->|Views real-time<br/>stock prices via browser| System
+    Trader -->|"Views real-time<br/>stock prices via browser"| System
 ```
 
 The Trader interacts with the Stock Market Simulator to view real-time stock price updates displayed in a TradingView-inspired interface with live candlestick charts and price tickers.
@@ -65,27 +68,33 @@ Shows the high-level technology choices and how containers communicate. The enti
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+
     subgraph User[" "]
-        Trader((Trader))
+        Trader(("Trader")):::highlight
     end
 
     subgraph Aspire["Stock Market Simulator — Orchestrated by .NET Aspire"]
-        WebApp["Web Application<br/>React 19 · TypeScript · MUI 7"]
+        WebApp["Web Application<br/>React 19 · TypeScript · MUI 7"]:::primary
         
-        BrokerService["Broker Service<br/>.NET 10 API"]
+        BrokerService["Broker Service<br/>.NET 10 API"]:::secondary
         
-        IngestionAPI["Ingestion API<br/>.NET 10 Minimal API"]
+        IngestionAPI["Ingestion API<br/>.NET 10 Minimal API"]:::accent
         
-        MarketSimulator["Market Simulator<br/>.NET 10 Worker Service"]
+        MarketSimulator["Market Simulator<br/>.NET 10 Worker Service"]:::accent
         
-        RedisDB[("Redis 7<br/>Streams + Commander")]
+        RedisDB[("Redis 7<br/>Streams + Commander")]:::danger
     end
 
-    Trader -->|HTTPS| WebApp
-    WebApp -->|SSE<br/>dual-channel| BrokerService
-    BrokerService -->|XREADGROUP<br/>consumer groups| RedisDB
-    IngestionAPI -->|XADD<br/>~10K max| RedisDB
-    MarketSimulator -->|HTTP POST<br/>every 300ms| IngestionAPI
+    Trader -->|"HTTPS"| WebApp
+    WebApp -->|"SSE<br/>dual-channel"| BrokerService
+    BrokerService -->|"XREADGROUP<br/>consumer groups"| RedisDB
+    IngestionAPI -->|"XADD<br/>~10K max"| RedisDB
+    MarketSimulator -->|"HTTP POST<br/>every 300ms"| IngestionAPI
 ```
 
 **Container Responsibilities**:
@@ -108,19 +117,24 @@ The simulator uses a sophisticated price engine combining multiple quantitative 
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph MarketSimulatorService["Market Simulator Service"]
-        Program["Program.cs<br/>Entry Point"]
-        ExchangeSimulator["ExchangeSimulator<br/>BackgroundService"]
-        PriceEngine["RealisticPriceEngine<br/>GBM + GARCH"]
-        SymbolProfiles["SymbolProfiles<br/>Per-symbol config"]
-        HttpClientFactory["HttpClientFactory"]
+        Program["Program.cs<br/>Entry Point"]:::neutral
+        ExchangeSimulator["ExchangeSimulator<br/>BackgroundService"]:::primary
+        PriceEngine["RealisticPriceEngine<br/>GBM + GARCH"]:::secondary
+        SymbolProfiles["SymbolProfiles<br/>Per-symbol config"]:::neutral
+        HttpClientFactory["HttpClientFactory"]:::neutral
     end
 
     Program --> ExchangeSimulator
     ExchangeSimulator --> PriceEngine
     PriceEngine --> SymbolProfiles
     ExchangeSimulator --> HttpClientFactory
-    HttpClientFactory -->|HTTP POST<br/>with retry| IngestionAPI["Ingestion API"]
+    HttpClientFactory -->|"HTTP POST<br/>with retry"| IngestionAPI["Ingestion API"]:::accent
 ```
 
 | Component | Type | Responsibility |
@@ -146,25 +160,31 @@ Normal random samples are generated via the Box-Muller transform. Volume correla
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph IngestionAPIService["Market Ingestion API"]
-        Program["Program.cs<br/>Minimal API"]
-        MarketDataEndpoint["POST /api/marketdata"]
-        HealthEndpoint["GET /health"]
-        Validation["ValidateMarketData"]
-        RedisPublisher["Redis Publisher<br/>XADD"]
+        Program["Program.cs<br/>Minimal API"]:::neutral
+        MarketDataEndpoint["POST /api/marketdata"]:::primary
+        HealthEndpoint["GET /health"]:::neutral
+        Validation["ValidateMarketData"]:::accent
+        RedisPublisher["Redis Publisher<br/>XADD"]:::secondary
     end
 
     subgraph External["External"]
-        Redis[("Redis Streams")]
-        Simulator["Market Simulator"]
+        Redis[("Redis Streams")]:::danger
+        Simulator["Market Simulator"]:::neutral
     end
 
-    Simulator -->|POST| MarketDataEndpoint
+    Simulator -->|"POST"| MarketDataEndpoint
     MarketDataEndpoint --> Validation
-    Validation -->|Valid| RedisPublisher
-    Validation -->|Invalid| Error["400 ValidationProblem"]
-    RedisPublisher -->|XADD MAXLEN ~10000| Redis
-    HealthEndpoint -->|Ping| Redis
+    Validation -->|"Valid"| RedisPublisher
+    Validation -->|"Invalid"| Error["400 ValidationProblem"]:::danger
+    RedisPublisher -->|"XADD MAXLEN ~10000"| Redis
+    HealthEndpoint -->|"Ping"| Redis
 ```
 
 | Component | Type | Responsibility |
@@ -185,34 +205,41 @@ The Broker Service is the most architecturally rich component, handling fan-out 
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph BrokerServiceContainer["Broker Service"]
-        Program["Program.cs"]
-        RedisConsumer["RedisStreamConsumer<br/>BackgroundService"]
-        TickBroadcaster["TickBroadcaster"]
-        ClientManager["SseClientManager<br/>Per-client channels"]
-        Aggregator["CandlestickAggregator<br/>1-min OHLCV"]
-        CandleHistory["CandlestickHistory<br/>Ring buffer + seeding"]
-        EventBuffer["MarketEventBuffer<br/>Last-Event-ID replay"]
-        SseController["SseController<br/>Dual-channel SSE"]
-        SecurityCache["Security Cache<br/>Dictionary"]
+        Program["Program.cs"]:::neutral
+        RedisConsumer["RedisStreamConsumer<br/>BackgroundService"]:::primary
+        TickBroadcaster["TickBroadcaster"]:::secondary
+        ClientManager["SseClientManager<br/>Per-client channels"]:::secondary
+        Aggregator["CandlestickAggregator<br/>1-min OHLCV"]:::accent
+        CandleHistory["CandlestickHistory<br/>Ring buffer + seeding"]:::neutral
+        EventBuffer["MarketEventBuffer<br/>Last-Event-ID replay"]:::highlight
+        SseController["SseController<br/>Dual-channel SSE"]:::primary
+        SecurityCache["Security Cache<br/>Dictionary"]:::neutral
     end
 
     subgraph External["External"]
-        Redis[("Redis Streams")]
-        Browser["Web Browser"]
+        Redis[("Redis Streams")]:::danger
+        Browser["Web Browser"]:::highlight
     end
 
-    Redis -->|XREADGROUP| RedisConsumer
+    Redis -->|"XREADGROUP"| RedisConsumer
     RedisConsumer --> SecurityCache
     RedisConsumer --> TickBroadcaster
     TickBroadcaster --> ClientManager
     TickBroadcaster --> Aggregator
     Aggregator --> CandleHistory
-    Aggregator -->|Broadcast candles| ClientManager
-    ClientManager -->|Per-client tick channel| SseController
-    ClientManager -->|Per-client candle channel| SseController
+    Aggregator -->|"Broadcast candles"| ClientManager
+    ClientManager -->|"Per-client tick channel"| SseController
+    ClientManager -->|"Per-client candle channel"| SseController
     EventBuffer --> SseController
-    SseController -->|SSE: marketdata + candlestick| Browser
+    SseController -->|"SSE: marketdata + candlestick"| Browser
 ```
 
 | Component | Type | Responsibility |
@@ -240,22 +267,27 @@ A heartbeat event fires every 15 seconds to keep connections alive through proxi
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph WebAppContainer["Web Application"]
-        AppComponent["App.tsx<br/>Router"]
-        Dashboard["Dashboard<br/>TradingView layout"]
-        UseMarketData["useMarketData<br/>SSE hook"]
-        StockCard["StockCard<br/>Watchlist row"]
-        CandlestickChart["CandlestickChart<br/>Custom D3.js"]
-        PriceAggregator["PriceAggregator<br/>Candle manager"]
-        RedisMonitoring["RedisMonitoring<br/>Stream inspector"]
-        Navigation["Navigation<br/>App bar"]
-        Theme["Theme<br/>TradingView dark"]
+        AppComponent["App.tsx<br/>Router"]:::primary
+        Dashboard["Dashboard<br/>TradingView layout"]:::primary
+        UseMarketData["useMarketData<br/>SSE hook"]:::secondary
+        StockCard["StockCard<br/>Watchlist row"]:::accent
+        CandlestickChart["CandlestickChart<br/>Custom D3.js"]:::accent
+        PriceAggregator["PriceAggregator<br/>Candle manager"]:::secondary
+        RedisMonitoring["RedisMonitoring<br/>Stream inspector"]:::neutral
+        Navigation["Navigation<br/>App bar"]:::neutral
+        Theme["Theme<br/>TradingView dark"]:::neutral
     end
 
     subgraph External["External"]
-        EventSourceAPI["EventSource API"]
-        D3js["D3.js 7.9"]
-        MaterialUI["MUI 7"]
+        EventSourceAPI["EventSource API"]:::neutral
+        D3js["D3.js 7.9"]:::neutral
+        MaterialUI["MUI 7"]:::neutral
     end
 
     AppComponent --> Dashboard
@@ -300,30 +332,36 @@ Price updates trigger CSS flash animations (green for up, red for down) on the w
 
 ```mermaid
 flowchart LR
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
+
     subgraph Generation["1. Generation"]
-        MS["Market Simulator<br/>GBM + GARCH<br/>4 symbols @ 300ms"]
+        MS["Market Simulator<br/>GBM + GARCH<br/>4 symbols @ 300ms"]:::accent
     end
 
     subgraph Ingestion["2. Ingestion"]
-        API["Ingestion API<br/>Validate + XADD"]
+        API["Ingestion API<br/>Validate + XADD"]:::secondary
     end
 
     subgraph Storage["3. Storage"]
-        Redis[("Redis Streams<br/>~10K buffer")]
+        Redis[("Redis Streams<br/>~10K buffer")]:::danger
     end
 
     subgraph Distribution["4. Distribution"]
-        Broker["Broker Service<br/>Fan-out + Aggregate"]
+        Broker["Broker Service<br/>Fan-out + Aggregate"]:::highlight
     end
 
     subgraph Presentation["5. Presentation"]
-        Web["Web App<br/>D3 Charts + Watchlist"]
+        Web["Web App<br/>D3 Charts + Watchlist"]:::primary
     end
 
-    MS -->|HTTP POST| API
-    API -->|XADD| Redis
-    Redis -->|XREADGROUP| Broker
-    Broker -->|SSE dual-channel| Web
+    MS -->|"HTTP POST"| API
+    API -->|"XADD"| Redis
+    Redis -->|"XREADGROUP"| Broker
+    Broker -->|"SSE dual-channel"| Web
 ```
 
 ### Sequence Diagram: Complete Data Flow
@@ -387,28 +425,35 @@ The entire system starts with a single command: `dotnet run` in the AppHost proj
 
 ```mermaid
 flowchart TB
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph Aspire["Aspire AppHost — single dotnet run"]
         subgraph Docker["Docker (auto-provisioned)"]
-            Redis[("Redis 7<br/>+ Data Volume")]
-            Commander["Redis Commander<br/>Web UI"]
+            Redis[("Redis 7<br/>+ Data Volume")]:::danger
+            Commander["Redis Commander<br/>Web UI"]:::neutral
         end
         
         subgraph DotNet[".NET 10 Services"]
-            MarketSim["Market Simulator<br/>(Worker)"]
-            IngestionAPI["Ingestion API<br/>:5001"]
-            BrokerService["Broker Service<br/>:5002"]
+            MarketSim["Market Simulator<br/>(Worker)"]:::accent
+            IngestionAPI["Ingestion API<br/>:5001"]:::secondary
+            BrokerService["Broker Service<br/>:5002"]:::secondary
         end
         
         subgraph Vite["Vite Dev Server"]
-            WebApp["Web App<br/>:5000"]
+            WebApp["Web App<br/>:5000"]:::primary
         end
     end
 
     subgraph Browser["Browser"]
-        UserInterface["Trader View"]
+        UserInterface["Trader View"]:::highlight
     end
 
-    Aspire -.->|Startup order:<br/>Redis → API → Simulator<br/>Redis → Broker → Frontend| Aspire
+    Aspire -.->|"Startup order:<br/>Redis → API → Simulator<br/>Redis → Broker → Frontend"| Aspire
     MarketSim --> IngestionAPI
     IngestionAPI --> Redis
     Redis --> BrokerService
@@ -427,29 +472,35 @@ Each layer implements targeted resilience patterns:
 
 ```mermaid
 flowchart LR
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
+    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
+    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
+    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
+    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
+
     subgraph Simulator["Market Simulator"]
-        SE1["HTTP Error"] --> SE2["Exponential Backoff<br/>100ms → 200ms → 400ms"]
-        SE2 --> SE3{"Max 3<br/>retries?"}
-        SE3 -->|No| SE1
-        SE3 -->|Yes| SE4["Skip tick"]
+        SE1["HTTP Error"]:::danger --> SE2["Exponential Backoff<br/>100ms → 200ms → 400ms"]:::accent
+        SE2 --> SE3{"Max 3<br/>retries?"}:::primary
+        SE3 -->|"No"| SE1
+        SE3 -->|"Yes"| SE4["Skip tick"]:::neutral
     end
 
     subgraph Ingestion["Ingestion API"]
-        IE1["Invalid data"] --> IE2["400 ValidationProblem"]
-        IE3["Redis down"] --> IE4["503 Unavailable"]
-        IE5["Redis timeout"] --> IE6["504 Timeout"]
+        IE1["Invalid data"]:::danger --> IE2["400 ValidationProblem"]:::danger
+        IE3["Redis down"]:::danger --> IE4["503 Unavailable"]:::danger
+        IE5["Redis timeout"]:::danger --> IE6["504 Timeout"]:::danger
     end
 
     subgraph Broker["Broker Service"]
-        BE1["Redis connection loss"] --> BE2["Retry after 5s"]
-        BE3["Redis timeout"] --> BE4["Retry after 2s"]
-        BE5["Unknown error"] --> BE6["Retry after 10s"]
+        BE1["Redis connection loss"]:::danger --> BE2["Retry after 5s"]:::secondary
+        BE3["Redis timeout"]:::danger --> BE4["Retry after 2s"]:::secondary
+        BE5["Unknown error"]:::danger --> BE6["Retry after 10s"]:::secondary
     end
 
     subgraph WebApp["Web App (SSE)"]
-        WE1["SSE Error"] --> WE2{"Attempt<br/> ≤ 5?"}
-        WE2 -->|Yes| WE3["Reconnect"]
-        WE2 -->|No| WE4["Show error state"]
+        WE1["SSE Error"]:::danger --> WE2{"Attempt<br/> ≤ 5?"}:::primary
+        WE2 -->|"Yes"| WE3["Reconnect"]:::secondary
+        WE2 -->|"No"| WE4["Show error state"]:::danger
     end
 ```
 

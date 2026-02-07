@@ -135,7 +135,7 @@
 
 [data-theme="dark"] .mermaid .node rect {
     fill: #1168BD !important;
-    stroke: rgba(255, 255, 255, 0.1) !important;
+    stroke: rgba(255, 255, 255, 0.2) !important;
 }
 
 [data-theme="dark"] .mermaid .node circle {
@@ -145,7 +145,7 @@
 
 [data-theme="dark"] .mermaid .node polygon {
     fill: #1168BD !important;
-    stroke: rgba(255, 255, 255, 0.1) !important;
+    stroke: rgba(255, 255, 255, 0.2) !important;
 }
 
 [data-theme="dark"] .mermaid .node .nodeLabel,
@@ -261,6 +261,7 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.primary :is(rect, polygon, circle, path) {
     fill: #1e3a5f !important;
     stroke: #60a5fa !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.primary .nodeLabel {
     color: #dbeafe !important;
@@ -270,6 +271,7 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.secondary :is(rect, polygon, circle, path) {
     fill: #14532d !important;
     stroke: #4ade80 !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.secondary .nodeLabel {
     color: #dcfce7 !important;
@@ -279,6 +281,7 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.accent :is(rect, polygon, circle, path) {
     fill: #7c2d12 !important;
     stroke: #fb923c !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.accent .nodeLabel {
     color: #ffedd5 !important;
@@ -288,6 +291,7 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.highlight :is(rect, polygon, circle, path) {
     fill: #581c87 !important;
     stroke: #c084fc !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.highlight .nodeLabel {
     color: #f3e8ff !important;
@@ -297,6 +301,7 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.danger :is(rect, polygon, circle, path) {
     fill: #7f1d1d !important;
     stroke: #f87171 !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.danger .nodeLabel {
     color: #fee2e2 !important;
@@ -306,10 +311,51 @@
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.neutral :is(rect, polygon, circle, path) {
     fill: #1e293b !important;
     stroke: #94a3b8 !important;
+    stroke-width: 2px !important;
 }
 [data-theme="dark"] :is(.mermaid, .mermaid-fullscreen-content-inner) .node.neutral .nodeLabel {
     color: #e2e8f0 !important;
     fill: #e2e8f0 !important;
+}
+
+/* --- @media fallback for auto-theme dark mode (before JS sets data-theme) --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.primary :is(rect, polygon, circle, path) {
+      fill: #1e3a5f !important; stroke: #60a5fa !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.primary .nodeLabel {
+      color: #dbeafe !important; fill: #dbeafe !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.secondary :is(rect, polygon, circle, path) {
+      fill: #14532d !important; stroke: #4ade80 !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.secondary .nodeLabel {
+      color: #dcfce7 !important; fill: #dcfce7 !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.accent :is(rect, polygon, circle, path) {
+      fill: #7c2d12 !important; stroke: #fb923c !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.accent .nodeLabel {
+      color: #ffedd5 !important; fill: #ffedd5 !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.highlight :is(rect, polygon, circle, path) {
+      fill: #581c87 !important; stroke: #c084fc !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.highlight .nodeLabel {
+      color: #f3e8ff !important; fill: #f3e8ff !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.danger :is(rect, polygon, circle, path) {
+      fill: #7f1d1d !important; stroke: #f87171 !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.danger .nodeLabel {
+      color: #fee2e2 !important; fill: #fee2e2 !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.neutral :is(rect, polygon, circle, path) {
+      fill: #1e293b !important; stroke: #94a3b8 !important; stroke-width: 2.5px !important;
+  }
+  :root:not([data-theme="light"]) :is(.mermaid, .mermaid-fullscreen-content-inner) .node.neutral .nodeLabel {
+      color: #e2e8f0 !important; fill: #e2e8f0 !important;
+  }
 }
 
 /* --- Sequence diagram C4-like overrides --- */

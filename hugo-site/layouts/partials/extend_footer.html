@@ -624,6 +624,50 @@
       document.addEventListener('touchend', onDragEnd);
     }
     
+    // Semantic class color definitions for light and dark mode
+    const semanticColors = {
+      dark: {
+        primary:   { fill: '#1e3a5f', stroke: '#60a5fa', strokeWidth: '2.5px', color: '#dbeafe' },
+        secondary: { fill: '#14532d', stroke: '#4ade80', strokeWidth: '2.5px', color: '#dcfce7' },
+        accent:    { fill: '#7c2d12', stroke: '#fb923c', strokeWidth: '2.5px', color: '#ffedd5' },
+        highlight: { fill: '#581c87', stroke: '#c084fc', strokeWidth: '2.5px', color: '#f3e8ff' },
+        danger:    { fill: '#7f1d1d', stroke: '#f87171', strokeWidth: '2.5px', color: '#fee2e2' },
+        neutral:   { fill: '#1e293b', stroke: '#94a3b8', strokeWidth: '2.5px', color: '#e2e8f0' }
+      },
+      light: {
+        primary:   { fill: '#dbeafe', stroke: '#2563eb', strokeWidth: '1.5px', color: '#1e40af' },
+        secondary: { fill: '#dcfce7', stroke: '#16a34a', strokeWidth: '1.5px', color: '#166534' },
+        accent:    { fill: '#ffedd5', stroke: '#ea580c', strokeWidth: '1.5px', color: '#9a3412' },
+        highlight: { fill: '#f3e8ff', stroke: '#9333ea', strokeWidth: '1.5px', color: '#6b21a8' },
+        danger:    { fill: '#fee2e2', stroke: '#dc2626', strokeWidth: '1.5px', color: '#991b1b' },
+        neutral:   { fill: '#f1f5f9', stroke: '#64748b', strokeWidth: '1.5px', color: '#334155' }
+      }
+    };
+
+    // Apply semantic class overrides directly on SVG elements
+    // This is necessary because Mermaid v11 generates ID-prefixed CSS inside the SVG
+    // <style> block with higher specificity than external CSS, even with !important.
+    function applySemanticClassOverrides(container) {
+      const theme = document.documentElement.dataset.theme;
+      const isDark = theme === 'dark' ||
+                     (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const palette = isDark ? semanticColors.dark : semanticColors.light;
+
+      for (const [cls, colors] of Object.entries(palette)) {
+        container.querySelectorAll(`.node.${cls}`).forEach(node => {
+          node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
+            shape.style.setProperty('fill', colors.fill, 'important');
+            shape.style.setProperty('stroke', colors.stroke, 'important');
+            shape.style.setProperty('stroke-width', colors.strokeWidth, 'important');
+          });
+          node.querySelectorAll('.nodeLabel').forEach(label => {
+            label.style.setProperty('color', colors.color, 'important');
+            label.style.setProperty('fill', colors.color, 'important');
+          });
+        });
+      }
+    }
+
     // Find all code blocks with class 'language-mermaid' and render them
     document.querySelectorAll('pre > code.language-mermaid').forEach(async (codeBlock, index) => {
       const pre = codeBlock.parentNode;
@@ -646,6 +690,7 @@
       try {
         const { svg } = await mermaid.render(`mermaid-diagram-${index}`, codeBlock.textContent);
         container.innerHTML = svg;
+        applySemanticClassOverrides(container);
         
         // Try to find the diagram title from the preceding heading
         let diagramTitle = 'Diagram Viewer';
@@ -665,6 +710,7 @@
           const fullscreenTitle = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
           const fullscreenContentArea = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
           fullscreenContentInner.innerHTML = svg;
+          applySemanticClassOverrides(fullscreenContentInner);
           fullscreenTitle.textContent = diagramTitle;
           fullscreenDialog.classList.add('active');
           document.body.style.overflow = 'hidden';
