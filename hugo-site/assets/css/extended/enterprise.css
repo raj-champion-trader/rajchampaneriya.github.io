@@ -8,6 +8,8 @@
   --hljs-bg: #0B1220;      /* code bg (dark, enterprise) */
   --link: #1D4ED8;         /* enterprise blue */
   --link-hover: #1E40AF;
+  --blue-bg: rgba(29, 78, 216, 0.05);      /* subtle blue tint for badges/pills */
+  --blue-border: rgba(29, 78, 216, 0.12);  /* blue border for badges/pills */
 }
 
 :root[data-theme="dark"]{
@@ -20,6 +22,8 @@
   --hljs-bg: #0B1220;      /* code bg stays dark */
   --link: #60A5FA;         /* lighter blue for dark theme */
   --link-hover: #93C5FD;   /* even lighter on hover */
+  --blue-bg: rgba(96, 165, 250, 0.08);     /* subtle blue tint for badges/pills */
+  --blue-border: rgba(96, 165, 250, 0.15); /* blue border for badges/pills */
 }
 
 /* Prevent horizontal scroll globally */
@@ -313,3 +317,30 @@ a:hover{
 }
 
 /* Dark mode tag hover inherits base styles — no extra glow */
+
+/* ===================================
+   Footer
+   =================================== */
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary);
+}

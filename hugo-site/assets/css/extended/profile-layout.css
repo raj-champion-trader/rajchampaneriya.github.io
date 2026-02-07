@@ -111,7 +111,7 @@
 /* Certification badges — inline with role */
 .profile-certs {
     display: flex;
-    gap: 0.35rem;
+    gap: 0.4rem;
     flex-wrap: wrap;
 }
 
@@ -122,10 +122,10 @@
     font-size: 0.62rem;
     font-weight: 600;
     color: var(--link);
-    background: rgba(29, 78, 216, 0.06);
-    border: 1px solid rgba(29, 78, 216, 0.12);
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
+    background: var(--blue-bg);
+    border: 1px solid var(--blue-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
 }
@@ -136,8 +136,8 @@
 }
 
 [data-theme="dark"] .cert-badge {
-    background: rgba(96, 165, 250, 0.08);
-    border-color: rgba(96, 165, 250, 0.15);
+    background: var(--blue-bg);
+    border-color: var(--blue-border);
     color: var(--link);
 }
 
@@ -215,8 +215,8 @@
    ============================================ */
 
 .trusted-by-strip {
-    margin: 0.85rem 0 0;
-    padding: 0.65rem 0;
+    margin: 1rem 0 0;
+    padding: 0.75rem 0;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -249,12 +249,12 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 500;
     color: var(--secondary);
     background: var(--entry);
     border: 1px solid var(--border);
-    padding: 0.2rem 0.5rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 4px;
     transition: all 0.2s ease;
 }
@@ -276,8 +276,8 @@
 .fortune-badge {
     font-weight: 600;
     color: var(--link);
-    border-color: rgba(29, 78, 216, 0.15);
-    background: rgba(29, 78, 216, 0.04);
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
 }
 
 .fortune-badge svg {
@@ -290,8 +290,8 @@
 }
 
 [data-theme="dark"] .fortune-badge {
-    border-color: rgba(96, 165, 250, 0.15);
-    background: rgba(96, 165, 250, 0.06);
+    border-color: var(--blue-border);
+    background: var(--blue-bg);
 }
 
 
@@ -300,8 +300,8 @@
    ============================================ */
 
 .recent-posts-section {
-    margin: 0.85rem 0 1.5rem;
-    padding-top: 0.85rem;
+    margin: 1rem 0 1.5rem;
+    padding-top: 0.75rem;
     border-top: 1px solid var(--border);
 }
 
@@ -311,7 +311,7 @@
 
 .recent-posts-section h2 {
     font-size: 0.8rem;
-    margin: 0 0 0.85rem 0;
+    margin: 0 0 0.75rem 0;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -319,7 +319,7 @@
 }
 
 .post-entry-horizontal {
-    padding: 0.55rem 0.85rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
     border: 1px solid transparent;
     transition: all 0.15s ease;
@@ -360,14 +360,14 @@
 .post-category {
     font-size: 0.7rem;
     color: var(--link);
-    background: rgba(29, 78, 216, 0.06);
-    padding: 0.1rem 0.45rem;
-    border-radius: 3px;
+    background: var(--blue-bg);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
     font-weight: 500;
 }
 
 [data-theme="dark"] .post-category {
-    background: rgba(96, 165, 250, 0.1);
+    background: var(--blue-bg);
 }
 
 .post-title {
