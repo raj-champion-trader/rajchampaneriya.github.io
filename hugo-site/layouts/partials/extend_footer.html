@@ -53,8 +53,7 @@
 
 .mermaid-fullscreen-btn:hover {
   background: var(--tertiary);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .mermaid-fullscreen-btn svg {
@@ -161,7 +160,6 @@
 
 .mermaid-fullscreen-close:hover {
   background: var(--tertiary);
-  transform: scale(1.05);
 }
 
 .mermaid-fullscreen-close svg {
@@ -178,6 +176,13 @@
   display: block;
   -webkit-overflow-scrolling: touch;
   position: relative;
+  cursor: grab;
+}
+
+.mermaid-fullscreen-content.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .mermaid-fullscreen-content-inner {
@@ -187,6 +192,7 @@
   min-width: min-content;
   width: max-content;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 .mermaid-fullscreen-content svg {
@@ -239,6 +245,11 @@
     padding: 20px 10px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  .mermaid-fullscreen-content.is-dragging {
+    cursor: grabbing;
   }
   
   .mermaid-fullscreen-content-inner {
@@ -259,10 +270,55 @@
     
     mermaid.initialize({
       startOnLoad: false,
-      theme: isDark ? 'dark' : 'default',
+      theme: 'base',
+      themeVariables: isDark ? {
+        primaryColor: '#1168BD',
+        primaryTextColor: '#ffffff',
+        primaryBorderColor: 'rgba(255,255,255,0.1)',
+        lineColor: '#94A3B8',
+        secondaryColor: '#1E3A5F',
+        tertiaryColor: 'rgba(255,255,255,0.04)',
+        noteBkgColor: '#2D2A1E',
+        noteTextColor: '#E2E8F0',
+        noteBorderColor: '#5C5630',
+        actorBkg: '#1168BD',
+        actorTextColor: '#ffffff',
+        actorBorder: 'rgba(255,255,255,0.1)',
+        signalColor: '#94A3B8',
+        signalTextColor: '#94A3B8',
+        background: '#0F172A',
+        mainBkg: '#1168BD',
+        nodeBorder: 'rgba(255,255,255,0.1)',
+        clusterBkg: 'rgba(255,255,255,0.04)',
+        clusterBorder: '#667',
+        titleColor: '#94A3B8',
+        edgeLabelBackground: '#0B1220'
+      } : {
+        primaryColor: '#438DD5',
+        primaryTextColor: '#ffffff',
+        primaryBorderColor: 'rgba(0,0,0,0.15)',
+        lineColor: '#666666',
+        secondaryColor: '#85BBF0',
+        tertiaryColor: 'rgba(0,0,0,0.03)',
+        noteBkgColor: '#FFF8DC',
+        noteTextColor: '#333333',
+        noteBorderColor: '#D4C68A',
+        actorBkg: '#438DD5',
+        actorTextColor: '#ffffff',
+        actorBorder: 'rgba(0,0,0,0.15)',
+        signalColor: '#666666',
+        signalTextColor: '#666666',
+        background: '#F8FAFC',
+        mainBkg: '#438DD5',
+        nodeBorder: 'rgba(0,0,0,0.15)',
+        clusterBkg: 'rgba(0,0,0,0.03)',
+        clusterBorder: '#999',
+        titleColor: '#666666',
+        edgeLabelBackground: '#F8FAFC'
+      },
       securityLevel: 'loose',
-      fontFamily: 'inherit',
-      fontSize: 14,
+      fontFamily: '"IBM Plex Sans", system-ui, sans-serif',
+      fontSize: 13,
       flowchart: {
         useMaxWidth: false,
         htmlLabels: true,
@@ -407,6 +463,53 @@
           updateZoom(1);
         }
       });
+
+      // --- Drag-to-pan in all directions ---
+      const fullscreenContent = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let scrollStartX = 0;
+      let scrollStartY = 0;
+
+      function onDragStart(e) {
+        // Ignore if clicking a button
+        if (e.target.closest('button')) return;
+        isDragging = true;
+        fullscreenContent.classList.add('is-dragging');
+        const point = e.touches ? e.touches[0] : e;
+        dragStartX = point.clientX;
+        dragStartY = point.clientY;
+        scrollStartX = fullscreenContent.scrollLeft;
+        scrollStartY = fullscreenContent.scrollTop;
+        e.preventDefault();
+      }
+
+      function onDragMove(e) {
+        if (!isDragging) return;
+        const point = e.touches ? e.touches[0] : e;
+        const dx = point.clientX - dragStartX;
+        const dy = point.clientY - dragStartY;
+        fullscreenContent.scrollLeft = scrollStartX - dx;
+        fullscreenContent.scrollTop = scrollStartY - dy;
+        e.preventDefault();
+      }
+
+      function onDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        fullscreenContent.classList.remove('is-dragging');
+      }
+
+      // Mouse events
+      fullscreenContent.addEventListener('mousedown', onDragStart);
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+
+      // Touch events
+      fullscreenContent.addEventListener('touchstart', onDragStart, { passive: false });
+      document.addEventListener('touchmove', onDragMove, { passive: false });
+      document.addEventListener('touchend', onDragEnd);
     }
     
     // Find all code blocks with class 'language-mermaid' and render them
@@ -447,6 +550,7 @@
         fullscreenBtn.addEventListener('click', () => {
           const fullscreenContentInner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
           const fullscreenTitle = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
+          const fullscreenContentArea = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
           fullscreenContentInner.innerHTML = svg;
           fullscreenTitle.textContent = diagramTitle;
           fullscreenDialog.classList.add('active');
@@ -456,6 +560,12 @@
           currentZoom = 1;
           fullscreenContentInner.style.transform = 'scale(1)';
           fullscreenDialog.querySelector('.mermaid-zoom-level').textContent = '100%';
+
+          // Reset scroll position to top-left
+          if (fullscreenContentArea) {
+            fullscreenContentArea.scrollLeft = 0;
+            fullscreenContentArea.scrollTop = 0;
+          }
         });
         
         wrapper.appendChild(fullscreenBtn);

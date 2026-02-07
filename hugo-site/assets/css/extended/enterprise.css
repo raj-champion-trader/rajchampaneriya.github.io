@@ -162,9 +162,7 @@ a:hover{
   transition: border-color 0.3s ease;
 }
 
-.post-content h2:hover {
-  border-color: var(--link);
-}
+/* h2 border stays stable — no hover distraction while reading */
 
 .post-content h3 {
   font-size: 1.35rem;
@@ -209,8 +207,7 @@ a:hover{
 }
 
 .post-content blockquote:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Link styling in post content */
@@ -278,8 +275,6 @@ a:hover{
   background: var(--link);
   color: white;
   border-color: var(--link);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
 }
 
 /* Table of contents styling */
@@ -317,6 +312,4 @@ a:hover{
   border-bottom-color: var(--tertiary);
 }
 
-[data-theme="dark"] .post-tags a:hover {
-  box-shadow: 0 4px 8px rgba(96, 165, 250, 0.3);
-}
+/* Dark mode tag hover inherits base styles — no extra glow */

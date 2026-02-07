@@ -1,4 +1,7 @@
-/* Mermaid diagram styling */
+/* ==============================================
+   Mermaid Diagram Styling — C4 Model Appearance
+   ============================================== */
+
 .mermaid {
     text-align: center;
     margin: 1.5rem 0;
@@ -16,48 +19,237 @@
     margin: 0 auto;
 }
 
-/* Ensure text is visible in nodes */
+/* --- C4-style typography --- */
 .mermaid .nodeLabel,
-.mermaid .label,
-.mermaid .edgeLabel,
+.mermaid .label {
+    font-size: 13px !important;
+    font-family: "IBM Plex Sans", system-ui, sans-serif !important;
+    line-height: 1.4 !important;
+}
+
+.mermaid .edgeLabel {
+    font-size: 11px !important;
+    font-family: "IBM Plex Sans", system-ui, sans-serif !important;
+    background: var(--code-bg) !important;
+    padding: 2px 6px !important;
+    border-radius: 3px !important;
+}
+
 .mermaid text {
     font-size: 13px !important;
-    font-family: inherit !important;
+    font-family: "IBM Plex Sans", system-ui, sans-serif !important;
 }
 
-/* Subgraph labels */
-.mermaid .cluster-label {
-    font-size: 14px !important;
-    font-weight: 600 !important;
+/* --- C4-style node shapes --- */
+.mermaid .node rect {
+    rx: 6px !important;
+    ry: 6px !important;
+    stroke-width: 1px !important;
+    stroke: rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Node styling */
-.mermaid .node rect,
 .mermaid .node circle,
 .mermaid .node ellipse,
 .mermaid .node polygon,
 .mermaid .node path {
+    stroke-width: 1px !important;
+}
+
+/* C4 color palette: nodes get blue tones */
+.mermaid .node rect {
+    fill: #438DD5 !important;
+}
+
+.mermaid .node .nodeLabel {
+    color: #fff !important;
+    fill: #fff !important;
+}
+
+/* Person nodes (circles) — darker blue like C4 Person */
+.mermaid .node circle {
+    fill: #08427B !important;
+    stroke: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Stadium / pill shapes */
+.mermaid .node .label-container {
+    rx: 6px !important;
+    ry: 6px !important;
+}
+
+/* Database / cylinder shapes — gray tone for infrastructure */
+.mermaid .node polygon {
+    fill: #438DD5 !important;
+    stroke: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- C4-style subgraphs (system boundaries) --- */
+.mermaid .cluster rect {
+    rx: 8px !important;
+    ry: 8px !important;
+    fill: rgba(0, 0, 0, 0.03) !important;
+    stroke: #999 !important;
+    stroke-width: 1.5px !important;
+    stroke-dasharray: 8 4 !important;
+}
+
+.mermaid .cluster-label .nodeLabel {
+    color: #666 !important;
+    fill: #666 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* --- C4-style edges --- */
+.mermaid .flowchart-link {
+    stroke: #666 !important;
     stroke-width: 1.5px !important;
 }
 
-/* Ensure subgraph content doesn't get clipped */
-.mermaid .cluster rect {
-    rx: 8px;
-    ry: 8px;
+.mermaid .marker {
+    fill: #666 !important;
+    stroke: #666 !important;
 }
 
-/* Dark mode adjustments */
+/* Edge labels — subtle styling */
+.mermaid .edgeLabel rect {
+    fill: var(--code-bg) !important;
+    stroke: none !important;
+    opacity: 0.9 !important;
+}
+
+.mermaid .edgeLabel .label {
+    color: var(--secondary) !important;
+    fill: var(--secondary) !important;
+    font-size: 11px !important;
+}
+
+/* --- Dark mode C4 adjustments --- */
 [data-theme="dark"] .mermaid {
     background: var(--code-bg);
 }
 
-[data-theme="dark"] .mermaid .nodeLabel,
+[data-theme="dark"] .mermaid .node rect {
+    fill: #1168BD !important;
+    stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .mermaid .node circle {
+    fill: #08427B !important;
+    stroke: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .mermaid .node polygon {
+    fill: #1168BD !important;
+    stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .mermaid .node .nodeLabel,
 [data-theme="dark"] .mermaid .label {
     color: #fff !important;
     fill: #fff !important;
 }
 
-/* Error styling */
+[data-theme="dark"] .mermaid .cluster rect {
+    fill: rgba(255, 255, 255, 0.04) !important;
+    stroke: #667 !important;
+}
+
+[data-theme="dark"] .mermaid .cluster-label .nodeLabel {
+    color: #94A3B8 !important;
+    fill: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid .flowchart-link {
+    stroke: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid .marker {
+    fill: #94A3B8 !important;
+    stroke: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid .edgeLabel rect {
+    fill: var(--code-bg) !important;
+}
+
+[data-theme="dark"] .mermaid .edgeLabel .label {
+    color: #94A3B8 !important;
+    fill: #94A3B8 !important;
+}
+
+/* --- Sequence diagram C4-like overrides --- */
+.mermaid .actor {
+    fill: #438DD5 !important;
+    stroke: rgba(0, 0, 0, 0.15) !important;
+    stroke-width: 1px !important;
+    rx: 6px !important;
+    ry: 6px !important;
+}
+
+.mermaid text.actor {
+    fill: #fff !important;
+}
+
+.mermaid .messageLine0,
+.mermaid .messageLine1 {
+    stroke: #666 !important;
+}
+
+.mermaid .messageText {
+    fill: var(--secondary) !important;
+    font-size: 12px !important;
+}
+
+.mermaid .activation0,
+.mermaid .activation1,
+.mermaid .activation2 {
+    fill: #85BBF0 !important;
+    stroke: #438DD5 !important;
+}
+
+.mermaid .note {
+    fill: #FFF8DC !important;
+    stroke: #D4C68A !important;
+}
+
+.mermaid .noteText {
+    fill: #333 !important;
+    font-size: 11px !important;
+}
+
+[data-theme="dark"] .mermaid .actor {
+    fill: #1168BD !important;
+    stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .mermaid .messageLine0,
+[data-theme="dark"] .mermaid .messageLine1 {
+    stroke: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid .messageText {
+    fill: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid .activation0,
+[data-theme="dark"] .mermaid .activation1,
+[data-theme="dark"] .mermaid .activation2 {
+    fill: #1E3A5F !important;
+    stroke: #1168BD !important;
+}
+
+[data-theme="dark"] .mermaid .note {
+    fill: #2D2A1E !important;
+    stroke: #5C5630 !important;
+}
+
+[data-theme="dark"] .mermaid .noteText {
+    fill: #E2E8F0 !important;
+}
+
+/* --- Error styling --- */
 .mermaid-error {
     color: #ff6b6b;
     padding: 1rem;
@@ -66,7 +258,7 @@
     background: rgba(255, 107, 107, 0.1);
 }
 
-/* Responsive adjustments - allow horizontal scroll on small screens */
+/* --- Responsive --- */
 @media (max-width: 768px) {
     .mermaid {
         padding: 0.5rem;
