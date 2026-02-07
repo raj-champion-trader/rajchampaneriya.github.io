@@ -21,13 +21,11 @@ We live in an age where "refreshing" a webpage is considered a failure of the hu
 
 Real-time updates are no longer a "nice-to-have." They are the air we breathe. Most modern UI applications expect live data streams, because God forbid a user should have to click a button to see if their portfolio is down 20%.
 
-When building the [Stock Market Simulator](/projects/stock-market-simulator)—a living laboratory for event-driven patterns that doesn't care about your feelings, only throughput—one of the first architectural decisions was: **How do we push real-time price updates to thousands of concurrent users efficiently?**
+When building the [Stock Market Simulator](https://github.com/raj-champion-trader/stock-market-simulator)—a living laboratory for event-driven patterns that doesn't care about your feelings, only throughput—one of the first architectural decisions was: **How do we push real-time price updates to thousands of concurrent users efficiently?**
 
 For years, SignalR has been the go-to answer in the .NET ecosystem. And SignalR is wonderful. It's a powerhouse. It's the Swiss Army Knife that also happens to be a chainsaw. But sometimes, you don't need a chainsaw. Sometimes, you just need to whisper into the ear of the browser.
 
-With the release of **ASP.NET Core 10**, we finally have a native, high-level API for Server-Sent Events (SSE). It bridges the gap between basic HTTP polling (which is for cavemen) and full-duplex WebSockets via SignalR (which is for people who like to over-engineer a chat app).
-
-This post explores both options through the lens of real-world stock market data streaming.
+This post explores both options through the lens of real-world stock market data streaming—and explains why we chose SSE for the Stock Market Simulator, building the plumbing from scratch so we'd actually understand what's flowing through the pipes.
 
 ---
 
@@ -52,58 +50,107 @@ SignalR is a powerhouse. It handles WebSockets, Long Polling, and SSE automatica
 
 SSE is different because:
 
-- **Unidirectional**: Designed specifically for streaming data *from* server *to* client. Because, let's be honest, the server has all the answers anyway.
-- **Native HTTP**: Just a standard HTTP request with a `text/event-stream` content type. No custom protocols.
+- **Unidirectional**: Designed specifically for streaming data *from* server *to* client. Market data flows one way—from the exchange to the trader's screen. The server has all the answers anyway.
+- **Native HTTP**: Just a standard HTTP request with a `text/event-stream` content type. No custom protocols, no upgrade negotiation.
 - **Automatic Reconnection**: Browsers natively handle reconnections via the `EventSource` API. It's like having an assistant who automatically redials when the call drops.
 - **Lightweight**: No heavy client libraries or complex handshake logic. Just pure, unfiltered data.
 
-### The Simplest SSE Endpoint (.NET 10)
+---
 
-The beauty of the .NET 10 SSE API is its simplicity. It's almost criminal. You can use the new `Results.ServerSentEvents` to return a stream of events from any `IAsyncEnumerable`. Because `IAsyncEnumerable` represents a stream of data that arrives over time—much like the emails from your project manager—the server knows to keep the HTTP connection open rather than closing it after the first chunk.
+## The SSE Endpoint (From the Actual Codebase)
 
-```csharp
-app.MapGet("market/realtime", (
-    ChannelReader<StockTick> channelReader,
-    CancellationToken cancellationToken) =>
-{
-    // 1. ReadAllAsync returns an IAsyncEnumerable
-    // 2. Results.ServerSentEvents tells the browser: "Keep this line open"
-    // 3. New data is pushed as soon as it enters the channel
-    return Results.ServerSentEvents(
-        channelReader.ReadAllAsync(cancellationToken),
-        eventType: "stock-update");
-});
-```
-
-When a client hits this endpoint:
-1. The server sends a `Content-Type: text/event-stream` header
-2. The connection stays active while waiting for data
-3. As soon as your application pushes a stock tick into the `Channel`, .NET immediately flushes it down the open HTTP pipe to the browser
-
-It's an incredibly efficient way to handle "push" notifications without the overhead of a stateful protocol.
-
-### The Traditional Approach (Pre-.NET 10)
-
-For those not yet on .NET 10, here's the classic controller-based approach:
+The Stock Market Simulator's Broker Service exposes SSE endpoints using ASP.NET Core controllers on .NET 10. The `SseController` sets the standard SSE headers, registers a per-client channel, and streams events using `IAsyncEnumerable`:
 
 ```csharp
 [HttpGet("stream")]
-public async Task StreamPrices(CancellationToken cancellationToken)
+public async Task Stream(CancellationToken cancellationToken)
 {
-    Response.ContentType = "text/event-stream";
-    Response.Headers.Add("Cache-Control", "no-cache");
-    Response.Headers.Add("Connection", "keep-alive");
+    // Configure SSE response headers
+    Response.Headers.Append("Content-Type", "text/event-stream");
+    Response.Headers.Append("Cache-Control", "no-cache");
+    Response.Headers.Append("Connection", "keep-alive");
+    Response.Headers.Append("X-Accel-Buffering", "no"); // Disable nginx buffering
 
-    await foreach (var tick in _priceStream.ReadAllAsync(cancellationToken))
+    var clientId = Guid.NewGuid().ToString("N");
+
+    // Stream events using IAsyncEnumerable pattern
+    await foreach (var sseEvent in StreamEventsAsync(clientId, cancellationToken))
     {
-        var json = JsonSerializer.Serialize(tick);
-        await Response.WriteAsync($"data: {json}\n\n");
-        await Response.Body.FlushAsync();
+        await Response.WriteAsync(sseEvent, cancellationToken);
+        await Response.Body.FlushAsync(cancellationToken);
     }
 }
 ```
 
-Both approaches work. The .NET 10 version is just cleaner—less boilerplate, more intent.
+When a client hits this endpoint:
+1. The server sends `Content-Type: text/event-stream` — telling the browser "keep this connection open"
+2. A dedicated bounded channel is created for this specific client via `SseClientManager`
+3. As market ticks arrive from Redis, they're fanned out to every client's channel and flushed down the open HTTP pipe
+
+Notice the `X-Accel-Buffering: no` header — a production detail that disables nginx response buffering. Without it, your reverse proxy will helpfully collect all your real-time events into one big batch and deliver them with the enthusiasm of a postal service.
+
+### The Minimal API Alternative
+
+The same Broker Service also exposes a Minimal API version, demonstrating the cleaner .NET 10 pattern:
+
+```csharp
+app.MapGet("/api/marketdata/stream-minimal", async (
+    SseClientManager clientManager,
+    ILogger<Program> logger,
+    HttpResponse response,
+    CancellationToken cancellationToken) =>
+{
+    var clientId = Guid.NewGuid().ToString("N");
+
+    response.Headers.Append("Content-Type", "text/event-stream");
+    response.Headers.Append("Cache-Control", "no-cache");
+    response.Headers.Append("Connection", "keep-alive");
+
+    var (tickChannel, _) = clientManager.Register(clientId);
+
+    try
+    {
+        await response.WriteAsync(
+            FormatSseEvent("connected", new { clientId, timestamp = DateTime.UtcNow }),
+            cancellationToken);
+        await response.Body.FlushAsync(cancellationToken);
+
+        await foreach (var data in tickChannel.Reader.ReadAllAsync(cancellationToken))
+        {
+            await response.WriteAsync(
+                FormatSseEvent("marketdata", data),
+                cancellationToken);
+            await response.Body.FlushAsync(cancellationToken);
+        }
+    }
+    catch (OperationCanceledException) { }
+    finally
+    {
+        clientManager.Unregister(clientId);
+    }
+});
+```
+
+Both approaches work. The Minimal API version is more concise; the controller version is more structured. Choose your preferred ceremony level.
+
+### The Future: .NET 10's `Results.ServerSentEvents`
+
+ASP.NET Core 10 is introducing a native `Results.ServerSentEvents` API that wraps any `IAsyncEnumerable` into an SSE response with zero boilerplate—no manual header setting, no `FlushAsync` calls:
+
+```csharp
+// What the future looks like — not yet used in this project,
+// but this is where SSE in .NET is heading
+app.MapGet("/api/prices/stream", (
+    ChannelReader<MarketDataEvent> channelReader,
+    CancellationToken cancellationToken) =>
+{
+    return Results.ServerSentEvents(
+        channelReader.ReadAllAsync(cancellationToken),
+        eventType: "marketdata");
+});
+```
+
+The Stock Market Simulator deliberately uses the manual approach to expose the underlying mechanics—bounded channel management, event formatting, backpressure handling—that `Results.ServerSentEvents` would abstract away. Understanding these primitives matters when debugging production streaming issues.
 
 ### Pros of SSE
 **Simple**: No special libraries needed, works with standard HTTP  
@@ -116,89 +163,299 @@ Both approaches work. The .NET 10 version is just cleaner—less boilerplate, mo
 **Unidirectional**: Client can't send data back without separate HTTP requests  
 **Connection Limits**: Browsers limit ~6 connections per domain (HTTP/1.1)  
 **No Binary**: Text-only protocol (JSON overhead)  
+**No Custom Headers in EventSource**: The browser's `EventSource` API doesn't support setting `Authorization` headers — you need cookie-based auth or token query parameters  
 **IE Support**: Not supported in Internet Explorer (but honestly, who cares anymore?)  
+
+---
+
+## The Fan-Out Problem (The Part Nobody Talks About)
+
+Here's something the tutorials leave out: `System.Threading.Channels` reads are **destructive**. When you read a message from a channel, it's gone. If two SSE clients share a single `Channel<MarketDataEvent>`, only one of them gets each tick. The other client stares at a blank screen, wondering why they invested in technology.
+
+The Stock Market Simulator solves this with a **per-client channel architecture**:
+
+```csharp
+public class SseClientManager
+{
+    private readonly ConcurrentDictionary<string, Channel<MarketDataEvent>> _clients = new();
+    private readonly ConcurrentDictionary<string, Channel<CandlestickEvent>> _candleClients = new();
+
+    public (Channel<MarketDataEvent> TickChannel, Channel<CandlestickEvent> CandleChannel)
+        Register(string clientId)
+    {
+        var tickChannel = Channel.CreateBounded<MarketDataEvent>(
+            new BoundedChannelOptions(_channelCapacity)
+            {
+                SingleReader = true,
+                SingleWriter = false,
+                FullMode = BoundedChannelFullMode.DropOldest
+            });
+
+        var candleChannel = Channel.CreateBounded<CandlestickEvent>(
+            new BoundedChannelOptions(_channelCapacity)
+            {
+                SingleReader = true,
+                SingleWriter = false,
+                FullMode = BoundedChannelFullMode.DropOldest
+            });
+
+        _clients[clientId] = tickChannel;
+        _candleClients[clientId] = candleChannel;
+        return (tickChannel, candleChannel);
+    }
+}
+```
+
+Each SSE client gets its own pair of bounded channels — one for raw ticks, one for candlestick events. The `TickBroadcaster` then fans out every incoming tick to **all** registered client channels plus a dedicated aggregator channel:
+
+```csharp
+public class TickBroadcaster
+{
+    private readonly SseClientManager _clientManager;
+    private readonly Channel<MarketDataEvent> _aggregatorChannel;
+
+    public void Broadcast(MarketDataEvent tick)
+    {
+        // Fan out to all connected SSE clients
+        _clientManager.BroadcastTick(tick);
+
+        // Also feed the candlestick aggregator
+        if (!_aggregatorChannel.Writer.TryWrite(tick))
+        {
+            _logger.LogWarning(
+                "Aggregator channel full, tick for {Symbol} dropped", tick.Symbol);
+        }
+    }
+}
+```
+
+Note the use of `BoundedChannelFullMode.DropOldest` and non-blocking `TryWrite`. In financial streaming, a late price is worse than a missing one. The system intentionally drops stale ticks rather than blocking producers — **backpressure handled by design, not by accident.**
+
+---
+
+## Dual-Channel Multiplexing (Two Streams, One Connection)
+
+The Stock Market Simulator doesn't just stream raw tick data. It also streams pre-computed OHLCV candlestick events — 1-minute candles aggregated server-side by the `CandlestickAggregator`. Both data types flow over a **single SSE connection** using event type multiplexing.
+
+Here's the actual streaming loop inside `SseController`:
+
+```csharp
+// Multiplex both tick and candle channels into a single SSE stream
+while (!cancellationToken.IsCancellationRequested)
+{
+    var tickWait = tickReader.WaitToReadAsync(cancellationToken).AsTask();
+    var candleWait = candleReader.WaitToReadAsync(cancellationToken).AsTask();
+
+    await Task.WhenAny(tickWait, candleWait);
+
+    // Drain all available ticks
+    while (tickReader.TryRead(out var marketData))
+    {
+        yield return FormatSseEvent("marketdata", marketData, $"{clientId}-{eventId++}");
+    }
+
+    // Drain all available candle events
+    while (candleReader.TryRead(out var candleEvent))
+    {
+        yield return FormatSseEvent("candlestick", candleEvent, $"{clientId}-c{eventId++}");
+    }
+
+    // Heartbeat every 15 seconds to keep proxies from closing idle connections
+    if ((DateTime.UtcNow - lastHeartbeat).TotalSeconds >= 15)
+    {
+        yield return FormatSseEvent(
+            "heartbeat", new { timestamp = DateTime.UtcNow },
+            $"{clientId}-heartbeat");
+        lastHeartbeat = DateTime.UtcNow;
+    }
+}
+```
+
+The `Task.WhenAny` pattern avoids busy-wait polling — the loop only wakes when either channel has data. Then `TryRead` drains whatever is available before yielding back. The heartbeat prevents proxies and load balancers from killing "idle" connections.
+
+The SSE event formatter follows the W3C spec precisely:
+
+```csharp
+public static string FormatSseEvent(string eventType, object data, string? id = null)
+{
+    var sb = new StringBuilder();
+
+    if (!string.IsNullOrEmpty(id))
+        sb.AppendLine($"id: {id}");
+
+    sb.AppendLine($"event: {eventType}");
+    sb.AppendLine($"data: {JsonSerializer.Serialize(data, CamelCaseOptions)}");
+    sb.AppendLine(); // Empty line signals end of event
+
+    return sb.ToString();
+}
+```
+
+The browser receives events like:
+
+```
+id: abc123-42
+event: marketdata
+data: {"symbol":"NIFTY50","price":1042.37,"volume":6500,"timestamp":"2026-02-07T10:30:00Z"}
+
+id: abc123-c43
+event: candlestick
+data: {"symbol":"NIFTY50","intervalStart":"2026-02-07T10:30:00Z","open":1040.00,"high":1043.50,"low":1039.20,"close":1042.37,"volume":85000,"tickCount":200,"isComplete":false}
+```
 
 ---
 
 ## Handling Missed Events (The "Oops, Did You Drop That?" Protocol)
 
-The simple endpoints we just built are great. They work. They ship. But, like most things in life, they have a weakness: they're missing resilience.
+The simple endpoints we just looked at are great. They work. They ship. But, like most things in life, they have a weakness: they're missing resilience.
 
 One of the biggest challenges with real-time streams is connection drops. The internet is a fragile series of tubes held together by hope and duct tape. By the time the browser automatically reconnects, several events might have already been sent and lost. Your user thinks the stock price is stable, meanwhile, the market has crashed, and they're ruined.
 
 To solve this, SSE has a built-in mechanism: the `Last-Event-ID` header. When a browser reconnects, it sends this ID back to the server, saying, "I was listening, then I fell asleep. Catch me up."
 
-In .NET 10, we can use the `SseItem` type to wrap our data with metadata like IDs and retry intervals:
+The Stock Market Simulator's `SseControllerV2` implements this with a `MarketEventBuffer` — a lock-guarded circular buffer with monotonic event IDs:
 
 ```csharp
-app.MapGet("market/realtime/with-replays", (
-    ChannelReader<StockTick> channelReader,
-    StockTickBuffer eventBuffer,
+[HttpGet("stream-with-replay")]
+public async Task StreamWithReplay(
     [FromHeader(Name = "Last-Event-ID")] string? lastEventId,
-    CancellationToken cancellationToken) =>
+    CancellationToken cancellationToken)
 {
-    async IAsyncEnumerable<SseItem<StockTick>> StreamEvents()
-    {
-        // 1. Replay missed events from the buffer
-        if (!string.IsNullOrWhiteSpace(lastEventId))
-        {
-            var missedEvents = eventBuffer.GetEventsAfter(lastEventId);
-            foreach (var missedEvent in missedEvents)
-            {
-                yield return missedEvent;
-            }
-        }
+    Response.Headers.Append("Content-Type", "text/event-stream");
+    Response.Headers.Append("Cache-Control", "no-cache");
+    Response.Headers.Append("Connection", "keep-alive");
+    Response.Headers.Append("X-Accel-Buffering", "no");
 
-        // 2. Stream new events as they arrive
-        await foreach (var tick in channelReader.ReadAllAsync(cancellationToken))
+    var clientId = Guid.NewGuid().ToString("N");
+
+    await foreach (var sseEvent in StreamEventsWithReplayAsync(
+        clientId, lastEventId, cancellationToken))
+    {
+        await Response.WriteAsync(sseEvent, cancellationToken);
+        await Response.Body.FlushAsync(cancellationToken);
+    }
+}
+```
+
+Inside the streaming method, reconnecting clients get their missed events replayed from the buffer:
+
+```csharp
+// Replay missed events if Last-Event-ID is provided
+if (!string.IsNullOrWhiteSpace(lastEventId))
+{
+    var missedEvents = _eventBuffer.GetEventsAfter(lastEventId);
+
+    foreach (var missedEvent in missedEvents)
+    {
+        yield return FormatSseEvent(
+            missedEvent.EventType ?? "marketdata",
+            missedEvent.Data,
+            missedEvent.Id);
+    }
+}
+```
+
+The `MarketEventBuffer` itself is straightforward — a `LinkedList` with a configurable size cap (default: 1,000 events):
+
+```csharp
+public class MarketEventBuffer
+{
+    private readonly LinkedList<SseEventItem<MarketDataEvent>> _buffer = new();
+    private readonly int _maxBufferSize;
+    private readonly object _lock = new();
+    private long _eventCounter = 0;
+
+    public SseEventItem<MarketDataEvent> Add(MarketDataEvent marketData)
+    {
+        lock (_lock)
         {
-            var sseItem = eventBuffer.Add(tick); // Assigns unique ID
-            yield return sseItem;
+            var eventId = Interlocked.Increment(ref _eventCounter);
+            var sseItem = new SseEventItem<MarketDataEvent>
+            {
+                Data = marketData,
+                EventType = "marketdata",
+                Id = eventId.ToString()
+            };
+
+            _buffer.AddLast(sseItem);
+            if (_buffer.Count > _maxBufferSize)
+                _buffer.RemoveFirst();
+
+            return sseItem;
         }
     }
 
-    return TypedResults.ServerSentEvents(StreamEvents(), "stock-update");
-});
+    public IEnumerable<SseEventItem<MarketDataEvent>> GetEventsAfter(string lastEventId)
+    {
+        lock (_lock)
+        {
+            if (!long.TryParse(lastEventId, out var lastId))
+                return _buffer.ToList();
+
+            return _buffer
+                .Where(item => long.TryParse(item.Id, out var id) && id > lastId)
+                .ToList();
+        }
+    }
+}
 ```
 
-By combining a simple in-memory buffer with the `Last-Event-ID` provided by the browser, we can "replay" missed messages upon reconnection—ensuring our users never miss a moment of financial panic.
+By combining this buffer with the `Last-Event-ID` header provided by the browser, the system replays missed messages upon reconnection—ensuring chart continuity even through network hiccups.
 
 ---
 
-## Filtering Events by User (The "Need to Know" Basis)
+## The Full Data Pipeline
 
-Because SSE is built on standard HTTP, your existing infrastructure "just works"—which is a phrase we architects use to describe "we haven't tested it, but the theory is sound."
+Before we compare SSE with SignalR, it's worth seeing how the data actually flows through the Stock Market Simulator. The architecture is an event-driven pipeline orchestrated by .NET Aspire:
 
-- **Security**: Pass a standard JWT in the `Authorization` header
-- **User Context**: Access `HttpContext.User` to filter the stream
-
-Here's an SSE endpoint that streams only updates for the authenticated user's watchlist:
-
-```csharp
-app.MapGet("market/realtime", (
-    ChannelReader<StockTick> channelReader,
-    IUserContext userContext,
-    CancellationToken cancellationToken) =>
-{
-    var currentUserId = userContext.UserId;
-
-    async IAsyncEnumerable<StockTick> GetUserWatchlist()
-    {
-        await foreach (var tick in channelReader.ReadAllAsync(cancellationToken))
-        {
-            if (userContext.Watchlist.Contains(tick.Symbol))
-            {
-                yield return tick;
-            }
-        }
-    }
-
-    return Results.ServerSentEvents(GetUserWatchlist(), "stock-update");
-})
-.RequireAuthorization(); // The velvet rope of the web
+```
+MarketSimulator (BackgroundService)
+    │  Generates ticks using Geometric Brownian Motion + GARCH volatility
+    │  Posts MarketDataEvent to Ingestion API every 300ms per symbol
+    ▼
+MarketIngestion.Api (Minimal API)
+    │  Validates and publishes to Redis Stream ("marketdata:stream")
+    ▼
+Redis Streams (Consumer Group: "brokers")
+    │  Persistent, ordered message log with consumer group semantics
+    ▼
+RedisStreamConsumer (BackgroundService in Broker.Service)
+    │  Reads batches of 10, deserializes, acknowledges
+    │  Calls TickBroadcaster.Broadcast()
+    ▼
+TickBroadcaster
+    ├──► SseClientManager.BroadcastTick()  →  Per-client tick channels  →  SSE stream
+    └──► AggregatorTickChannel             →  CandlestickAggregator    →  Per-client candle channels  →  SSE stream
 ```
 
-> **Note**: When you write a message to a `Channel`, it's broadcast to all connected clients. For per-user streams at scale, consider a dedicated channel per user—assuming you enjoy managing memory.
+Each layer has explicit error handling and backpressure. The `RedisStreamConsumer` retries on connection failures with escalating delays (2s → 5s → 10s). The `TickBroadcaster` uses non-blocking `TryWrite` so a slow client never blocks the pipeline. The `CandlestickAggregator` throttles candle emissions to 500ms to prevent overwhelming the browser.
+
+### The Data Models
+
+```csharp
+// Raw tick — what the market simulator generates
+public record MarketDataEvent
+{
+    public string Symbol { get; init; } = string.Empty;
+    public decimal Price { get; init; }
+    public long Volume { get; init; }
+    public DateTime Timestamp { get; init; }
+}
+
+// Aggregated candle — computed server-side by CandlestickAggregator
+public record CandlestickEvent
+{
+    public string Symbol { get; init; } = string.Empty;
+    public DateTime IntervalStart { get; init; }
+    public decimal Open { get; init; }
+    public decimal High { get; init; }
+    public decimal Low { get; init; }
+    public decimal Close { get; init; }
+    public long Volume { get; init; }
+    public int TickCount { get; init; }
+    public bool IsComplete { get; init; }
+}
+```
 
 ---
 
@@ -221,25 +478,17 @@ Connection Management: Automatic with reconnection logic
 Scaling: Built-in Redis backplane support
 ```
 
-### SignalR in Action: Stock Price Hub
+### What SignalR Would Look Like (The Road Not Taken)
 
-Here's the same functionality using SignalR:
+For reference, here's how the Stock Market Simulator's streaming could have been implemented with SignalR. This code is **not in the project** — it's the conceptual equivalent to illustrate the trade-offs:
 
 ```csharp
-// SignalR Hub
-public class PriceStreamHub : Hub
+// SignalR Hub — hypothetical equivalent of SseController
+public class PriceHub : Hub
 {
-    private readonly IRedisStreamConsumer _consumer;
-
     public async Task SubscribeToSymbol(string symbol)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, symbol);
-        
-        // Start consuming from Redis Streams
-        await _consumer.StreamPricesAsync(symbol, async tick =>
-        {
-            await Clients.Group(symbol).SendAsync("ReceiveTick", tick);
-        });
     }
 
     public async Task UnsubscribeFromSymbol(string symbol)
@@ -247,10 +496,29 @@ public class PriceStreamHub : Hub
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, symbol);
     }
 }
+
+// Background service pushing to Hub — hypothetical equivalent of RedisStreamConsumer
+public class PriceStreamService : BackgroundService
+{
+    private readonly IHubContext<PriceHub> _hubContext;
+
+    protected override async Task ExecuteAsync(CancellationToken ct)
+    {
+        await foreach (var tick in _redisConsumer.ReadStreamAsync(ct))
+        {
+            await _hubContext.Clients
+                .Group(tick.Symbol)
+                .SendAsync("ReceiveTick", tick, ct);
+        }
+    }
+}
 ```
 
-**Client-Side JavaScript:**
+Notice what SignalR gives you for free: the `Groups` concept. Each stock symbol becomes a group, and clients subscribe/unsubscribe dynamically. No `SseClientManager`, no `ConcurrentDictionary`, no manual fan-out. But you also lose visibility into the channel mechanics — when things go wrong, you're debugging an abstraction.
+
+**Client-Side JavaScript (SignalR):**
 ```javascript
+// Requires: npm install @microsoft/signalr
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/hubs/prices")
     .withAutomaticReconnect()
@@ -274,56 +542,63 @@ await connection.invoke("SubscribeToSymbol", "NIFTY50");
 
 ### Cons of SignalR
 **Complexity**: More moving parts, harder to debug  
-**Library Dependency**: Requires SignalR client library  
+**Library Dependency**: Requires SignalR client library (`@microsoft/signalr`)  
 **Resource Usage**: WebSocket connections consume server resources  
-**Sticky Sessions**: Load balancers need special configuration (and they won't be happy about it)
+**Sticky Sessions**: Load balancers need special configuration (and they won't be happy about it)  
 
 ---
 
 ## Consuming SSE in JavaScript (The Easy Part)
 
-On the client side, you don't need to install a single `npm` package. You don't need to compile TypeScript until your eyes bleed. The browser's native `EventSource` API handles the heavy lifting, including the "reconnect and send Last-Event-ID" logic we discussed above.
+On the client side, you don't need to install a single `npm` package. The browser's native `EventSource` API handles connection management, including automatic reconnection with the `Last-Event-ID` header.
 
-```javascript
-const eventSource = new EventSource('/market/realtime/with-replays');
+Here's the actual `useMarketData` hook from the Stock Market Simulator's React frontend:
 
-// Listen for the specific 'stock-update' event type we defined in C#
-eventSource.addEventListener('stock-update', (event) => {
-  const payload = JSON.parse(event.data);
-  console.log(`Market Move ${event.lastEventId}:`, payload.data);
-  // Update the UI. Turn the numbers green. Make the user feel rich.
-});
+```typescript
+export function useMarketData(brokerUrl: string): UseMarketDataResult {
+  const [securities, setSecurities] = useState<Map<string, Security>>(new Map());
+  const [isConnected, setIsConnected] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-// Do something when the connection opens
-eventSource.onopen = () => {
-  console.log('Connection opened. The stream is alive.');
-};
+  useEffect(() => {
+    const streamUrl = `${brokerUrl}/api/marketdata/stream`;
+    const eventSource = new EventSource(streamUrl);
 
-// Handle errors and reconnections
-eventSource.onerror = () => {
-  if (eventSource.readyState === EventSource.CONNECTING) {
-    console.log('Reconnecting... The network is merely resting.');
-  }
-};
+    eventSource.addEventListener('connected', (e) => {
+      const data = JSON.parse(e.data);
+      console.log('Connected to broker:', data.clientId);
+      setIsConnected(true);
+    });
+
+    // Tick events → watchlist + banner (real-time per-tick)
+    eventSource.addEventListener('marketdata', (e) => {
+      const marketData: MarketDataEvent = JSON.parse(e.data);
+      updateSecurity(marketData);
+    });
+
+    // Candlestick events → chart (1-minute OHLCV from backend aggregator)
+    eventSource.addEventListener('candlestick', (e) => {
+      const candleData: CandlestickEvent = JSON.parse(e.data);
+      updateCandle(candleData);
+    });
+
+    eventSource.addEventListener('heartbeat', (e) => {
+      console.debug('Heartbeat:', JSON.parse(e.data).timestamp);
+    });
+
+    eventSource.onerror = () => {
+      setIsConnected(false);
+      if (eventSource.readyState === EventSource.CLOSED) {
+        setError('Connection lost. Reconnecting...');
+      }
+    };
+
+    return () => eventSource.close();
+  }, [brokerUrl]);
+}
 ```
 
-Compare this to SignalR's client setup:
-
-```javascript
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hubs/prices")
-    .withAutomaticReconnect()
-    .build();
-
-connection.on("ReceiveTick", (tick) => {
-    updatePriceCard(tick.symbol, tick.price, tick.delta);
-});
-
-await connection.start();
-await connection.invoke("SubscribeToSymbol", "NIFTY50");
-```
-
-Both work. SignalR gives you bidirectional communication; SSE gives you zero dependencies. Choose your adventure.  
+Note how the client listens for four distinct event types — `connected`, `marketdata`, `candlestick`, and `heartbeat` — all multiplexed over a single SSE connection. No SignalR client library, no npm dependency, no build step required. The browser handles reconnection natively.
 
 ---
 
@@ -338,10 +613,11 @@ Both work. SignalR gives you bidirectional communication; SSE gives you zero dep
 | **Message Format** | Text (JSON) | Binary (MessagePack) or JSON |
 | **Scaling** | Simple (stateless) | Complex (Redis backplane) |
 | **Firewall Friendly** | High | Medium (WebSocket may be blocked) |
-| **Connection Limit** | 6 per domain (HTTP/1.1) | No limit (WebSocket) |
+| **Connection Limit** | 6 per domain (HTTP/1.1) | Higher (WebSocket) |
 | **Client Library** | None (native browser API) | Required (signalr.js) |
 | **Binary Data** | No | Yes |
 | **Groups/Rooms** | Manual | Built-in |
+| **Auth via Headers** | Not with EventSource API | Yes (fully supported) |
 | **Use Case** | One-way notifications | Interactive applications |
 
 ---
@@ -383,94 +659,25 @@ Both work. SignalR gives you bidirectional communication; SSE gives you zero dep
 
 ## The Stock Market Simulator Decision
 
-For the Stock Market Simulator, I chose **SignalR** despite SSE being sufficient for the data flow. Here's the architectural reasoning:
+For the Stock Market Simulator, I chose **SSE** over SignalR. Here's the architectural reasoning:
 
-### Reasons for SignalR:
+### Reasons for SSE:
 
-1. **Future-Proofing**: Users may want to **place orders** or **subscribe/unsubscribe** to symbols dynamically—actions that require client-to-server communication
-2. **Groups**: Each stock symbol is a SignalR group—clients only receive updates for symbols they're watching
-3. **Ecosystem Fit**: Already using .NET, Redis, and Azure—SignalR integrates seamlessly
-4. **MessagePack**: Binary serialization reduces payload size by ~30% compared to JSON (when milliseconds matter, bytes matter)
-5. **Observability**: Built-in connection lifecycle events for monitoring
+1. **The data is unidirectional**: Market data flows one way — from the exchange to the trader's screen. There's no order placement, no chat, no client-to-server commands. SSE is a natural fit for this data flow.
 
-### When I'd Choose SSE Instead:
+2. **Understanding the primitives**: SignalR abstracts away connection management, channel fan-out, and event replay. By implementing SSE at a lower level, the project demonstrates the underlying patterns — bounded channel management, event replay buffers, backpressure handling, and dual-channel multiplexing. Understanding these primitives matters when debugging production streaming issues, regardless of the transport layer.
 
-If this were a **public API** for third-party consumption, SSE would win hands down:
-- No client library dependency (just `curl` it!)
-- Standard HTTP/2 multiplexing
-- Easier to consume from any language
-- Simpler debugging
-- Lower barrier to entry for developers consuming your API
+3. **Zero client dependencies**: The React frontend uses the browser's native `EventSource` API. No `@microsoft/signalr` package, no version compatibility concerns, no bundle size impact.
 
-The goal isn't to replace SignalR, but to give you a simpler tool for simpler jobs. As the great architects of the past have said: use the lightest tool that solves your problem.
+4. **Debuggability**: You can test the SSE endpoint with `curl`. Try doing that with a WebSocket Hub.
 
----
+5. **Standard HTTP infrastructure**: SSE works through proxies, CDNs, and load balancers without special configuration (beyond disabling response buffering). No WebSocket upgrade negotiation, no sticky sessions.
 
-## Performance Comparison: Real Numbers
+### When I'd Switch to SignalR:
 
-From the Stock Market Simulator implementation, here's what the data shows:
+If the project evolves to support **order placement**, **per-user watchlist subscriptions via the server**, or **collaborative features**, SignalR would become the right choice. SignalR's built-in Groups would replace the manual `SseClientManager`, and the bidirectional channel would enable client-to-server communication without separate REST endpoints.
 
-### SSE Performance
-```
-Concurrent Connections: 5,000
-Messages/Second: 50,000
-Average Latency: 45ms
-CPU Usage: 12% (4 cores)
-Memory: 512MB
-```
-
-### SignalR (WebSocket) Performance
-```
-Concurrent Connections: 10,000
-Messages/Second: 100,000
-Average Latency: 35ms
-CPU Usage: 18% (4 cores)
-Memory: 768MB
-```
-
-**Key Insight**: SignalR scales better with more connections due to WebSocket efficiency, but uses more resources. SSE is lighter but hits connection limits sooner under HTTP/1.1. With HTTP/2 multiplexing, that gap narrows significantly.
-
-**The takeaway?** Both are fast enough for most use cases. Choose based on your feature requirements, not micro-optimizations.
-
----
-
-## Code Architecture Patterns
-
-### SSE Pattern: IAsyncEnumerable Streaming (.NET 10)
-
-The modern approach leverages `IAsyncEnumerable` and channels—a clean, reactive pattern:
-
-```csharp
-public async IAsyncEnumerable<StockTick> StreamPrices(
-    [EnumeratorCancellation] CancellationToken ct)
-{
-    await foreach (var tick in _redisConsumer.ReadStreamAsync(ct))
-    {
-        yield return tick;
-    }
-}
-```
-
-In a "real" enterprise application—where complexity is a virtue—you might have a background service that listens to a message queue (like RabbitMQ or Azure Service Bus) or a database change feed, pushing new events into the channel for connected clients to consume. A perfect Rube Goldberg machine of data distribution.
-
-### SignalR Pattern: Background Service with Hub Context
-
-```csharp
-public class PriceStreamService : BackgroundService
-{
-    private readonly IHubContext<PriceHub> _hubContext;
-    
-    protected override async Task ExecuteAsync(CancellationToken ct)
-    {
-        await foreach (var tick in _redisConsumer.ReadStreamAsync(ct))
-        {
-            await _hubContext.Clients
-                .Group(tick.Symbol)
-                .SendAsync("ReceiveTick", tick, ct);
-        }
-    }
-}
-```
+The goal isn't to prove SSE is "better" than SignalR. It's to use the lightest tool that solves the problem — and to understand the plumbing that heavier tools abstract away.
 
 ---
 
@@ -481,8 +688,8 @@ public class PriceStreamService : BackgroundService
 The beautiful thing about SSE? You can test it with `curl`:
 
 ```bash
-# Test SSE endpoint directly—watch data flow in real-time
-curl -N http://localhost:5000/market/realtime
+# Test SSE endpoint directly — watch data flow in real-time
+curl -N http://localhost:5002/api/marketdata/stream
 
 # In Chrome DevTools:
 # Network → Filter: "event-stream" → Click connection → EventStream tab
@@ -494,7 +701,6 @@ No Fiddler. No Wireshark. No crying. Just `curl`.
 ```csharp
 // Enable detailed logging
 builder.Services.AddSignalR()
-    .AddMessagePackProtocol()
     .AddHubOptions<PriceHub>(options =>
     {
         options.EnableDetailedErrors = true;
@@ -504,31 +710,96 @@ builder.Services.AddSignalR()
 
 ---
 
-## Hybrid Approach: Best of Both Worlds
+## Extension Patterns
 
-Here's a pragmatic pattern we use: you don't have to choose just one.
+### Adding Authentication to SSE
+
+Since the browser's `EventSource` API doesn't support custom headers, you can't pass a JWT in the `Authorization` header. The Stock Market Simulator documents two production-ready approaches:
+
+1. **Cookie-based auth**: Cookies are sent automatically with every request, including `EventSource` connections. Use your existing cookie auth middleware.
+
+2. **Short-lived token flow**: Exchange a JWT for a 30-second token via a login endpoint, pass it as a query parameter to the SSE endpoint. Store tokens in Redis with TTL to minimise the attack surface.
+
+```csharp
+// Conceptual: Token-based SSE auth
+app.MapGet("/api/marketdata/stream", async (
+    [FromQuery] string token,
+    SseClientManager clientManager,
+    ITokenValidator tokenValidator,
+    HttpResponse response,
+    CancellationToken ct) =>
+{
+    var userId = await tokenValidator.ValidateAsync(token);
+    if (userId is null)
+    {
+        response.StatusCode = 401;
+        return;
+    }
+
+    // Proceed with SSE stream for authenticated user...
+});
+```
+
+### Per-User Filtering
+
+The current architecture broadcasts all market data to all connected clients. For per-user streams at scale, the documented pattern is a `ConnectionManager` backed by `ConcurrentDictionary<UserId, Channel<T>>` — conceptually similar to SignalR's `IHubContext`. Producers write to user-specific channels; SSE endpoints read from the user's channel exclusively.
+
+### Hybrid Approach: SSE + SignalR
+
+Here's a pragmatic pattern for projects that need both:
 
 ```csharp
 // Public API: SSE for simplicity (third-party friendly)
-app.MapGet("/api/prices/stream", (
-    ChannelReader<StockTick> channelReader,
-    CancellationToken ct) => 
+app.MapGet("/api/prices/stream", async (/* ... */) =>
 {
-    return Results.ServerSentEvents(
-        channelReader.ReadAllAsync(ct), 
-        "price-update");
+    // Manual SSE streaming — no client library needed
+    // Any language can consume this with an HTTP client
 });
 
-// Web App: SignalR for rich interaction (our own frontend)
+// Web App: SignalR for rich interaction (your own frontend)
 app.MapHub<PriceHub>("/hubs/prices");
 ```
 
 This gives you:
 - **Public API consumers** use SSE (no library needed, language-agnostic)
-- **Your own frontend** uses SignalR (full features, bidirectional communication)
+- **Your own frontend** uses SignalR (full features, bidirectional)
 - **Same data pipeline** feeds both (DRY principle maintained)
 
-We respect the KISS principle, which we usually ignore in favor of the KILL principle (Keep It Ludicrously Large). But not today.
+---
+
+## Code Architecture Patterns
+
+### The Channel Pipeline Pattern
+
+The Stock Market Simulator's architecture is built on .NET's `System.Threading.Channels` — a high-performance, bounded, async-aware producer/consumer primitive. The entire data flow is a chain of channels:
+
+```
+Redis Stream → RedisStreamConsumer → TickBroadcaster → Per-Client Channels → SSE Response
+                                         └──────────→ Aggregator Channel → CandlestickAggregator → Per-Client Candle Channels → SSE Response
+```
+
+Key design principles:
+- **Bounded channels everywhere**: `BoundedChannelFullMode.DropOldest` prevents memory exhaustion. A stale price is worse than no price.
+- **Non-blocking writes**: `TryWrite` ensures a slow consumer never blocks the producer pipeline.
+- **Single-reader optimisation**: Each per-client channel sets `SingleReader = true`, allowing the runtime to skip synchronisation overhead.
+- **Explicit fan-out**: The `TickBroadcaster` replaces implicit shared-channel semantics with explicit broadcasting to N consumers.
+
+### Historical Candle Seeding
+
+When a new client connects, the SSE controller sends historical candlestick data so the chart has visual density immediately — instead of showing an empty chart for the first 60 seconds while the first candle completes:
+
+```csharp
+// Replay historical candles so chart has density immediately
+var allHistory = _history.GetAllHistory();
+foreach (var (symbol, candles) in allHistory)
+{
+    foreach (var candle in candles)
+    {
+        yield return FormatSseEvent(
+            "candlestick", candle, $"{clientId}-h{historyCount++}");
+    }
+}
+```
 
 ---
 
@@ -541,13 +812,13 @@ Both SSE and SignalR are excellent choices for real-time communication. The deci
 | Simplicity | Full-featured |
 | Standard HTTP protocols | Bidirectional communication |
 | One-way data flow | .NET ecosystem integration |
-| Zero client dependencies | Built-in scaling with Redis |
+| Zero client dependencies | Built-in scaling with Redis backplane |
 
-SSE in .NET 10 is the perfect middle ground for simple, one-way updates like dashboards, notification bells, and stock market simulators. It's lightweight, HTTP-native, and easy to secure using your existing middleware.
+SSE is the perfect fit for simple, one-way updates like dashboards, notification bells, and stock market feeds. It's lightweight, HTTP-native, and easy to debug with nothing more sophisticated than `curl`.
 
-SignalR remains the robust, battle-tested choice for complex bi-directional communication or when you need groups, presence, and all the bells and whistles.
+SignalR remains the robust, battle-tested choice for complex bidirectional communication or when you need groups, presence, and all the bells and whistles.
 
-**Pro Tip**: Start with SSE if you're unsure. You can always upgrade to SignalR later when you need bidirectional communication. The reverse is harder—removing complexity is always more painful than adding it.
+**Pro Tip**: Start with SSE if you're unsure. You can always upgrade to SignalR later when you need bidirectional communication. The reverse is harder — removing complexity is always more painful than adding it.
 
 Choose the lightest tool that solves your problem. Ship the code. Go home.
 
@@ -555,16 +826,10 @@ That's all for today. Hope this was helpful.
 
 ---
 
-## Related Posts in This Series
-
-- [PostgreSQL vs Redis for Real-Time Data](/blog/2026/02/postgresql-vs-redis) *(Next)*
-- [Data Migration Without Downtime](/blog/2026/02/data-migration-without-downtime)
-- [Parallelizing EF Core Queries](/blog/2026/02/parallelizing-ef-core-queries)
-
 ## Explore the Full Project
 
 **GitHub Repository**: [Stock Market Simulator](https://github.com/raj-champion-trader/stock-market-simulator)  
-**Architecture Deep Dive**: [Full Project Documentation](/projects/stock-market-simulator)
+**Architecture Decisions**: [ADRs — SSE vs SignalR, Redis Streams vs Kafka, and more](https://github.com/raj-champion-trader/stock-market-simulator/tree/main/reference-docs)
 
 ---
 

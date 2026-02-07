@@ -87,15 +87,15 @@
 .mermaid .cluster rect {
     rx: 8px !important;
     ry: 8px !important;
-    fill: rgba(0, 0, 0, 0.03) !important;
-    stroke: #999 !important;
+    fill: rgba(0, 0, 0, 0.04) !important;
+    stroke: #94A3B8 !important;
     stroke-width: 1.5px !important;
     stroke-dasharray: 8 4 !important;
 }
 
 .mermaid .cluster-label .nodeLabel {
-    color: #666 !important;
-    fill: #666 !important;
+    color: #334155 !important;
+    fill: #334155 !important;
     font-size: 13px !important;
     font-weight: 600 !important;
     letter-spacing: 0.02em !important;
@@ -103,13 +103,13 @@
 
 /* --- C4-style edges --- */
 .mermaid .flowchart-link {
-    stroke: #666 !important;
+    stroke: #64748B !important;
     stroke-width: 1.5px !important;
 }
 
 .mermaid .marker {
-    fill: #666 !important;
-    stroke: #666 !important;
+    fill: #64748B !important;
+    stroke: #64748B !important;
 }
 
 /* Edge labels — subtle styling */
@@ -120,8 +120,8 @@
 }
 
 .mermaid .edgeLabel .label {
-    color: var(--secondary) !important;
-    fill: var(--secondary) !important;
+    color: #475569 !important;
+    fill: #475569 !important;
     font-size: 11px !important;
 }
 

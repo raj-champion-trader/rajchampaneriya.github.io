@@ -1,0 +1,113 @@
+/* ==============================================
+   Featured Project Card — smooth premium styling
+   ============================================== */
+
+.featured-project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: var(--entry);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  will-change: transform;
+}
+
+.featured-project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--link);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .featured-project-card:hover {
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.featured-project-card:active {
+  transform: translateY(-2px);
+  transition-duration: 0.1s;
+}
+
+/* Image */
+.featured-project-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.featured-project-card:hover .featured-project-img {
+  transform: scale(1.02);
+}
+
+/* Body */
+.featured-project-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+/* Title */
+.featured-project-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: color 0.25s ease;
+}
+
+.featured-project-card:hover .featured-project-title {
+  color: var(--link);
+}
+
+/* Description */
+.featured-project-desc {
+  margin: 0 0 0.75rem 0;
+  color: var(--secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Tag pills */
+.featured-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.featured-project-tags span {
+  padding: 0.2rem 0.65rem;
+  background: var(--code-bg);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--secondary);
+  letter-spacing: 0.01em;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.featured-project-card:hover .featured-project-tags span {
+  background: var(--tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .featured-project-img {
+    height: 180px;
+  }
+
+  .featured-project-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .featured-project-title {
+    font-size: 1.2rem;
+  }
+}

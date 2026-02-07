@@ -63,7 +63,6 @@
 
 /* Fullscreen dialog */
 .mermaid-fullscreen-dialog {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -72,11 +71,16 @@
   background: rgba(0, 0, 0, 0.9);
   z-index: 10000;
   padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
 }
 
 .mermaid-fullscreen-dialog.active {
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  visibility: visible;
 }
 
 .mermaid-fullscreen-header {
@@ -187,7 +191,7 @@
 
 .mermaid-fullscreen-content-inner {
   transform-origin: top left;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   display: inline-block;
   min-width: min-content;
   width: max-content;
@@ -199,6 +203,105 @@
   max-width: none !important;
   height: auto !important;
   display: block;
+}
+
+/* --- Fullscreen Light Theme Readability Fixes --- */
+/* Cluster/boundary labels */
+.mermaid-fullscreen-content-inner .cluster-label .nodeLabel {
+  color: #334155 !important;
+  fill: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+/* Edge labels */
+.mermaid-fullscreen-content-inner .edgeLabel .label {
+  color: #475569 !important;
+  fill: #475569 !important;
+}
+
+.mermaid-fullscreen-content-inner .edgeLabel rect {
+  fill: #F8FAFC !important;
+  stroke: none !important;
+}
+
+/* Flowchart links */
+.mermaid-fullscreen-content-inner .flowchart-link {
+  stroke: #64748B !important;
+}
+
+.mermaid-fullscreen-content-inner .marker {
+  fill: #64748B !important;
+  stroke: #64748B !important;
+}
+
+/* Generic text elements */
+.mermaid-fullscreen-content-inner text {
+  font-family: "IBM Plex Sans", system-ui, sans-serif !important;
+}
+
+/* Cluster boundary rectangles */
+.mermaid-fullscreen-content-inner .cluster rect {
+  fill: rgba(0, 0, 0, 0.03) !important;
+  stroke: #94A3B8 !important;
+  stroke-width: 1.5px !important;
+  stroke-dasharray: 8 4 !important;
+  rx: 8px !important;
+  ry: 8px !important;
+}
+
+/* Node labels stay white on colored backgrounds */
+.mermaid-fullscreen-content-inner .node .nodeLabel {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+/* Sequence diagram text */
+.mermaid-fullscreen-content-inner .messageText {
+  fill: #475569 !important;
+}
+
+.mermaid-fullscreen-content-inner .messageLine0,
+.mermaid-fullscreen-content-inner .messageLine1 {
+  stroke: #64748B !important;
+}
+
+/* --- Dark Theme overrides for fullscreen --- */
+[data-theme="dark"] .mermaid-fullscreen-content-inner .cluster-label .nodeLabel {
+  color: #94A3B8 !important;
+  fill: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .edgeLabel .label {
+  color: #94A3B8 !important;
+  fill: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .edgeLabel rect {
+  fill: #0F172A !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .flowchart-link {
+  stroke: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .marker {
+  fill: #94A3B8 !important;
+  stroke: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .cluster rect {
+  fill: rgba(255, 255, 255, 0.04) !important;
+  stroke: #667 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .messageText {
+  fill: #94A3B8 !important;
+}
+
+[data-theme="dark"] .mermaid-fullscreen-content-inner .messageLine0,
+[data-theme="dark"] .mermaid-fullscreen-content-inner .messageLine1 {
+  stroke: #94A3B8 !important;
 }
 
 /* Mobile Responsive Styles */
@@ -297,24 +400,27 @@
         primaryColor: '#438DD5',
         primaryTextColor: '#ffffff',
         primaryBorderColor: 'rgba(0,0,0,0.15)',
-        lineColor: '#666666',
+        lineColor: '#475569',
         secondaryColor: '#85BBF0',
+        secondaryTextColor: '#334155',
         tertiaryColor: 'rgba(0,0,0,0.03)',
+        tertiaryTextColor: '#334155',
         noteBkgColor: '#FFF8DC',
         noteTextColor: '#333333',
         noteBorderColor: '#D4C68A',
         actorBkg: '#438DD5',
         actorTextColor: '#ffffff',
         actorBorder: 'rgba(0,0,0,0.15)',
-        signalColor: '#666666',
-        signalTextColor: '#666666',
+        signalColor: '#475569',
+        signalTextColor: '#475569',
         background: '#F8FAFC',
         mainBkg: '#438DD5',
         nodeBorder: 'rgba(0,0,0,0.15)',
-        clusterBkg: 'rgba(0,0,0,0.03)',
-        clusterBorder: '#999',
-        titleColor: '#666666',
-        edgeLabelBackground: '#F8FAFC'
+        clusterBkg: 'rgba(0,0,0,0.04)',
+        clusterBorder: '#94A3B8',
+        titleColor: '#334155',
+        edgeLabelBackground: '#F8FAFC',
+        textColor: '#334155'
       },
       securityLevel: 'loose',
       fontFamily: '"IBM Plex Sans", system-ui, sans-serif',
@@ -540,7 +646,8 @@
         let prevElement = pre.previousElementSibling;
         while (prevElement) {
           if (prevElement.tagName && prevElement.tagName.match(/^H[1-6]$/)) {
-            diagramTitle = prevElement.textContent.trim();
+            // Get heading text, excluding anchor link fragments like '#'
+            diagramTitle = prevElement.textContent.replace(/\s*#\s*$/, '').trim();
             break;
           }
           prevElement = prevElement.previousElementSibling;
