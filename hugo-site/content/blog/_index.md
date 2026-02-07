@@ -1,12 +1,12 @@
 ---
-title: "Writings"
+title: "Insights"
 url: "/blog/"
-summary: "Architecture, systems thinking, and the craft of software engineering"
+summary: "Strategic perspectives on enterprise architecture, systems thinking, and digital transformation"
 ---
 
-Observations from real delivery — patterns noticed, decisions tested, lessons earned.
+Strategic perspectives from real enterprise engagements — architectural decisions, systems thinking, and lessons from leading digital transformation.
 
-- **Technical Thinking** — Architecture patterns, system design, and trade-offs in real systems.
-- **Point of View** — Leadership decisions, engineering culture, and how teams scale.
-- **Experience** — What worked, what didn't, and what I'd do differently.
-- **Book Notes** — Ideas from reading, tested against practice.
+- **Architecture Strategy** — Patterns, trade-offs, and decision frameworks for scalable systems.
+- **Point of View** — Leadership perspectives on engineering culture and how organizations scale.
+- **Technology Strategy** — Evaluating emerging technologies against enterprise realities.
+- **Experience** — What worked, what didn't, and what I'd advise differently.

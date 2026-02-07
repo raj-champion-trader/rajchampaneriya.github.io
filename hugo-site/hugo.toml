@@ -14,7 +14,7 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  description = "Principal Consultant / Architect specializing in Azure cloud solutions, enterprise architecture, and event-driven systems. Practical architecture work, reference implementations, and technical writing."
+  description = "Enterprise Architect & Strategic Technology Leader specializing in cloud-native modernization, scalable system design, and AI-driven digital transformation for Fortune 500 enterprises."
   author = "Raj Champaneriya"
   mainSections = ["blog"]
   keywords = ["enterprise architecture", "azure cloud", "solution architecture", "event-driven architecture", "system design", "software engineering", "C4 model", "streaming systems", "real-time data"]
@@ -48,14 +48,14 @@ enableRobotsTXT = true
   [params.profileMode]
     enabled = true
     title= "Raj Champaneriya"
-    subtitle = "Notes from building systems, navigating complexity, and learning how to think clearly in an AI-accelerated world."
+    subtitle = "Helping enterprises navigate cloud complexity, modernize legacy platforms, and architect systems that scale."
     imageUrl = "images/profile.jpg"
     imageWidth = 160
     imageHeight = 160
     imageTitle = "Raj Champaneriya"
     buttons = [
-      { name = "View My Work", url = "/projects" },
-      { name = "Read My Blog", url = "/blog" }
+      { name = "Architecture Blueprints", url = "/projects" },
+      { name = "Thought Leadership", url = "/blog" }
     ]
 
   # Social links
@@ -79,13 +79,13 @@ enableRobotsTXT = true
 [menu]
   [[menu.main]]
     identifier = "blog"
-    name = "Writings"
+    name = "Insights"
     url = "/blog/"
     weight = 10
 
   [[menu.main]]
     identifier = "projects"
-    name = "Architecture Work"
+    name = "Architecture Blueprints"
     url = "/projects/"
     weight = 20
 

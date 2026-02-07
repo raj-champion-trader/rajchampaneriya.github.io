@@ -1,11 +1,11 @@
 ---
-title: "Architecture Work"
+title: "Architecture Blueprints"
 url: "/projects/"
-summary: "Practical architecture — real systems, real decisions, real code."
-description: "Practical architecture, reference implementations, and delivery-grade assets built from real-world experience by Raj Champaneriya."
+summary: "System design stories — real architectures, strategic decisions, production-grade outcomes."
+description: "Architecture blueprints, system design case studies, and reference implementations built from real-world enterprise engagements by Raj Champaneriya."
 ---
 
-Practical architecture — real systems, real decisions, real code.
+System design stories — real architectures, strategic decisions, production-grade outcomes.
 
 ---
 

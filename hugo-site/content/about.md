@@ -1,13 +1,26 @@
 ---
 title: "About Me"
-description: "Solution Architect specializing in cloud-native modernization, applied AI systems, and enterprise platform engineering across Healthcare, Insurance, Media, and Logistics."
+description: "Enterprise Architect & Strategic Technology Leader specializing in cloud-native modernization, applied AI systems, and enterprise platform engineering across Healthcare, Insurance, Media, and Logistics."
 ---
 
-I'm Raj Champaneriya — a Solution Architect who helps enterprises modernize legacy platforms, build cloud-native systems, and put AI to work where it actually matters.
+I'm Raj Champaneriya — an Enterprise Architect who helps CTOs and technology leaders modernize legacy platforms, design scalable cloud-native systems, and deploy AI where it drives measurable business outcomes.
 
-Over 13+ years, I've led architecture and delivery for Fortune 500 clients across **Healthcare**, **Property Insurance**, **Media & Entertainment**, and **Logistics** — turning complex technical debt into scalable, cost-efficient platforms. My work sits at the intersection of hands-on engineering, architecture governance, and stakeholder alignment: I prototype solutions, validate trade-offs, and translate technical strategy into language that resonates with both engineering teams and the C-suite.
+Over 13+ years, I've led architecture and delivery for Fortune 500 clients across **Healthcare**, **Property Insurance**, **Media & Entertainment**, and **Logistics** — turning complex technical debt into scalable, cost-efficient platforms. My work sits at the intersection of strategic architecture, business alignment, and delivery excellence: I translate business goals into technical reality, mentor engineering teams through complex transformations, and ensure architectural governance scales alongside the organizations I serve.
 
 I believe good architecture should feel invisible to users and obvious to engineers.
+
+---
+
+## Strategic Leadership
+
+**Translating Business Goals into Technical Reality**
+I bridge the gap between executive vision and engineering execution — presenting architecture trade-offs in language that resonates with both the C-suite and the engineers building it. From boardroom strategy sessions to sprint planning, I ensure technical decisions map directly to business outcomes.
+
+**Stakeholder Management & Governance**
+Enterprise architecture is 50% communication. I facilitate architectural review boards, build consensus across business units, establish governance frameworks that enable (not impede) delivery, and maintain alignment between distributed teams operating at different velocities.
+
+**Mentoring & Building Architecture Capability**
+I've mentored 15+ junior architects and engineers — 85% promoted to senior roles within 18 months. I build architecture capability within organizations, not just architecture artifacts.
 
 ---
 
@@ -87,9 +100,9 @@ OpenTelemetry · Azure Application Insights · Grafana · Prometheus · TDD · B
 
 ---
 
-## Let's Connect
+## Let's Discuss Your Architecture
 
-I'm always open to conversations about architecture challenges, modernization strategy, or applied AI.
+Whether you're navigating a complex modernization, evaluating cloud strategy, or exploring how AI fits into your enterprise platform — I'm always open to strategic conversations.
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)

@@ -1,5 +1,10 @@
 {{- /* Enhanced SEO + AIO (AI Optimization) head tags */ -}}
 
+{{- /* Inter font — geometric sans-serif for enterprise precision */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 {{- /* Open Graph enhanced metadata */ -}}
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:locale" content="{{ site.LanguageCode | default "en_US" }}">
@@ -41,7 +46,7 @@
     "@type": "Person",
     "name": "{{ site.Params.author }}",
     "url": "{{ site.BaseURL }}about/",
-    "jobTitle": "Principal Consultant / Architect",
+    "jobTitle": "Enterprise Architect & Strategic Technology Leader",
     "sameAs": [
       {{- range $i, $social := site.Params.socialIcons }}
       {{- if $i }},{{ end }}
