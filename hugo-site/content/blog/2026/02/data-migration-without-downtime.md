@@ -1,7 +1,7 @@
 ---
 title: "Data Migration Without Downtime: Zero-Downtime Schema Changes"
 date: 2026-02-06
-draft: false
+draft: true
 tags: ["database", "migration", "devops", "postgresql", "architecture"]
 categories: ["Technical Concepts"]
 series: ["Stock Market Simulator"]

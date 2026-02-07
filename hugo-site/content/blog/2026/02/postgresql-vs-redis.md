@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL vs Redis: When to Use Which for Real-Time Systems"
 date: 2026-02-05
-draft: false
+draft: true
 tags: ["database", "redis", "postgresql", "architecture", "real-time"]
 categories: ["Technical Concepts"]
 series: ["Stock Market Simulator"]

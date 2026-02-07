@@ -1,7 +1,7 @@
 ---
 title: "Parallelizing EF Core Queries for High-Throughput Applications"
 date: 2026-02-07
-draft: false
+draft: true
 tags: ["dotnet", "ef-core", "performance", "database", "async"]
 categories: ["Technical Concepts"]
 series: ["Stock Market Simulator"]
