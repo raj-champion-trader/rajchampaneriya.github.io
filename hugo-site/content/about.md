@@ -13,32 +13,40 @@ I believe good architecture should feel invisible to users and obvious to engine
 
 ## Strategic Leadership
 
-**Translating Business Goals into Technical Reality**
+### Translating Business Goals into Technical Reality
+
 I bridge the gap between executive vision and engineering execution — presenting architecture trade-offs in language that resonates with both the C-suite and the engineers building it. From boardroom strategy sessions to sprint planning, I ensure technical decisions map directly to business outcomes.
 
-**Stakeholder Management & Governance**
+### Stakeholder Management & Governance
+
 Enterprise architecture is 50% communication. I facilitate architectural review boards, build consensus across business units, establish governance frameworks that enable (not impede) delivery, and maintain alignment between distributed teams operating at different velocities.
 
-**Mentoring & Building Architecture Capability**
+### Mentoring & Building Architecture Capability
+
 I've mentored 15+ junior architects and engineers — 85% promoted to senior roles within 18 months. I build architecture capability within organizations, not just architecture artifacts.
 
 ---
 
 ## What I Help Organizations Do
 
-**Modernize Legacy Systems at Scale**
+### Modernize Legacy Systems at Scale
+
 Migrate monolithic and legacy codebases (VB6, legacy .NET, Java) to cloud-native architectures using proven patterns like Strangler-Fig, Domain-Driven Design, and Clean Architecture — with zero-downtime cutovers and measurable ROI.
 
-**Architect Cloud-Native Platforms**
+### Architect Cloud-Native Platforms
+
 Design high-availability, cost-optimized platforms on Azure and AWS — spanning containerized microservices, event-driven architectures, API governance, and infrastructure engineering with Kubernetes, CI/CD pipelines, and observability.
 
-**Build Applied AI Systems**
+### Build Applied AI Systems
+
 Deliver production-grade AI solutions including conversational BI platforms, RAG pipelines, knowledge-graph-powered discovery tools, and AI-augmented development accelerators — focused on accuracy, explainability, and enterprise trust.
 
-**Accelerate Technical Decision-Making**
+### Accelerate Technical Decision-Making
+
 Validate architectural direction through rapid prototyping, POCs, and structured decision frameworks (ADRs, HLDs) — helping leadership teams move from ambiguity to committed investment faster.
 
-**Drive Delivery Excellence**
+### Drive Delivery Excellence
+
 Lead cross-functional engineering teams through complex, multi-year engagements with a track record of on-time delivery, zero critical production defects, and sustained sprint velocity.
 
 ---

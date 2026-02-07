@@ -3,7 +3,7 @@
    ============================================ */
 
 .profile-hero {
-    padding: 1.5rem 0 0;
+    padding: 1rem 0 0;
     position: relative;
 }
 
@@ -33,7 +33,7 @@
 
 .profile-card {
     display: flex;
-    gap: 2.25rem;
+    gap: 1.75rem;
     align-items: center;
 }
 
@@ -44,8 +44,8 @@
 
 .profile-image {
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     border: 3px solid rgba(0, 0, 0, 0.04);
@@ -81,36 +81,80 @@
     color: var(--primary);
 }
 
+/* Role + cert badges on same row */
+.profile-role-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.2rem;
+}
+
 .profile-role {
-    font-size: 0.9rem;
-    margin: 0.3rem 0 0;
-    font-weight: 500;
+    font-size: 0.78rem;
+    margin: 0;
+    font-weight: 600;
     color: var(--link);
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .profile-tagline {
-    font-size: 0.95rem;
-    margin: 0.6rem 0 0;
-    line-height: 1.55;
+    font-size: 0.92rem;
+    margin: 0.4rem 0 0;
+    line-height: 1.5;
     color: var(--secondary);
     max-width: 52ch;
 }
 
-/* Actions row: social + buttons */
+/* Certification badges — inline with role */
+.profile-certs {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--link);
+    background: rgba(29, 78, 216, 0.06);
+    border: 1px solid rgba(29, 78, 216, 0.12);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.cert-badge svg {
+    color: var(--link);
+    flex-shrink: 0;
+}
+
+[data-theme="dark"] .cert-badge {
+    background: rgba(96, 165, 250, 0.08);
+    border-color: rgba(96, 165, 250, 0.15);
+    color: var(--link);
+}
+
+
+/* Actions row: buttons first, then social */
 .profile-actions {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    margin-top: 0.85rem;
+    gap: 0.75rem;
+    margin-top: 0.65rem;
     flex-wrap: wrap;
 }
 
 .profile-actions .social-icons {
     margin: 0;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .profile-actions .social-icons a {
@@ -119,15 +163,15 @@
 
 .profile-actions .buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin: 0;
 }
 
 .profile-actions .buttons .button {
     border-radius: 6px;
     font-weight: 600;
-    font-size: 0.8rem;
-    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.85rem;
     border: 1.5px solid var(--link);
     transition: all 0.2s ease;
     text-decoration: none;
@@ -166,50 +210,18 @@
 }
 
 
-/* Certification badges */
-.profile-certs {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.cert-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--link);
-    background: rgba(29, 78, 216, 0.06);
-    border: 1px solid rgba(29, 78, 216, 0.12);
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-}
-
-.cert-badge svg {
-    color: var(--link);
-    flex-shrink: 0;
-}
-
-[data-theme="dark"] .cert-badge {
-    background: rgba(96, 165, 250, 0.08);
-    border-color: rgba(96, 165, 250, 0.15);
-    color: var(--link);
-}
-
-
 /* ============================================
    TRUSTED-BY SOCIAL PROOF STRIP
    ============================================ */
 
 .trusted-by-strip {
-    margin: 1.5rem 0 0;
-    padding: 1rem 0;
+    margin: 0.85rem 0 0;
+    padding: 0.65rem 0;
     border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
 [data-theme="dark"] .trusted-by-strip {
@@ -217,19 +229,18 @@
 }
 
 .trusted-label {
-    display: block;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--secondary);
-    margin-bottom: 0.65rem;
-    opacity: 0.7;
+    opacity: 0.6;
+    white-space: nowrap;
 }
 
 .trusted-logos {
     display: flex;
-    gap: 0.65rem;
+    gap: 0.4rem;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -237,19 +248,19 @@
 .domain-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
+    gap: 0.25rem;
+    font-size: 0.72rem;
     font-weight: 500;
     color: var(--secondary);
     background: var(--entry);
     border: 1px solid var(--border);
-    padding: 0.35rem 0.7rem;
-    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
     transition: all 0.2s ease;
 }
 
 .domain-badge svg {
-    opacity: 0.5;
+    opacity: 0.45;
     flex-shrink: 0;
 }
 
@@ -289,8 +300,8 @@
    ============================================ */
 
 .recent-posts-section {
-    margin: 1.75rem 0 2rem;
-    padding-top: 1.5rem;
+    margin: 0.85rem 0 1.5rem;
+    padding-top: 0.85rem;
     border-top: 1px solid var(--border);
 }
 
@@ -384,17 +395,21 @@
 @media screen and (max-width: 768px) {
     .profile-card {
         flex-direction: column;
-        gap: 1.25rem;
+        gap: 1rem;
         text-align: center;
     }
 
     .profile-image {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
 
     .profile-name {
         font-size: 1.4rem;
+    }
+
+    .profile-role-row {
+        justify-content: center;
     }
 
     .profile-tagline {
@@ -407,8 +422,6 @@
 
     .profile-actions {
         justify-content: center;
-        flex-direction: column;
-        gap: 0.75rem;
     }
 
     .profile-actions .social-icons {
@@ -419,12 +432,13 @@
         justify-content: center;
     }
 
-    .trusted-logos {
+    .trusted-by-strip {
         justify-content: center;
+        text-align: center;
     }
 
-    .trusted-label {
-        text-align: center;
+    .trusted-logos {
+        justify-content: center;
     }
 
     .post-entry-horizontal {
@@ -439,8 +453,8 @@
 
 @media screen and (max-width: 480px) {
     .profile-image {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
     }
 
     .profile-name {
@@ -448,6 +462,11 @@
     }
 
     .profile-role {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .profile-role-row {
+        flex-direction: column;
+        gap: 0.3rem;
     }
 }
