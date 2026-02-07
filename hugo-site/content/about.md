@@ -72,36 +72,43 @@ I've mentored 15+ junior architects and engineers — 85% promoted to senior rol
 
 ## What I Help Organizations Do
 
-```mermaid
-flowchart TD
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-
-    ROOT["Enterprise Architecture"]:::primary
-
-    ROOT --> LM["Legacy Modernization"]:::accent
-    ROOT --> CN["Cloud-Native Platforms"]:::secondary
-    ROOT --> AI["Applied AI Systems"]:::highlight
-    ROOT --> DE["Delivery Excellence"]:::primary
-
-    LM --> LM1["Strangler-Fig Pattern"]:::accent
-    LM --> LM2["Zero-Downtime Migration"]:::accent
-    LM --> LM3["Domain-Driven Design"]:::accent
-
-    CN --> CN1["Azure & AWS"]:::secondary
-    CN --> CN2["Kubernetes & Containers"]:::secondary
-    CN --> CN3["CI/CD & IaC"]:::secondary
-
-    AI --> AI1["RAG Pipelines"]:::highlight
-    AI --> AI2["Conversational BI"]:::highlight
-    AI --> AI3["Knowledge Graphs"]:::highlight
-
-    DE --> DE1["ADRs & HLDs"]:::primary
-    DE --> DE2["Cross-Functional Teams"]:::primary
-    DE --> DE3["Sprint Velocity"]:::primary
-```
+<div class="capability-tree">
+  <div class="capability-root capability-root--blue">Enterprise Architecture</div>
+  <div class="capability-branches">
+    <div class="capability-branch">
+      <div class="capability-node capability-node--orange">Legacy Modernization</div>
+      <div class="capability-leaves">
+        <span class="capability-leaf capability-leaf--orange">Strangler-Fig Pattern</span>
+        <span class="capability-leaf capability-leaf--orange">Zero-Downtime Migration</span>
+        <span class="capability-leaf capability-leaf--orange">Domain-Driven Design</span>
+      </div>
+    </div>
+    <div class="capability-branch">
+      <div class="capability-node capability-node--green">Cloud-Native Platforms</div>
+      <div class="capability-leaves">
+        <span class="capability-leaf capability-leaf--green">Azure & AWS</span>
+        <span class="capability-leaf capability-leaf--green">Kubernetes & Containers</span>
+        <span class="capability-leaf capability-leaf--green">CI/CD & IaC</span>
+      </div>
+    </div>
+    <div class="capability-branch">
+      <div class="capability-node capability-node--purple">Applied AI Systems</div>
+      <div class="capability-leaves">
+        <span class="capability-leaf capability-leaf--purple">RAG Pipelines</span>
+        <span class="capability-leaf capability-leaf--purple">Conversational BI</span>
+        <span class="capability-leaf capability-leaf--purple">Knowledge Graphs</span>
+      </div>
+    </div>
+    <div class="capability-branch">
+      <div class="capability-node capability-node--blue">Delivery Excellence</div>
+      <div class="capability-leaves">
+        <span class="capability-leaf capability-leaf--blue">ADRs & HLDs</span>
+        <span class="capability-leaf capability-leaf--blue">Cross-Functional Teams</span>
+        <span class="capability-leaf capability-leaf--blue">Sprint Velocity</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 **Modernize Legacy Systems at Scale** — Migrate monolithic codebases (VB6, legacy .NET, Java) to cloud-native architectures using Strangler-Fig, DDD, and Clean Architecture — with zero-downtime cutovers and measurable ROI.
 

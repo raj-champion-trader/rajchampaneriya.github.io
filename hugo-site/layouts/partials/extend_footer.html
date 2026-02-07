@@ -618,10 +618,48 @@
       document.addEventListener('mousemove', onDragMove);
       document.addEventListener('mouseup', onDragEnd);
 
-      // Touch events
-      fullscreenContent.addEventListener('touchstart', onDragStart, { passive: false });
-      document.addEventListener('touchmove', onDragMove, { passive: false });
-      document.addEventListener('touchend', onDragEnd);
+      // --- Pinch-to-zoom gesture support ---
+      let pinchStartDist = 0;
+      let pinchStartZoom = 1;
+
+      function getTouchDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.hypot(dx, dy);
+      }
+
+      fullscreenContent.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+          // Two-finger pinch start
+          e.preventDefault();
+          isDragging = false;
+          fullscreenContent.classList.remove('is-dragging');
+          pinchStartDist = getTouchDistance(e.touches);
+          pinchStartZoom = currentZoom;
+        } else if (e.touches.length === 1) {
+          onDragStart(e);
+        }
+      }, { passive: false });
+
+      document.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && fullscreenDialog.classList.contains('active')) {
+          e.preventDefault();
+          const dist = getTouchDistance(e.touches);
+          const scale = dist / pinchStartDist;
+          updateZoom(pinchStartZoom * scale);
+        } else if (e.touches.length === 1 && isDragging) {
+          onDragMove(e);
+        }
+      }, { passive: false });
+
+      document.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2) {
+          pinchStartDist = 0;
+        }
+        if (e.touches.length === 0) {
+          onDragEnd();
+        }
+      });
     }
     
     // Semantic class color definitions for light and dark mode
