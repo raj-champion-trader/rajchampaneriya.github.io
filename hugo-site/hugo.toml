@@ -5,11 +5,19 @@ theme = 'PaperMod'
 relativeURLs = false
 canonifyURLs = true
 buildFuture = true
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [params]
-  description = "Principal Consultant / Architect specializing in Azure cloud solutions and enterprise architecture"
+  env = "production"
+  description = "Principal Consultant / Architect specializing in Azure cloud solutions, enterprise architecture, and event-driven systems. Practical architecture work, reference implementations, and technical writing."
   author = "Raj Champaneriya"
   mainSections = ["blog"]
+  keywords = ["enterprise architecture", "azure cloud", "solution architecture", "event-driven architecture", "system design", "software engineering", "C4 model", "streaming systems", "real-time data"]
   
   # Assets (Favicons)
   [params.assets]

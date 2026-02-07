@@ -6,17 +6,17 @@ slug: "stock-market-simulator"
 tags: ["architecture", "streaming", "real-time", "software-engineering", "c4-model", "dotnet", "redis", "sse"]
 categories: ["Architecture Work"]
 summary: "Real-time market data simulation showcasing modern event-driven architecture with C4 model documentation"
+cover:
+  image: "/images/project/stock-market-simulator/front-end-chart-full.png"
+  alt: "Stock Market Simulator — live candlestick charts with real-time streaming data"
+  caption: "It's hard to think about volume in a two-dimensional space."
+  hidden: true
 githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
 weight: 1
 ShowToc: true
 ---
 
 <div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
-
-**Architecture · Streaming · .NET 10 · Redis Streams · SSE**  
-_Work in Progress_
-
-</div>
 
 ## What is Stock Market Simulator?
 
@@ -290,6 +290,11 @@ Price updates trigger CSS flash animations (green for up, red for down) on the w
 ---
 
 ## Data Flow
+
+<div style="margin: 2rem 0; text-align: center;">
+  <img src="/images/project/stock-market-simulator/train-simulator.svg" alt="Stock Market Simulator — end-to-end data flow from price generation through Redis Streams to browser rendering" style="max-width: 100%; height: auto; border-radius: 8px;" />
+  <p style="color: var(--secondary); font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">End-to-end data flow: ticks travel from the price engine through Redis Streams to live browser charts</p>
+</div>
 
 ### End-to-End Pipeline
 

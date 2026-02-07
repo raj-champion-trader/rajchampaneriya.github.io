@@ -3,6 +3,75 @@
 {{- $currentProject := path.Base .File.Dir }}
 
 <style>
+/* Project Hero Banner - architectelevator.com inspired */
+.project-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 2rem 2.5rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.project-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.25) 0%,
+    rgba(15, 23, 42, 0.55) 40%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.project-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.project-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0 0 0.75rem 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  letter-spacing: -0.02em;
+}
+
+.project-hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .project-hero {
+    min-height: 260px;
+    padding: 2rem 1.25rem 2rem;
+  }
+  .project-hero-title {
+    font-size: 1.75rem;
+  }
+  .project-hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
 /* Override main wrapper constraints for project pages */
 .main {
   max-width: 100% !important;
@@ -25,7 +94,14 @@ article {
   margin: 0 auto;
   padding: 1rem 2rem;
   overflow: visible !important;
-  /* Remove align-items: start - let the sidebar column stretch full height */
+}
+
+/* Hero spans full grid width */
+.project-container > .project-hero {
+  grid-column: 1 / -1;
+  margin: -1rem -2rem 0;
+  width: calc(100% + 4rem);
+  border-radius: 0;
 }
 
 /* This is the grid cell - it stretches to full height of the grid row */
@@ -231,6 +307,24 @@ article {
 </style>
 
 <div class="project-container">
+
+  {{/* Hero Banner */}}
+  {{- with .Params.cover }}
+  {{- if .image }}
+  {{- $heroImage := $.Page.Resources.GetMatch .image }}
+  {{- if not $heroImage }}
+    {{- $heroImage = resources.Get .image }}
+  {{- end }}
+  <div class="project-hero" style="background-image: url('{{ if $heroImage }}{{ $heroImage.Permalink }}{{ else }}{{ .image | absURL }}{{ end }}');">
+    <div class="project-hero-content">
+      <h1 class="project-hero-title">{{ $.Title }}</h1>
+      {{- with $.Description }}<p class="project-hero-subtitle">{{ . }}</p>{{ end }}
+      {{- with .caption }}<p class="project-hero-subtitle">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+  {{- end }}
+  {{- end }}
+
   <!-- Sidebar Wrapper - this stretches to full grid row height -->
   <div class="project-sidebar-wrapper">
     <!-- Sidebar Navigation - this is sticky inside the wrapper -->

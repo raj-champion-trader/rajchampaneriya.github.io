@@ -175,10 +175,9 @@
   border-radius: 8px;
   overflow: auto;
   padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: block;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 .mermaid-fullscreen-content-inner {
@@ -186,11 +185,14 @@
   transition: transform 0.2s ease;
   display: inline-block;
   min-width: min-content;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .mermaid-fullscreen-content svg {
   max-width: none !important;
   height: auto !important;
+  display: block;
 }
 
 /* Mobile Responsive Styles */
@@ -235,12 +237,13 @@
   
   .mermaid-fullscreen-content {
     padding: 20px 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .mermaid-fullscreen-content-inner {
-    min-width: 100%;
+    min-width: min-content;
+    width: max-content;
   }
 }
 </style>
