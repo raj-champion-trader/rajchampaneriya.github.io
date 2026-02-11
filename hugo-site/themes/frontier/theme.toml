@@ -1,0 +1,12 @@
+name = "Frontier"
+license = "MIT"
+licenselink = "https://github.com/rajchampaneriya/rajchampaneriya.github.io/blob/main/LICENSE"
+description = "A 2026-era mobile-first PWA theme for rajc.work"
+homepage = "https://rajc.work"
+tags = ["blog", "pwa", "mobile-first", "glassmorphism"]
+features = ["audio-player", "ai-chat"]
+min_version = "0.110.0"
+
+[author]
+  name = "Raj Champaneriya"
+  homepage = "https://rajc.work"

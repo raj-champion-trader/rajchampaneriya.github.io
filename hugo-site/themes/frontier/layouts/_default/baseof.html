@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default " en-us" }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- Meta -->
+    <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
+    <meta name="theme-color" content="#0a0a0c"> <!-- Match Dark Mode BG -->
+
+    <!-- Fonts (Google Fonts: Inter & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS (Hugo Pipes - Concatenation) -->
+    {{ $vars := resources.Get "css/variables.css" }}
+    {{ $main := resources.Get "css/main.css" }}
+    {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+
+<body class="app-layout">
+
+    <!-- Header / Top Bar -->
+    <header class="site-header glass-panel">
+        <div class="container header-inner">
+            <a href="/" class="logo">rajc.work</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <!-- Icon Placeholder -->
+                <span class="theme-icon">🌗</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="swup" class="transition-fade container">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Audio Player Bar (Persistent) -->
+    <div id="audio-player-bar" class="player-bar glass-panel hidden">
+        <div class="player-info">
+            <span id="player-title" class="player-title">Now Playing...</span>
+        </div>
+        <div class="player-controls">
+            <button id="player-play-pause" class="btn-icon">▶️</button>
+            <button id="player-close" class="btn-icon">✖️</button>
+        </div>
+        <audio id="global-audio"></audio>
+    </div>
+
+    <!-- AI Chat Panel (Persistent) -->
+    <div id="ai-chat-panel" class="chat-panel glass-panel hidden">
+        <div class="chat-header">
+            <h3>AI Assistant</h3>
+            <button id="chat-close" class="btn-icon">✖️</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message system">Hello! I can help you understand this article. Ask me anything.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask a question..." />
+            <button id="chat-send" class="btn-primary">Send</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation (Mobile First) -->
+    <nav class="bottom-nav glass-panel">
+        <a href="/" class="nav-item {{ if .IsHome }}active{{ end }}">
+            <span class="icon">🏠</span>
+            <span class="label">Home</span>
+        </a>
+        <a href="/blog" class="nav-item {{ if eq .Section " blog" }}active{{ end }}">
+            <span class="icon">📝</span>
+            <span class="label">Insights</span>
+        </a>
+        <button id="ai-chat-trigger" class="nav-item fab-trigger">
+            <span class="icon-fab">✨</span>
+        </button>
+        <button id="audio-player-trigger" class="nav-item">
+            <span class="icon">🎧</span>
+            <span class="label">Audio</span>
+        </button>
+        <a href="/about" class="nav-item {{ if eq .Section " about" }}active{{ end }}">
+            <span class="icon">👤</span>
+            <span class="label">About</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    {{ $swup := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
+    <script src="{{ $swup.RelPermalink }}" defer></script>
+</body>
+
+</html>

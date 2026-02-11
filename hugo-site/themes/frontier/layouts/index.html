@@ -1,0 +1,40 @@
+{{ define "main" }}
+<div class="home-container">
+    <!-- Hero / Profile Section -->
+    <section class="hero-profile glass-panel">
+        <div class="profile-header">
+            <img src="{{ .Site.Params.profileMode.imageUrl }}" alt="{{ .Site.Params.profileMode.imageTitle }}"
+                class="profile-avatar">
+            <div class="profile-info">
+                <h1>{{ .Site.Params.profileMode.title }}</h1>
+                <p class="subtitle">{{ .Site.Params.profileMode.subtitle }}</p>
+            </div>
+        </div>
+        <div class="profile-actions">
+            {{ range .Site.Params.profileMode.buttons }}
+            <a href="{{ .url }}" class="btn btn-primary">{{ .name }}</a>
+            {{ end }}
+        </div>
+    </section>
+
+    <!-- Content Feed -->
+    <section class="latest-feed">
+        <h2 class="section-title">Latest Insights</h2>
+        <div class="feed-grid">
+            {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+            {{ range first 5 $pages }}
+            <article class="feed-card glass-panel">
+                <div class="card-content">
+                    <span class="card-date">{{ .Date.Format "Jan 2" }}</span>
+                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    <p>{{ .Summary | truncate 100 }}</p>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+        <div class="view-all">
+            <a href="/blog" class="btn btn-text">View Archives →</a>
+        </div>
+    </section>
+</div>
+{{ end }}

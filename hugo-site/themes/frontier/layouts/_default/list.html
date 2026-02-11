@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="page-content">
+        {{ . }}
+    </div>
+    {{ end }}
+</section>
+
+<div class="feed-grid">
+    {{ range .Pages }}
+    <article class="feed-card glass-panel">
+        <div class="card-content">
+            <div class="card-meta">
+                <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                {{ with .Params.categories }}
+                <span class="category-tag">{{ index . 0 }}</span>
+                {{ end }}
+            </div>
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p>{{ .Summary | truncate 120 }}</p>
+            <div class="card-actions">
+                <a href="{{ .RelPermalink }}" class="read-more">Read Article →</a>
+            </div>
+        </div>
+    </article>
+    {{ end }}
+</div>
+{{ end }}

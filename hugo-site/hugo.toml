@@ -1,7 +1,7 @@
 baseURL = 'https://rajc.work/'
 languageCode = 'en-us'
 title = 'rajc.work'
-theme = 'PaperMod'
+theme = 'frontier'
 relativeURLs = false
 canonifyURLs = true
 buildFuture = true
