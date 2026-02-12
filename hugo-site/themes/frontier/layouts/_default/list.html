@@ -9,7 +9,8 @@
 </section>
 
 <div class="feed-grid">
-    {{ range .Pages }}
+    {{ $pages := where .Site.RegularPages "Section" "blog" }}
+    {{ range $pages.ByDate.Reverse }}
     <article class="feed-card glass-panel">
         <div class="card-content">
             <div class="card-meta">
