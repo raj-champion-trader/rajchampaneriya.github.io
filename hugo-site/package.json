@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@playwright/test": "^1.58.2",
     "mermaid": "^11.12.2",
     "swup": "^4.8.2"
   }
