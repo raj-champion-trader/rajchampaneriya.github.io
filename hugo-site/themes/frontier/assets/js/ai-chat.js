@@ -53,7 +53,16 @@ async function sendMessage() {
 }
 
 // Event Listeners
-if (triggerBtn) triggerBtn.addEventListener('click', toggleChat);
+if (triggerBtn) {
+    console.log('AI Chat: Trigger button found');
+    triggerBtn.onclick = (e) => {
+        console.log('AI Chat: Trigger clicked');
+        e.preventDefault();
+        toggleChat();
+    };
+} else {
+    console.error('AI Chat: Trigger button NOT found');
+}
 if (closeBtn) closeBtn.addEventListener('click', toggleChat);
 if (sendBtn) sendBtn.addEventListener('click', sendMessage);
 if (input) {

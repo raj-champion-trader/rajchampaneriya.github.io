@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=5555&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaling Real-Time Architectures: Why We Chose SSE Over SignalR | rajc.work</title>
+
+    
+    <meta name="description" content="Enterprise Architect &amp; Strategic Technology Leader specializing in cloud-native modernization, scalable system design, and AI-driven digital transformation for Fortune 500 enterprises.">
+    <meta name="theme-color" content="#0a0a0c"> 
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="http://localhost:5555/css/style.min.c3e2161e0547d2af0bebdf8aec5f7bd35d26c3c1abe4af68e345a6d3bf0d9eda.css">
+</head>
+
+<body class="app-layout">
+
+    
+    <header class="site-header glass-panel">
+        <div class="container header-inner">
+            <a href="http://localhost:5555/" class="logo">rajc.work</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <svg class="theme-icon icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    
+    <main id="swup" class="transition-fade container">
+        
+<article class="single-post">
+    <header class="post-header">
+        <div class="post-meta">
+            <time datetime=" 2026-02-04">Feb 4, 2026</time>
+            <span>•</span>
+            <span>18 min read</span>
+            <span>•</span>
+            <button class="btn-text" onclick="playAudio(' \/audio\/demo.mp3', 'Scaling Real-Time Architectures: Why We Chose SSE Over SignalR' )">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path
+                        d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                    </path>
+                </svg>
+                Listen
+            </button>
+        </div>
+        <h1>Scaling Real-Time Architectures: Why We Chose SSE Over SignalR</h1>
+        
+    </header>
+
+    <div class="post-content glass-panel" style="padding: var(--space-md);">
+        <h2 id="stop-polling-start-living">Stop Polling, Start Living</h2>
+<p>Welcome back, architects and dreamers.</p>
+<p>We live in an age where &ldquo;refreshing&rdquo; a webpage is considered a failure of the human spirit. We want <em>now</em>. We want <em>instant</em>. We want to see numbers on a screen flicker upward like the heartbeat of a capitalist economy.</p>
+<p>Real-time updates are no longer a &ldquo;nice-to-have.&rdquo; They are the air we breathe. Most modern UI applications expect live data streams, because God forbid a user should have to click a button to see if their portfolio is down 20%.</p>
+<p>When building the <a href="https://github.com/raj-champion-trader/stock-market-simulator">Stock Market Simulator</a>—a living laboratory for event-driven patterns that doesn&rsquo;t care about your feelings, only throughput—one of the first architectural decisions was: <strong>How do we push real-time price updates to thousands of concurrent users efficiently?</strong></p>
+<p>For years, SignalR has been the go-to answer in the .NET ecosystem. And SignalR is wonderful. It&rsquo;s a powerhouse. It&rsquo;s the Swiss Army Knife that also happens to be a chainsaw. But sometimes, you don&rsquo;t need a chainsaw. Sometimes, you just need to whisper into the ear of the browser.</p>
+<p>This post explores both options through the lens of real-world stock market data streaming—and explains why we chose SSE for the Stock Market Simulator, building the plumbing from scratch so we&rsquo;d actually understand what&rsquo;s flowing through the pipes.</p>
+<hr>
+<h2 id="server-sent-events-sse">Server-Sent Events (SSE)</h2>
+<h3 id="what-is-sse">What is SSE?</h3>
+<p>SSE is a W3C standard that enables servers to push data to clients over a single, long-lived HTTP connection. Think of it as HTTP that keeps talking to you even after it&rsquo;s done.</p>
+<p><strong>Technical Characteristics:</strong></p>
+<pre tabindex="0"><code>Protocol: HTTP/1.1 or HTTP/2
+Direction: Server → Client (unidirectional)
+Content-Type: text/event-stream
+Auto-reconnection: Yes (built into browsers)
+Message Format: Plain text with event: and data: fields
+</code></pre><h3 id="why-sse-instead-of-signalr-the-management-summary">Why SSE Instead of SignalR? (The Management Summary)</h3>
+<p>SignalR is a powerhouse. It handles WebSockets, Long Polling, and SSE automatically. It provides a full-duplex communication channel. However, it comes with a footprint: a specific protocol (Hubs), a required client-side library, and a need for &ldquo;sticky sessions&rdquo; or a backplane (like Redis) for scaling. You know, &ldquo;sticky sessions&rdquo;—that thing that sounds fun but ruins your load balancer&rsquo;s day.</p>
+<p>SSE is different because:</p>
+<ul>
+<li><strong>Unidirectional</strong>: Designed specifically for streaming data <em>from</em> server <em>to</em> client. Market data flows one way—from the exchange to the trader&rsquo;s screen. The server has all the answers anyway.</li>
+<li><strong>Native HTTP</strong>: Just a standard HTTP request with a <code>text/event-stream</code> content type. No custom protocols, no upgrade negotiation.</li>
+<li><strong>Automatic Reconnection</strong>: Browsers natively handle reconnections via the <code>EventSource</code> API. It&rsquo;s like having an assistant who automatically redials when the call drops.</li>
+<li><strong>Lightweight</strong>: No heavy client libraries or complex handshake logic. Just pure, unfiltered data.</li>
+</ul>
+<hr>
+<h2 id="the-sse-endpoint-from-the-actual-codebase">The SSE Endpoint (From the Actual Codebase)</h2>
+<p>The Stock Market Simulator&rsquo;s Broker Service exposes SSE endpoints using ASP.NET Core controllers on .NET 10. The <code>SseController</code> sets the standard SSE headers, registers a per-client channel, and streams events using <code>IAsyncEnumerable</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[HttpGet(&#34;stream&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">Stream</span><span class="p">(</span><span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Configure SSE response headers</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;text/event-stream&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Cache-Control&#34;</span><span class="p">,</span> <span class="s">&#34;no-cache&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Connection&#34;</span><span class="p">,</span> <span class="s">&#34;keep-alive&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;X-Accel-Buffering&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">);</span> <span class="c1">// Disable nginx buffering</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">clientId</span> <span class="p">=</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;N&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Stream events using IAsyncEnumerable pattern</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">sseEvent</span> <span class="k">in</span> <span class="n">StreamEventsAsync</span><span class="p">(</span><span class="n">clientId</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="n">sseEvent</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">FlushAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>When a client hits this endpoint:</p>
+<ol>
+<li>The server sends <code>Content-Type: text/event-stream</code> — telling the browser &ldquo;keep this connection open&rdquo;</li>
+<li>A dedicated bounded channel is created for this specific client via <code>SseClientManager</code></li>
+<li>As market ticks arrive from Redis, they&rsquo;re fanned out to every client&rsquo;s channel and flushed down the open HTTP pipe</li>
+</ol>
+<p>Notice the <code>X-Accel-Buffering: no</code> header — a production detail that disables nginx response buffering. Without it, your reverse proxy will helpfully collect all your real-time events into one big batch and deliver them with the enthusiasm of a postal service.</p>
+<h3 id="the-minimal-api-alternative">The Minimal API Alternative</h3>
+<p>The same Broker Service also exposes a Minimal API version, demonstrating the cleaner .NET 10 pattern:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">MapGet</span><span class="p">(</span><span class="s">&#34;/api/marketdata/stream-minimal&#34;</span><span class="p">,</span> <span class="kd">async</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SseClientManager</span> <span class="n">clientManager</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ILogger</span><span class="p">&lt;</span><span class="n">Program</span><span class="p">&gt;</span> <span class="n">logger</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HttpResponse</span> <span class="n">response</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">clientId</span> <span class="p">=</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;N&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;text/event-stream&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Cache-Control&#34;</span><span class="p">,</span> <span class="s">&#34;no-cache&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Connection&#34;</span><span class="p">,</span> <span class="s">&#34;keep-alive&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="p">(</span><span class="n">tickChannel</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">=</span> <span class="n">clientManager</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">clientId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">FormatSseEvent</span><span class="p">(</span><span class="s">&#34;connected&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">clientId</span><span class="p">,</span> <span class="n">timestamp</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">FlushAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">data</span> <span class="k">in</span> <span class="n">tickChannel</span><span class="p">.</span><span class="n">Reader</span><span class="p">.</span><span class="n">ReadAllAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">FormatSseEvent</span><span class="p">(</span><span class="s">&#34;marketdata&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">FlushAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">OperationCanceledException</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientManager</span><span class="p">.</span><span class="n">Unregister</span><span class="p">(</span><span class="n">clientId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>Both approaches work. The Minimal API version is more concise; the controller version is more structured. Choose your preferred ceremony level.</p>
+<h3 id="the-future-net-10s-resultsserversentevents">The Future: .NET 10&rsquo;s <code>Results.ServerSentEvents</code></h3>
+<p>ASP.NET Core 10 is introducing a native <code>Results.ServerSentEvents</code> API that wraps any <code>IAsyncEnumerable</code> into an SSE response with zero boilerplate—no manual header setting, no <code>FlushAsync</code> calls:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// What the future looks like — not yet used in this project,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// but this is where SSE in .NET is heading</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">MapGet</span><span class="p">(</span><span class="s">&#34;/api/prices/stream&#34;</span><span class="p">,</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ChannelReader</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;</span> <span class="n">channelReader</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Results</span><span class="p">.</span><span class="n">ServerSentEvents</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">channelReader</span><span class="p">.</span><span class="n">ReadAllAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eventType</span><span class="p">:</span> <span class="s">&#34;marketdata&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>The Stock Market Simulator deliberately uses the manual approach to expose the underlying mechanics—bounded channel management, event formatting, backpressure handling—that <code>Results.ServerSentEvents</code> would abstract away. Understanding these primitives matters when debugging production streaming issues.</p>
+<h3 id="pros-of-sse">Pros of SSE</h3>
+<p><strong>Simple</strong>: No special libraries needed, works with standard HTTP<br>
+<strong>Efficient</strong>: Single connection, minimal overhead<br>
+<strong>Auto-Reconnection</strong>: Built into browser&rsquo;s EventSource API<br>
+<strong>Firewall-Friendly</strong>: Uses standard HTTP/HTTPS ports<br>
+<strong>HTTP/2 Multiplexing</strong>: Multiple streams over one TCP connection</p>
+<h3 id="cons-of-sse">Cons of SSE</h3>
+<p><strong>Unidirectional</strong>: Client can&rsquo;t send data back without separate HTTP requests<br>
+<strong>Connection Limits</strong>: Browsers limit ~6 connections per domain (HTTP/1.1)<br>
+<strong>No Binary</strong>: Text-only protocol (JSON overhead)<br>
+<strong>No Custom Headers in EventSource</strong>: The browser&rsquo;s <code>EventSource</code> API doesn&rsquo;t support setting <code>Authorization</code> headers — you need cookie-based auth or token query parameters<br>
+<strong>IE Support</strong>: Not supported in Internet Explorer (but honestly, who cares anymore?)</p>
+<hr>
+<h2 id="the-fan-out-problem-the-part-nobody-talks-about">The Fan-Out Problem (The Part Nobody Talks About)</h2>
+<p>Here&rsquo;s something the tutorials leave out: <code>System.Threading.Channels</code> reads are <strong>destructive</strong>. When you read a message from a channel, it&rsquo;s gone. If two SSE clients share a single <code>Channel&lt;MarketDataEvent&gt;</code>, only one of them gets each tick. The other client stares at a blank screen, wondering why they invested in technology.</p>
+<p>The Stock Market Simulator solves this with a <strong>per-client channel architecture</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">SseClientManager</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">ConcurrentDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">Channel</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;&gt;</span> <span class="n">_clients</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">ConcurrentDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">Channel</span><span class="p">&lt;</span><span class="n">CandlestickEvent</span><span class="p">&gt;&gt;</span> <span class="n">_candleClients</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="p">(</span><span class="n">Channel</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;</span> <span class="n">TickChannel</span><span class="p">,</span> <span class="n">Channel</span><span class="p">&lt;</span><span class="n">CandlestickEvent</span><span class="p">&gt;</span> <span class="n">CandleChannel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Register</span><span class="p">(</span><span class="kt">string</span> <span class="n">clientId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">tickChannel</span> <span class="p">=</span> <span class="n">Channel</span><span class="p">.</span><span class="n">CreateBounded</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">BoundedChannelOptions</span><span class="p">(</span><span class="n">_channelCapacity</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SingleReader</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SingleWriter</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">FullMode</span> <span class="p">=</span> <span class="n">BoundedChannelFullMode</span><span class="p">.</span><span class="n">DropOldest</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">candleChannel</span> <span class="p">=</span> <span class="n">Channel</span><span class="p">.</span><span class="n">CreateBounded</span><span class="p">&lt;</span><span class="n">CandlestickEvent</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">BoundedChannelOptions</span><span class="p">(</span><span class="n">_channelCapacity</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SingleReader</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SingleWriter</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">FullMode</span> <span class="p">=</span> <span class="n">BoundedChannelFullMode</span><span class="p">.</span><span class="n">DropOldest</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">_clients</span><span class="p">[</span><span class="n">clientId</span><span class="p">]</span> <span class="p">=</span> <span class="n">tickChannel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_candleClients</span><span class="p">[</span><span class="n">clientId</span><span class="p">]</span> <span class="p">=</span> <span class="n">candleChannel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">tickChannel</span><span class="p">,</span> <span class="n">candleChannel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Each SSE client gets its own pair of bounded channels — one for raw ticks, one for candlestick events. The <code>TickBroadcaster</code> then fans out every incoming tick to <strong>all</strong> registered client channels plus a dedicated aggregator channel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TickBroadcaster</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">SseClientManager</span> <span class="n">_clientManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">Channel</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;</span> <span class="n">_aggregatorChannel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">Broadcast</span><span class="p">(</span><span class="n">MarketDataEvent</span> <span class="n">tick</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Fan out to all connected SSE clients</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_clientManager</span><span class="p">.</span><span class="n">BroadcastTick</span><span class="p">(</span><span class="n">tick</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Also feed the candlestick aggregator</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">_aggregatorChannel</span><span class="p">.</span><span class="n">Writer</span><span class="p">.</span><span class="n">TryWrite</span><span class="p">(</span><span class="n">tick</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">_logger</span><span class="p">.</span><span class="n">LogWarning</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="s">&#34;Aggregator channel full, tick for {Symbol} dropped&#34;</span><span class="p">,</span> <span class="n">tick</span><span class="p">.</span><span class="n">Symbol</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Note the use of <code>BoundedChannelFullMode.DropOldest</code> and non-blocking <code>TryWrite</code>. In financial streaming, a late price is worse than a missing one. The system intentionally drops stale ticks rather than blocking producers — <strong>backpressure handled by design, not by accident.</strong></p>
+<hr>
+<h2 id="dual-channel-multiplexing-two-streams-one-connection">Dual-Channel Multiplexing (Two Streams, One Connection)</h2>
+<p>The Stock Market Simulator doesn&rsquo;t just stream raw tick data. It also streams pre-computed OHLCV candlestick events — 1-minute candles aggregated server-side by the <code>CandlestickAggregator</code>. Both data types flow over a <strong>single SSE connection</strong> using event type multiplexing.</p>
+<p>Here&rsquo;s the actual streaming loop inside <code>SseController</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Multiplex both tick and candle channels into a single SSE stream</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(!</span><span class="n">cancellationToken</span><span class="p">.</span><span class="n">IsCancellationRequested</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">tickWait</span> <span class="p">=</span> <span class="n">tickReader</span><span class="p">.</span><span class="n">WaitToReadAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">).</span><span class="n">AsTask</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">candleWait</span> <span class="p">=</span> <span class="n">candleReader</span><span class="p">.</span><span class="n">WaitToReadAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">).</span><span class="n">AsTask</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAny</span><span class="p">(</span><span class="n">tickWait</span><span class="p">,</span> <span class="n">candleWait</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Drain all available ticks</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">tickReader</span><span class="p">.</span><span class="n">TryRead</span><span class="p">(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">marketData</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="n">FormatSseEvent</span><span class="p">(</span><span class="s">&#34;marketdata&#34;</span><span class="p">,</span> <span class="n">marketData</span><span class="p">,</span> <span class="s">$&#34;{clientId}-{eventId++}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Drain all available candle events</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">candleReader</span><span class="p">.</span><span class="n">TryRead</span><span class="p">(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">candleEvent</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="n">FormatSseEvent</span><span class="p">(</span><span class="s">&#34;candlestick&#34;</span><span class="p">,</span> <span class="n">candleEvent</span><span class="p">,</span> <span class="s">$&#34;{clientId}-c{eventId++}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Heartbeat every 15 seconds to keep proxies from closing idle connections</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span> <span class="p">-</span> <span class="n">lastHeartbeat</span><span class="p">).</span><span class="n">TotalSeconds</span> <span class="p">&gt;=</span> <span class="m">15</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="n">FormatSseEvent</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;heartbeat&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">timestamp</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="s">$&#34;{clientId}-heartbeat&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lastHeartbeat</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The <code>Task.WhenAny</code> pattern avoids busy-wait polling — the loop only wakes when either channel has data. Then <code>TryRead</code> drains whatever is available before yielding back. The heartbeat prevents proxies and load balancers from killing &ldquo;idle&rdquo; connections.</p>
+<p>The SSE event formatter follows the W3C spec precisely:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">string</span> <span class="n">FormatSseEvent</span><span class="p">(</span><span class="kt">string</span> <span class="n">eventType</span><span class="p">,</span> <span class="kt">object</span> <span class="n">data</span><span class="p">,</span> <span class="kt">string?</span> <span class="n">id</span> <span class="p">=</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">sb</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">id</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sb</span><span class="p">.</span><span class="n">AppendLine</span><span class="p">(</span><span class="s">$&#34;id: {id}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">sb</span><span class="p">.</span><span class="n">AppendLine</span><span class="p">(</span><span class="s">$&#34;event: {eventType}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sb</span><span class="p">.</span><span class="n">AppendLine</span><span class="p">(</span><span class="s">$&#34;data: {JsonSerializer.Serialize(data, CamelCaseOptions)}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sb</span><span class="p">.</span><span class="n">AppendLine</span><span class="p">();</span> <span class="c1">// Empty line signals end of event</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sb</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The browser receives events like:</p>
+<pre tabindex="0"><code>id: abc123-42
+event: marketdata
+data: {&#34;symbol&#34;:&#34;NIFTY50&#34;,&#34;price&#34;:1042.37,&#34;volume&#34;:6500,&#34;timestamp&#34;:&#34;2026-02-07T10:30:00Z&#34;}
+
+id: abc123-c43
+event: candlestick
+data: {&#34;symbol&#34;:&#34;NIFTY50&#34;,&#34;intervalStart&#34;:&#34;2026-02-07T10:30:00Z&#34;,&#34;open&#34;:1040.00,&#34;high&#34;:1043.50,&#34;low&#34;:1039.20,&#34;close&#34;:1042.37,&#34;volume&#34;:85000,&#34;tickCount&#34;:200,&#34;isComplete&#34;:false}
+</code></pre><hr>
+<h2 id="handling-missed-events-the-oops-did-you-drop-that-protocol">Handling Missed Events (The &ldquo;Oops, Did You Drop That?&rdquo; Protocol)</h2>
+<p>The simple endpoints we just looked at are great. They work. They ship. But, like most things in life, they have a weakness: they&rsquo;re missing resilience.</p>
+<p>One of the biggest challenges with real-time streams is connection drops. The internet is a fragile series of tubes held together by hope and duct tape. By the time the browser automatically reconnects, several events might have already been sent and lost. Your user thinks the stock price is stable, meanwhile, the market has crashed, and they&rsquo;re ruined.</p>
+<p>To solve this, SSE has a built-in mechanism: the <code>Last-Event-ID</code> header. When a browser reconnects, it sends this ID back to the server, saying, &ldquo;I was listening, then I fell asleep. Catch me up.&rdquo;</p>
+<p>The Stock Market Simulator&rsquo;s <code>SseControllerV2</code> implements this with a <code>MarketEventBuffer</code> — a lock-guarded circular buffer with monotonic event IDs:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[HttpGet(&#34;stream-with-replay&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">StreamWithReplay</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [FromHeader(Name = &#34;Last-Event-ID&#34;)]</span> <span class="kt">string?</span> <span class="n">lastEventId</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;text/event-stream&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Cache-Control&#34;</span><span class="p">,</span> <span class="s">&#34;no-cache&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;Connection&#34;</span><span class="p">,</span> <span class="s">&#34;keep-alive&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Response</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&#34;X-Accel-Buffering&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">clientId</span> <span class="p">=</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;N&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">sseEvent</span> <span class="k">in</span> <span class="n">StreamEventsWithReplayAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientId</span><span class="p">,</span> <span class="n">lastEventId</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Response</span><span class="p">.</span><span class="n">WriteAsync</span><span class="p">(</span><span class="n">sseEvent</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">FlushAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Inside the streaming method, reconnecting clients get their missed events replayed from the buffer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Replay missed events if Last-Event-ID is provided</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrWhiteSpace</span><span class="p">(</span><span class="n">lastEventId</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">missedEvents</span> <span class="p">=</span> <span class="n">_eventBuffer</span><span class="p">.</span><span class="n">GetEventsAfter</span><span class="p">(</span><span class="n">lastEventId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">missedEvent</span> <span class="k">in</span> <span class="n">missedEvents</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="n">FormatSseEvent</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">missedEvent</span><span class="p">.</span><span class="n">EventType</span> <span class="p">??</span> <span class="s">&#34;marketdata&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">missedEvent</span><span class="p">.</span><span class="n">Data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">missedEvent</span><span class="p">.</span><span class="n">Id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The <code>MarketEventBuffer</code> itself is straightforward — a <code>LinkedList</code> with a configurable size cap (default: 1,000 events):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">MarketEventBuffer</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">LinkedList</span><span class="p">&lt;</span><span class="n">SseEventItem</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;&gt;</span> <span class="n">_buffer</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">_maxBufferSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">_lock</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">long</span> <span class="n">_eventCounter</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">SseEventItem</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;</span> <span class="n">Add</span><span class="p">(</span><span class="n">MarketDataEvent</span> <span class="n">marketData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">lock</span> <span class="p">(</span><span class="n">_lock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">eventId</span> <span class="p">=</span> <span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">_eventCounter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">sseItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SseEventItem</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Data</span> <span class="p">=</span> <span class="n">marketData</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">EventType</span> <span class="p">=</span> <span class="s">&#34;marketdata&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Id</span> <span class="p">=</span> <span class="n">eventId</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">_buffer</span><span class="p">.</span><span class="n">AddLast</span><span class="p">(</span><span class="n">sseItem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">_buffer</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="n">_maxBufferSize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">_buffer</span><span class="p">.</span><span class="n">RemoveFirst</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">sseItem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">SseEventItem</span><span class="p">&lt;</span><span class="n">MarketDataEvent</span><span class="p">&gt;&gt;</span> <span class="n">GetEventsAfter</span><span class="p">(</span><span class="kt">string</span> <span class="n">lastEventId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">lock</span> <span class="p">(</span><span class="n">_lock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="kt">long</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="n">lastEventId</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">lastId</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">_buffer</span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">_buffer</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">item</span> <span class="p">=&gt;</span> <span class="kt">long</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">id</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">id</span> <span class="p">&gt;</span> <span class="n">lastId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>By combining this buffer with the <code>Last-Event-ID</code> header provided by the browser, the system replays missed messages upon reconnection—ensuring chart continuity even through network hiccups.</p>
+<hr>
+<h2 id="the-full-data-pipeline">The Full Data Pipeline</h2>
+<p>Before we compare SSE with SignalR, it&rsquo;s worth seeing how the data actually flows through the Stock Market Simulator. The architecture is an event-driven pipeline orchestrated by .NET Aspire:</p>
+<pre tabindex="0"><code>MarketSimulator (BackgroundService)
+    │  Generates ticks using Geometric Brownian Motion + GARCH volatility
+    │  Posts MarketDataEvent to Ingestion API every 300ms per symbol
+    ▼
+MarketIngestion.Api (Minimal API)
+    │  Validates and publishes to Redis Stream (&#34;marketdata:stream&#34;)
+    ▼
+Redis Streams (Consumer Group: &#34;brokers&#34;)
+    │  Persistent, ordered message log with consumer group semantics
+    ▼
+RedisStreamConsumer (BackgroundService in Broker.Service)
+    │  Reads batches of 10, deserializes, acknowledges
+    │  Calls TickBroadcaster.Broadcast()
+    ▼
+TickBroadcaster
+    ├──► SseClientManager.BroadcastTick()  →  Per-client tick channels  →  SSE stream
+    └──► AggregatorTickChannel             →  CandlestickAggregator    →  Per-client candle channels  →  SSE stream
+</code></pre><p>Each layer has explicit error handling and backpressure. The <code>RedisStreamConsumer</code> retries on connection failures with escalating delays (2s → 5s → 10s). The <code>TickBroadcaster</code> uses non-blocking <code>TryWrite</code> so a slow client never blocks the pipeline. The <code>CandlestickAggregator</code> throttles candle emissions to 500ms to prevent overwhelming the browser.</p>
+<h3 id="the-data-models">The Data Models</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Raw tick — what the market simulator generates</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">record</span> <span class="nc">MarketDataEvent</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Symbol</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">decimal</span> <span class="n">Price</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">long</span> <span class="n">Volume</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DateTime</span> <span class="n">Timestamp</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Aggregated candle — computed server-side by CandlestickAggregator</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">record</span> <span class="nc">CandlestickEvent</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Symbol</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DateTime</span> <span class="n">IntervalStart</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">decimal</span> <span class="n">Open</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">decimal</span> <span class="n">High</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">decimal</span> <span class="n">Low</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">decimal</span> <span class="n">Close</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">long</span> <span class="n">Volume</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">TickCount</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">bool</span> <span class="n">IsComplete</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">init</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><hr>
+<h2 id="signalr">SignalR</h2>
+<h3 id="what-is-signalr">What is SignalR?</h3>
+<p>SignalR is Microsoft&rsquo;s abstraction layer that provides <strong>bidirectional</strong> communication between server and client. It&rsquo;s the tank you bring to a knife fight. It automatically chooses the best transport:</p>
+<ol>
+<li>WebSockets (preferred)</li>
+<li>Server-Sent Events (fallback)</li>
+<li>Long Polling (ultimate fallback)</li>
+</ol>
+<p><strong>Technical Characteristics:</strong></p>
+<pre tabindex="0"><code>Protocol: WebSocket (preferred), SSE, Long Polling
+Direction: Server ↔ Client (bidirectional)
+Message Format: JSON or MessagePack
+Connection Management: Automatic with reconnection logic
+Scaling: Built-in Redis backplane support
+</code></pre><h3 id="what-signalr-would-look-like-the-road-not-taken">What SignalR Would Look Like (The Road Not Taken)</h3>
+<p>For reference, here&rsquo;s how the Stock Market Simulator&rsquo;s streaming could have been implemented with SignalR. This code is <strong>not in the project</strong> — it&rsquo;s the conceptual equivalent to illustrate the trade-offs:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// SignalR Hub — hypothetical equivalent of SseController</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PriceHub</span> <span class="p">:</span> <span class="n">Hub</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">SubscribeToSymbol</span><span class="p">(</span><span class="kt">string</span> <span class="n">symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Groups</span><span class="p">.</span><span class="n">AddToGroupAsync</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">ConnectionId</span><span class="p">,</span> <span class="n">symbol</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">UnsubscribeFromSymbol</span><span class="p">(</span><span class="kt">string</span> <span class="n">symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Groups</span><span class="p">.</span><span class="n">RemoveFromGroupAsync</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">ConnectionId</span><span class="p">,</span> <span class="n">symbol</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Background service pushing to Hub — hypothetical equivalent of RedisStreamConsumer</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PriceStreamService</span> <span class="p">:</span> <span class="n">BackgroundService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">IHubContext</span><span class="p">&lt;</span><span class="n">PriceHub</span><span class="p">&gt;</span> <span class="n">_hubContext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kd">override</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">CancellationToken</span> <span class="n">ct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tick</span> <span class="k">in</span> <span class="n">_redisConsumer</span><span class="p">.</span><span class="n">ReadStreamAsync</span><span class="p">(</span><span class="n">ct</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">_hubContext</span><span class="p">.</span><span class="n">Clients</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">Group</span><span class="p">(</span><span class="n">tick</span><span class="p">.</span><span class="n">Symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">SendAsync</span><span class="p">(</span><span class="s">&#34;ReceiveTick&#34;</span><span class="p">,</span> <span class="n">tick</span><span class="p">,</span> <span class="n">ct</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Notice what SignalR gives you for free: the <code>Groups</code> concept. Each stock symbol becomes a group, and clients subscribe/unsubscribe dynamically. No <code>SseClientManager</code>, no <code>ConcurrentDictionary</code>, no manual fan-out. But you also lose visibility into the channel mechanics — when things go wrong, you&rsquo;re debugging an abstraction.</p>
+<p><strong>Client-Side JavaScript (SignalR):</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// Requires: npm install @microsoft/signalr
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">signalR</span><span class="p">.</span><span class="nx">HubConnectionBuilder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">withUrl</span><span class="p">(</span><span class="s2">&#34;/hubs/prices&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">withAutomaticReconnect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">build</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;ReceiveTick&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">tick</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">updatePriceCard</span><span class="p">(</span><span class="nx">tick</span><span class="p">.</span><span class="nx">symbol</span><span class="p">,</span> <span class="nx">tick</span><span class="p">.</span><span class="nx">price</span><span class="p">,</span> <span class="nx">tick</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nx">invoke</span><span class="p">(</span><span class="s2">&#34;SubscribeToSymbol&#34;</span><span class="p">,</span> <span class="s2">&#34;NIFTY50&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="pros-of-signalr">Pros of SignalR</h3>
+<p><strong>Bidirectional</strong>: Client can send commands to server<br>
+<strong>Groups</strong>: Built-in support for broadcasting to subsets of clients<br>
+<strong>Automatic Reconnection</strong>: Configurable retry policies<br>
+<strong>Transport Abstraction</strong>: Falls back gracefully<br>
+<strong>Scaling</strong>: Redis backplane for multi-server deployments<br>
+<strong>Typed Hubs</strong>: Strongly-typed client/server contracts</p>
+<h3 id="cons-of-signalr">Cons of SignalR</h3>
+<p><strong>Complexity</strong>: More moving parts, harder to debug<br>
+<strong>Library Dependency</strong>: Requires SignalR client library (<code>@microsoft/signalr</code>)<br>
+<strong>Resource Usage</strong>: WebSocket connections consume server resources<br>
+<strong>Sticky Sessions</strong>: Load balancers need special configuration (and they won&rsquo;t be happy about it)</p>
+<hr>
+<h2 id="consuming-sse-in-javascript-the-easy-part">Consuming SSE in JavaScript (The Easy Part)</h2>
+<p>On the client side, you don&rsquo;t need to install a single <code>npm</code> package. The browser&rsquo;s native <code>EventSource</code> API handles connection management, including automatic reconnection with the <code>Last-Event-ID</code> header.</p>
+<p>Here&rsquo;s the actual <code>useMarketData</code> hook from the Stock Market Simulator&rsquo;s React frontend:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">useMarketData</span><span class="p">(</span><span class="nx">brokerUrl</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">UseMarketDataResult</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">securities</span><span class="p">,</span> <span class="nx">setSecurities</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">Map</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">,</span> <span class="na">Security</span><span class="p">&gt;&gt;(</span><span class="k">new</span> <span class="nx">Map</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">isConnected</span><span class="p">,</span> <span class="nx">setIsConnected</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">error</span><span class="p">,</span> <span class="nx">setError</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">string</span> <span class="err">|</span> <span class="na">null</span><span class="p">&gt;(</span><span class="kc">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">streamUrl</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">brokerUrl</span><span class="si">}</span><span class="sb">/api/marketdata/stream`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">eventSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventSource</span><span class="p">(</span><span class="nx">streamUrl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connected to broker:&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">clientId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">setIsConnected</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Tick events → watchlist + banner (real-time per-tick)
+</span></span></span><span class="line"><span class="cl">    <span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;marketdata&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">marketData</span>: <span class="kt">MarketDataEvent</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">updateSecurity</span><span class="p">(</span><span class="nx">marketData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Candlestick events → chart (1-minute OHLCV from backend aggregator)
+</span></span></span><span class="line"><span class="cl">    <span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;candlestick&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">candleData</span>: <span class="kt">CandlestickEvent</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">updateCandle</span><span class="p">(</span><span class="nx">candleData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;heartbeat&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;Heartbeat:&#39;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">).</span><span class="nx">timestamp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">eventSource</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">setIsConnected</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">eventSource</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="nx">EventSource</span><span class="p">.</span><span class="nx">CLOSED</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setError</span><span class="p">(</span><span class="s1">&#39;Connection lost. Reconnecting...&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">eventSource</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[</span><span class="nx">brokerUrl</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Note how the client listens for four distinct event types — <code>connected</code>, <code>marketdata</code>, <code>candlestick</code>, and <code>heartbeat</code> — all multiplexed over a single SSE connection. No SignalR client library, no npm dependency, no build step required. The browser handles reconnection natively.</p>
+<hr>
+<h2 id="comparison-table">Comparison Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>SSE</th>
+          <th>SignalR</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Communication</strong></td>
+          <td>Unidirectional (Server → Client)</td>
+          <td>Bidirectional (Server ↔ Client)</td>
+      </tr>
+      <tr>
+          <td><strong>Protocol</strong></td>
+          <td>HTTP/1.1, HTTP/2</td>
+          <td>WebSocket, SSE, Long Polling</td>
+      </tr>
+      <tr>
+          <td><strong>Browser Support</strong></td>
+          <td>Modern browsers (no IE)</td>
+          <td>All browsers (fallback support)</td>
+      </tr>
+      <tr>
+          <td><strong>Auto-Reconnect</strong></td>
+          <td>Yes (native)</td>
+          <td>Yes (configurable)</td>
+      </tr>
+      <tr>
+          <td><strong>Message Format</strong></td>
+          <td>Text (JSON)</td>
+          <td>Binary (MessagePack) or JSON</td>
+      </tr>
+      <tr>
+          <td><strong>Scaling</strong></td>
+          <td>Simple (stateless)</td>
+          <td>Complex (Redis backplane)</td>
+      </tr>
+      <tr>
+          <td><strong>Firewall Friendly</strong></td>
+          <td>High</td>
+          <td>Medium (WebSocket may be blocked)</td>
+      </tr>
+      <tr>
+          <td><strong>Connection Limit</strong></td>
+          <td>6 per domain (HTTP/1.1)</td>
+          <td>Higher (WebSocket)</td>
+      </tr>
+      <tr>
+          <td><strong>Client Library</strong></td>
+          <td>None (native browser API)</td>
+          <td>Required (signalr.js)</td>
+      </tr>
+      <tr>
+          <td><strong>Binary Data</strong></td>
+          <td>No</td>
+          <td>Yes</td>
+      </tr>
+      <tr>
+          <td><strong>Groups/Rooms</strong></td>
+          <td>Manual</td>
+          <td>Built-in</td>
+      </tr>
+      <tr>
+          <td><strong>Auth via Headers</strong></td>
+          <td>Not with EventSource API</td>
+          <td>Yes (fully supported)</td>
+      </tr>
+      <tr>
+          <td><strong>Use Case</strong></td>
+          <td>One-way notifications</td>
+          <td>Interactive applications</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="decision-matrix-when-to-use-what">Decision Matrix: When to Use What?</h2>
+<h3 id="choose-sse-when">Choose SSE When:</h3>
+<ul>
+<li>Data flows <strong>only</strong> from server to client</li>
+<li>You need <strong>simplicity</strong> and minimal dependencies</li>
+<li>Your use case is <strong>notifications, updates, or feeds</strong></li>
+<li>You want <strong>firewall-friendly</strong> communication</li>
+<li>You&rsquo;re building a <strong>public API</strong> that others will consume</li>
+<li>You appreciate that the client just needs to <code>curl</code> your endpoint</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>News tickers and stock price feeds</li>
+<li>Social media live updates</li>
+<li>Server monitoring dashboards</li>
+<li>Event logs streaming</li>
+<li>Notification bells (the kind that make you feel important)</li>
+</ul>
+<h3 id="choose-signalr-when">Choose SignalR When:</h3>
+<ul>
+<li>You need <strong>bidirectional</strong> communication</li>
+<li>Client must send <strong>commands</strong> to the server</li>
+<li>You need <strong>groups</strong> or <strong>targeted broadcasting</strong></li>
+<li>You&rsquo;re in a <strong>.NET ecosystem</strong> already</li>
+<li>You need <strong>Redis backplane</strong> for horizontal scaling</li>
+<li>You want <strong>automatic transport negotiation</strong></li>
+<li>You&rsquo;re building something where users interact, not just observe</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Chat applications</li>
+<li>Collaborative editing</li>
+<li>Online gaming</li>
+<li>Trading platforms with order placement</li>
+<li>Real-time dashboards with user-controlled filters</li>
+</ul>
+<hr>
+<h2 id="the-stock-market-simulator-decision">The Stock Market Simulator Decision</h2>
+<p>For the Stock Market Simulator, I chose <strong>SSE</strong> over SignalR. Here&rsquo;s the architectural reasoning:</p>
+<h3 id="reasons-for-sse">Reasons for SSE:</h3>
+<ol>
+<li>
+<p><strong>The data is unidirectional</strong>: Market data flows one way — from the exchange to the trader&rsquo;s screen. There&rsquo;s no order placement, no chat, no client-to-server commands. SSE is a natural fit for this data flow.</p>
+</li>
+<li>
+<p><strong>Understanding the primitives</strong>: SignalR abstracts away connection management, channel fan-out, and event replay. By implementing SSE at a lower level, the project demonstrates the underlying patterns — bounded channel management, event replay buffers, backpressure handling, and dual-channel multiplexing. Understanding these primitives matters when debugging production streaming issues, regardless of the transport layer.</p>
+</li>
+<li>
+<p><strong>Zero client dependencies</strong>: The React frontend uses the browser&rsquo;s native <code>EventSource</code> API. No <code>@microsoft/signalr</code> package, no version compatibility concerns, no bundle size impact.</p>
+</li>
+<li>
+<p><strong>Debuggability</strong>: You can test the SSE endpoint with <code>curl</code>. Try doing that with a WebSocket Hub.</p>
+</li>
+<li>
+<p><strong>Standard HTTP infrastructure</strong>: SSE works through proxies, CDNs, and load balancers without special configuration (beyond disabling response buffering). No WebSocket upgrade negotiation, no sticky sessions.</p>
+</li>
+</ol>
+<h3 id="when-id-switch-to-signalr">When I&rsquo;d Switch to SignalR:</h3>
+<p>If the project evolves to support <strong>order placement</strong>, <strong>per-user watchlist subscriptions via the server</strong>, or <strong>collaborative features</strong>, SignalR would become the right choice. SignalR&rsquo;s built-in Groups would replace the manual <code>SseClientManager</code>, and the bidirectional channel would enable client-to-server communication without separate REST endpoints.</p>
+<p>The goal isn&rsquo;t to prove SSE is &ldquo;better&rdquo; than SignalR. It&rsquo;s to use the lightest tool that solves the problem — and to understand the plumbing that heavier tools abstract away.</p>
+<hr>
+<h2 id="debugging-tips">Debugging Tips</h2>
+<h3 id="sse-debugging">SSE Debugging</h3>
+<p>The beautiful thing about SSE? You can test it with <code>curl</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Test SSE endpoint directly — watch data flow in real-time</span>
+</span></span><span class="line"><span class="cl">curl -N http://localhost:5002/api/marketdata/stream
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># In Chrome DevTools:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Network → Filter: &#34;event-stream&#34; → Click connection → EventStream tab</span>
+</span></span></code></pre></div><p>No Fiddler. No Wireshark. No crying. Just <code>curl</code>.</p>
+<h3 id="signalr-debugging">SignalR Debugging</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Enable detailed logging</span>
+</span></span><span class="line"><span class="cl"><span class="n">builder</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">AddSignalR</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="n">AddHubOptions</span><span class="p">&lt;</span><span class="n">PriceHub</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">options</span><span class="p">.</span><span class="n">EnableDetailedErrors</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">options</span><span class="p">.</span><span class="n">KeepAliveInterval</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span></code></pre></div><hr>
+<h2 id="extension-patterns">Extension Patterns</h2>
+<h3 id="adding-authentication-to-sse">Adding Authentication to SSE</h3>
+<p>Since the browser&rsquo;s <code>EventSource</code> API doesn&rsquo;t support custom headers, you can&rsquo;t pass a JWT in the <code>Authorization</code> header. The Stock Market Simulator documents two production-ready approaches:</p>
+<ol>
+<li>
+<p><strong>Cookie-based auth</strong>: Cookies are sent automatically with every request, including <code>EventSource</code> connections. Use your existing cookie auth middleware.</p>
+</li>
+<li>
+<p><strong>Short-lived token flow</strong>: Exchange a JWT for a 30-second token via a login endpoint, pass it as a query parameter to the SSE endpoint. Store tokens in Redis with TTL to minimise the attack surface.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Conceptual: Token-based SSE auth</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">MapGet</span><span class="p">(</span><span class="s">&#34;/api/marketdata/stream&#34;</span><span class="p">,</span> <span class="kd">async</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [FromQuery]</span> <span class="kt">string</span> <span class="n">token</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SseClientManager</span> <span class="n">clientManager</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ITokenValidator</span> <span class="n">tokenValidator</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HttpResponse</span> <span class="n">response</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CancellationToken</span> <span class="n">ct</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">userId</span> <span class="p">=</span> <span class="k">await</span> <span class="n">tokenValidator</span><span class="p">.</span><span class="n">ValidateAsync</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">userId</span> <span class="k">is</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">=</span> <span class="m">401</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Proceed with SSE stream for authenticated user...</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="per-user-filtering">Per-User Filtering</h3>
+<p>The current architecture broadcasts all market data to all connected clients. For per-user streams at scale, the documented pattern is a <code>ConnectionManager</code> backed by <code>ConcurrentDictionary&lt;UserId, Channel&lt;T&gt;&gt;</code> — conceptually similar to SignalR&rsquo;s <code>IHubContext</code>. Producers write to user-specific channels; SSE endpoints read from the user&rsquo;s channel exclusively.</p>
+<h3 id="hybrid-approach-sse--signalr">Hybrid Approach: SSE + SignalR</h3>
+<p>Here&rsquo;s a pragmatic pattern for projects that need both:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Public API: SSE for simplicity (third-party friendly)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">MapGet</span><span class="p">(</span><span class="s">&#34;/api/prices/stream&#34;</span><span class="p">,</span> <span class="kd">async</span> <span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Manual SSE streaming — no client library needed</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Any language can consume this with an HTTP client</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Web App: SignalR for rich interaction (your own frontend)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="p">.</span><span class="n">MapHub</span><span class="p">&lt;</span><span class="n">PriceHub</span><span class="p">&gt;(</span><span class="s">&#34;/hubs/prices&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><p>This gives you:</p>
+<ul>
+<li><strong>Public API consumers</strong> use SSE (no library needed, language-agnostic)</li>
+<li><strong>Your own frontend</strong> uses SignalR (full features, bidirectional)</li>
+<li><strong>Same data pipeline</strong> feeds both (DRY principle maintained)</li>
+</ul>
+<hr>
+<h2 id="code-architecture-patterns">Code Architecture Patterns</h2>
+<h3 id="the-channel-pipeline-pattern">The Channel Pipeline Pattern</h3>
+<p>The Stock Market Simulator&rsquo;s architecture is built on .NET&rsquo;s <code>System.Threading.Channels</code> — a high-performance, bounded, async-aware producer/consumer primitive. The entire data flow is a chain of channels:</p>
+<pre tabindex="0"><code>Redis Stream → RedisStreamConsumer → TickBroadcaster → Per-Client Channels → SSE Response
+                                         └──────────→ Aggregator Channel → CandlestickAggregator → Per-Client Candle Channels → SSE Response
+</code></pre><p>Key design principles:</p>
+<ul>
+<li><strong>Bounded channels everywhere</strong>: <code>BoundedChannelFullMode.DropOldest</code> prevents memory exhaustion. A stale price is worse than no price.</li>
+<li><strong>Non-blocking writes</strong>: <code>TryWrite</code> ensures a slow consumer never blocks the producer pipeline.</li>
+<li><strong>Single-reader optimisation</strong>: Each per-client channel sets <code>SingleReader = true</code>, allowing the runtime to skip synchronisation overhead.</li>
+<li><strong>Explicit fan-out</strong>: The <code>TickBroadcaster</code> replaces implicit shared-channel semantics with explicit broadcasting to N consumers.</li>
+</ul>
+<h3 id="historical-candle-seeding">Historical Candle Seeding</h3>
+<p>When a new client connects, the SSE controller sends historical candlestick data so the chart has visual density immediately — instead of showing an empty chart for the first 60 seconds while the first candle completes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Replay historical candles so chart has density immediately</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">allHistory</span> <span class="p">=</span> <span class="n">_history</span><span class="p">.</span><span class="n">GetAllHistory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">candles</span><span class="p">)</span> <span class="k">in</span> <span class="n">allHistory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">candle</span> <span class="k">in</span> <span class="n">candles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="n">FormatSseEvent</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;candlestick&#34;</span><span class="p">,</span> <span class="n">candle</span><span class="p">,</span> <span class="s">$&#34;{clientId}-h{historyCount++}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Both SSE and SignalR are excellent choices for real-time communication. The decision boils down to:</p>
+<table>
+  <thead>
+      <tr>
+          <th>SSE</th>
+          <th>SignalR</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Simplicity</td>
+          <td>Full-featured</td>
+      </tr>
+      <tr>
+          <td>Standard HTTP protocols</td>
+          <td>Bidirectional communication</td>
+      </tr>
+      <tr>
+          <td>One-way data flow</td>
+          <td>.NET ecosystem integration</td>
+      </tr>
+      <tr>
+          <td>Zero client dependencies</td>
+          <td>Built-in scaling with Redis backplane</td>
+      </tr>
+  </tbody>
+</table>
+<p>SSE is the perfect fit for simple, one-way updates like dashboards, notification bells, and stock market feeds. It&rsquo;s lightweight, HTTP-native, and easy to debug with nothing more sophisticated than <code>curl</code>.</p>
+<p>SignalR remains the robust, battle-tested choice for complex bidirectional communication or when you need groups, presence, and all the bells and whistles.</p>
+<p><strong>Pro Tip</strong>: Start with SSE if you&rsquo;re unsure. You can always upgrade to SignalR later when you need bidirectional communication. The reverse is harder — removing complexity is always more painful than adding it.</p>
+<p>Choose the lightest tool that solves your problem. Ship the code. Go home.</p>
+<p>That&rsquo;s all for today. Hope this was helpful.</p>
+<hr>
+<h2 id="explore-the-full-project">Explore the Full Project</h2>
+<p><strong>GitHub Repository</strong>: <a href="https://github.com/raj-champion-trader/stock-market-simulator">Stock Market Simulator</a><br>
+<strong>Architecture Decisions</strong>: <a href="https://github.com/raj-champion-trader/stock-market-simulator/tree/main/reference-docs">ADRs — SSE vs SignalR, Redis Streams vs Kafka, and more</a></p>
+<hr>
+<p><em>Questions or feedback? Let&rsquo;s discuss on <a href="https://github.com/raj-champion-trader/stock-market-simulator/issues">GitHub Issues</a>.</em></p>
+
+    </div>
+
+    <footer class="post-footer">
+        
+        
+        <div class="tags">
+            
+            <a href="http://localhost:5555/%20tags/streaming" class="tag">#streaming</a>
+            
+            <a href="http://localhost:5555/%20tags/real-time" class="tag">#real-time</a>
+            
+            <a href="http://localhost:5555/%20tags/sse" class="tag">#sse</a>
+            
+            <a href="http://localhost:5555/%20tags/signalr" class="tag">#signalr</a>
+            
+            <a href="http://localhost:5555/%20tags/architecture" class="tag">#architecture</a>
+            
+            <a href="http://localhost:5555/%20tags/dotnet-10" class="tag">#dotnet-10</a>
+            
+        </div>
+        
+    </footer>
+</article>
+
+    </main>
+
+    
+    <div id="audio-player-bar" class="player-bar glass-panel hidden">
+        <div class="player-info">
+            <span id="player-title" class="player-title">Now Playing...</span>
+        </div>
+        <div class="player-controls">
+            <button id="player-play-pause" class="btn-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </button>
+            <button id="player-close" class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <audio id="global-audio"></audio>
+    </div>
+
+    
+    <div id="ai-chat-panel" class="chat-panel glass-panel hidden">
+        <div class="chat-header">
+            <h3>AI Assistant</h3>
+            <button id="chat-close" class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message system">Hello! I can help you understand this article. Ask me anything.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask a question..." />
+            <button id="chat-send" class="btn-primary">Send</button>
+        </div>
+    </div>
+
+    
+    <nav class="bottom-nav glass-panel">
+        <a href="http://localhost:5555/" class="nav-item ">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="label">Home</span>
+        </a>
+        <a href="http://localhost:5555/blog" class="nav-item ">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span class="label">Insights</span>
+        </a>
+        <button id="ai-chat-trigger" class="nav-item fab-trigger">
+            <svg class="icon-fab" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+            </svg>
+        </button>
+        <button id="audio-player-trigger" class="nav-item">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path
+                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                </path>
+            </svg>
+            <span class="label">Audio</span>
+            </a>
+            <a href="http://localhost:5555/about" class="nav-item ">
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="label">About</span>
+            </a>
+    </nav>
+
+    
+    
+    <script src="http://localhost:5555/js/app.min.35bb080260d9869fa485fec7180852cbefc22cd1258f7c8c95273156ae93f2d1.js" defer></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        const config = {
+            startOnLoad: false, 
+            theme: 'base',
+            securityLevel: 'loose',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#b36b2e',
+                primaryTextColor: '#2e261f',
+                primaryBorderColor: '#b36b2e',
+                lineColor: '#b36b2e',
+                secondaryColor: '#f7f3ed',
+                tertiaryColor: '#fff',
+            },
+        };
+
+        mermaid.initialize(config);
+
+        const initMermaid = async () => {
+            
+            const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+            if (codeBlocks.length === 0 && document.querySelectorAll('.mermaid').length === 0) return;
+
+            codeBlocks.forEach(code => {
+                const pre = code.parentElement;
+                 
+                const container = pre.closest('.highlight') || pre;
+
+                const div = document.createElement('div');
+                div.className = 'mermaid';
+                div.textContent = code.textContent;
+                container.replaceWith(div);
+            });
+
+            try {
+                await mermaid.run({
+                    nodes: document.querySelectorAll('.mermaid')
+                });
+            } catch (e) { console.error('Mermaid error:', e); }
+        };
+
+        
+        const openFullscreenMermaid = (container) => {
+            const originalSvg = container.querySelector('svg');
+            if (!originalSvg) return;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'mermaid-overlay glass-panel visible';  
+
+            const zoomContainer = document.createElement('div');
+            zoomContainer.className = 'mermaid-zoom-container';
+
+            const clonedSvg = originalSvg.cloneNode(true);
+            clonedSvg.removeAttribute('id'); 
+            clonedSvg.style.maxWidth = 'none';
+            clonedSvg.style.height = 'auto';
+
+            zoomContainer.appendChild(clonedSvg);
+            overlay.appendChild(zoomContainer);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'mermaid-close-btn btn-icon';
+            closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            closeBtn.onclick = () => overlay.remove();
+            overlay.appendChild(closeBtn);
+
+            
+            let scale = 1, pointX = 0, pointY = 0, startX = 0, startY = 0, panning = false;
+
+            const update = () => {
+                zoomContainer.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            }
+
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const xs = (e.clientX - pointX) / scale;
+                const ys = (e.clientY - pointY) / scale;
+                const delta = -e.deltaY;
+                (delta > 0) ? (scale *= 1.1) : (scale /= 1.1);
+                pointX = e.clientX - xs * scale;
+                pointY = e.clientY - ys * scale;
+                update();
+            });
+
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === closeBtn || closeBtn.contains(e.target)) return;
+                e.preventDefault();
+                startX = e.clientX - pointX;
+                startY = e.clientY - pointY;
+                panning = true;
+                overlay.style.cursor = 'grabbing';
+            });
+
+            overlay.addEventListener('mouseup', () => { panning = false; overlay.style.cursor = 'grab'; });
+            overlay.addEventListener('mousemove', (e) => {
+                if (!panning) return;
+                e.preventDefault();
+                pointX = e.clientX - startX;
+                pointY = e.clientY - startY;
+                update();
+            });
+
+            document.body.appendChild(overlay);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMermaid();
+            document.body.addEventListener('click', (e) => {
+                const target = e.target.closest('.mermaid');
+                if (target && !document.querySelector('.mermaid-overlay')) {
+                    openFullscreenMermaid(target);
+                }
+            });
+
+            if (window.swup) {
+                window.swup.hooks.on('page:view', initMermaid);
+            }
+        });
+    </script>
+</body>
+
+</html>

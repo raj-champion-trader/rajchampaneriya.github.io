@@ -31,8 +31,10 @@
         <div class="container header-inner">
             <a href="/" class="logo">rajc.work</a>
             <button id="theme-toggle" aria-label="Toggle Theme">
-                <!-- Icon Placeholder -->
-                <span class="theme-icon">🌗</span>
+                <svg class="theme-icon icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
             </button>
         </div>
     </header>
@@ -48,8 +50,19 @@
             <span id="player-title" class="player-title">Now Playing...</span>
         </div>
         <div class="player-controls">
-            <button id="player-play-pause" class="btn-icon">▶️</button>
-            <button id="player-close" class="btn-icon">✖️</button>
+            <button id="player-play-pause" class="btn-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </button>
+            <button id="player-close" class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
         <audio id="global-audio"></audio>
     </div>
@@ -58,7 +71,13 @@
     <div id="ai-chat-panel" class="chat-panel glass-panel hidden">
         <div class="chat-header">
             <h3>AI Assistant</h3>
-            <button id="chat-close" class="btn-icon">✖️</button>
+            <button id="chat-close" class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
         <div id="chat-messages" class="chat-messages">
             <div class="message system">Hello! I can help you understand this article. Ask me anything.</div>
@@ -72,29 +91,211 @@
     <!-- Bottom Navigation (Mobile First) -->
     <nav class="bottom-nav glass-panel">
         <a href="/" class="nav-item {{ if .IsHome }}active{{ end }}">
-            <span class="icon">🏠</span>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
             <span class="label">Home</span>
         </a>
         <a href="/blog" class="nav-item {{ if eq .Section " blog" }}active{{ end }}">
-            <span class="icon">📝</span>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
             <span class="label">Insights</span>
         </a>
         <button id="ai-chat-trigger" class="nav-item fab-trigger">
-            <span class="icon-fab">✨</span>
+            <svg class="icon-fab" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+            </svg>
         </button>
         <button id="audio-player-trigger" class="nav-item">
-            <span class="icon">🎧</span>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path
+                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                </path>
+            </svg>
             <span class="label">Audio</span>
-        </button>
-        <a href="/about" class="nav-item {{ if eq .Section " about" }}active{{ end }}">
-            <span class="icon">👤</span>
-            <span class="label">About</span>
-        </a>
+            </a>
+            <a href="/about" class="nav-item {{ if eq .Section " about" }}active{{ end }}">
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="label">About</span>
+            </a>
     </nav>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to Top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
     <!-- Scripts -->
+    <!-- Swup for PWA Navigation -->
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+        const swup = new Swup({
+            containers: ["#swup"],
+            cache: true,
+        });
+    </script>
+
     {{ $swup := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $swup.RelPermalink }}" defer></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        const config = {
+            startOnLoad: false, // We run manually
+            theme: 'base',
+            securityLevel: 'loose',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#e0e0e0',
+                primaryTextColor: '#333',
+                primaryBorderColor: '#333',
+                lineColor: '#555',
+                secondaryColor: '#f4f4f4',
+                tertiaryColor: '#fff',
+            },
+        };
+
+        mermaid.initialize(config);
+
+        const initMermaid = async () => {
+            // Transform Hugo code blocks
+            const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+            if (codeBlocks.length === 0 && document.querySelectorAll('.mermaid').length === 0) return;
+
+            codeBlocks.forEach(code => {
+                const pre = code.parentElement;
+                /* If pre is inside a div.highlight, we want to replace the outer div */
+                const container = pre.closest('.highlight') || pre;
+
+                const div = document.createElement('div');
+                div.className = 'mermaid';
+                div.textContent = code.textContent;
+                container.replaceWith(div);
+            });
+
+            try {
+                await mermaid.run({
+                    nodes: document.querySelectorAll('.mermaid')
+                });
+            } catch (e) { console.error('Mermaid error:', e); }
+        };
+
+        // Fullscreen Logic
+        const openFullscreenMermaid = (container) => {
+            const originalSvg = container.querySelector('svg');
+            if (!originalSvg) return;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'mermaid-overlay glass-panel visible'; /* Force visible class directly */
+
+            const zoomContainer = document.createElement('div');
+            zoomContainer.className = 'mermaid-zoom-container';
+
+            const clonedSvg = originalSvg.cloneNode(true);
+            clonedSvg.removeAttribute('id'); // Avoid ID styling conflicts
+            clonedSvg.style.maxWidth = 'none';
+            clonedSvg.style.height = 'auto';
+
+            zoomContainer.appendChild(clonedSvg);
+            overlay.appendChild(zoomContainer);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'mermaid-close-btn btn-icon';
+            closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            closeBtn.onclick = () => overlay.remove();
+            overlay.appendChild(closeBtn);
+
+            // Simple Drag/Zoom Implementation
+            let scale = 1, pointX = 0, pointY = 0, startX = 0, startY = 0, panning = false;
+
+            const update = () => {
+                zoomContainer.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            }
+
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const xs = (e.clientX - pointX) / scale;
+                const ys = (e.clientY - pointY) / scale;
+                const delta = -e.deltaY;
+                (delta > 0) ? (scale *= 1.1) : (scale /= 1.1);
+                pointX = e.clientX - xs * scale;
+                pointY = e.clientY - ys * scale;
+                update();
+            });
+
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === closeBtn || closeBtn.contains(e.target)) return;
+                e.preventDefault();
+                startX = e.clientX - pointX;
+                startY = e.clientY - pointY;
+                panning = true;
+                overlay.style.cursor = 'grabbing';
+            });
+
+            overlay.addEventListener('mouseup', () => { panning = false; overlay.style.cursor = 'grab'; });
+            overlay.addEventListener('mousemove', (e) => {
+                if (!panning) return;
+                e.preventDefault();
+                pointX = e.clientX - startX;
+                pointY = e.clientY - startY;
+                update();
+            });
+
+            document.body.appendChild(overlay);
+        };
+
+        const initScrollToTop = () => {
+            const btn = document.getElementById('scrollToTop');
+            if (!btn) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMermaid();
+            initScrollToTop();
+
+            document.body.addEventListener('click', (e) => {
+                const target = e.target.closest('.mermaid');
+                if (target && !document.querySelector('.mermaid-overlay')) {
+                    openFullscreenMermaid(target);
+                }
+            });
+
+            if (window.swup) {
+                window.swup.hooks.on('page:view', () => {
+                    initMermaid();
+                    initScrollToTop(); // Re-bind on page nav
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

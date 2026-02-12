@@ -1,18 +1,28 @@
 :root {
-  /* Brand Colors - "Frontier" Theme */
-  --hue-brand: 250;
-  --color-brand: hsl(var(--hue-brand), 100%, 65%);
-  --color-brand-dim: hsl(var(--hue-brand), 80%, 75%);
-  --color-brand-glow: hsla(var(--hue-brand), 100%, 65%, 0.4);
+  /* Brand Colors - "Premium Earth" Theme */
+  --hue-brand: 30;
+  /* Warm Brown/Orange base */
 
-  /* Light Mode (Default System Preference) */
-  --color-bg: hsl(240, 5%, 98%);
-  --color-surface: hsl(0, 0%, 100%);
-  --color-surface-glass: hsla(0, 0%, 100%, 0.7);
-  --color-text-main: hsl(240, 5%, 10%);
-  --color-text-muted: hsl(240, 4%, 40%);
-  --color-border: hsla(240, 5%, 10%, 0.1);
-  
+  /* Light Mode (Default) - Cream/Beige/Brown */
+  --color-brand: hsl(var(--hue-brand), 60%, 45%);
+  /* Rich Leather Brown */
+  --color-brand-dim: hsl(var(--hue-brand), 40%, 60%);
+  /* Muted Earth */
+  --color-brand-glow: hsla(var(--hue-brand), 60%, 45%, 0.15);
+
+  --color-bg: hsl(35, 30%, 96%);
+  /* Cream/Paper White */
+  --color-surface: hsl(35, 30%, 98%);
+  /* Lighter Cream */
+  --color-surface-glass: hsla(35, 30%, 98%, 0.85);
+  /* Milky Glass */
+
+  --color-text-main: hsl(30, 20%, 15%);
+  /* Deep Espresso (Not Black) */
+  --color-text-muted: hsl(30, 10%, 45%);
+  /* Taupe */
+  --color-border: hsla(30, 20%, 15%, 0.1);
+
   /* Typography - Fluid Scale */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -24,50 +34,70 @@
   --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
   --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
   --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.5rem);
-  
-  /* Spacing */
+
+  /* Spacing & Effects */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
   --space-xl: 4rem;
-  
-  /* Effects */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-  --blur-glass: blur(12px);
+
+  --shadow-sm: 0 2px 4px hsla(30, 20%, 10%, 0.05);
+  --shadow-lg: 0 15px 30px hsla(30, 20%, 10%, 0.08);
+  --blur-glass: blur(20px);
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
 }
 
-/* Dark Mode */
+/* Dark Mode - Mocha/Coffee/Gold */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: hsl(240, 10%, 4%);
-    --color-surface: hsl(240, 10%, 8%);
-    --color-surface-glass: hsla(240, 10%, 8%, 0.7);
-    --color-text-main: hsl(240, 5%, 95%);
-    --color-text-muted: hsl(240, 5%, 65%);
-    --color-border: hsla(240, 5%, 95%, 0.1);
+    --color-brand: hsl(35, 80%, 65%);
+    /* Warm Gold/Amber for contrast */
+    --color-brand-dim: hsl(35, 50%, 50%);
+    --color-brand-glow: hsla(35, 80%, 65%, 0.2);
+
+    --color-bg: hsl(30, 15%, 8%);
+    /* Deep Coffee Bean */
+    --color-surface: hsl(30, 15%, 12%);
+    /* Dark Mocha */
+    --color-surface-glass: hsla(30, 15%, 12%, 0.8);
+
+    --color-text-main: hsl(35, 30%, 94%);
+    /* Warm White */
+    --color-text-muted: hsl(35, 15%, 70%);
+    /* Sand */
+    --color-border: hsla(35, 30%, 94%, 0.1);
   }
 }
 
 /* Manual Toggle Overrides */
 [data-theme="dark"] {
-  --color-bg: hsl(240, 10%, 4%);
-  --color-surface: hsl(240, 10%, 8%);
-  --color-surface-glass: hsla(240, 10%, 8%, 0.7);
-  --color-text-main: hsl(240, 5%, 95%);
-  --color-text-muted: hsl(240, 5%, 65%);
-  --color-border: hsla(240, 5%, 95%, 0.1);
+  --color-brand: hsl(35, 80%, 65%);
+  /* Warm Gold */
+  --color-brand-dim: hsl(35, 50%, 50%);
+  --color-brand-glow: hsla(35, 80%, 65%, 0.2);
+
+  --color-bg: hsl(30, 15%, 8%);
+  --color-surface: hsl(30, 15%, 12%);
+  --color-surface-glass: hsla(30, 15%, 12%, 0.8);
+
+  --color-text-main: hsl(35, 30%, 94%);
+  --color-text-muted: hsl(35, 15%, 70%);
+  --color-border: hsla(35, 30%, 94%, 0.1);
 }
 
 [data-theme="light"] {
-  --color-bg: hsl(240, 5%, 98%);
-  --color-surface: hsl(0, 0%, 100%);
-  --color-surface-glass: hsla(0, 0%, 100%, 0.7);
-  --color-text-main: hsl(240, 5%, 10%);
-  --color-text-muted: hsl(240, 4%, 40%);
-  --color-border: hsla(240, 5%, 10%, 0.1);
+  --color-brand: hsl(var(--hue-brand), 60%, 45%);
+  --color-brand-dim: hsl(var(--hue-brand), 40%, 60%);
+  --color-brand-glow: hsla(var(--hue-brand), 60%, 45%, 0.15);
+
+  --color-bg: hsl(35, 30%, 96%);
+  --color-surface: hsl(35, 30%, 98%);
+  --color-surface-glass: hsla(35, 30%, 98%, 0.85);
+
+  --color-text-main: hsl(30, 20%, 15%);
+  --color-text-muted: hsl(30, 10%, 45%);
+  --color-border: hsla(30, 20%, 15%, 0.1);
 }

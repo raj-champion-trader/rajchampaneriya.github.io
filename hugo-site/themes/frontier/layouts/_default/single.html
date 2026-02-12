@@ -1,5 +1,14 @@
 {{ define "main" }}
 <article class="single-post">
+    <div class="post-navigation-top" style="margin-bottom: var(--space-md);">
+        {{ if eq .Section "blog" }}
+        <a href="/blog/" class="btn-text">← Back to Blog</a>
+        {{ else if eq .Section "projects" }}
+        <a href="/projects/" class="btn-text">← Back to Projects</a>
+        {{ else }}
+        <a href="/" class="btn-text">← Back Home</a>
+        {{ end }}
+    </div>
     <header class="post-header">
         <div class="post-meta">
             <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
@@ -7,7 +16,16 @@
             <span>{{ .ReadingTime }} min read</span>
             <span>•</span>
             <button class="btn-text" onclick="playAudio('{{ .Params.audio | default " /audio/demo.mp3"
-                }}', '{{ .Title }}' )">🎧 Listen</button>
+                }}', '{{ .Title }}' )">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path
+                        d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                    </path>
+                </svg>
+                Listen
+            </button>
         </div>
         <h1>{{ .Title }}</h1>
         {{ with .Params.description }}
@@ -15,7 +33,7 @@
         {{ end }}
     </header>
 
-    <div class="post-content glass-panel">
+    <div class="post-content glass-panel" style="padding: var(--space-md);">
         {{ .Content }}
     </div>
 

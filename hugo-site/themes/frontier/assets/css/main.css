@@ -31,62 +31,235 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 800;
+    /* Bolder headings */
+    letter-spacing: -0.03em;
+    color: var(--color-text-main);
 }
 
 h1 {
     font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--color-text-main), var(--color-text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Gradient text effect */
 }
 
 h2 {
-    font-size: var(--text-2xl);
-    margin-bottom: var(--space-sm);
-    margin-top: var(--space-lg);
+    font-size: var(--text-xl);
+    /* Slightly smaller for density */
+    margin-bottom: var(--space-xs);
+    margin-top: var(--space-md);
 }
 
 p {
     margin-bottom: var(--space-sm);
     font-size: var(--text-base);
+    color: var(--color-text-muted);
+    /* Better readability */
+    line-height: 1.7;
 }
 
 /* Layout Containers */
 .container {
     width: 100%;
     max-width: 1200px;
-    /* Desktop max */
     margin: 0 auto;
-    padding: 0 var(--space-sm);
+    padding: 0 var(--space-md);
+    /* Search for breathable padding */
 }
 
-/* Mobile-First Layout (Grid) */
+/* Mobile-First Layout */
 .app-layout {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    /* Header, Content, Bottom Nav */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    padding-bottom: 100px;
+    /* Space for bottom nav */
 }
 
 /* Glassmorphism Utilities */
 .glass-panel {
     background: var(--color-surface-glass);
-    backdrop-filter: var(--blur-glass);
-    -webkit-backdrop-filter: var(--blur-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
+    /* More rounded */
+    box-shadow: var(--shadow-sm);
 }
 
 /* Links */
 a {
-    color: var(--color-brand);
+    color: inherit;
+    /* Don't force blue everywhere */
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 a:hover {
-    color: var(--color-brand-dim);
+    opacity: 0.7;
+}
+
+/* Hero Profile Fix */
+.hero-profile {
+    padding: var(--space-lg) var(--space-md);
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-brand);
+}
+
+.profile-info h1 {
+    margin: 0;
+    font-size: var(--text-2xl);
+    -webkit-text-fill-color: var(--color-text-main);
+    /* Reset gradient for name if needed */
+}
+
+.subtitle {
+    font-size: var(--text-sm);
+    opacity: 0.8;
+    margin-top: var(--space-xs);
+    max-width: 400px;
+}
+
+.profile-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 100px;
+    /* Pill shape */
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: transform 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+    box-shadow: 0 4px 12px var(--color-brand-glow);
+}
+
+.btn-text {
+    background: transparent;
+    border: 1px solid var(--color-border);
+}
+
+/* Feed Cards */
+.feed-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.feed-card {
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    /* Minimalist separator */
+    border-radius: var(--radius-md);
+}
+
+.feed-card:hover {
+    background: hsla(var(--hue-brand), 20%, 20%, 0.05);
+    /* Subtle brand tint on hover */
+}
+
+.card-date {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.card-content h3 {
+    margin: 0 0 var(--space-sm) 0;
+    font-size: var(--text-lg);
+    color: var(--color-brand);
+    /* Title in brand color */
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: var(--space-sm);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    height: 64px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure Top Layer */
+    background: var(--color-surface-glass);
+    border-radius: 100px;
+    /* Pill Floating Nav */
+    box-shadow: var(--shadow-lg);
+    padding: 0 var(--space-sm);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    gap: 4px;
+}
+
+.nav-item.active {
+    color: var(--color-brand);
+}
+
+.nav-item .icon {
+    font-size: 1.2rem;
+}
+
+/* FAB Sparkle */
+.nav-item.fab-trigger {
+    margin-top: -30px;
+    /* Float above */
+}
+
+.icon-fab {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 16px var(--color-brand-glow);
 }
 
 /* Player Bar */
@@ -234,4 +407,207 @@ a:hover {
     cursor: pointer;
     margin-top: -24px;
     /* Pop out effect */
+}
+
+/* Mermaid Detail Overlay */
+.mermaid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(var(--color-bg), 0.95);
+    /* High opacity for focus */
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    /* Topmost */
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.visible.mermaid-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mermaid-zoom-container {
+    transform-origin: 0 0;
+    transition: transform 0.1s ease-out;
+    /* Smooth pan feel, fast enough for direct manipulation */
+    /* Ensure content is centered initially handled by flex on overlay, transform overrides */
+}
+
+.mermaid-close-btn {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: var(--color-surface);
+    width: 40px;
+    height: 40px;
+    z-index: 2001;
+    box-shadow: var(--shadow-sm);
+}
+
+.mermaid {
+    cursor: zoom-in;
+    /* Indicate interactive */
+    margin: var(--space-md) 0;
+    text-align: center;
+    /* Center diagram in post */
+}
+
+/* =========================================
+   UI Polish & Responsiveness Fixes
+   ========================================= */
+
+/* 1. Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 160px;
+    /* Moved up to avoid Audio Player (80px) and Nav */
+    right: var(--space-md);
+    width: 44px;
+    height: 44px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1002;
+    /* Above Bottom Nav (1000) and Chat (101) */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-main);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-to-top:hover {
+    background: var(--color-brand);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 2. Audio Player Mobile Responsiveness (iPhone SE target) */
+@media (max-width: 375px) {
+    .player-bar {
+        padding: 6px 10px;
+        bottom: 75px;
+        /* Just above nav */
+        width: 92%;
+        left: 4%;
+        right: auto;
+        border-radius: 100px;
+        background: var(--color-surface-glass);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .player-info {
+        font-size: 0.75rem;
+        max-width: 120px;
+    }
+
+    .player-controls {
+        gap: 2px;
+    }
+
+    .player-controls .btn-icon {
+        padding: 4px;
+        font-size: 1.1rem;
+    }
+
+    .bottom-nav {
+        width: 96%;
+        padding: 0 8px;
+        bottom: 12px;
+    }
+}
+
+/* 3. Syntax Highlighting Tweaks (Chroma / Pygments) */
+/* Ensure code blocks have contrast and border */
+.highlight {
+    background: var(--code-bg, #1e1e1e) !important;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    margin: var(--space-md) 0;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace;
+    /* or var(--font-mono) */
+    font-size: 0.9em;
+}
+
+/* 4. Project List Styling (for _index.md HTML) */
+.featured-project-card {
+    display: block;
+    background: var(--color-surface-glass);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: var(--space-lg);
+    text-decoration: none;
+    /* Remove default link underline */
+}
+
+.featured-project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    opacity: 1;
+    /* Override default a:hover opacity */
+}
+
+.featured-project-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 400px;
+    /* Prevent massive images */
+    border-bottom: 1px solid var(--color-border);
+}
+
+.featured-project-body {
+    padding: var(--space-md);
+}
+
+.featured-project-title {
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--color-brand);
+    font-size: var(--text-xl);
+}
+
+.featured-project-desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.featured-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.featured-project-tags span {
+    background: var(--color-surface);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-main);
 }
