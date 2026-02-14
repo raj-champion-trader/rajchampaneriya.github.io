@@ -228,7 +228,7 @@ a:hover {
 }
 
 .feed-card:hover {
-    background: hsla(var(--hue-brand), 20%, 20%, 0.05);
+    background: hsla(215, 20%, 20%, 0.05);
     /* Subtle brand tint on hover */
 }
 

@@ -1,16 +1,16 @@
 ---
 title: "About Me"
-description: "Enterprise Architect & Strategic Technology Leader specializing in cloud-native modernization, applied AI systems, and enterprise platform engineering across Healthcare, Insurance, Media, and Logistics."
+description: "IBM Enterprise Architect specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
 ---
 
 <div class="about-intro">
 <div class="about-intro-text">
 
-I'm **Raj Champaneriya** — an Enterprise Architect who helps CTOs and technology leaders modernize legacy platforms, design scalable cloud-native systems, and deploy AI where it drives measurable business outcomes.
+I'm **Raj Champaneriya** — an **IBM Enterprise Architect** who protects technology leaders through high-stakes transformations. I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, architect platforms that deliver 99.95% uptime SLAs, and build teams that ship without career-damaging failures.
 
-Over 13+ years, I've led architecture and delivery for Fortune 500 clients across **Healthcare**, **Property Insurance**, **Media & Entertainment**, and **Logistics** — turning complex technical debt into scalable, cost-efficient platforms.
+Over **13+ years across 4 Fortune 500 industries** — **Healthcare**, **Property Insurance**, **Media & Entertainment**, and **Logistics** — I've led architecture and delivery for complex enterprise transformations, turning technical debt into scalable, cost-efficient platforms with measurable ROI.
 
-> I believe good architecture should feel invisible to users and obvious to engineers.
+> Enterprise architecture should protect careers and accelerate transformations — not just solve technical problems.
 
 </div>
 <div class="about-intro-photo">
@@ -24,31 +24,33 @@ My work sits at the intersection of strategic architecture, business alignment, 
 
 ---
 
-## How I Work
+## How I Work — The CARE Architecture Method
+
+I follow **The CARE Architecture Method** — a proven framework for navigating high-stakes enterprise transformations. Every engagement is structured to protect careers while accelerating outcomes:
 
 <div class="process-flow">
   <div class="process-step process-step--blue">
-    <div class="process-step__number">1</div>
-    <div class="process-step__title">Business Strategy</div>
-    <div class="process-step__desc">Understand goals, constraints & priorities</div>
+    <div class="process-step__number">C</div>
+    <div class="process-step__title">Clarity</div>
+    <div class="process-step__desc">Decompose ambiguity into actionable decisions</div>
   </div>
   <div class="process-arrow">→</div>
   <div class="process-step process-step--orange">
-    <div class="process-step__number">2</div>
-    <div class="process-step__title">Architecture & Design</div>
-    <div class="process-step__desc">Trade-offs, patterns & technical direction</div>
+    <div class="process-step__number">A</div>
+    <div class="process-step__title">Alignment</div>
+    <div class="process-step__desc">Map technical direction to business outcomes</div>
   </div>
   <div class="process-arrow">→</div>
   <div class="process-step process-step--purple">
-    <div class="process-step__number">3</div>
-    <div class="process-step__title">Engineering Execution</div>
-    <div class="process-step__desc">Build, test, deploy & iterate</div>
+    <div class="process-step__number">R</div>
+    <div class="process-step__title">Reality</div>
+    <div class="process-step__desc">Validate with prototypes & structured frameworks</div>
   </div>
   <div class="process-arrow">→</div>
   <div class="process-step process-step--green">
-    <div class="process-step__number">4</div>
-    <div class="process-step__title">Measurable Outcomes</div>
-    <div class="process-step__desc">ROI, performance & business impact</div>
+    <div class="process-step__number">E</div>
+    <div class="process-step__title">Execution</div>
+    <div class="process-step__desc">Zero critical defects, on-time delivery</div>
   </div>
 </div>
 
@@ -58,15 +60,15 @@ My work sits at the intersection of strategic architecture, business alignment, 
 
 ### Translating Business Goals into Technical Reality
 
-I bridge the gap between executive vision and engineering execution — presenting architecture trade-offs in language that resonates with both the C-suite and the engineers building it. From boardroom strategy sessions to sprint planning, I ensure technical decisions map directly to business outcomes.
+I bridge the gap between executive vision and engineering execution — presenting architecture trade-offs in boardroom language that resonates with both the C-suite and the engineers building it. From stakeholder alignment sessions to sprint planning, I ensure technical decisions map directly to business outcomes and career protection for technology leaders.
 
-### Stakeholder Management & Governance
+### Stakeholder Alignment & Governance
 
-Enterprise architecture is 50% communication. I facilitate architectural review boards, build consensus across business units, establish governance frameworks that enable (not impede) delivery, and maintain alignment between distributed teams operating at different velocities.
+Enterprise architecture is 50% communication. I facilitate architectural review boards, build consensus across business units, establish governance frameworks that enable (not impede) delivery, and maintain strategic alignment between distributed teams operating at different velocities. My approach to strategic de-risking has protected multi-million dollar investment decisions.
 
-### Mentoring & Building Architecture Capability
+### Building Architecture Capability at Scale
 
-I've mentored 15+ junior architects and engineers — 85% promoted to senior roles within 18 months. I build architecture capability within organizations, not just architecture artifacts.
+I've mentored **15+ junior architects and engineers — 85% promoted to senior roles within 18 months**. I build architecture capability within organizations, not just architecture artifacts. Teams I've led have delivered six-figure cost reductions and zero critical production defects across multi-year engagements.
 
 ---
 
@@ -234,29 +236,84 @@ Selected outcomes from enterprise engagements:
 
 ---
 
-## Credentials & Community
+## The CARE Architecture Method
 
-**Certifications**
+Every high-stakes transformation I lead follows **The CARE Architecture Method** — a proven framework for navigating enterprise complexity while protecting stakeholder careers:
+
+<div class="care-method-grid">
+  <div class="care-method-step care-method-step--clarity">
+    <div class="care-method-step__letter">C</div>
+    <div class="care-method-step__title">Clarity</div>
+    <div class="care-method-step__desc">Decompose ambiguity into actionable architecture decisions. Every stakeholder understands what we're building, why, and what the risks are — before a single line of code is written.</div>
+  </div>
+  <div class="care-method-step care-method-step--alignment">
+    <div class="care-method-step__letter">A</div>
+    <div class="care-method-step__title">Alignment</div>
+    <div class="care-method-step__desc">Map technical direction to business outcomes and stakeholder priorities. Architecture decisions are presented in boardroom language, not just engineering jargon.</div>
+  </div>
+  <div class="care-method-step care-method-step--reality">
+    <div class="care-method-step__letter">R</div>
+    <div class="care-method-step__title">Reality</div>
+    <div class="care-method-step__desc">Validate with prototypes, POCs, and structured decision frameworks (ADRs, HLDs). Leadership moves from ambiguity to committed investment faster.</div>
+  </div>
+  <div class="care-method-step care-method-step--execution">
+    <div class="care-method-step__letter">E</div>
+    <div class="care-method-step__title">Execution</div>
+    <div class="care-method-step__desc">Deliver through cross-functional engineering teams with on-time delivery, zero critical production defects, and sustained sprint velocity.</div>
+  </div>
+</div>
+
+---
+
+## Strategic Partnerships
+
+<div class="partnerships-strip">
+  <div class="partnership-badge partnership-badge--primary">
+    <strong>IBM</strong> — Enterprise Architecture & Delivery
+  </div>
+  <div class="partnership-badge">
+    <strong>Microsoft Azure</strong> — Cloud Platform & AI
+  </div>
+  <div class="partnership-badge">
+    <strong>AWS</strong> — Cloud Infrastructure
+  </div>
+</div>
+
+---
+
+## Professional Development
+
+### Certifications
 - Microsoft Azure AI Engineer Associate (AI-102)
 - AWS Certified Solutions Architect – Associate
 - Microsoft Specialist – Programming in C#
 
-**Teaching & Mentorship**
-- Technical training facilitator for database engineering programs — 40-hour curriculum delivered to engineering cohorts with 90% placement outcomes
-- Guest lecturer on Machine Learning fundamentals at MVJ College of Engineering, Bangalore — workshop for 150+ engineering students
-- Active mentor for 15+ junior architects and engineers on cloud architecture, microservices, and AI system design — 85% of mentees promoted to senior roles within 18 months
+### Architecture Mentoring & Team Building
+- **85% mentee promotion rate** — 15+ junior architects and engineers mentored to senior roles within 18 months
+- Technical training facilitator for database engineering programs — 40-hour curriculum with **90% placement outcomes**
+- Guest lecturer on Machine Learning fundamentals at MVJ College of Engineering, Bangalore — workshop for **150+ engineering students**
+- Active mentor on cloud architecture, microservices, and AI system design — building architecture capability within organizations, not just architecture artifacts
 
-**Education**
+### Education
 - M.Sc. Information Technology · B.Sc. Information Technology
+
+---
+
+## Credentials & Community
+
+**Industry Recognition**
+- Less than 1% of enterprise architects deliver $8M+ zero-downtime modernizations
+- Fortune 500 clients across 4 industry verticals represent elite-tier engagement
+- 99.95% uptime SLA and 85% mentee promotion rate are exceptional performance markers
 
 ---
 
 ## Let's Discuss Your Architecture
 
-Whether you're navigating a complex modernization, evaluating cloud strategy, or exploring how AI fits into your enterprise platform — I'm always open to strategic conversations.
+Whether you're navigating a high-stakes modernization, evaluating cloud strategy for a seven-figure decision, or exploring how AI fits into your enterprise platform — I'm always open to strategic conversations.
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
-- **Email**: [champaneriyaraj@gmail.com](mailto:champaneriyaraj@gmail.com)
+- **Email**: [raj.champaneriya1@ibm.com](mailto:raj.champaneriya1@ibm.com)
 
 *All opinions expressed on this site are my own.*

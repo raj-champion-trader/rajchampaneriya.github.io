@@ -1,27 +1,31 @@
 :root {
-  /* Brand Colors - "Premium Earth" Theme */
-  --hue-brand: 30;
-  /* Warm Brown/Orange base */
+  /* Brand Colors - "Executive Authority" Theme */
+  --hue-brand: 215;
+  /* Strategic Blue base */
 
-  /* Light Mode (Default) - Cream/Beige/Brown */
-  --color-brand: hsl(var(--hue-brand), 60%, 45%);
-  /* Rich Leather Brown */
-  --color-brand-dim: hsl(var(--hue-brand), 40%, 60%);
-  /* Muted Earth */
-  --color-brand-glow: hsla(var(--hue-brand), 60%, 45%, 0.15);
+  /* Light Mode (Default) - Executive Clarity */
+  --color-brand: hsl(215, 65%, 38%);
+  /* Deep Strategic Blue */
+  --color-brand-dim: hsl(215, 40%, 55%);
+  /* Muted Blue */
+  --color-brand-glow: hsla(215, 65%, 38%, 0.12);
 
-  --color-bg: hsl(35, 30%, 96%);
-  /* Cream/Paper White */
-  --color-surface: hsl(35, 30%, 98%);
-  /* Lighter Cream */
-  --color-surface-glass: hsla(35, 30%, 98%, 0.85);
-  /* Milky Glass */
+  --color-bg: hsl(220, 20%, 97%);
+  /* Cool Paper White */
+  --color-surface: hsl(220, 20%, 99%);
+  /* Near White */
+  --color-surface-glass: hsla(220, 20%, 99%, 0.88);
+  /* Premium Glass */
 
-  --color-text-main: hsl(30, 20%, 15%);
-  /* Deep Espresso (Not Black) */
-  --color-text-muted: hsl(30, 10%, 45%);
-  /* Taupe */
-  --color-border: hsla(30, 20%, 15%, 0.1);
+  --color-text-main: hsl(220, 30%, 12%);
+  /* Near Black */
+  --color-text-muted: hsl(220, 10%, 42%);
+  /* Slate */
+  --color-border: hsla(220, 30%, 12%, 0.08);
+
+  /* Accent Colors */
+  --color-accent-gold: hsl(42, 85%, 55%);
+  /* Premium Gold */
 
   /* Typography - Fluid Scale */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -42,71 +46,74 @@
   --space-lg: 2.5rem;
   --space-xl: 4rem;
 
-  --shadow-sm: 0 2px 4px hsla(30, 20%, 10%, 0.05);
-  --shadow-lg: 0 15px 30px hsla(30, 20%, 10%, 0.08);
+  --shadow-sm: 0 2px 4px hsla(220, 20%, 10%, 0.05);
+  --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
+  --shadow-lg: 0 15px 30px hsla(220, 20%, 10%, 0.1);
   --blur-glass: blur(20px);
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
 
   /* Code / diagram container background */
-  --code-bg: hsl(35, 20%, 95%);
+  --code-bg: hsl(220, 18%, 13%);
 }
 
-/* Dark Mode - Mocha/Coffee/Gold */
+/* Dark Mode - Boardroom After Hours */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-brand: hsl(35, 80%, 65%);
-    /* Warm Gold/Amber for contrast */
-    --color-brand-dim: hsl(35, 50%, 50%);
-    --color-brand-glow: hsla(35, 80%, 65%, 0.2);
+    --color-brand: hsl(215, 75%, 65%);
+    /* Strategic Blue - lighter for dark bg contrast */
+    --color-brand-dim: hsl(215, 50%, 50%);
+    --color-brand-glow: hsla(215, 75%, 65%, 0.18);
 
-    --color-bg: hsl(30, 15%, 8%);
-    /* Deep Coffee Bean */
-    --color-surface: hsl(30, 15%, 12%);
-    /* Dark Mocha */
-    --color-surface-glass: hsla(30, 15%, 12%, 0.8);
+    --color-bg: hsl(220, 25%, 7%);
+    /* Deep Navy/Charcoal */
+    --color-surface: hsl(220, 20%, 11%);
+    /* Dark Slate */
+    --color-surface-glass: hsla(220, 20%, 11%, 0.85);
 
-    --color-text-main: hsl(35, 30%, 94%);
-    /* Warm White */
-    --color-text-muted: hsl(35, 15%, 70%);
-    /* Sand */
-    --color-border: hsla(35, 30%, 94%, 0.1);
+    --color-text-main: hsl(220, 20%, 94%);
+    /* Clean White */
+    --color-text-muted: hsl(220, 12%, 65%);
+    /* Silver */
+    --color-border: hsla(220, 20%, 94%, 0.08);
 
-    --code-bg: hsl(30, 15%, 14%);
+    --color-accent-gold: hsl(42, 80%, 60%);
+    --code-bg: hsl(220, 20%, 10%);
   }
 }
 
 /* Manual Toggle Overrides */
 [data-theme="dark"] {
-  --color-brand: hsl(35, 80%, 65%);
-  /* Warm Gold */
-  --color-brand-dim: hsl(35, 50%, 50%);
-  --color-brand-glow: hsla(35, 80%, 65%, 0.2);
+  --color-brand: hsl(215, 75%, 65%);
+  --color-brand-dim: hsl(215, 50%, 50%);
+  --color-brand-glow: hsla(215, 75%, 65%, 0.18);
 
-  --color-bg: hsl(30, 15%, 8%);
-  --color-surface: hsl(30, 15%, 12%);
-  --color-surface-glass: hsla(30, 15%, 12%, 0.8);
+  --color-bg: hsl(220, 25%, 7%);
+  --color-surface: hsl(220, 20%, 11%);
+  --color-surface-glass: hsla(220, 20%, 11%, 0.85);
 
-  --color-text-main: hsl(35, 30%, 94%);
-  --color-text-muted: hsl(35, 15%, 70%);
-  --color-border: hsla(35, 30%, 94%, 0.1);
+  --color-text-main: hsl(220, 20%, 94%);
+  --color-text-muted: hsl(220, 12%, 65%);
+  --color-border: hsla(220, 20%, 94%, 0.08);
 
-  --code-bg: hsl(30, 15%, 14%);
+  --color-accent-gold: hsl(42, 80%, 60%);
+  --code-bg: hsl(220, 20%, 10%);
 }
 
 [data-theme="light"] {
-  --color-brand: hsl(var(--hue-brand), 60%, 45%);
-  --color-brand-dim: hsl(var(--hue-brand), 40%, 60%);
-  --color-brand-glow: hsla(var(--hue-brand), 60%, 45%, 0.15);
+  --color-brand: hsl(215, 65%, 38%);
+  --color-brand-dim: hsl(215, 40%, 55%);
+  --color-brand-glow: hsla(215, 65%, 38%, 0.12);
 
-  --color-bg: hsl(35, 30%, 96%);
-  --color-surface: hsl(35, 30%, 98%);
-  --color-surface-glass: hsla(35, 30%, 98%, 0.85);
+  --color-bg: hsl(220, 20%, 97%);
+  --color-surface: hsl(220, 20%, 99%);
+  --color-surface-glass: hsla(220, 20%, 99%, 0.88);
 
-  --color-text-main: hsl(30, 20%, 15%);
-  --color-text-muted: hsl(30, 10%, 45%);
-  --color-border: hsla(30, 20%, 15%, 0.1);
+  --color-text-main: hsl(220, 30%, 12%);
+  --color-text-muted: hsl(220, 10%, 42%);
+  --color-border: hsla(220, 30%, 12%, 0.08);
 
-  --code-bg: hsl(35, 20%, 95%);
+  --color-accent-gold: hsl(42, 85%, 55%);
+  --code-bg: hsl(220, 18%, 13%);
 }

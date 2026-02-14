@@ -681,3 +681,108 @@
     font-size: 0.75rem;
   }
 }
+
+/* ============================================
+   CARE METHOD GRID (About Page)
+   ============================================ */
+
+.care-method-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.care-method-step {
+  background: var(--color-surface, var(--entry, #fff));
+  border: 1px solid var(--color-border, var(--tertiary, #e2e8f0));
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.care-method-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.care-method-step__letter {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.care-method-step--clarity .care-method-step__letter { color: hsl(215, 65%, 50%); }
+.care-method-step--alignment .care-method-step__letter { color: hsl(160, 55%, 40%); }
+.care-method-step--reality .care-method-step__letter { color: hsl(25, 75%, 50%); }
+.care-method-step--execution .care-method-step__letter { color: hsl(270, 55%, 50%); }
+
+[data-theme="dark"] .care-method-step--clarity .care-method-step__letter { color: hsl(215, 75%, 65%); }
+[data-theme="dark"] .care-method-step--alignment .care-method-step__letter { color: hsl(160, 60%, 55%); }
+[data-theme="dark"] .care-method-step--reality .care-method-step__letter { color: hsl(25, 80%, 60%); }
+[data-theme="dark"] .care-method-step--execution .care-method-step__letter { color: hsl(270, 60%, 65%); }
+
+.care-method-step__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-main, var(--primary, #0f172a));
+  margin-bottom: 0.35rem;
+}
+
+.care-method-step__desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted, var(--secondary, #475569));
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .care-method-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   STRATEGIC PARTNERSHIPS STRIP
+   ============================================ */
+
+.partnerships-strip {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.partnership-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, var(--secondary, #475569));
+  background: var(--color-surface, var(--entry, #fff));
+  border: 1px solid var(--color-border, var(--tertiary, #e2e8f0));
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.partnership-badge:hover {
+  border-color: var(--color-brand, var(--link, #1d4ed8));
+  color: var(--color-brand, var(--link, #1d4ed8));
+}
+
+.partnership-badge--primary {
+  border-color: var(--color-brand, var(--link, #1d4ed8));
+  color: var(--color-brand, var(--link, #1d4ed8));
+  font-weight: 600;
+  background: hsla(215, 65%, 38%, 0.04);
+}
+
+.partnership-badge strong {
+  font-weight: 700;
+  color: var(--color-brand, var(--link, #1d4ed8));
+}
+
+[data-theme="dark"] .partnership-badge--primary {
+  background: hsla(215, 75%, 65%, 0.06);
+}
