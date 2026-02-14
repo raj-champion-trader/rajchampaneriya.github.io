@@ -6,6 +6,9 @@ const swup = new Swup({
     cache: true
 });
 
+// Expose globally so module scripts (mermaid, etc.) can hook into page transitions
+window.swup = swup;
+
 // Navigation Active State Update
 function updateNav() {
     const path = window.location.pathname;

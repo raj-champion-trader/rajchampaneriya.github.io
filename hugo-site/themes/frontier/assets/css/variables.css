@@ -48,6 +48,9 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
+
+  /* Code / diagram container background */
+  --code-bg: hsl(35, 20%, 95%);
 }
 
 /* Dark Mode - Mocha/Coffee/Gold */
@@ -69,6 +72,8 @@
     --color-text-muted: hsl(35, 15%, 70%);
     /* Sand */
     --color-border: hsla(35, 30%, 94%, 0.1);
+
+    --code-bg: hsl(30, 15%, 14%);
   }
 }
 
@@ -86,6 +91,8 @@
   --color-text-main: hsl(35, 30%, 94%);
   --color-text-muted: hsl(35, 15%, 70%);
   --color-border: hsla(35, 30%, 94%, 0.1);
+
+  --code-bg: hsl(30, 15%, 14%);
 }
 
 [data-theme="light"] {
@@ -100,4 +107,6 @@
   --color-text-main: hsl(30, 20%, 15%);
   --color-text-muted: hsl(30, 10%, 45%);
   --color-border: hsla(30, 20%, 15%, 0.1);
+
+  --code-bg: hsl(35, 20%, 95%);
 }

@@ -1,9 +1,9 @@
-baseURL = 'https://rajc.work/'
+baseURL = 'https://next.rajc.work/'
 languageCode = 'en-us'
 title = 'rajc.work'
 theme = 'frontier'
-relativeURLs = false
-canonifyURLs = true
+relativeURLs = true
+canonifyURLs = false
 buildFuture = true
 enableRobotsTXT = true
 

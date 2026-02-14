@@ -10,17 +10,23 @@
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
     <meta name="theme-color" content="#0a0a0c"> <!-- Match Dark Mode BG -->
 
-    <!-- Fonts (Google Fonts: Inter & JetBrains Mono) -->
+    <!-- Fonts (Google Fonts: Inter & JetBrains Mono) - Non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Preconnect for Mermaid CDN (lazy-loaded on pages with diagrams) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- CSS (Hugo Pipes - Concatenation) -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
-    {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
+    {{ $mermaidCSS := resources.Get "css/extended/mermaid.css" }}
+    {{ $style := slice $vars $main $mermaidCSS | resources.Concat "css/style.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 </head>
 
@@ -122,7 +128,7 @@
                 </path>
             </svg>
             <span class="label">Audio</span>
-            </a>
+        </button>
             <a href="/about" class="nav-item {{ if eq .Section " about" }}active{{ end }}">
                 <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -142,159 +148,318 @@
     </button>
 
     <!-- Scripts -->
-    <!-- Swup for PWA Navigation -->
-    <script src="https://unpkg.com/swup@4"></script>
-    <script>
-        const swup = new Swup({
-            containers: ["#swup"],
-            cache: true,
-        });
-    </script>
+    {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
+    <script src="{{ $appJS.RelPermalink }}" defer></script>
 
-    {{ $swup := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
-    <script src="{{ $swup.RelPermalink }}" defer></script>
+    <!-- Mermaid v11 - Lazy loaded only when page has diagrams -->
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      // --- Scroll to Top ---
+      const initScrollToTop = () => {
+        const btn = document.getElementById('scrollToTop');
+        if (!btn) return;
+        const onScroll = () => btn.classList.toggle('visible', window.scrollY > 300);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      };
 
-        const config = {
-            startOnLoad: false, // We run manually
-            theme: 'base',
-            securityLevel: 'loose',
-            themeVariables: {
-                fontFamily: 'Inter, sans-serif',
-                primaryColor: '#e0e0e0',
-                primaryTextColor: '#333',
-                primaryBorderColor: '#333',
-                lineColor: '#555',
-                secondaryColor: '#f4f4f4',
-                tertiaryColor: '#fff',
-            },
+      // --- Semantic class color definitions (light/dark) ---
+      const semanticColors = {
+        dark: {
+          primary:   { fill: '#1e3a5f', stroke: '#60a5fa', strokeWidth: '2.5px', color: '#dbeafe' },
+          secondary: { fill: '#14532d', stroke: '#4ade80', strokeWidth: '2.5px', color: '#dcfce7' },
+          accent:    { fill: '#7c2d12', stroke: '#fb923c', strokeWidth: '2.5px', color: '#ffedd5' },
+          highlight: { fill: '#581c87', stroke: '#c084fc', strokeWidth: '2.5px', color: '#f3e8ff' },
+          danger:    { fill: '#7f1d1d', stroke: '#f87171', strokeWidth: '2.5px', color: '#fee2e2' },
+          neutral:   { fill: '#1e293b', stroke: '#94a3b8', strokeWidth: '2.5px', color: '#e2e8f0' }
+        },
+        light: {
+          primary:   { fill: '#dbeafe', stroke: '#2563eb', strokeWidth: '1.5px', color: '#1e40af' },
+          secondary: { fill: '#dcfce7', stroke: '#16a34a', strokeWidth: '1.5px', color: '#166534' },
+          accent:    { fill: '#ffedd5', stroke: '#ea580c', strokeWidth: '1.5px', color: '#9a3412' },
+          highlight: { fill: '#f3e8ff', stroke: '#9333ea', strokeWidth: '1.5px', color: '#6b21a8' },
+          danger:    { fill: '#fee2e2', stroke: '#dc2626', strokeWidth: '1.5px', color: '#991b1b' },
+          neutral:   { fill: '#f1f5f9', stroke: '#64748b', strokeWidth: '1.5px', color: '#334155' }
+        }
+      };
+
+      function applySemanticClassOverrides(container) {
+        const theme = document.documentElement.dataset.theme;
+        const isDark = theme === 'dark' ||
+                       (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const palette = isDark ? semanticColors.dark : semanticColors.light;
+        for (const [cls, colors] of Object.entries(palette)) {
+          container.querySelectorAll(`.node.${cls}`).forEach(node => {
+            node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
+              shape.style.setProperty('fill', colors.fill, 'important');
+              shape.style.setProperty('stroke', colors.stroke, 'important');
+              shape.style.setProperty('stroke-width', colors.strokeWidth, 'important');
+            });
+            node.querySelectorAll('.nodeLabel').forEach(label => {
+              label.style.setProperty('color', colors.color, 'important');
+              label.style.setProperty('fill', colors.color, 'important');
+            });
+          });
+        }
+      }
+
+      // --- Mermaid State ---
+      let mermaidModule = null;
+      let fullscreenDialog = null;
+      let currentZoom = 1;
+
+      function isDarkMode() {
+        const t = document.documentElement.dataset.theme;
+        return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+
+      function getMermaidConfig() {
+        const dark = isDarkMode();
+        return {
+          startOnLoad: false,
+          theme: 'base',
+          themeVariables: dark ? {
+            primaryColor: '#1168BD', primaryTextColor: '#ffffff',
+            primaryBorderColor: 'rgba(255,255,255,0.1)', lineColor: '#94A3B8',
+            secondaryColor: '#1E3A5F', tertiaryColor: 'rgba(255,255,255,0.04)',
+            noteBkgColor: '#2D2A1E', noteTextColor: '#E2E8F0', noteBorderColor: '#5C5630',
+            actorBkg: '#1168BD', actorTextColor: '#ffffff', actorBorder: 'rgba(255,255,255,0.1)',
+            signalColor: '#94A3B8', signalTextColor: '#94A3B8',
+            background: '#0F172A', mainBkg: '#1168BD',
+            nodeBorder: 'rgba(255,255,255,0.1)',
+            clusterBkg: 'rgba(255,255,255,0.04)', clusterBorder: '#667',
+            titleColor: '#94A3B8', edgeLabelBackground: '#0B1220',
+            fontFamily: 'Inter, system-ui, sans-serif'
+          } : {
+            primaryColor: '#438DD5', primaryTextColor: '#ffffff',
+            primaryBorderColor: 'rgba(0,0,0,0.15)', lineColor: '#475569',
+            secondaryColor: '#85BBF0', secondaryTextColor: '#334155',
+            tertiaryColor: 'rgba(0,0,0,0.03)', tertiaryTextColor: '#334155',
+            noteBkgColor: '#FFF8DC', noteTextColor: '#333333', noteBorderColor: '#D4C68A',
+            actorBkg: '#438DD5', actorTextColor: '#ffffff', actorBorder: 'rgba(0,0,0,0.15)',
+            signalColor: '#475569', signalTextColor: '#475569',
+            background: '#F8FAFC', mainBkg: '#438DD5',
+            nodeBorder: 'rgba(0,0,0,0.15)',
+            clusterBkg: 'rgba(0,0,0,0.04)', clusterBorder: '#94A3B8',
+            titleColor: '#334155', edgeLabelBackground: '#F8FAFC', textColor: '#334155',
+            fontFamily: 'Inter, system-ui, sans-serif'
+          },
+          securityLevel: 'loose',
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontSize: 13,
+          flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 15, nodeSpacing: 50, rankSpacing: 50, wrappingWidth: 200 },
+          sequence: { useMaxWidth: false, diagramMarginX: 50, diagramMarginY: 10, actorMargin: 80, width: 180, height: 65, boxMargin: 10, boxTextMargin: 5, noteMargin: 10, messageMargin: 40, mirrorActors: true, wrap: true, wrapPadding: 10 }
         };
+      }
 
-        mermaid.initialize(config);
+      // --- Fullscreen Dialog ---
+      function createFullscreenDialog() {
+        if (fullscreenDialog) return fullscreenDialog;
+        fullscreenDialog = document.createElement('div');
+        fullscreenDialog.className = 'mermaid-fullscreen-dialog';
+        fullscreenDialog.innerHTML = `
+          <div class="mermaid-fullscreen-header">
+            <div class="mermaid-fullscreen-title">Diagram Viewer</div>
+            <div class="mermaid-fullscreen-controls">
+              <div class="mermaid-zoom-controls">
+                <button class="mermaid-zoom-btn mermaid-zoom-out" title="Zoom Out (-)">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <span class="mermaid-zoom-level">100%</span>
+                <button class="mermaid-zoom-btn mermaid-zoom-in" title="Zoom In (+)">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="mermaid-zoom-btn mermaid-zoom-reset" title="Reset (0)">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                </button>
+              </div>
+              <button class="mermaid-fullscreen-close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Close
+              </button>
+            </div>
+          </div>
+          <div class="mermaid-fullscreen-content">
+            <div class="mermaid-fullscreen-content-inner"></div>
+          </div>`;
+        document.body.appendChild(fullscreenDialog);
 
-        const initMermaid = async () => {
-            // Transform Hugo code blocks
-            const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
-            if (codeBlocks.length === 0 && document.querySelectorAll('.mermaid').length === 0) return;
+        const contentInner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
+        const zoomLevel = fullscreenDialog.querySelector('.mermaid-zoom-level');
+        const fullscreenContent = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
 
-            codeBlocks.forEach(code => {
-                const pre = code.parentElement;
-                /* If pre is inside a div.highlight, we want to replace the outer div */
-                const container = pre.closest('.highlight') || pre;
+        function updateZoom(zoom) {
+          currentZoom = Math.max(0.25, Math.min(3, zoom));
+          contentInner.style.transform = `scale(${currentZoom})`;
+          zoomLevel.textContent = `${Math.round(currentZoom * 100)}%`;
+        }
 
-                const div = document.createElement('div');
-                div.className = 'mermaid';
-                div.textContent = code.textContent;
-                container.replaceWith(div);
-            });
+        fullscreenDialog.querySelector('.mermaid-zoom-in').addEventListener('click', () => updateZoom(currentZoom + 0.25));
+        fullscreenDialog.querySelector('.mermaid-zoom-out').addEventListener('click', () => updateZoom(currentZoom - 0.25));
+        fullscreenDialog.querySelector('.mermaid-zoom-reset').addEventListener('click', () => updateZoom(1));
 
-            try {
-                await mermaid.run({
-                    nodes: document.querySelectorAll('.mermaid')
-                });
-            } catch (e) { console.error('Mermaid error:', e); }
-        };
+        function closeDialog() {
+          fullscreenDialog.classList.remove('active');
+          document.body.style.overflow = '';
+          updateZoom(1);
+        }
 
-        // Fullscreen Logic
-        const openFullscreenMermaid = (container) => {
-            const originalSvg = container.querySelector('svg');
-            if (!originalSvg) return;
+        fullscreenDialog.querySelector('.mermaid-fullscreen-close').addEventListener('click', closeDialog);
+        fullscreenDialog.addEventListener('click', (e) => { if (e.target === fullscreenDialog) closeDialog(); });
 
-            const overlay = document.createElement('div');
-            overlay.className = 'mermaid-overlay glass-panel visible'; /* Force visible class directly */
-
-            const zoomContainer = document.createElement('div');
-            zoomContainer.className = 'mermaid-zoom-container';
-
-            const clonedSvg = originalSvg.cloneNode(true);
-            clonedSvg.removeAttribute('id'); // Avoid ID styling conflicts
-            clonedSvg.style.maxWidth = 'none';
-            clonedSvg.style.height = 'auto';
-
-            zoomContainer.appendChild(clonedSvg);
-            overlay.appendChild(zoomContainer);
-
-            const closeBtn = document.createElement('button');
-            closeBtn.className = 'mermaid-close-btn btn-icon';
-            closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            closeBtn.onclick = () => overlay.remove();
-            overlay.appendChild(closeBtn);
-
-            // Simple Drag/Zoom Implementation
-            let scale = 1, pointX = 0, pointY = 0, startX = 0, startY = 0, panning = false;
-
-            const update = () => {
-                zoomContainer.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
-            }
-
-            overlay.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const xs = (e.clientX - pointX) / scale;
-                const ys = (e.clientY - pointY) / scale;
-                const delta = -e.deltaY;
-                (delta > 0) ? (scale *= 1.1) : (scale /= 1.1);
-                pointX = e.clientX - xs * scale;
-                pointY = e.clientY - ys * scale;
-                update();
-            });
-
-            overlay.addEventListener('mousedown', (e) => {
-                if (e.target === closeBtn || closeBtn.contains(e.target)) return;
-                e.preventDefault();
-                startX = e.clientX - pointX;
-                startY = e.clientY - pointY;
-                panning = true;
-                overlay.style.cursor = 'grabbing';
-            });
-
-            overlay.addEventListener('mouseup', () => { panning = false; overlay.style.cursor = 'grab'; });
-            overlay.addEventListener('mousemove', (e) => {
-                if (!panning) return;
-                e.preventDefault();
-                pointX = e.clientX - startX;
-                pointY = e.clientY - startY;
-                update();
-            });
-
-            document.body.appendChild(overlay);
-        };
-
-        const initScrollToTop = () => {
-            const btn = document.getElementById('scrollToTop');
-            if (!btn) return;
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    btn.classList.add('visible');
-                } else {
-                    btn.classList.remove('visible');
-                }
-            });
-
-            btn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initMermaid();
-            initScrollToTop();
-
-            document.body.addEventListener('click', (e) => {
-                const target = e.target.closest('.mermaid');
-                if (target && !document.querySelector('.mermaid-overlay')) {
-                    openFullscreenMermaid(target);
-                }
-            });
-
-            if (window.swup) {
-                window.swup.hooks.on('page:view', () => {
-                    initMermaid();
-                    initScrollToTop(); // Re-bind on page nav
-                });
-            }
+        document.addEventListener('keydown', (e) => {
+          if (!fullscreenDialog.classList.contains('active')) return;
+          if (e.key === 'Escape') closeDialog();
+          if (e.key === '+' || e.key === '=') { e.preventDefault(); updateZoom(currentZoom + 0.25); }
+          if (e.key === '-' || e.key === '_') { e.preventDefault(); updateZoom(currentZoom - 0.25); }
+          if (e.key === '0') { e.preventDefault(); updateZoom(1); }
         });
+
+        // Drag to pan
+        let isDragging = false, dragStartX = 0, dragStartY = 0, scrollStartX = 0, scrollStartY = 0;
+
+        function onDragStart(e) {
+          if (e.target.closest('button')) return;
+          isDragging = true;
+          fullscreenContent.classList.add('is-dragging');
+          const pt = e.touches ? e.touches[0] : e;
+          dragStartX = pt.clientX; dragStartY = pt.clientY;
+          scrollStartX = fullscreenContent.scrollLeft; scrollStartY = fullscreenContent.scrollTop;
+          e.preventDefault();
+        }
+        function onDragMove(e) {
+          if (!isDragging) return;
+          const pt = e.touches ? e.touches[0] : e;
+          fullscreenContent.scrollLeft = scrollStartX - (pt.clientX - dragStartX);
+          fullscreenContent.scrollTop = scrollStartY - (pt.clientY - dragStartY);
+          e.preventDefault();
+        }
+        function onDragEnd() { isDragging = false; fullscreenContent.classList.remove('is-dragging'); }
+
+        fullscreenContent.addEventListener('mousedown', onDragStart);
+        document.addEventListener('mousemove', onDragMove);
+        document.addEventListener('mouseup', onDragEnd);
+
+        // Pinch-to-zoom
+        let pinchStartDist = 0, pinchStartZoom = 1;
+        const getTouchDist = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+
+        fullscreenContent.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 2) {
+            e.preventDefault(); isDragging = false; fullscreenContent.classList.remove('is-dragging');
+            pinchStartDist = getTouchDist(e.touches); pinchStartZoom = currentZoom;
+          } else if (e.touches.length === 1) { onDragStart(e); }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', (e) => {
+          if (e.touches.length === 2 && fullscreenDialog.classList.contains('active')) {
+            e.preventDefault(); updateZoom(pinchStartZoom * (getTouchDist(e.touches) / pinchStartDist));
+          } else if (e.touches.length === 1 && isDragging) { onDragMove(e); }
+        }, { passive: false });
+
+        document.addEventListener('touchend', (e) => {
+          if (e.touches.length < 2) pinchStartDist = 0;
+          if (e.touches.length === 0) onDragEnd();
+        });
+
+        return fullscreenDialog;
+      }
+
+      // --- Mermaid Init (lazy loads library) ---
+      async function initMermaid() {
+        const codeBlocks = document.querySelectorAll('pre > code.language-mermaid');
+        if (codeBlocks.length === 0) return; // Skip if no diagrams on page
+
+        // Lazy-load mermaid v11 only when needed
+        if (!mermaidModule) {
+          const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidModule = mermaid;
+        }
+
+        mermaidModule.initialize(getMermaidConfig());
+        createFullscreenDialog();
+
+        for (const [index, codeBlock] of [...codeBlocks].entries()) {
+          const pre = codeBlock.parentNode;
+          const highlight = pre.closest('.highlight');
+          const container = highlight || pre;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid-wrapper';
+
+          const diagramDiv = document.createElement('div');
+          diagramDiv.className = 'mermaid';
+
+          const fullscreenBtn = document.createElement('button');
+          fullscreenBtn.className = 'mermaid-fullscreen-btn';
+          fullscreenBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
+
+          try {
+            const id = `mermaid-diagram-${Date.now()}-${index}`;
+            const { svg } = await mermaidModule.render(id, codeBlock.textContent);
+            diagramDiv.innerHTML = svg;
+            applySemanticClassOverrides(diagramDiv);
+
+            // Find diagram title from nearest preceding heading
+            let diagramTitle = 'Diagram Viewer';
+            let prev = container.previousElementSibling;
+            while (prev) {
+              if (prev.tagName && /^H[1-6]$/.test(prev.tagName)) {
+                diagramTitle = prev.textContent.replace(/\s*#\s*$/, '').trim();
+                break;
+              }
+              prev = prev.previousElementSibling;
+            }
+
+            fullscreenBtn.addEventListener('click', () => {
+              const inner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
+              const title = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
+              const area = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
+              inner.innerHTML = svg;
+              applySemanticClassOverrides(inner);
+              title.textContent = diagramTitle;
+              fullscreenDialog.classList.add('active');
+              document.body.style.overflow = 'hidden';
+              currentZoom = 1;
+              inner.style.transform = 'scale(1)';
+              fullscreenDialog.querySelector('.mermaid-zoom-level').textContent = '100%';
+              if (area) { area.scrollLeft = 0; area.scrollTop = 0; }
+            });
+
+            wrapper.appendChild(fullscreenBtn);
+            wrapper.appendChild(diagramDiv);
+            container.replaceWith(wrapper);
+          } catch (error) {
+            console.error('Mermaid rendering error:', error);
+            diagramDiv.innerHTML = `<pre class="mermaid-error">Error rendering diagram: ${error.message}</pre>`;
+            wrapper.appendChild(diagramDiv);
+            container.replaceWith(wrapper);
+          }
+        }
+      }
+
+      // --- Bootstrap ---
+      document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+        initScrollToTop();
+      });
+
+      // Hook into Swup page transitions (app.js exposes window.swup)
+      function hookSwup(s) {
+        s.hooks.on('page:view', () => { initMermaid(); initScrollToTop(); });
+      }
+      if (window.swup) {
+        hookSwup(window.swup);
+      } else {
+        const waitId = setInterval(() => {
+          if (window.swup) { hookSwup(window.swup); clearInterval(waitId); }
+        }, 100);
+        setTimeout(() => clearInterval(waitId), 5000);
+      }
+
+      // Re-render mermaid on theme toggle (colors change)
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        setTimeout(() => location.reload(), 100);
+      });
     </script>
 </body>
 
