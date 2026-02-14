@@ -469,6 +469,11 @@
   margin: 0;
 }
 
+/* Double-click hint cursor on diagram SVG */
+.mermaid-wrapper .mermaid svg {
+  cursor: zoom-in;
+}
+
 .mermaid-fullscreen-btn {
   position: absolute;
   top: 10px;
@@ -607,6 +612,23 @@
 .mermaid-fullscreen-close svg {
   width: 16px;
   height: 16px;
+}
+
+/* Copy SVG button in fullscreen */
+.mermaid-copy-svg {
+  border: 1px solid var(--color-border, rgba(0,0,0,0.1)) !important;
+  gap: 6px !important;
+  padding: 6px 12px !important;
+}
+
+.mermaid-copy-svg svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mermaid-copy-label {
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .mermaid-fullscreen-content {

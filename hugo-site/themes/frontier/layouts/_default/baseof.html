@@ -272,6 +272,10 @@
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
                 </button>
               </div>
+              <button class="mermaid-zoom-btn mermaid-copy-svg" title="Copy diagram as SVG">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span class="mermaid-copy-label">Copy SVG</span>
+              </button>
               <button class="mermaid-fullscreen-close">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 Close
@@ -296,6 +300,29 @@
         fullscreenDialog.querySelector('.mermaid-zoom-in').addEventListener('click', () => updateZoom(currentZoom + 0.25));
         fullscreenDialog.querySelector('.mermaid-zoom-out').addEventListener('click', () => updateZoom(currentZoom - 0.25));
         fullscreenDialog.querySelector('.mermaid-zoom-reset').addEventListener('click', () => updateZoom(1));
+
+        // Copy SVG button
+        fullscreenDialog.querySelector('.mermaid-copy-svg').addEventListener('click', async () => {
+          const svgEl = contentInner.querySelector('svg');
+          if (!svgEl) return;
+          const svgData = new XMLSerializer().serializeToString(svgEl);
+          const copyLabel = fullscreenDialog.querySelector('.mermaid-copy-label');
+          try {
+            // Try copying as image first (works in Chromium)
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            await navigator.clipboard.write([new ClipboardItem({ 'text/plain': new Blob([svgData], { type: 'text/plain' }) })]);
+            copyLabel.textContent = 'Copied!';
+          } catch {
+            // Fallback: copy SVG markup as text
+            try {
+              await navigator.clipboard.writeText(svgData);
+              copyLabel.textContent = 'Copied!';
+            } catch {
+              copyLabel.textContent = 'Failed';
+            }
+          }
+          setTimeout(() => { copyLabel.textContent = 'Copy SVG'; }, 2000);
+        });
 
         function closeDialog() {
           fullscreenDialog.classList.remove('active');
@@ -361,10 +388,34 @@
           if (e.touches.length === 0) onDragEnd();
         });
 
+        // Mouse wheel scroll zoom
+        fullscreenContent.addEventListener('wheel', (e) => {
+          if (!fullscreenDialog.classList.contains('active')) return;
+          e.preventDefault();
+          const delta = e.deltaY > 0 ? -0.1 : 0.1;
+          updateZoom(currentZoom + delta);
+        }, { passive: false });
+
         return fullscreenDialog;
       }
 
       // --- Mermaid Init (lazy loads library) ---
+      function openFullscreen(svg, diagramTitle) {
+        const inner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
+        const title = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
+        const area = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
+        inner.innerHTML = svg;
+        applySemanticClassOverrides(inner);
+        title.textContent = diagramTitle;
+        fullscreenDialog.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        currentZoom = 1;
+        inner.style.transform = 'scale(1)';
+        fullscreenDialog.querySelector('.mermaid-zoom-level').textContent = '100%';
+        fullscreenDialog.querySelector('.mermaid-copy-label').textContent = 'Copy SVG';
+        if (area) { area.scrollLeft = 0; area.scrollTop = 0; }
+      }
+
       async function initMermaid() {
         const codeBlocks = document.querySelectorAll('pre > code.language-mermaid');
         if (codeBlocks.length === 0) return; // Skip if no diagrams on page
@@ -410,19 +461,17 @@
               prev = prev.previousElementSibling;
             }
 
+            // Store mermaid source for copy feature
+            diagramDiv.dataset.mermaidSource = codeBlock.textContent;
+
             fullscreenBtn.addEventListener('click', () => {
-              const inner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
-              const title = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
-              const area = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
-              inner.innerHTML = svg;
-              applySemanticClassOverrides(inner);
-              title.textContent = diagramTitle;
-              fullscreenDialog.classList.add('active');
-              document.body.style.overflow = 'hidden';
-              currentZoom = 1;
-              inner.style.transform = 'scale(1)';
-              fullscreenDialog.querySelector('.mermaid-zoom-level').textContent = '100%';
-              if (area) { area.scrollLeft = 0; area.scrollTop = 0; }
+              openFullscreen(svg, diagramTitle);
+            });
+
+            // Double-click on diagram also opens fullscreen
+            diagramDiv.addEventListener('dblclick', (e) => {
+              e.preventDefault();
+              openFullscreen(svg, diagramTitle);
             });
 
             wrapper.appendChild(fullscreenBtn);
