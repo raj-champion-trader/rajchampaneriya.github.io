@@ -293,6 +293,32 @@ a:hover {
     /* Float above */
 }
 
+.nav-item .icon {
+    opacity: 0.7;
+}
+
+.nav-item.active .icon {
+    opacity: 1;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--color-text-main);
+    background: var(--color-brand-glow);
+}
+
 .icon-fab {
     width: 56px;
     height: 56px;

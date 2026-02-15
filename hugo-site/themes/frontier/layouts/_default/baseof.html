@@ -10,6 +10,9 @@
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
     <meta name="theme-color" content="#0a0a0c"> <!-- Match Dark Mode BG -->
 
+    <!-- Prevent local network access prompts on iOS -->
+    <meta http-equiv="Permissions-Policy" content="local-network=()">
+
     <!-- Fonts (Google Fonts: Inter & JetBrains Mono) - Non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

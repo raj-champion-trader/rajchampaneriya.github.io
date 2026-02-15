@@ -23,12 +23,16 @@ function loadState() {
     const saved = localStorage.getItem('frontier_audio_state');
     if (saved) {
         const state = JSON.parse(saved);
-        if (state.src) {
+        if (state.src && state.visible && !state.paused) {
+            // Only restore if audio was actively playing (not just visible/paused)
             audio.src = state.src;
             audio.currentTime = state.currentTime;
             titleDisplay.textContent = state.title || 'Now Playing...';
-            if (state.visible) playerBar.classList.remove('hidden');
+            playerBar.classList.remove('hidden');
             // Don't auto-play on load to avoid browser policies blocking
+        } else {
+            // Keep player hidden — no active audio
+            playerBar.classList.add('hidden');
         }
     }
 }

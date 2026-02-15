@@ -6,9 +6,9 @@ description: "IBM Enterprise Architect specializing in high-stakes Fortune 500 t
 <div class="about-intro">
 <div class="about-intro-text">
 
-I'm **Raj Champaneriya** — an **IBM Enterprise Architect** who protects technology leaders through high-stakes transformations. I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, architect platforms that deliver 99.95% uptime SLAs, and build teams that ship without career-damaging failures.
+I'm **Raj Champaneriya** — an **IBM Enterprise Architect** who protects technology leaders through high-stakes digital transformations.
 
-Over **13+ years across 4 Fortune 500 industries** — **Healthcare**, **Property Insurance**, **Media & Entertainment**, and **Logistics** — I've led architecture and delivery for complex enterprise transformations, turning technical debt into scalable, cost-efficient platforms with measurable ROI.
+I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, architect platforms that deliver **99.95% uptime SLAs**, and build teams that ship without career-damaging failures — across **13+ years and 4 Fortune 500 industries**.
 
 > Enterprise architecture should protect careers and accelerate transformations — not just solve technical problems.
 
@@ -20,13 +20,11 @@ Over **13+ years across 4 Fortune 500 industries** — **Healthcare**, **Propert
 </div>
 </div>
 
-My work sits at the intersection of strategic architecture, business alignment, and delivery excellence: I translate business goals into technical reality, mentor engineering teams through complex transformations, and ensure architectural governance scales alongside the organizations I serve.
-
 ---
 
-## How I Work — The CARE Architecture Method
+## The CARE Architecture Method
 
-I follow **The CARE Architecture Method** — a proven framework for navigating high-stakes enterprise transformations. Every engagement is structured to protect careers while accelerating outcomes:
+Every high-stakes transformation I lead follows a proven framework:
 
 <div class="process-flow">
   <div class="process-step process-step--blue">
@@ -56,23 +54,7 @@ I follow **The CARE Architecture Method** — a proven framework for navigating 
 
 ---
 
-## Strategic Leadership
-
-### Translating Business Goals into Technical Reality
-
-I bridge the gap between executive vision and engineering execution — presenting architecture trade-offs in boardroom language that resonates with both the C-suite and the engineers building it. From stakeholder alignment sessions to sprint planning, I ensure technical decisions map directly to business outcomes and career protection for technology leaders.
-
-### Stakeholder Alignment & Governance
-
-Enterprise architecture is 50% communication. I facilitate architectural review boards, build consensus across business units, establish governance frameworks that enable (not impede) delivery, and maintain strategic alignment between distributed teams operating at different velocities. My approach to strategic de-risking has protected multi-million dollar investment decisions.
-
-### Building Architecture Capability at Scale
-
-I've mentored **15+ junior architects and engineers — 85% promoted to senior roles within 18 months**. I build architecture capability within organizations, not just architecture artifacts. Teams I've led have delivered six-figure cost reductions and zero critical production defects across multi-year engagements.
-
----
-
-## What I Help Organizations Do
+## What I Deliver
 
 <div class="capability-tree">
   <div class="capability-root capability-root--blue">Enterprise Architecture</div>
@@ -106,21 +88,11 @@ I've mentored **15+ junior architects and engineers — 85% promoted to senior r
       <div class="capability-leaves">
         <span class="capability-leaf capability-leaf--blue">ADRs & HLDs</span>
         <span class="capability-leaf capability-leaf--blue">Cross-Functional Teams</span>
-        <span class="capability-leaf capability-leaf--blue">Dev Prodcutivity</span>
+        <span class="capability-leaf capability-leaf--blue">Dev Productivity</span>
       </div>
     </div>
   </div>
 </div>
-
-**Modernize Legacy Systems at Scale** — Migrate monolithic codebases (VB6, legacy .NET, Java) to cloud-native architectures using Strangler-Fig, DDD, and Clean Architecture — with zero-downtime cutovers and measurable ROI.
-
-**Architect Cloud-Native Platforms** — Design high-availability, cost-optimized platforms on Azure and AWS — spanning containerized microservices, event-driven architectures, API governance, and infrastructure engineering.
-
-**Build Applied AI Systems** — Deliver production-grade AI solutions including conversational BI platforms, RAG pipelines, knowledge-graph-powered discovery tools — focused on accuracy, explainability, and enterprise trust.
-
-**Accelerate Technical Decision-Making** — Validate architectural direction through rapid prototyping, POCs, and structured decision frameworks (ADRs, HLDs) — helping leadership move from ambiguity to committed investment faster.
-
-**Drive Delivery Excellence** — Lead cross-functional engineering teams through complex, multi-year engagements with on-time delivery, zero critical production defects, and sustained sprint velocity.
 
 ---
 
@@ -128,8 +100,8 @@ I've mentored **15+ junior architects and engineers — 85% promoted to senior r
 
 <div class="impact-grid">
   <div class="impact-card impact-card--blue">
-    <div class="impact-card__number">37.5%</div>
-    <div class="impact-card__label">Faster Proposals</div>
+    <div class="impact-card__number">$8M+</div>
+    <div class="impact-card__label">Zero-Downtime Modernization</div>
   </div>
   <div class="impact-card impact-card--green">
     <div class="impact-card__number">40%</div>
@@ -140,36 +112,26 @@ I've mentored **15+ junior architects and engineers — 85% promoted to senior r
     <div class="impact-card__label">AI Queries / Month</div>
   </div>
   <div class="impact-card impact-card--orange">
-    <div class="impact-card__number">Zero</div>
-    <div class="impact-card__label">Downtime Migration</div>
-  </div>
-  <div class="impact-card impact-card--green">
     <div class="impact-card__number">99.95%</div>
     <div class="impact-card__label">Uptime SLA</div>
   </div>
-  <div class="impact-card impact-card--blue">
+  <div class="impact-card impact-card--green">
     <div class="impact-card__number">87%</div>
     <div class="impact-card__label">Faster API Response</div>
   </div>
-  <div class="impact-card impact-card--purple">
-    <div class="impact-card__number">75%</div>
-    <div class="impact-card__label">Less Support Time</div>
-  </div>
-  <div class="impact-card impact-card--orange">
+  <div class="impact-card impact-card--blue">
     <div class="impact-card__number">85%</div>
     <div class="impact-card__label">Mentee Promotions</div>
   </div>
 </div>
 
-Selected outcomes from enterprise engagements:
+Selected outcomes:
 
-- **37.5% faster proposal cycles** — AI-powered discovery platform compressing modernization assessment from 8 days to 5, enabling a $15M+ engagement pipeline
-- **40% infrastructure cost reduction** — Kubernetes-based containerization saving $90K+ annually, improving deployment frequency from monthly to weekly
-- **10,000+ monthly AI-powered queries** — Conversational BI platform reducing reporting turnaround from 48 hours to near real-time, increasing executive adoption from 40% to 85%
-- **Zero-downtime legacy migration** — $8M modernization of 150K+ line VB6 healthcare system to cloud-native .NET microservices for 500+ daily clinical users
-- **99.95% uptime SLA** — API platforms handling 50,000+ daily transactions for a $5B+ premium processing operation
-- **87% API response time improvement** — CQRS-based microservices supporting 5x traffic growth without infrastructure expansion
-- **75% reduction in support processing time** — AI-infused multilingual ticket platform processing 50,000+ monthly tickets across 15 languages
+- **$8M zero-downtime modernization** — 150K+ line VB6 healthcare system to cloud-native .NET microservices for 500+ daily clinical users
+- **40% infrastructure cost reduction** — Kubernetes containerization saving $90K+ annually
+- **10,000+ monthly AI queries** — Conversational BI platform reducing reporting from 48 hours to near real-time
+- **99.95% uptime SLA** — API platforms handling 50,000+ daily transactions for $5B+ premium processing
+- **85% mentee promotion rate** — 15+ architects and engineers mentored to senior roles within 18 months
 
 ---
 
@@ -184,18 +146,16 @@ Selected outcomes from enterprise engagements:
       <span class="tech-pill">Kubernetes</span>
       <span class="tech-pill">Docker</span>
       <span class="tech-pill">Terraform</span>
-      <span class="tech-pill">GitHub Actions</span>
     </div>
   </div>
   <div class="tech-category tech-category--orange">
-    <div class="tech-category__title">Architecture & Design</div>
+    <div class="tech-category__title">Architecture</div>
     <div class="tech-category__pills">
       <span class="tech-pill">Microservices</span>
       <span class="tech-pill">DDD</span>
       <span class="tech-pill">Event-Driven</span>
       <span class="tech-pill">CQRS</span>
       <span class="tech-pill">Clean Architecture</span>
-      <span class="tech-pill">API-First</span>
     </div>
   </div>
   <div class="tech-category tech-category--purple">
@@ -203,7 +163,6 @@ Selected outcomes from enterprise engagements:
     <div class="tech-category__pills">
       <span class="tech-pill">Azure OpenAI</span>
       <span class="tech-pill">Semantic Kernel</span>
-      <span class="tech-pill">LangGraph</span>
       <span class="tech-pill">RAG Pipelines</span>
       <span class="tech-pill">Knowledge Graphs</span>
       <span class="tech-pill">Databricks</span>
@@ -215,102 +174,42 @@ Selected outcomes from enterprise engagements:
       <span class="tech-pill">.NET/C#</span>
       <span class="tech-pill">Python</span>
       <span class="tech-pill">TypeScript</span>
-      <span class="tech-pill">Java</span>
       <span class="tech-pill">React</span>
-      <span class="tech-pill">Vue.js</span>
-    </div>
-  </div>
-  <div class="tech-category tech-category--gray">
-    <div class="tech-category__title">Data & Observability</div>
-    <div class="tech-category__pills">
-      <span class="tech-pill">SQL Server</span>
-      <span class="tech-pill">PostgreSQL</span>
-      <span class="tech-pill">Cosmos DB</span>
-      <span class="tech-pill">MongoDB</span>
-      <span class="tech-pill">Redis</span>
-      <span class="tech-pill">OpenTelemetry</span>
-      <span class="tech-pill">Grafana</span>
+      <span class="tech-pill">Java</span>
     </div>
   </div>
 </div>
 
 ---
 
-## The CARE Architecture Method
+## Credentials
 
-Every high-stakes transformation I lead follows **The CARE Architecture Method** — a proven framework for navigating enterprise complexity while protecting stakeholder careers:
+**Certifications**
+- Microsoft Azure AI Engineer Associate (AI-102)
+- AWS Certified Solutions Architect — Associate
+- Microsoft Specialist — Programming in C#
 
-<div class="care-method-grid">
-  <div class="care-method-step care-method-step--clarity">
-    <div class="care-method-step__letter">C</div>
-    <div class="care-method-step__title">Clarity</div>
-    <div class="care-method-step__desc">Decompose ambiguity into actionable architecture decisions. Every stakeholder understands what we're building, why, and what the risks are — before a single line of code is written.</div>
-  </div>
-  <div class="care-method-step care-method-step--alignment">
-    <div class="care-method-step__letter">A</div>
-    <div class="care-method-step__title">Alignment</div>
-    <div class="care-method-step__desc">Map technical direction to business outcomes and stakeholder priorities. Architecture decisions are presented in boardroom language, not just engineering jargon.</div>
-  </div>
-  <div class="care-method-step care-method-step--reality">
-    <div class="care-method-step__letter">R</div>
-    <div class="care-method-step__title">Reality</div>
-    <div class="care-method-step__desc">Validate with prototypes, POCs, and structured decision frameworks (ADRs, HLDs). Leadership moves from ambiguity to committed investment faster.</div>
-  </div>
-  <div class="care-method-step care-method-step--execution">
-    <div class="care-method-step__letter">E</div>
-    <div class="care-method-step__title">Execution</div>
-    <div class="care-method-step__desc">Deliver through cross-functional engineering teams with on-time delivery, zero critical production defects, and sustained sprint velocity.</div>
-  </div>
-</div>
-
----
-
-## Strategic Partnerships
+**Strategic Partnerships**
 
 <div class="partnerships-strip">
   <div class="partnership-badge partnership-badge--primary">
-    <strong>IBM</strong> — Enterprise Architecture & Delivery
+    <strong>IBM</strong> — Enterprise Architecture
   </div>
   <div class="partnership-badge">
-    <strong>Microsoft Azure</strong> — Cloud Platform & AI
+    <strong>Microsoft Azure</strong> — Cloud & AI
   </div>
   <div class="partnership-badge">
-    <strong>AWS</strong> — Cloud Infrastructure
+    <strong>AWS</strong> — Infrastructure
   </div>
 </div>
 
----
-
-## Professional Development
-
-### Certifications
-- Microsoft Azure AI Engineer Associate (AI-102)
-- AWS Certified Solutions Architect – Associate
-- Microsoft Specialist – Programming in C#
-
-### Architecture Mentoring & Team Building
-- **85% mentee promotion rate** — 15+ junior architects and engineers mentored to senior roles within 18 months
-- Technical training facilitator for database engineering programs — 40-hour curriculum with **90% placement outcomes**
-- Guest lecturer on Machine Learning fundamentals at MVJ College of Engineering, Bangalore — workshop for **150+ engineering students**
-- Active mentor on cloud architecture, microservices, and AI system design — building architecture capability within organizations, not just architecture artifacts
-
-### Education
-- M.Sc. Information Technology · B.Sc. Information Technology
-
----
-
-## Credentials & Community
-
-**Industry Recognition**
-- Less than 1% of enterprise architects deliver $8M+ zero-downtime modernizations
-- Fortune 500 clients across 4 industry verticals represent elite-tier engagement
-- 99.95% uptime SLA and 85% mentee promotion rate are exceptional performance markers
+**Education** — M.Sc. Information Technology · B.Sc. Information Technology
 
 ---
 
 ## Let's Discuss Your Architecture
 
-Whether you're navigating a high-stakes modernization, evaluating cloud strategy for a seven-figure decision, or exploring how AI fits into your enterprise platform — I'm always open to strategic conversations.
+Whether you're navigating a high-stakes modernization or evaluating cloud strategy for a seven-figure decision — I'm always open to strategic conversations.
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
