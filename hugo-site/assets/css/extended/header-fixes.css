@@ -1,30 +1,34 @@
 /* Header fixes — keep site title and theme-toggle icon on the SAME ROW
    - Scoped site-level override (safe for theme upgrades)
-   - Ensures title + theme icon stay horizontally aligned and vertically centered
+   - Prevent horizontal overflow while keeping title + theme toggle inline
 */
 
 .site-header .header-inner {
   display: flex !important;
   align-items: center !important;
-  justify-content: center; /* keep title visually centered */
+  justify-content: center; /* visual centering on most viewports */
   gap: 0.5rem;
-  column-gap: var(--gap);
-  flex-wrap: nowrap !important; /* prevent wrapping/stacking */
+  column-gap: 0.5rem; /* keep small gap here to avoid large viewport gaps */
+  flex-wrap: nowrap; /* prefer single row */
+  min-width: 0; /* allow children to shrink (prevents overflow) */
+  padding-inline: 0.5rem;
+  box-sizing: border-box;
 }
 
-/* Keep the textual site logo compact and prevent line breaks */
+/* Allow the logo to shrink and prevent it from forcing overflow */
 .site-header .header-inner .logo {
   display: inline-flex !important;
   align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(100% - 56px); /* reserve space for the toggle */
+  max-width: calc(100% - 56px); /* reserve room for the toggle */
+  min-width: 0; /* allow shrinking in flex container */
   margin: 0;
   flex-shrink: 1;
 }
 
-/* Position theme toggle inline with the title (no wrap) */
+/* Theme toggle stays inline and won't shrink */
 .site-header .header-inner #theme-toggle {
   margin-left: 0.5rem;
   display: inline-flex;
@@ -32,7 +36,16 @@
   flex-shrink: 0;
 }
 
-/* Small screens: allow title to shrink so toggle stays on the same row */
-@media screen and (max-width:480px) {
-  .site-header .header-inner .logo { max-width: calc(100% - 48px); }
+/* Very small screens: allow wrapping so nothing escapes viewport */
+@media screen and (max-width:420px) {
+  .site-header .header-inner {
+    justify-content: center;
+    flex-wrap: wrap; /* let the toggle drop to next line if needed */
+    gap: 0.25rem;
+  }
+  .site-header .header-inner .logo { max-width: 100%; }
+  .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: 6px; }
 }
+
+/* Safety guard: prevent header from creating page-level horizontal scroll */
+.site-header, .site-header .container { overflow-x: hidden; }
