@@ -1,0 +1,38 @@
+/* Header fixes — keep site title and theme-toggle icon on the SAME ROW
+   - Scoped site-level override (safe for theme upgrades)
+   - Ensures title + theme icon stay horizontally aligned and vertically centered
+*/
+
+.site-header .header-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center; /* keep title visually centered */
+  gap: 0.5rem;
+  column-gap: var(--gap);
+  flex-wrap: nowrap !important; /* prevent wrapping/stacking */
+}
+
+/* Keep the textual site logo compact and prevent line breaks */
+.site-header .header-inner .logo {
+  display: inline-flex !important;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 56px); /* reserve space for the toggle */
+  margin: 0;
+  flex-shrink: 1;
+}
+
+/* Position theme toggle inline with the title (no wrap) */
+.site-header .header-inner #theme-toggle {
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Small screens: allow title to shrink so toggle stays on the same row */
+@media screen and (max-width:480px) {
+  .site-header .header-inner .logo { max-width: calc(100% - 48px); }
+}
