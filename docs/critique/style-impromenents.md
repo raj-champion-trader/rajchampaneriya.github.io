@@ -1,250 +1,311 @@
-## Styling critique & improvement guide
+# Styling Critique & Improvement Guide
 
-This document reviews how styles are currently managed in the Hugo site and outlines improvements with a focus on:
+**Role:** Experienced frontend developer specializing in contemporary Apple Glass design aesthetics.
 
-- **Code maintainability**
-- **Performance optimization**
-- **User experience across mobile/desktop and light/dark modes**
+This document reviews how styles are managed in the **rajc.work** Hugo site and delivers practical feedback across three priorities:
 
-The design direction assumes a contemporary, Apple Glass–inspired aesthetic: calm, high-clarity interfaces with restrained motion, depth through soft elevation and translucency, and excellent readability on modern mobile devices.
+1. **Code maintainability**
+2. **Performance optimization**
+3. **User experience** (mobile-first + desktop, light + dark themes)
 
----
-
-## 1. Current styling approach (snapshot)
-
-- **Design tokens** live in `themes/PaperMod/assets/css/core/theme-vars.css` using CSS custom properties on `:root` and `:root[data-theme="dark"]`:
-  - Layout: `--gap`, `--content-gap`, `--main-width`, `--header-height`, `--footer-height`, `--radius`
-  - Color: `--theme`, `--entry`, `--primary`, `--secondary`, `--tertiary`, `--content`, `--code-block-bg`, `--code-bg`, `--border`
-  - Theme metadata: `color-scheme: light|dark`
-- **Layout and shared components** are primarily in `themes/PaperMod/assets/css/common/*.css` (e.g. `main.css` for `.main`, pagination, social icons).
-- **Responsive adjustments** are in `themes/PaperMod/assets/css/core/zmedia.css` (breakpoints at `max-width: 768px`, `900px`, `340px`).
-- **Site-specific and visual polish styles** live in `hugo-site/assets/css/extended/*.css` (e.g. `animations.css`, `premium-hero.css`, `profile-layout.css`).
-- **Animations and interaction** are centralized in `hugo-site/assets/css/extended/animations.css`, with explicit `prefers-reduced-motion` support.
-
-Overall this is a solid starting architecture: tokens for theme and layout, core vs extended CSS, and a single place for motion and responsive tweaks.
+The design direction assumes an Apple Glass–inspired aesthetic: calm interfaces, restrained motion, depth through soft elevation and translucency, and excellent readability for modern mobile-first users and traditional desktop blog readers.
 
 ---
 
-## 2. Code maintainability
+## 1. Current Styling Architecture (Actual State)
 
-### 2.1. Clarify a design-token hierarchy
+> **Important:** The site uses the **Frontier** theme (`hugo.toml`: `theme = 'frontier'`), not PaperMod. All analysis below reflects the Frontier-based stack.
 
-**Issue:** Tokens exist but their intended usage is not documented. This makes it easy for contributors to fall back to hard-coded values, especially when introducing Apple Glass–style surfaces (blur, translucency, elevation).
+### 1.1 CSS Loading Order
 
-**Guideline:**
+| Bundle             | Contents                                     | Source                           |
+| ------------------ | -------------------------------------------- | -------------------------------- |
+| `style.css`        | `variables.css` + `main.css` + `mermaid.css` | Theme + project assets           |
+| `extended-all.css` | All `css/extended/*.css`                     | `hugo-site/assets/css/extended/` |
 
-- **Level 1 – Core tokens (global):**
-  - Layout: `--gap`, `--content-gap`, `--header-height`, `--footer-height`, `--radius`
-  - Color: `--theme`, `--entry`, `--primary`, `--secondary`, `--tertiary`, `--content`, `--border`, `--code-bg`, `--code-block-bg`
-- **Level 2 – Component tokens (derived):**
-  - Buttons: `--button-bg`, `--button-fg`, `--button-border`, `--button-radius`
-  - Cards: `--card-bg`, `--card-border`, `--card-radius`
-  - Navigation: `--nav-bg`, `--nav-border`, `--nav-height`
-  - Glass surfaces: `--glass-surface-bg`, `--glass-surface-border`, `--glass-surface-blur`
+**Issue:** `mermaid.css` is loaded **twice**—once in `style.css` and again in `extended-all.css` (it lives in `extended/`). This duplicates ~700+ lines of Mermaid styling and can cause specificity conflicts.
 
-**Actionable rule for contributors:**
+**Recommendation:** Remove `mermaid.css` from the `style.css` concat in `baseof.html`. Load it only via `extended-all.css`.
 
-- **Do not** hard‑code colors, radii, spacing, or shadows in new components.
-- **Do** extend from existing tokens in `theme-vars.css` or from documented component tokens above.
-- When adding a new recurring visual pattern, first add or reference a token; only then implement the CSS.
+### 1.2 Design Token Systems (Dual Systems)
 
-### 2.2. Enforce clear file boundaries
+The codebase has **two parallel token systems** that are not unified:
 
-**Issue:** The actual structure is logical (core vs common vs extended), but there is no written contract describing what belongs where. Over time, this risks “CSS sprawl”.
+- **Frontier (HSL)** — `themes/frontier/assets/css/variables.css`  
+  Tokens: `--color-bg`, `--color-surface-glass`, `--color-text-main`, `--space-*`, `--text-*`, `--shadow-*`, `--radius-*`  
+  Used by: `main.css`, `premium-hero.css`, `about-page.css`, Frontier layouts
+
+- **Enterprise (hex)** — `hugo-site/assets/css/extended/enterprise.css`  
+  Tokens: `--theme`, `--entry`, `--primary`, `--secondary`, `--tertiary`, `--content`, `--link`, `--blue-bg`, `--blue-border`  
+  Used by: `enterprise.css` internals, some extended overrides
+
+**Implications:**
+
+- Frontier uses fluid typography (`clamp()` for `--text-xs` through `--text-3xl`) and HSL-based theming—strong foundation.
+- `enterprise.css` overrides `:root` and `:root[data-theme="dark"]` with hex values. These tokens (`--theme`, `--entry`, etc.) are not used by Frontier’s core layout; they appear to support legacy or mixed components.
+- Contributors may not know which system to use, leading to hard-coded values and inconsistency.
+
+### 1.3 Theme Switching
+
+- **Frontier** (`variables.css`): `@media (prefers-color-scheme: dark)` + `[data-theme="dark"]` / `[data-theme="light"]` overrides.
+- **JS** (`themes/frontier/assets/js/app.js`): Reads `localStorage`, respects `prefers-color-scheme`, sets `document.documentElement.setAttribute('data-theme', theme)`.
+- **Extended CSS** (`enterprise.css`, `mermaid.css`, `premium-hero.css`, `about-page.css`): All use `[data-theme="dark"]` for dark-mode overrides. `mermaid.css` also has `@media (prefers-color-scheme: dark)` fallback for FOUC prevention.
+
+Light and dark themes are well-supported; the main risk is token fragmentation between the two systems.
+
+### 1.4 Glass Implementation (Current)
+
+`.glass-panel` is defined in `themes/frontier/assets/css/main.css`:
+
+```css
+.glass-panel {
+    background: var(--color-surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+```
+
+**Usage (from layouts):**
+
+- `site-header` (top bar)
+- `player-bar` (audio player, when visible)
+- `ai-chat-panel` (chat, when visible)
+- `bottom-nav` (floating pill nav)
+- `hero-premium__card`, `care-teaser`, `feed-card` (homepage)
+- `post-content`, `page-content` (list/single pages)
+
+**Count:** On the homepage, **5+ glass surfaces** are visible at once (header + bottom nav + hero card + care teaser + feed cards). On blog list/single pages, header + bottom nav + content cards. This exceeds the 1–2 glass layer limit for mobile performance.
+
+### 1.5 Responsive Breakpoints
+
+- `frontier/main.css` — `max-width: 375px` only (iPhone SE–sized devices)
+- `frontier/variables.css` — `prefers-color-scheme: dark` (theme only)
+
+There is **no tablet or desktop-specific layout** in Frontier’s core CSS. The layout is mobile-first by default (single column, bottom nav), but there are no `min-width` enhancements for larger screens. Extended CSS (e.g. `premium-hero.css`, `about-page.css`) adds ad-hoc breakpoints.
+
+---
+
+## 2. Code Maintainability
+
+### 2.1 Unify Token Systems
+
+**Issue:** Two token systems (Frontier HSL vs enterprise hex) create confusion and encourage hard-coded values.
+
+**Recommendation:**
+
+1. **Adopt Frontier as the canonical system** for new work. Use `--color-*`, `--space-*`, `--text-*`, `--shadow-*`, `--radius-*` from `variables.css`.
+2. **Migrate `enterprise.css`** to derive from Frontier tokens (map `--theme` → `var(--color-bg)`, `--entry` → `var(--color-surface)`, etc.).
+3. **Add a token reference** in `docs/plans/brand-guidelines.md` so contributors know which tokens exist and when to add new ones.
+
+### 2.2 File Boundaries
+
+**Current structure:**
+
+- `themes/frontier/assets/css/`: `variables.css`, `main.css` (theme core)
+- `hugo-site/assets/css/extended/`: 12 files (enterprise, mermaid, premium-hero, about-page, blog-filter, profile-layout, featured-project, animations, diagrams, header-fixes, menu-separator, post-meta)
 
 **Proposed contract:**
 
-- `themes/PaperMod/assets/css/core/`
-  - Resets, global tokens, base typography, media query utilities.
-- `themes/PaperMod/assets/css/common/`
-  - Reusable components shared across pages: header, footer, post cards, pagination, search, profile mode, archives.
-- `hugo-site/assets/css/extended/`
-  - Site‑specific compositions and marketing layouts: premium hero, about page, featured projects, blog filter, **Apple Glass–inspired visual polish** (e.g. special hero glass surface).
+- `frontier/assets/css/` — Theme primitives: tokens, reset, base layout, shared components
+- `assets/css/extended/` — Site-specific: marketing layouts, Mermaid, enterprise overrides, polish
 
-**Actionable rule:**
+**Rule:** Reusable styles belong in the theme. Site-specific styles stay in `extended/`.
 
-- If it’s **reused across multiple templates or sections**, it belongs in `common/`.
-- If it’s **specific to this site’s branding or one template**, it belongs in `extended/`.
+### 2.3 Fix Duplicate Mermaid Load
 
-### 2.3. Normalize naming for motion and interaction
+Remove `$mermaidCSS` from the `style.css` concat in `baseof.html`. Mermaid styles will load once via `extended-all.css`.
 
-**Issue:** `animations.css` mixes component-specific selectors (e.g. `.profile-image`, `.post-entry-horizontal`) with behavior-based ones (`.top-link`, `#theme-toggle`), but there is no shared naming pattern for motion.
+### 2.4 Bug: Invalid `rgba()` in Mermaid Overlay
 
-**Guideline:**
+In `main.css` (around line 483):
 
-- Prefer **behavioral class names** where feasible:
-  - `.lift-on-hover`, `.fade-in`, `.fade-in-up`, `.underline-on-hover`
-  - Use component selectors only when that behavior is unique to a component.
-- Define a **micro-interaction scale**:
-  - `--transition-fast: 0.18s ease-out;`
-  - `--transition-medium: 0.25s ease-out;`
-  - `--transition-slow: 0.35s ease-out;`
-- Use these consistently:
-  - Hover effects → `--transition-fast`
-  - Simple appearance / fade‑in → `--transition-medium`
-  - Large layout shifts (rare) → `--transition-slow`
+```css
+.mermaid-overlay {
+    background: rgba(var(--color-bg), 0.95);
+    ...
+}
+```
 
-This keeps motion behavior predictable and easier to refactor.
+`--color-bg` is `hsl(220, 25%, 7%)`, not RGB components. `rgba(var(--color-bg), 0.95)` is invalid and will not work as intended.
 
----
+**Fix:** Define a theme-aware overlay token in `variables.css` and use it. `color-mix` with transparent alters saturation/brightness, not just opacity.
 
-## 3. Performance optimization
+In `variables.css`, add:
 
-### 3.1. Glass / blur as a performance budget
+```css
+:root {
+  --overlay-bg: hsl(220 20% 97% / 0.95);  /* light */
+}
+[data-theme="dark"] {
+  --overlay-bg: hsl(220 25% 7% / 0.95);   /* dark */
+}
+```
 
-Apple Glass–style design often implies translucent surfaces and `backdrop-filter: blur(...)`. These are visually powerful but **expensive**, especially on mobile Safari.
+In `main.css`:
 
-**Guideline:**
-
-- Treat blur and heavy translucency as a **scarce resource**:
-  - Limit to **1–2 glass surfaces per viewport** (e.g. main navigation bar + primary hero card).
-  - Avoid stacking multiple blurred layers (e.g. glass nav over glass banner over glass cards).
-- Provide **fallback surfaces**:
-  - For browsers that don’t support `backdrop-filter` or where performance is poor, use a semi‑opaque background token (e.g. `--card-bg`) with a subtle border.
-- Centralize glass styles:
-  - Introduce a `.glass-surface` utility in `extended/`:
-    - Handles background, blur, borders, and shadows using tokens.
-    - Component classes (`.glass-nav`, `.glass-card`) extend from this utility rather than re‑implementing.
-
-### 3.2. Limit costly visual effects on lists
-
-Current hover treatments for `.post-entry-horizontal` (border-color + box-shadow) are reasonable, but long scrolling lists can amplify their cost.
-
-**Guideline:**
-
-- Use **border-color and subtle shadow** for primary emphasis; avoid stacking large, blurred shadows.
-- Avoid per‑item scroll-triggered animations on long feeds:
-  - Prefer a single page- or section-level fade‑in (`fadeIn`, `fadeInUp`) that runs once.
-  - Keep animation duration short (≤ 0.4s) and non‑repeating.
-
-### 3.3. Transition and animation standards
-
-You already define transitions in `animations.css` (e.g. for `.profile-image`, `.button`, `.top-link`).
-
-**Guideline:**
-
-- Prefer transitions on **transform and opacity** rather than layout-affecting properties (`top`, `left`, `width`, `height`).
-- Avoid long or infinite animations; focus on **quick, purposeful feedback**.
-- Centralize custom keyframes:
-  - Keep all `@keyframes` in `animations.css`.
-  - Reuse them via class names instead of redefining in component files.
-
-### 3.4. Media query strategy
-
-`zmedia.css` currently uses `max-width` queries (`768px`, `900px`, `340px`), which work but can become harder to maintain as more breakpoints are added.
-
-**Preferred strategy (for new work):**
-
-- **Mobile-first defaults**:
-  - Base styles are optimized for small screens without media queries.
-- Layer on enhancements using **`min-width` breakpoints**:
-  - Example set:
-    - `--bp-sm: 480px`
-    - `--bp-md: 768px`
-    - `--bp-lg: 1024px`
-    - `--bp-xl: 1280px`
-- For existing `max-width` rules:
-  - Avoid introducing new arbitrary widths; when adding new responsive behavior, reuse the standard breakpoint tokens where possible.
+```css
+.mermaid-overlay {
+    background: var(--overlay-bg);
+}
+```
 
 ---
 
-## 4. User experience (mobile-first, Apple Glass, desktop blog)
+## 3. Performance Optimization
 
-### 4.1. Mobile-first defaults
+### 3.1 Glass / Blur Budget
 
-The layout currently adapts at several `max-width` breakpoints, and `--gap` is reduced on small screens. To fully embrace mobile-first:
+**Current state:** 5+ `.glass-panel` elements with `backdrop-filter: blur(16px)` on the homepage. On older or low-power mobile devices, this can cause jank and battery drain.
 
-**Guideline:**
+**Recommendations:**
 
-- Design and implement **phone view first**:
-  - Single column, full-width content containers with `var(--gap)` for padding.
-  - Targets for taps should be at least **44–48px** high.
-  - Body text should be **≥ 16px** (preferably 17–18px) for retina devices.
-- Add desktop enhancements later:
-  - Multi-column layouts, denser spacing, and hover-specific embellishments should be gated behind `min-width` breakpoints.
+1. **Reduce glass surfaces** to 1–2 per viewport:
+   - Keep glass for: **header** and **bottom nav** (primary chrome).
+   - Use **solid surfaces** for: hero card, care teaser, feed cards, post content. Use `var(--color-surface)` with `var(--color-border)` instead of `backdrop-filter`.
+2. **Add `prefers-reduced-transparency` fallback** (as noted in `docs/antigravitiy-style-impromenents.md`):
 
-### 4.2. Typography and readability
+   ```css
+   @media (prefers-reduced-transparency: reduce) {
+     .glass-panel {
+       backdrop-filter: none;
+       background: var(--color-surface);
+     }
+   }
+   ```
 
-Currently, `.page-header h1` uses a fixed `font-size: 40px;`. For consistency across devices and a more Apple-like feel:
+3. **`@supports` fallback** for browsers without `backdrop-filter`:
 
-**Guideline:**
+   ```css
+   .glass-panel {
+     background: var(--color-surface); /* fallback */
+   }
+   @supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
+     .glass-panel {
+       background: var(--color-surface-glass);
+       backdrop-filter: blur(16px);
+       -webkit-backdrop-filter: blur(16px);
+     }
+   }
+   ```
 
-- Use **fluid typography** for major headings:
-  - Example: `clamp(1.8rem, 2.4vw + 1rem, 2.6rem)` for H1.
-- Maintain clear hierarchy between body, metadata, and headings without relying solely on weight:
-  - Body: 16–18px.
-  - Small metadata: 13–14px with higher letter-spacing.
-  - Headings: fluid scale that remains comfortable on both small phones and large displays.
+### 3.2 Motion and `prefers-reduced-motion`
 
-### 4.3. Interaction patterns across mobile and desktop
+- **`extended/animations.css`** has a `@media (prefers-reduced-motion: reduce)` block that short-circuits animations and transitions. Good.
+- **Frontier `main.css`** does not. Transitions on `body`, `.player-bar`, `.chat-panel`, `.scroll-to-top`, etc. will still run for users who prefer reduced motion.
 
-`animations.css` already defines subtle hover behaviors for images, buttons, social icons, and the theme toggle, plus reduced-motion support.
+**Recommendation:** Add this block to `variables.css` and remove the duplicate from `animations.css`:
 
-**Guideline:**
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
 
-- **Non-hover cues are mandatory**:
-  - Every interactive element must provide cues that work on touch devices: iconography, button shape, label, and/or clear focus styles.
-- **Desktop-specific hover**:
-  - It’s fine to enhance interaction with hover on desktop (e.g. `.post-title a::after` underline animation, `.social-icons a` lift), but the baseline affordance should not depend on hover.
-- **Tap feedback on mobile**:
-  - Use pressed states via `:active` and/or a short-lived background/text color change for key tappable controls (buttons, theme toggle, top-link).
+### 3.3 Transition Standards
 
-### 4.4. Depth, surfaces, and visual hierarchy
+Frontier uses a mix of `0.2s`, `0.3s`, `ease`, `ease-out`. For consistency and an Apple-like feel:
 
-For a contemporary Apple Glass aesthetic:
-
-**Surface hierarchy (light and dark themes):**
-
-- **Level 0 – Background**:
-  - `--theme`: page background, mostly flat, low visual noise.
-- **Level 1 – Content surfaces**:
-  - `--entry` with light border from `--border`; used for main content cards and post bodies.
-- **Level 2 – Glass / chrome surfaces**:
-  - Navigation bar, hero highlight cards, key callouts.
-  - Use translucency and blur sparingly (per performance guidance above).
-
-**Guideline:**
-
-- Navigation chrome should **not visually compete** with content:
-  - Nav glass can be slightly more luminous and translucent.
-  - Content cards should be calmer, with clearer text focus and minimal motion.
-- Maintain **consistent elevation**:
-  - Use a constrained set of shadow styles or elevation tokens for surfaces (e.g. none / subtle / strong).
-
-### 4.5. Accessibility and system alignment
-
-You already leverage `color-scheme` and `prefers-reduced-motion`. Extend this to a more complete accessibility stance:
-
-**Guideline:**
-
-- Ensure **contrast ratios** meet at least WCAG AA for body text in both light and dark themes.
-- Make `[data-theme]` behavior predictable:
-  - Respect the user’s OS preference on first load.
-  - Persist explicit user choice via `localStorage`.
-  - Reflect current theme in the UI (e.g. toggle icon state).
-- Keep focus outlines visible and consistent across light/dark themes.
+- Define tokens: `--transition-fast: 0.18s ease-out`, `--transition-medium: 0.25s ease-out`, `--transition-slow: 0.35s ease-out`.
+- Use `transform` and `opacity` for transitions. Do not animate `width`, `height`, `top`, or `left`.
 
 ---
 
-## 5. Contribution checklist
+## 4. User Experience (Mobile + Desktop, Light + Dark)
 
-Before merging styling changes, verify the following:
+### 4.1 Mobile-First Assessment
 
-- **Maintainability**
-  - [ ] Uses existing tokens from `theme-vars.css` or introduces new tokens thoughtfully.
-  - [ ] Styles are placed in the correct file: `core/`, `common/`, or `extended/`.
-  - [ ] Class names are consistent with existing naming conventions and motion patterns.
+**Strengths:**
 
-- **Performance**
-  - [ ] No unnecessary new keyframes or long-running animations.
-  - [ ] Blur, translucency, and shadows are used sparingly and only where they add clear value.
-  - [ ] Page remains responsive on real mobile hardware (or emulation) for long lists and heavy pages.
+- Bottom nav is thumb-friendly; `max-width: 400px` keeps it compact.
+- Single-column layout by default.
+- Fluid typography (`--text-*` with `clamp()`) scales well.
+- `@media (max-width: 375px)` tightens player bar and nav for small phones.
 
-- **User experience**
-  - [ ] Mobile view is designed first; desktop enhancements come via media queries.
-  - [ ] Interactions are discoverable on touch devices without relying solely on hover.
-  - [ ] Layout and typography are legible and comfortable in both light and dark themes.
-  - [ ] `prefers-reduced-motion` and system theme preferences are respected.
+**Gaps:**
 
-By adhering to these guidelines, the site can evolve toward a refined, Apple Glass–inspired interface that feels modern on mobile devices while remaining comfortable and familiar for traditional desktop blog readers.
+- No explicit `min-width` breakpoints for tablet/desktop (e.g. multi-column, larger hero, different nav).
+- Touch targets: nav items use `font-size: 0.7rem` and `gap: 4px`. Increase hit area to at least 44×44px per nav item.
+- `theme-color` in `baseof.html` is fixed to `#0a0a0c` (dark). Switch it to respond to `[data-theme]` so the browser chrome matches the active theme.
 
+### 4.2 Typography
+
+Frontier already uses fluid scale (`--text-xs` … `--text-3xl`). `enterprise.css` uses fixed values (e.g. `font-size: 2.5rem` for `.post-header h1`). For consistency:
+
+- Use `var(--text-2xl)` for post titles instead of fixed `2.5rem`.
+- Ensure body text is ≥ 16px on mobile (Frontier `--text-base` uses `clamp(1rem, ...)` — acceptable).
+
+### 4.3 Interaction Patterns
+
+- **Hover:** Many components use `:hover` (opacity, transform, color). On touch devices, hover is unreliable. Icons, labels, and focus states must be sufficient for touch discovery.
+- **Focus:** Add visible `:focus-visible` outlines to theme toggle and nav items.
+- **Tap feedback:** Add `:active` states to bottom nav items and FAB for clear pressed feedback.
+
+### 4.4 Depth and Surface Hierarchy
+
+**Light theme:** `--color-bg` (cool paper), `--color-surface` (near white), `--color-surface-glass` (translucent). Hierarchy is clear.
+
+**Dark theme:** `--color-bg` (deep navy/charcoal), `--color-surface` (dark slate), `--color-surface-glass` (translucent dark). Borders use `--color-border` with low opacity.
+
+**Recommendation:** Add subtle inner highlight to glass panels for more Apple-like depth (see `antigravitiy-style-impromenents.md`):
+
+```css
+.glass-panel {
+  box-shadow: 
+    var(--shadow-sm),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08); /* light theme */
+}
+[data-theme="dark"] .glass-panel {
+  box-shadow: 
+    var(--shadow-sm),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+```
+
+### 4.5 Accessibility
+
+- **Contrast:** Meet WCAG AA for `--color-text-main` on `--color-bg` and `--color-text-muted` on `--color-bg` in both themes.
+- **Theme persistence:** JS already uses `localStorage` and `prefers-color-scheme`; document this behavior for future maintainers.
+- **Reduced motion:** Add global `prefers-reduced-motion` support in theme CSS (see §3.2).
+
+---
+
+## 5. Contribution Checklist
+
+Before merging styling changes:
+
+### Maintainability
+
+- [ ] Uses Frontier tokens (`--color-*`, `--space-*`, `--text-*`).
+- [ ] Styles are in the correct location (theme vs `extended/`).
+- [ ] No new duplicate CSS loads (e.g. mermaid).
+
+### Performance
+
+- [ ] No new `.glass-panel`; total glass surfaces ≤ 2 per viewport.
+- [ ] `prefers-reduced-transparency` and `@supports` fallbacks implemented for blur/glass.
+- [ ] `prefers-reduced-motion` respected for new animations.
+
+### User experience
+
+- [ ] Mobile layout tested at 375px and 390px width.
+- [ ] Touch targets ≥ 44×44px for interactive elements.
+- [ ] Light and dark themes both checked.
+- [ ] Focus states visible for keyboard users.
+
+---
+
+## 6. Relation to Other Docs
+
+- **`docs/antigravitiy-style-impromenents.md`:** Complementary audit with overlapping recommendations (inner light borders, `prefers-reduced-transparency`, JS extraction, BEM). Use both for a full picture.
+- **`docs/plans/brand-guidelines.md`:** Update token tables to deprecate enterprise tokens in favor of Frontier.
+
+---
+
+*This critique is grounded in the Frontier theme and project structure as of the review date. Update paths and line numbers if the codebase changes.*
