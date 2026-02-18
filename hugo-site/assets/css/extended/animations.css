@@ -23,7 +23,7 @@
 }
 
 #menu li a:hover {
-    color: var(--primary);
+    color: var(--color-text-main);
 }
 
 /* Social Icons — subtle lift */
@@ -34,8 +34,8 @@
 
 .social-icons a:hover {
     transform: translateY(-2px);
-    color: var(--primary);
-}
+    color: var(--color-text-main);
+} 
 
 .social-icons a svg {
     transition: stroke 0.2s ease;
@@ -63,7 +63,7 @@
 }
 
 .post-entry-horizontal:hover {
-    border-color: var(--tertiary);
+    border-color: var(--color-border);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
@@ -84,9 +84,9 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--link);
+    background-color: var(--color-brand);
     transition: width 0.3s ease;
-}
+} 
 
 .post-title a:hover::after {
     width: 100%;

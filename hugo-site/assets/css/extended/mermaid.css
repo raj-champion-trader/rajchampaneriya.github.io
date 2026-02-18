@@ -377,9 +377,9 @@
 }
 
 .mermaid .messageText {
-    fill: var(--secondary) !important;
+    fill: var(--color-text-muted) !important;
     font-size: 12px !important;
-}
+} 
 
 .mermaid .activation0,
 .mermaid .activation1,

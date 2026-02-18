@@ -10,7 +10,7 @@
   border-radius: 12px;
   overflow: hidden;
   margin: 1.5rem 0;
-  background: var(--entry);
+  background: var(--color-surface);
   transition:
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -20,7 +20,7 @@
 
 .featured-project-card:hover {
   transform: translateY(-4px);
-  border-color: var(--link);
+  border-color: var(--color-brand);
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.08),
     0 4px 12px rgba(0, 0, 0, 0.04);
@@ -60,18 +60,18 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--color-text-main);
   transition: color 0.25s ease;
 }
 
 .featured-project-card:hover .featured-project-title {
-  color: var(--link);
+  color: var(--color-brand);
 }
 
 /* Description */
 .featured-project-desc {
   margin: 0 0 0.75rem 0;
-  color: var(--secondary);
+  color: var(--color-text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -88,13 +88,13 @@
   background: var(--code-bg);
   border-radius: 4px;
   font-size: 0.75rem;
-  color: var(--secondary);
+  color: var(--color-text-muted);
   letter-spacing: 0.01em;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
 .featured-project-card:hover .featured-project-tags span {
-  background: var(--tertiary);
+  background: var(--color-border);
 }
 
 /* Responsive */

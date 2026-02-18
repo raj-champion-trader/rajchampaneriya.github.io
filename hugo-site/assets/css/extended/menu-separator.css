@@ -1,10 +1,10 @@
 /* Menu Separators */
 .menu-separator {
-    color: var(--secondary);
+    color: var(--color-text-muted);
     opacity: 0.5;
     padding: 0 0.5rem;
     user-select: none;
-}
+} 
 
 /* Mobile Menu Responsiveness */
 @media screen and (max-width: 768px) {

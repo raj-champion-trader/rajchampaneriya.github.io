@@ -78,8 +78,8 @@
     line-height: 1.15;
     letter-spacing: -0.025em;
     font-weight: 800;
-    color: var(--primary);
-}
+    color: var(--color-text-main);
+} 
 
 /* Role + cert badges on same row */
 .profile-role-row {
@@ -94,19 +94,19 @@
     font-size: 0.78rem;
     margin: 0;
     font-weight: 600;
-    color: var(--link);
+    color: var(--color-brand);
     letter-spacing: 0.02em;
     text-transform: uppercase;
     white-space: nowrap;
-}
+} 
 
 .profile-tagline {
     font-size: 0.92rem;
     margin: 0.4rem 0 0;
     line-height: 1.5;
-    color: var(--secondary);
+    color: var(--color-text-muted);
     max-width: 52ch;
-}
+} 
 
 /* Certification badges — inline with role */
 .profile-certs {
@@ -121,25 +121,25 @@
     gap: 0.2rem;
     font-size: 0.62rem;
     font-weight: 600;
-    color: var(--link);
-    background: var(--blue-bg);
-    border: 1px solid var(--blue-border);
+    color: var(--color-brand);
+    background: var(--color-brand-glow);
+    border: 1px solid var(--color-brand-glow);
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-}
+} 
 
 .cert-badge svg {
-    color: var(--link);
+    color: var(--color-brand);
     flex-shrink: 0;
 }
 
 [data-theme="dark"] .cert-badge {
-    background: var(--blue-bg);
-    border-color: var(--blue-border);
-    color: var(--link);
-}
+    background: var(--color-brand-glow);
+    border-color: var(--color-brand-glow);
+    color: var(--color-brand);
+} 
 
 
 /* Actions row: buttons first, then social */
@@ -172,34 +172,34 @@
     font-weight: 600;
     font-size: 0.78rem;
     padding: 0.35rem 0.85rem;
-    border: 1.5px solid var(--link);
+    border: 1.5px solid var(--color-brand);
     transition: all 0.2s ease;
     text-decoration: none;
-}
+} 
 
 .profile-actions .buttons .button:first-child {
-    background: var(--link);
+    background: var(--color-brand);
     color: #fff;
-}
+} 
 
 .profile-actions .buttons .button:first-child:hover {
-    background: var(--link-hover);
-    border-color: var(--link-hover);
+    background: var(--color-brand-dim);
+    border-color: var(--color-brand-dim);
     transform: translateY(-1px);
     box-shadow: 0 3px 10px rgba(29, 78, 216, 0.25);
-}
+} 
 
 .profile-actions .buttons .button:not(:first-child) {
     background: transparent;
-    color: var(--link);
-}
+    color: var(--color-brand);
+} 
 
 .profile-actions .buttons .button:not(:first-child):hover {
-    background: var(--link);
+    background: var(--color-brand);
     color: #fff;
     transform: translateY(-1px);
     box-shadow: 0 3px 10px rgba(29, 78, 216, 0.15);
-}
+} 
 
 [data-theme="dark"] .profile-actions .buttons .button:first-child:hover {
     box-shadow: 0 3px 10px rgba(96, 165, 250, 0.2);
@@ -233,10 +233,10 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--secondary);
+    color: var(--color-text-muted);
     opacity: 0.6;
     white-space: nowrap;
-}
+} 
 
 .trusted-logos {
     display: flex;
@@ -251,13 +251,13 @@
     gap: 0.25rem;
     font-size: 0.7rem;
     font-weight: 500;
-    color: var(--secondary);
-    background: var(--entry);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
     transition: all 0.2s ease;
-}
+} 
 
 .domain-badge svg {
     opacity: 0.45;
@@ -265,9 +265,9 @@
 }
 
 .domain-badge:hover {
-    border-color: var(--link);
-    color: var(--link);
-}
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+} 
 
 .domain-badge:hover svg {
     opacity: 0.8;
@@ -275,14 +275,14 @@
 
 .fortune-badge {
     font-weight: 600;
-    color: var(--link);
-    border-color: var(--blue-border);
-    background: var(--blue-bg);
-}
+    color: var(--color-brand);
+    border-color: var(--color-brand-glow);
+    background: var(--color-brand-glow);
+} 
 
 .fortune-badge svg {
     opacity: 0.7;
-    color: var(--link);
+    color: var(--color-brand);
 }
 
 [data-theme="dark"] .domain-badge {
@@ -290,8 +290,8 @@
 }
 
 [data-theme="dark"] .fortune-badge {
-    border-color: var(--blue-border);
-    background: var(--blue-bg);
+    border-color: var(--color-brand-glow);
+    background: var(--color-brand-glow);
 }
 
 
@@ -315,8 +315,8 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--secondary);
-}
+    color: var(--color-text-muted);
+} 
 
 .post-entry-horizontal {
     padding: 0.5rem 0.75rem;
@@ -329,9 +329,9 @@
 }
 
 .post-entry-horizontal:hover {
-    background: var(--entry);
+    background: var(--color-surface);
     border-color: var(--border);
-}
+} 
 
 [data-theme="dark"] .post-entry-horizontal:hover {
     background: rgba(255, 255, 255, 0.03);
@@ -351,23 +351,23 @@
 
 .post-meta-small time {
     font-size: 0.78rem;
-    color: var(--secondary);
+    color: var(--color-text-muted);
     opacity: 0.7;
     font-variant-numeric: tabular-nums;
     min-width: 6.5em;
-}
+} 
 
 .post-category {
     font-size: 0.7rem;
-    color: var(--link);
-    background: var(--blue-bg);
+    color: var(--color-brand);
+    background: var(--color-brand-glow);
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
     font-weight: 500;
-}
+} 
 
 [data-theme="dark"] .post-category {
-    background: var(--blue-bg);
+    background: var(--color-brand-glow);
 }
 
 .post-title {
@@ -378,13 +378,13 @@
 }
 
 .post-title a {
-    color: var(--primary);
+    color: var(--color-text-main);
     text-decoration: none;
     transition: color 0.15s ease;
-}
+} 
 
 .post-title a:hover {
-    color: var(--link);
+    color: var(--color-brand);
 }
 
 
