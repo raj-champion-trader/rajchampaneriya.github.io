@@ -483,6 +483,7 @@ a:hover {
     background: var(--overlay-bg);
     /* High opacity for focus */
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 2000;
     /* Topmost */
     cursor: grab;
@@ -497,6 +498,16 @@ a:hover {
 .visible.mermaid-overlay {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Respect user preference to reduce transparency/blur */
+@media (prefers-reduced-transparency: reduce) {
+  .mermaid-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    /* Use a solid surface color when transparency is reduced */
+    background: var(--color-surface);
+  }
 }
 
 .mermaid-zoom-container {

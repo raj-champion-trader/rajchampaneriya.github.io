@@ -133,13 +133,13 @@ In `main.css` (around line 483):
 
 `--color-bg` is `hsl(220, 25%, 7%)`, not RGB components. `rgba(var(--color-bg), 0.95)` is invalid and will not work as intended.
 
-**Fix (implemented):** A theme-aware `--overlay-bg` token was added to `variables.css` and ` .mermaid-overlay` now uses it in `main.css`. This ensures the overlay matches light/dark themes and removes the invalid `rgba()` usage.
+**Fix (implemented):** A theme-aware `--overlay-bg` token was added to `variables.css` and `.mermaid-overlay` now uses it in `main.css`. I also added a `prefers-reduced-transparency` fallback so devices that request reduced transparency/blur get a non-blurred, solid overlay.
 
 Changes made:
-- `themes/frontier/assets/css/variables.css`: added `--overlay-bg` for default, `prefers-color-scheme: dark`, and `[data-theme]` overrides.
-- `themes/frontier/assets/css/main.css`: replaced `background: rgba(var(--color-bg), 0.95)` with `background: var(--overlay-bg)` in `.mermaid-overlay`.
+- `themes/frontier/assets/css/variables.css`: added `--overlay-bg` for default, `prefers-color-scheme: dark`, and `[data-theme]` overrides; removed duplicate declarations.
+- `themes/frontier/assets/css/main.css`: replaced `background: rgba(var(--color-bg), 0.95)` with `background: var(--overlay-bg)` in `.mermaid-overlay` and added a `prefers-reduced-transparency` fallback that disables blur.
 
-**Why this fixes it:** `--overlay-bg` provides valid HSL/HSLA values per theme so the fullscreen Mermaid overlay renders reliably in both light and dark modes.
+**Why this fixes it:** `--overlay-bg` provides valid HSL/HSLA values per theme so the fullscreen Mermaid overlay renders reliably in both light and dark modes, and the new media query preserves accessibility/performance for users who prefer reduced transparency.
 
 **Notes / follow-ups:**
 - Consider adding a small transparency token (e.g. `--overlay-backdrop-strength`) if future overlays need different opacity levels.

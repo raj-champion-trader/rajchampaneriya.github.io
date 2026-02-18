@@ -58,7 +58,6 @@
   --code-bg: hsl(220, 18%, 13%);
   --overlay-bg: hsla(220, 20%, 97%, 0.95);
   /* Theme-aware full-screen overlay background (used by Mermaid fullscreen) */
-  --overlay-bg: hsla(220, 20%, 97%, 0.95);
 }
 
 /* Dark Mode - Boardroom After Hours */
