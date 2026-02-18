@@ -1,29 +1,31 @@
+/* Enterprise tokens now derive from Frontier's canonical design tokens. */
 :root{
-  --theme: #F8FAFC;        /* page background */
-  --entry: #FFFFFF;        /* card background */
-  --primary: #0F172A;      /* main text */
-  --secondary: #475569;    /* muted text */
-  --tertiary: #E2E8F0;     /* borders */
-  --content: #0F172A;      /* post content */
-  --hljs-bg: #0B1220;      /* code bg (dark, enterprise) */
-  --link: #1D4ED8;         /* enterprise blue */
-  --link-hover: #1E40AF;
-  --blue-bg: rgba(29, 78, 216, 0.05);      /* subtle blue tint for badges/pills */
-  --blue-border: rgba(29, 78, 216, 0.12);  /* blue border for badges/pills */
-}
+  --theme: var(--color-bg);           /* page background */
+  --entry: var(--color-surface);      /* card background */
+  --primary: var(--color-text-main);  /* main text */
+  --secondary: var(--color-text-muted);/* muted text */
+  --tertiary: var(--color-border);    /* borders */
+  --content: var(--color-text-main);  /* post content */
+  --hljs-bg: var(--code-bg);          /* code bg (uses theme token) */
+  --link: var(--color-brand);         /* enterprise blue (brand token) */
+  --link-hover: var(--color-brand-dim);
+  --blue-bg: var(--color-brand-glow); /* subtle blue tint for badges/pills */
+  --blue-border: var(--color-brand-glow); /* use brand glow for border */
+} 
 
+/* Dark-mode enterprise tokens derive from Frontier tokens (keeps parity with theme). */
 :root[data-theme="dark"]{
-  --theme: #0F172A;        /* dark page background */
-  --entry: #1E293B;        /* dark card background */
-  --primary: #F1F5F9;      /* light text for dark bg */
-  --secondary: #94A3B8;    /* muted light text */
-  --tertiary: #334155;     /* dark borders */
-  --content: #E2E8F0;      /* light post content text */
-  --hljs-bg: #0B1220;      /* code bg stays dark */
-  --link: #60A5FA;         /* lighter blue for dark theme */
-  --link-hover: #93C5FD;   /* even lighter on hover */
-  --blue-bg: rgba(96, 165, 250, 0.08);     /* subtle blue tint for badges/pills */
-  --blue-border: rgba(96, 165, 250, 0.15); /* blue border for badges/pills */
+  --theme: var(--color-bg);
+  --entry: var(--color-surface);
+  --primary: var(--color-text-main);
+  --secondary: var(--color-text-muted);
+  --tertiary: var(--color-border);
+  --content: var(--color-text-main);
+  --hljs-bg: var(--code-bg);
+  --link: var(--color-brand);
+  --link-hover: var(--color-brand-dim);
+  --blue-bg: var(--color-brand-glow);
+  --blue-border: var(--color-brand-glow);
 }
 
 /* Prevent horizontal scroll globally */

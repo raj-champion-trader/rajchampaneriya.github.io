@@ -48,6 +48,26 @@ rajc.work is the digital advisory presence of an IBM Enterprise Architect who se
 | `--color-border` | `hsla(220, 20%, 94%, 0.08)` | Borders |
 | `--color-accent-gold` | `hsl(42, 80%, 60%)` | Warm Gold accent |
 
+### Legacy enterprise token mapping
+
+To support legacy styles (`enterprise.css`) the following enterprise tokens now *derive* from the canonical Frontier tokens. Prefer `--color-*`, `--text-*`, `--space-*` tokens for all new work; treat the `--theme` / `--entry` set as legacy aliases.
+
+| Enterprise token | Maps to Frontier token | Note |
+|------------------|------------------------|------|
+| `--theme`        | `var(--color-bg)`      | Page background |
+| `--entry`        | `var(--color-surface)` | Card / surface |
+| `--primary`      | `var(--color-text-main)` | Primary text |
+| `--secondary`    | `var(--color-text-muted)` | Muted text |
+| `--tertiary`     | `var(--color-border)`  | Borders |
+| `--content`      | `var(--color-text-main)` | Post content |
+| `--hljs-bg`      | `var(--code-bg)`       | Code block bg |
+| `--link`         | `var(--color-brand)`   | Brand/link color |
+| `--link-hover`   | `var(--color-brand-dim)` | Hover color |
+| `--blue-bg`      | `var(--color-brand-glow)` | Badge/pill tint |
+| `--blue-border`  | `var(--color-brand-glow)` | Badge border (use sparingly) |
+
+> Guidance: Use Frontier tokens for consistency and to avoid token fragmentation. Only add new tokens to `variables.css` (Frontier) — do not create parallel enterprise tokens.
+
 ### Overlay & Backdrop tokens
 
 | Token | Default | Usage |

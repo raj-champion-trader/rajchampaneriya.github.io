@@ -47,6 +47,8 @@ The codebase has **two parallel token systems** that are not unified:
 - `enterprise.css` overrides `:root` and `:root[data-theme="dark"]` with hex values. These tokens (`--theme`, `--entry`, etc.) are not used by Frontier’s core layout; they appear to support legacy or mixed components.
 - Contributors may not know which system to use, leading to hard-coded values and inconsistency.
 
+**Status (1.2): implemented** — `enterprise.css` now *derives* from Frontier tokens; prefer `--color-*`/`--text-*` for new work. See `hugo-site/assets/css/extended/enterprise.css` and `docs/plans/brand-guidelines.md` for the mapping.
+
 ### 1.3 Theme Switching
 
 - **Frontier** (`variables.css`): `@media (prefers-color-scheme: dark)` + `[data-theme="dark"]` / `[data-theme="light"]` overrides.
