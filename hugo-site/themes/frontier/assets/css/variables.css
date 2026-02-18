@@ -56,7 +56,9 @@
 
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
-  --overlay-bg: hsla(220, 20%, 97%, 0.95);
+  /* Overlay opacity token (easy tuning for all fullscreen overlays) */
+  --overlay-backdrop-strength: 0.95;
+  --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
   /* Theme-aware full-screen overlay background (used by Mermaid fullscreen) */
 }
 
@@ -82,7 +84,7 @@
 
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
-    --overlay-bg: hsla(220, 25%, 7%, 0.95);
+    --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
   }
 }
 
@@ -102,7 +104,7 @@
 
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
-  --overlay-bg: hsla(220, 25%, 7%, 0.95);
+  --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
 }
 
 [data-theme="light"] {
