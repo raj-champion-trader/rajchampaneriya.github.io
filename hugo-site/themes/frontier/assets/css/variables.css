@@ -57,7 +57,7 @@
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
   /* Overlay opacity token (easy tuning for all fullscreen overlays) */
-  --overlay-backdrop-strength: 0.95;
+  --overlay-backdrop-strength: 0.85;
   --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
   /* Theme-aware full-screen overlay background (used by Mermaid fullscreen) */
 }

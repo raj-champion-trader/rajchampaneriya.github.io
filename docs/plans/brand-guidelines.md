@@ -48,6 +48,15 @@ rajc.work is the digital advisory presence of an IBM Enterprise Architect who se
 | `--color-border` | `hsla(220, 20%, 94%, 0.08)` | Borders |
 | `--color-accent-gold` | `hsl(42, 80%, 60%)` | Warm Gold accent |
 
+### Overlay & Backdrop tokens
+
+| Token | Default | Usage |
+|-------|---------|-------|
+| `--overlay-backdrop-strength` | `0.85` | Global alpha (0–1) used by fullscreen/backdrop overlays (dialogs, Mermaid fullscreen). Tune for perceived depth; recommended range: 0.70–0.95. |
+| `--overlay-bg` | `hsla(..., var(--overlay-backdrop-strength))` | Theme-aware overlay background — use `var(--overlay-bg)` for fullscreen overlays instead of hard-coded HSLA. |
+
+> Design note: Lower values increase translucency and show more content beneath the overlay; higher values focus attention on the overlay content. Use conservatively to retain premium depth.
+
 ---
 
 ## Typography

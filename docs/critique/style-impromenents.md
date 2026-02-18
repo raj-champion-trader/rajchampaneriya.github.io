@@ -142,7 +142,7 @@ Changes made:
 **Why this fixes it:** `--overlay-bg` provides valid HSL/HSLA values per theme so the fullscreen Mermaid overlay renders reliably in both light and dark modes, and the new media query preserves accessibility/performance for users who prefer reduced transparency.
 
 **Notes / follow-ups:**
-- **Added** `--overlay-backdrop-strength` token (default 0.95) and wired it into `--overlay-bg` for light/dark overlays to make opacity tuning trivial.
+- **Added** `--overlay-backdrop-strength` token (default 0.85) and wired it into `--overlay-bg` for light/dark overlays to make opacity tuning trivial.
 
 
 ---
