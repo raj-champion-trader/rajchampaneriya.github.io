@@ -480,7 +480,7 @@ a:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(var(--color-bg), 0.95);
+    background: var(--overlay-bg);
     /* High opacity for focus */
     backdrop-filter: blur(10px);
     z-index: 2000;

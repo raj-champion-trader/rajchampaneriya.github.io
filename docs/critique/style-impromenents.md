@@ -20,8 +20,10 @@ The design direction assumes an Apple Glass–inspired aesthetic: calm interface
 
 | Bundle             | Contents                                     | Source                           |
 | ------------------ | -------------------------------------------- | -------------------------------- |
-| `style.css`        | `variables.css` + `main.css` + `mermaid.css` | Theme + project assets           |
+| `style.css`        | `variables.css` + `main.css`                  | Theme + project assets           |
 | `extended-all.css` | All `css/extended/*.css`                     | `hugo-site/assets/css/extended/` |
+
+> **Status:** `mermaid.css` removed from the `style.css` concatenation and is now loaded only via `extended-all.css` (implemented in `themes/frontier/layouts/_default/baseof.html`).
 
 **Issue:** `mermaid.css` is loaded **twice**—once in `style.css` and again in `extended-all.css` (it lives in `extended/`). This duplicates ~700+ lines of Mermaid styling and can cause specificity conflicts.
 
@@ -131,26 +133,17 @@ In `main.css` (around line 483):
 
 `--color-bg` is `hsl(220, 25%, 7%)`, not RGB components. `rgba(var(--color-bg), 0.95)` is invalid and will not work as intended.
 
-**Fix:** Define a theme-aware overlay token in `variables.css` and use it. `color-mix` with transparent alters saturation/brightness, not just opacity.
+**Fix (implemented):** A theme-aware `--overlay-bg` token was added to `variables.css` and ` .mermaid-overlay` now uses it in `main.css`. This ensures the overlay matches light/dark themes and removes the invalid `rgba()` usage.
 
-In `variables.css`, add:
+Changes made:
+- `themes/frontier/assets/css/variables.css`: added `--overlay-bg` for default, `prefers-color-scheme: dark`, and `[data-theme]` overrides.
+- `themes/frontier/assets/css/main.css`: replaced `background: rgba(var(--color-bg), 0.95)` with `background: var(--overlay-bg)` in `.mermaid-overlay`.
 
-```css
-:root {
-  --overlay-bg: hsl(220 20% 97% / 0.95);  /* light */
-}
-[data-theme="dark"] {
-  --overlay-bg: hsl(220 25% 7% / 0.95);   /* dark */
-}
-```
+**Why this fixes it:** `--overlay-bg` provides valid HSL/HSLA values per theme so the fullscreen Mermaid overlay renders reliably in both light and dark modes.
 
-In `main.css`:
+**Notes / follow-ups:**
+- Consider adding a small transparency token (e.g. `--overlay-backdrop-strength`) if future overlays need different opacity levels.
 
-```css
-.mermaid-overlay {
-    background: var(--overlay-bg);
-}
-```
 
 ---
 

@@ -28,8 +28,7 @@
     <!-- CSS (Hugo Pipes - Concatenation) -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
-    {{ $mermaidCSS := resources.Get "css/extended/mermaid.css" }}
-    {{ $style := slice $vars $main $mermaidCSS | resources.Concat "css/style.css" | minify | fingerprint }}
+    {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
     <!-- Extended CSS (site-level overrides) -->
