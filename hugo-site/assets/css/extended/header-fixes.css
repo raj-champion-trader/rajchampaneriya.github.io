@@ -3,18 +3,25 @@
    - Professional flat bar (no bubble/glass), no horizontal overflow
 */
 
-/* Professional header: flat bar, sharp edges, thin border — no bubble */
+/* Professional header updated to Apple-style glass: subtle blur, translucency, thin border */
 .site-header.glass-panel,
 .site-header {
   border-radius: 0;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: none;
-  background: var(--color-surface);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 1px 8px rgba(2,6,23,0.06);
+  background: var(--color-surface-glass, rgba(255,255,255,0.6));
+  backdrop-filter: saturate(130%) blur(8px);
+  -webkit-backdrop-filter: saturate(130%) blur(8px);
+  z-index: 50; /* keep header above decorative panels */
+}
+
+[data-theme="dark"] .site-header.glass-panel,
+[data-theme="dark"] .site-header {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: var(--color-surface-glass, rgba(6,10,12,0.36));
 }
 
 .site-header .header-inner {

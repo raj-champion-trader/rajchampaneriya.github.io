@@ -49,7 +49,7 @@
     <header class="site-header glass-panel">
         <div class="container header-inner">
             <!-- logo split into brand + suffix for flexible styling (aria-label preserves original site name) -->
-            <a href="/" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
+            <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
             <button id="theme-toggle" aria-label="Toggle Theme">
                 <svg class="theme-icon icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -110,7 +110,7 @@
 
     <!-- Bottom Navigation (Mobile First) -->
     <nav class="bottom-nav glass-panel">
-        <a href="/" class="nav-item {{ if .IsHome }}active{{ end }}">
+        <a href="{{ "" | absLangURL }}" class="nav-item {{ if .IsHome }}active{{ end }}">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
