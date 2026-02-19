@@ -1,4 +1,9 @@
-/* Enterprise tokens now derive from Frontier's canonical design tokens. */
+/*
+  Enterprise tokens now derive from Frontier's canonical design tokens.
+  DEPRECATED: Treat `--theme` / `--entry` / `--primary` etc. as legacy aliases.
+  For all new work, prefer Frontier tokens: `--color-*`, `--text-*`, `--space-*`.
+  Mapping and guidance live in `docs/plans/brand-guidelines.md`.
+*/
 :root{
   --theme: var(--color-bg);           /* page background */
   --entry: var(--color-surface);      /* card background */

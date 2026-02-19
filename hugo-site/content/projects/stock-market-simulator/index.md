@@ -325,7 +325,7 @@ Price updates trigger CSS flash animations (green for up, red for down) on the w
 
 <div style="margin: 2rem 0; text-align: center;">
   <img src="/images/project/stock-market-simulator/train-simulator.svg" alt="Stock Market Simulator — end-to-end data flow from price generation through Redis Streams to browser rendering" style="max-width: 100%; height: auto; border-radius: 8px;" />
-  <p style="color: var(--secondary); font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">End-to-end data flow: ticks travel from the price engine through Redis Streams to live browser charts</p>
+  <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">End-to-end data flow: ticks travel from the price engine through Redis Streams to live browser charts</p>
 </div>
 
 ### End-to-End Pipeline

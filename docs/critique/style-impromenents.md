@@ -122,6 +122,15 @@ Behavior notes:
 2. **Migrate `enterprise.css`** to derive from Frontier tokens (map `--theme` → `var(--color-bg)`, `--entry` → `var(--color-surface)`, etc.).
 3. **Add a token reference** in `docs/plans/brand-guidelines.md` so contributors know which tokens exist and when to add new ones.
 
+**Status (2.1): implemented ✅** — `enterprise.css` now *derives* from Frontier tokens and the legacy enterprise-token mappings were added to `docs/plans/brand-guidelines.md`.
+
+Files changed:
+- `hugo-site/assets/css/extended/enterprise.css` — enterprise tokens mapped to `--color-*`/`--text-*` (legacy aliases).
+- `docs/plans/brand-guidelines.md` — token reference and mapping table added.
+
+Notes: Prefer `--color-*`/`--text-*` tokens for all new styles; treat `--theme`/`--entry` as deprecated aliases.
+
+
 ### 2.2 File Boundaries
 
 **Current structure:**
