@@ -82,10 +82,14 @@ Light and dark themes are well-supported; the main risk is token fragmentation b
 - `player-bar` (audio player, when visible)
 - `ai-chat-panel` (chat, when visible)
 - `bottom-nav` (floating pill nav)
-- `hero-premium__card`, `care-teaser`, `feed-card` (homepage)
-- `post-content`, `page-content` (list/single pages)
+- `hero-premium__card`, `care-teaser`, `feed-card` (homepage) — now `surface-panel`
+- `post-content`, `page-content` (list/single pages) — now `surface-panel`
 
-**Count:** On the homepage, **5+ glass surfaces** are visible at once (header + bottom nav + hero card + care teaser + feed cards). On blog list/single pages, header + bottom nav + content cards. This exceeds the 1–2 glass layer limit for mobile performance.
+**Count (before):** On the homepage, **5+ glass surfaces** were visible at once (header + bottom nav + hero card + care teaser + feed cards). 
+
+**Status (1.4): implemented ✅** — Active glass surfaces are reduced to **header** and **bottom-nav**; the homepage hero, CARE teaser, feed cards and article containers were converted to `surface-panel` (solid surface) to reduce the backdrop-filter budget and improve mobile performance. The `mermaid-overlay` remains a glass modal (only shown on demand).
+
+**Files changed:** `themes/frontier/assets/css/main.css`, `themes/frontier/layouts/index.html`, `themes/frontier/layouts/_default/list.html`, `themes/frontier/layouts/_default/single.html`.
 
 ### 1.5 Responsive Breakpoints
 
@@ -287,7 +291,7 @@ Before merging styling changes:
 
 ### Performance
 
-- [ ] No new `.glass-panel`; total glass surfaces ≤ 2 per viewport.
+- [x] No new `.glass-panel`; total glass surfaces ≤ 2 per viewport.
 - [ ] `prefers-reduced-transparency` and `@supports` fallbacks implemented for blur/glass.
 - [ ] `prefers-reduced-motion` respected for new animations.
 

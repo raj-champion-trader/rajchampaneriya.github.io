@@ -2,7 +2,7 @@
 <div class="home-container">
     <!-- Premium Hero Section -->
     <section class="hero-premium">
-        <div class="hero-premium__card glass-panel">
+        <div class="hero-premium__card surface-panel">
             <div class="hero-premium__header">
                 <img src="{{ .Site.Params.profileMode.imageUrl }}" 
                      alt="{{ .Site.Params.profileMode.imageTitle }}"
@@ -105,7 +105,7 @@
     </section>
 
     <!-- CARE Method Teaser -->
-    <section class="care-teaser glass-panel">
+    <section class="care-teaser surface-panel">
         <h2 class="care-teaser__title">The CARE Architecture Method</h2>
         <p class="care-teaser__subtitle">A proven framework for high-stakes enterprise transformations</p>
         <div class="care-teaser__grid">
@@ -138,7 +138,7 @@
         <div class="feed-grid">
             {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
             {{ range first 5 $pages }}
-            <article class="feed-card glass-panel">
+            <article class="feed-card surface-panel">
                 <div class="card-content">
                     <div class="card-meta">
                         <span class="card-date">{{ .Date.Format "Jan 2, 2006" }}</span>

@@ -119,15 +119,45 @@ p {
 }
 
 /* Glassmorphism Utilities */
-.glass-panel {
-    background: var(--color-surface-glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+/*
+  Performance-first defaults: glass effects are expensive on mobile.
+  - `.glass-panel` provides a *glass* rendering only when the browser
+    supports backdrop-filter and the user has not requested reduced transparency.
+  - Use `.surface-panel` for the same visual surface without backdrop-filter
+    (recommended for feed cards, hero cards, article containers, etc.).
+*/
+.surface-panel {
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    /* More rounded */
     box-shadow: var(--shadow-sm);
 }
+
+.glass-panel {
+    /* Solid fallback first (fast, widely supported) */
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Enable translucent glass only when supported */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-panel {
+        background: var(--color-surface-glass);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}
+
+/* Respect users who prefer reduced transparency */
+@media (prefers-reduced-transparency: reduce) {
+    .glass-panel {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--color-surface);
+    }
+} 
 
 /* Links */
 a {

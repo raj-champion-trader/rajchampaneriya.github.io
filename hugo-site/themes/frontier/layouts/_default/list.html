@@ -2,7 +2,7 @@
 <section class="page-header">
     <h1>{{ .Title }}</h1>
     {{ with .Content }}
-    <div class="page-content glass-panel" style="padding: var(--space-md); margin-top: var(--space-sm); border-radius: var(--radius-md);">
+    <div class="page-content surface-panel" style="padding: var(--space-md); margin-top: var(--space-sm); border-radius: var(--radius-md);">
         {{ . }}
     </div>
     {{ end }}
@@ -13,7 +13,7 @@
 {{ if $pages }}
 <div class="feed-grid">
     {{ range $pages.ByDate.Reverse }}
-    <article class="feed-card glass-panel">
+    <article class="feed-card surface-panel">
         <div class="card-content">
             <div class="card-meta">
                 <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
