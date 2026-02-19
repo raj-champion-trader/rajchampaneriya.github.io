@@ -59,6 +59,8 @@ The codebase has **two parallel token systems** that are not unified:
 
 Light and dark themes are well-supported; the main risk is token fragmentation between the two systems.
 
+**Status (1.3): implemented** — added an early theme-initializer in `themes/frontier/layouts/_default/baseof.html` to set `data-theme` before stylesheets load (prevents FOUC), and updated `themes/frontier/assets/js/app.js` so `setTheme()` also updates `meta[name="theme-color"]` on toggle while persisting the choice to `localStorage`. Browser chrome and page rendering now match the active theme and theme persistence is tightened.
+
 ### 1.4 Glass Implementation (Current)
 
 `.glass-panel` is defined in `themes/frontier/assets/css/main.css`:

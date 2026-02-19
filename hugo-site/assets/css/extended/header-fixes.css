@@ -19,6 +19,7 @@
 .site-header .header-inner .logo {
   display: inline-flex !important;
   align-items: center;
+  gap: 0.25rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -26,6 +27,33 @@
   min-width: 0; /* allow shrinking in flex container */
   margin: 0;
   flex-shrink: 1;
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text-main);
+  letter-spacing: 0.02em;
+}
+
+/* Logo parts for refined styling */
+.site-header .header-inner .logo-brand {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text-main);
+}
+
+.site-header .header-inner .logo-sep {
+  /* visual separator — intentionally neutral (no filled circle) */
+  width: 6px;
+  height: 1px;
+  background: transparent;
+  margin: 0 0.35rem;
+  display: inline-block;
+}
+
+.site-header .header-inner .logo-suffix {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: none;
 }
 
 /* Theme toggle stays inline and won't shrink */

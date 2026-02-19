@@ -92,13 +92,15 @@
     width: 100%;
 }
 
-/* Theme Toggle — gentle rotation */
+/* Theme Toggle — subtle lift (rotation removed to avoid viewport overflow/scroll) */
 #theme-toggle {
     transition: transform 0.2s ease;
+    transform-origin: center center;
 }
 
 #theme-toggle:hover {
-    transform: rotate(15deg);
+    /* keep interaction feedback but remove rotation (prevents accidental scrollbars) */
+    transform: translateY(-1px);
 }
 
 #theme-toggle svg {
