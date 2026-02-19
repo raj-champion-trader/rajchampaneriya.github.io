@@ -1,7 +1,8 @@
-/* Header fixes — keep site title and theme-toggle icon on the SAME ROW
-   - Scoped site-level override (safe for theme upgrades)
-   - Professional flat bar (no bubble/glass), no horizontal overflow
+/* MOVED TO THEME: header styles now live in `themes/frontier/assets/css/main.css`.
+   Stub retained here for backward compatibility and to make the contract explicit (2.2 File Boundaries).
 */
+
+/* see: themes/frontier/assets/css/main.css */
 
 /* Professional header updated to Apple-style glass: subtle blur, translucency, thin border */
 .site-header.glass-panel,

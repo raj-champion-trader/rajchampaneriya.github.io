@@ -144,7 +144,23 @@ Notes: Prefer `--color-*`/`--text-*` tokens for all new styles; treat `--theme`/
 - `assets/css/extended/` — Site-specific: marketing layouts, Mermaid, enterprise overrides, polish
 
 **Rule:** Reusable styles belong in the theme. Site-specific styles stay in `extended/`.
+**Status (2.2): implemented ✅** — Enforced file-boundary contract by moving reusable styles into the Frontier theme and leaving small stubs in `assets/css/extended/` as backward-compatible markers.
 
+Files migrated to the theme (`themes/frontier/assets/css/main.css`):
+- `animations.css` → Animations & motion
+- `header-fixes.css` → Header chrome & layout
+- `post-meta.css` → Post meta / social styling
+- `menu-separator.css` → Menu separators & mobile-menu responsiveness
+
+Files left as site-level (unchanged): `enterprise.css`, `mermaid.css`, `premium-hero.css`, `about-page.css`, `blog-filter.css`, `profile-layout.css`, `featured-project.css`, `diagrams.css`, `light-theme-readability.css`, `bottom-nav.css`.
+
+Notes:
+- The original `extended` files were replaced with tiny stubs pointing to the theme to avoid duplicate selectors and preserve build stability.
+- This reduces duplication and clarifies contributor guidance: put reusable UI primitives in the theme; keep one-off, page-specific styles in `extended/`.
+
+Follow-ups:
+1. Update `README`/contribution guide to document the rule and token usage.
+2. Consider extracting additional primitives from `enterprise.css` where appropriate.
 ### 2.3 Fix Duplicate Mermaid Load
 
 Remove `$mermaidCSS` from the `style.css` concat in `baseof.html`. Mermaid styles will load once via `extended-all.css`.
