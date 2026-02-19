@@ -1,0 +1,45 @@
+/* Bottom nav — premium, consistent icon set (no floating circle, no box around audio) */
+
+/* All nav items: same baseline (buttons get no default border/background) */
+.bottom-nav .nav-item {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+.bottom-nav button.nav-item {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.bottom-nav .nav-item:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* Center (AI/star) icon: inline with others, same outline style — no floating circle */
+.bottom-nav .nav-item.fab-trigger {
+  margin-top: 0;
+}
+.bottom-nav .nav-item.fab-trigger .icon {
+  opacity: 0.7;
+}
+.bottom-nav .nav-item.fab-trigger:hover .icon {
+  opacity: 1;
+}
+
+/* All nav icons: no border/box (fixes audio or any icon that picked up a frame) */
+.bottom-nav .nav-item .icon,
+.bottom-nav .nav-item svg {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+/* Audio trigger: same as other items, no default button frame */
+.bottom-nav #audio-player-trigger {
+  appearance: none;
+  -webkit-appearance: none;
+}

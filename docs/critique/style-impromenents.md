@@ -79,17 +79,17 @@ Light and dark themes are well-supported; the main risk is token fragmentation b
 **Usage (from layouts):**
 
 - `site-header` (top bar)
-- `player-bar` (audio player, when visible)
-- `ai-chat-panel` (chat, when visible)
+- `player-bar` (audio player, when visible) — now `surface-panel`
+- `ai-chat-panel` (chat, when visible) — now `surface-panel`
 - `bottom-nav` (floating pill nav)
 - `hero-premium__card`, `care-teaser`, `feed-card` (homepage) — now `surface-panel`
 - `post-content`, `page-content` (list/single pages) — now `surface-panel`
 
 **Count (before):** On the homepage, **5+ glass surfaces** were visible at once (header + bottom nav + hero card + care teaser + feed cards). 
 
-**Status (1.4): implemented ✅** — Active glass surfaces are reduced to **header** and **bottom-nav**; the homepage hero, CARE teaser, feed cards and article containers were converted to `surface-panel` (solid surface) to reduce the backdrop-filter budget and improve mobile performance. The `mermaid-overlay` remains a glass modal (only shown on demand).
+**Status (1.4): implemented ✅** — Active glass surfaces are reduced to **header** and **bottom-nav**; the homepage hero, CARE teaser, feed cards, article containers, `player-bar`, and `ai-chat-panel` were converted to `surface-panel` (solid surface) to reduce the backdrop-filter budget and improve mobile performance. The `mermaid-overlay` remains a glass modal (only shown on demand).
 
-**Files changed:** `themes/frontier/assets/css/main.css`, `themes/frontier/layouts/index.html`, `themes/frontier/layouts/_default/list.html`, `themes/frontier/layouts/_default/single.html`.
+**Files changed:** `themes/frontier/assets/css/main.css`, `themes/frontier/layouts/index.html`, `themes/frontier/layouts/_default/list.html`, `themes/frontier/layouts/_default/single.html`, `themes/frontier/layouts/_default/baseof.html`.
 
 ### 1.5 Responsive Breakpoints
 
