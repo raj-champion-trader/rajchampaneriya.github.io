@@ -92,15 +92,13 @@
     width: 100%;
 }
 
-/* Theme Toggle — subtle lift (rotation removed to avoid viewport overflow/scroll) */
+/* Theme Toggle — color feedback only (no transform to avoid scrollbar on hover) */
 #theme-toggle {
-    transition: transform 0.2s ease;
-    transform-origin: center center;
+    transition: color 0.2s ease;
 }
 
 #theme-toggle:hover {
-    /* keep interaction feedback but remove rotation (prevents accidental scrollbars) */
-    transform: translateY(-1px);
+    /* no transform/scale so hover never causes a scrollbar */
 }
 
 #theme-toggle svg {
