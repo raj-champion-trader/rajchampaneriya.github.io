@@ -45,7 +45,7 @@
 }
 
 /* Responsive: stack vertically on small screens */
-@media (max-width: 640px) {
+@media (max-width: var(--bp-md)) {
   .about-intro {
     flex-direction: column-reverse;
     align-items: center;
@@ -175,7 +175,7 @@
   user-select: none;
 } 
 
-@media (max-width: 700px) {
+@media (max-width: var(--bp-md)) {
   .process-flow {
     flex-direction: column;
     gap: 0;
@@ -272,13 +272,13 @@
   color: #fdba74;
 }
 
-@media (max-width: 700px) {
+@media (max-width: var(--bp-md)) {
   .impact-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: var(--bp-sm)) {
   .impact-grid {
     grid-template-columns: 1fr;
   }
@@ -441,7 +441,7 @@
   color: #e2e8f0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--bp-md)) {
   .tech-grid {
     grid-template-columns: 1fr;
   }
@@ -636,7 +636,7 @@
 }
 
 /* Tablet: 2×2 grid */
-@media (max-width: 800px) {
+@media (max-width: var(--bp-lg)) {
   .capability-branches {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem 1.25rem;
@@ -657,7 +657,7 @@
 }
 
 /* Mobile: single column stack */
-@media (max-width: 480px) {
+@media (max-width: var(--bp-sm)) {
   .capability-branches {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -736,7 +736,7 @@
   line-height: 1.5;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--bp-md)) {
   .care-method-grid {
     grid-template-columns: 1fr;
   }

@@ -60,6 +60,27 @@
   --bp-lg: 1024px;  /* small desktop */
   --bp-xl: 1280px;  /* large desktop */
 
+  /* Layout / container width tokens (use instead of ad-hoc px) */
+  --container-base: 1200px;      /* default site container */
+  --container-wide: 1400px;      /* ultra-wide container */
+  --container-home-sm: 720px;    /* homepage narrow */
+  --container-home-md: 900px;
+  --container-home-lg: 1000px;
+
+  /* Content measures */
+  --measure-sm: 400px;           /* small text block / subtitles */
+  --measure-lg: 880px;           /* article measure */
+
+  /* UI-specific widths */
+  --bottom-nav-max: 400px;
+  --bottom-nav-md: 420px;
+  --bottom-nav-lg: 440px;
+
+  /* Component tokens */
+  --trust-badges-max: 560px;
+  --metric-item-max: 140px;
+  --player-info-max: 120px;
+
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
   /* Overlay opacity token (easy tuning for all fullscreen overlays) */

@@ -103,7 +103,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: var(--bp-md)) {
   .featured-project-img {
     height: 180px;
     width: calc(100% - 2 * var(--space-sm, 1rem));

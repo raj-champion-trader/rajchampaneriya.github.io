@@ -102,7 +102,7 @@ Key changes implemented:
 - Mobile-first layout preserved; larger viewports now get enhanced, semantic layout (hero becomes a 2‑column card, the feed becomes a 2/3‑column grid, and article content centers with a wider measure).
 - Mobile `bottom-nav` is hidden at `min-width: 768px` (desktop uses top header chrome). Container padding and max-width tuned for larger screens.
 
-Files changed: `themes/frontier/assets/css/variables.css`, `themes/frontier/assets/css/main.css`.
+Files changed: `themes/frontier/assets/css/variables.css`, `themes/frontier/assets/css/main.css`, and standardized breakpoints in `hugo-site/assets/css/extended/*` (updated: `about-page.css`, `bottom-nav.css`, `featured-project.css`, `mermaid.css`, `premium-hero.css`, `diagrams.css`, `profile-layout.css`, `menu-separator.css`, `header-fixes.css`, `blog-filter.css`).
 
 Behavior notes:
 - Breakpoint tokens (`--bp-*`) are available for contributors; prefer `@media (min-width: 768px)` / `@media (min-width: 1024px)` for tablet/desktop rules.

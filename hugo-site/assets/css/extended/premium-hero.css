@@ -52,21 +52,21 @@
 /* Home page container: comfortable reading width and spacing */
 .home-container {
     width: 100%;
-    max-width: 720px;
+    max-width: var(--container-home-sm);
     margin: 0 auto;
     padding: 0 var(--space-md);
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: var(--bp-lg)) {
     .home-container {
-        max-width: 900px;
+        max-width: var(--container-home-md);
         padding: 0 var(--space-lg);
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: var(--bp-xl)) {
     .home-container {
-        max-width: 1000px;
+        max-width: var(--container-home-lg);
     }
 }
 
@@ -401,7 +401,7 @@
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 0.5rem;
     width: 100%;
-    max-width: 560px;
+    max-width: var(--trust-badges-max);
 }
 
 .trust-badge {
@@ -808,7 +808,7 @@ pre code.language-json {
    ============================================ */
 
 /* ----- Mobile first: focus on name, role, headline, CTAs ----- */
-@media screen and (max-width: 599px) {
+@media screen and (max-width: var(--bp-md)) {
     .hero-premium {
         padding: var(--space-xs) 0;
     }
@@ -908,7 +908,7 @@ pre code.language-json {
     .hero-metric {
         min-width: 0;
         flex: 1;
-        max-width: 140px;
+        max-width: var(--metric-item-max);
         align-items: center;
         text-align: center;
         padding: var(--space-xs);
@@ -1004,7 +1004,7 @@ pre code.language-json {
 }
 
 /* ----- Tablet: more content, still scannable ----- */
-@media screen and (min-width: 600px) and (max-width: 899px) {
+@media screen and (min-width: var(--bp-md)) and (max-width: calc(var(--bp-lg) - 1px)) {
     .hero-premium__header {
         flex-direction: column;
         align-items: center;
@@ -1119,7 +1119,7 @@ pre code.language-json {
 }
 
 /* Overrides for 768px and below (legacy alignment with existing behavior) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: var(--bp-md)) {
     .hero-premium__header {
         flex-direction: column;
         align-items: center;
