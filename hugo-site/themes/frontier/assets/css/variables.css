@@ -54,6 +54,12 @@
   --radius-md: 16px;
   --radius-lg: 32px;
 
+  /* Responsive breakpoints (mobile-first tokens) */
+  --bp-sm: 480px;
+  --bp-md: 768px;   /* tablet */
+  --bp-lg: 1024px;  /* small desktop */
+  --bp-xl: 1280px;  /* large desktop */
+
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
   /* Overlay opacity token (easy tuning for all fullscreen overlays) */

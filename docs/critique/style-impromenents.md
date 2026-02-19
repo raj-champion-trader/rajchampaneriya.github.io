@@ -93,10 +93,20 @@ Light and dark themes are well-supported; the main risk is token fragmentation b
 
 ### 1.5 Responsive Breakpoints
 
-- `frontier/main.css` — `max-width: 375px` only (iPhone SE–sized devices)
-- `frontier/variables.css` — `prefers-color-scheme: dark` (theme only)
+- `themes/frontier/assets/css/variables.css` — added canonical breakpoint tokens (`--bp-sm`, `--bp-md`, `--bp-lg`, `--bp-xl`)
+- `themes/frontier/assets/css/main.css` — core responsive rules added (tablet / desktop enhancements)
 
-There is **no tablet or desktop-specific layout** in Frontier’s core CSS. The layout is mobile-first by default (single column, bottom nav), but there are no `min-width` enhancements for larger screens. Extended CSS (e.g. `premium-hero.css`, `about-page.css`) adds ad-hoc breakpoints.
+**Status (1.5): implemented ✅** — Frontier now includes canonical breakpoint tokens and a small set of core `min-width` layout rules so the site gracefully adapts to tablet and desktop viewports.
+
+Key changes implemented:
+- Mobile-first layout preserved; larger viewports now get enhanced, semantic layout (hero becomes a 2‑column card, the feed becomes a 2/3‑column grid, and article content centers with a wider measure).
+- Mobile `bottom-nav` is hidden at `min-width: 768px` (desktop uses top header chrome). Container padding and max-width tuned for larger screens.
+
+Files changed: `themes/frontier/assets/css/variables.css`, `themes/frontier/assets/css/main.css`.
+
+Behavior notes:
+- Breakpoint tokens (`--bp-*`) are available for contributors; prefer `@media (min-width: 768px)` / `@media (min-width: 1024px)` for tablet/desktop rules.
+- Extended CSS files may still add component-specific breakpoints, but core layout behaviors should now live in the theme.
 
 ---
 
