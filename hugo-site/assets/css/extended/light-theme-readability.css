@@ -1,0 +1,45 @@
+/* ==============================================
+   Light theme readability — ensure post content
+   is always readable (light bg, dark text).
+   ============================================== */
+
+[data-theme="light"] .single-post .post-content.surface-panel,
+[data-theme="light"] .single-post .post-content,
+html:not([data-theme="dark"]) .single-post .post-content.surface-panel,
+html:not([data-theme="dark"]) .single-post .post-content {
+  background: hsl(220, 20%, 99%) !important;
+  color: hsl(220, 30%, 12%) !important;
+}
+
+[data-theme="light"] .single-post .post-content h1,
+[data-theme="light"] .single-post .post-content h2,
+[data-theme="light"] .single-post .post-content h3,
+[data-theme="light"] .single-post .post-content h4,
+[data-theme="light"] .single-post .post-content h5,
+[data-theme="light"] .single-post .post-content h6,
+[data-theme="light"] .single-post .post-content p,
+html:not([data-theme="dark"]) .single-post .post-content h1,
+html:not([data-theme="dark"]) .single-post .post-content h2,
+html:not([data-theme="dark"]) .single-post .post-content h3,
+html:not([data-theme="dark"]) .single-post .post-content h4,
+html:not([data-theme="dark"]) .single-post .post-content h5,
+html:not([data-theme="dark"]) .single-post .post-content h6,
+html:not([data-theme="dark"]) .single-post .post-content p {
+  color: inherit;
+}
+
+[data-theme="light"] .single-post .post-content h1,
+html:not([data-theme="dark"]) .single-post .post-content h1 {
+  -webkit-text-fill-color: hsl(220, 30%, 12%);
+  background: none;
+}
+
+[data-theme="light"] .single-post .post-content p,
+html:not([data-theme="dark"]) .single-post .post-content p {
+  color: hsl(220, 10%, 42%);
+}
+
+[data-theme="light"] .single-post .post-content .post-description,
+html:not([data-theme="dark"]) .single-post .post-content .post-description {
+  color: hsl(220, 10%, 42%);
+}
