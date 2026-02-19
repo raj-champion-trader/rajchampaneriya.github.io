@@ -23,7 +23,9 @@ The design direction assumes an Apple Glass–inspired aesthetic: calm interface
 | `style.css`        | `variables.css` + `main.css`                  | Theme + project assets           |
 | `extended-all.css` | All `css/extended/*.css`                     | `hugo-site/assets/css/extended/` |
 
-> **Status:** `mermaid.css` removed from the `style.css` concatenation and is now loaded only via `extended-all.css` (implemented in `themes/frontier/layouts/_default/baseof.html`).
+> **Status (1.1): implemented** — `mermaid.css` was removed from the `style.css` concatenation and is now loaded only via `extended-all.css`.
+>
+> Change implemented in `themes/frontier/layouts/_default/baseof.html` (clarifying comment added). Primary Mermaid diagram styling remains in `hugo-site/assets/css/extended/mermaid.css`; theme helper rules such as `.mermaid-overlay` remain in `themes/frontier/assets/css/main.css`.
 
 **Issue:** `mermaid.css` is loaded **twice**—once in `style.css` and again in `extended-all.css` (it lives in `extended/`). This duplicates ~700+ lines of Mermaid styling and can cause specificity conflicts.
 

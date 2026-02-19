@@ -28,6 +28,9 @@
     <!-- CSS (Hugo Pipes - Concatenation) -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
+    <!-- NOTE: `mermaid.css` is intentionally NOT included in `style.css` here to avoid
+         duplicated Mermaid diagram rules. Mermaid diagram styles live in
+         `assets/css/extended/mermaid.css` and are loaded via `extended-all.css`. -->
     {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
