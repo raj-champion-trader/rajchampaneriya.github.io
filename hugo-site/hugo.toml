@@ -14,10 +14,10 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  description = "IBM Enterprise Architect specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
+  description = "Enterprise Architect & Strategic Technology Leader. Views on high-stakes transformations, zero-downtime modernizations, and architecture that protects careers and accelerates change."
   author = "Raj Champaneriya"
   mainSections = ["blog"]
-  keywords = ["enterprise architecture", "IBM enterprise architect", "Fortune 500 transformation", "legacy modernization", "cloud-native architecture", "strategic technology advisory", "azure cloud", "solution architecture", "event-driven architecture", "system design", "CARE architecture method"]
+  keywords = ["enterprise architecture", "strategic technology leader", "Fortune 500 transformation", "legacy modernization", "cloud-native architecture", "solution architecture", "event-driven architecture", "system design", "CARE architecture method"]
   
   # Assets (Favicons)
   [params.assets]
@@ -52,35 +52,36 @@ enableRobotsTXT = true
     imageUrl = "images/profile.jpg"
     imageWidth = 160
     imageHeight = 160
-    imageTitle = "Raj Champaneriya — IBM Enterprise Architect"
+    imageTitle = "Raj Champaneriya — Enterprise Architect & Strategic Technology Leader"
     buttons = [
       { name = "Architecture Blueprints", url = "/projects" },
       { name = "Strategic Insights", url = "/blog" }
     ]
 
-  # Premium positioning
+  # Premium positioning (no employer/vendor branding — personal views only)
   [params.premium]
-    role = "IBM Enterprise Architect"
-    headline = "Enterprise Architect for High-Stakes Transformations"
-    tagline = "Enterprise Architecture That Protects Careers and Accelerates Transformations"
+    headline = "Enterprise Architect & Strategic Technology Leader"
+    tagline = "Enterprise architecture that protects careers and accelerates transformations"
     experience = "13+ years across 4 Fortune 500 industries"
     methodology = "The CARE Architecture Method"
     methodologyParts = ["Clarity", "Alignment", "Reality", "Execution"]
-    partnerships = ["IBM", "Microsoft Azure", "AWS"]
-    certifications = ["Azure AI Engineer (AI-102)", "AWS Solutions Architect", "Microsoft C# Specialist"]
     industries = ["Healthcare", "Property Insurance", "Media & Entertainment", "Logistics"]
     [[params.premium.metrics]]
       value = "$8M+"
       label = "Zero-Downtime Modernization"
+      icon = "dollar"
     [[params.premium.metrics]]
       value = "99.95%"
       label = "Uptime SLA"
+      icon = "uptime"
     [[params.premium.metrics]]
       value = "85%"
       label = "Mentee Promotion Rate"
+      icon = "promotion"
     [[params.premium.metrics]]
       value = "40%"
       label = "Cost Reduction"
+      icon = "cost"
 
   # Social links
   [[params.socialIcons]]
