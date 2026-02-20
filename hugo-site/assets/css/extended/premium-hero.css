@@ -257,14 +257,14 @@
 }
 
 .btn-outline {
-    background: hsla(215, 65%, 38%, 0.06);
-    border: 1.5px solid var(--color-brand);
+    background: var(--color-surface);
+    border: 2px solid var(--color-brand);
     color: var(--color-brand);
     padding: 10px 20px;
     border-radius: 100px;
     font-weight: 600;
     font-size: var(--btn-font-desktop);
-    transition: transform var(--transition-medium), background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
+    transition: transform var(--transition-medium), background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -272,9 +272,14 @@
 .btn-outline:hover {
     background: var(--color-brand);
     color: #fff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--color-brand-glow);
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(215, 65%, 38%, 0.2);
     opacity: 1;
+}
+
+.hero-premium__actions .btn-outline:hover svg {
+    color: #fff;
 }
 
 .hero-premium__actions .btn-primary {
@@ -284,6 +289,20 @@
     box-shadow:
         0 1px 4px var(--color-brand-glow),
         inset 0 1px 0 hsla(220, 20%, 100%, 0.25);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-medium);
+}
+
+.hero-premium__actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 20px var(--color-brand-glow),
+        0 2px 6px hsla(215, 65%, 38%, 0.2),
+        inset 0 1px 0 hsla(220, 20%, 100%, 0.25);
+    background: hsl(215, 65%, 30%);
+}
+
+[data-theme="dark"] .hero-premium__actions .btn-primary:hover {
+    background: hsl(215, 75%, 70%);
 }
 
 .hero-premium__actions .btn-primary svg,
@@ -420,10 +439,10 @@
     font-weight: 500;
     color: var(--color-text-muted);
     background: transparent;
-    border: 1px solid hsla(220, 30%, 12%, 0.08);
+    border: 1px solid hsla(220, 30%, 12%, 0.12);
     padding: 0.4rem 0.65rem;
     border-radius: 100px;
-    transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium);
+    transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     min-height: 28px;
@@ -432,14 +451,21 @@
 .trust-badge svg {
     flex-shrink: 0;
     opacity: 0.85;
-    color: var(--color-brand);
+    color: var(--color-text-muted);
     stroke-width: 1.5;
+    transition: color var(--transition-medium);
 }
 
 .trust-badge:hover {
     border-color: var(--color-brand);
     color: var(--color-brand);
-    background: hsla(215, 65%, 38%, 0.06);
+    background: hsla(215, 65%, 38%, 0.14);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px hsla(215, 65%, 38%, 0.12);
+}
+
+.trust-badge:hover svg {
+    color: var(--color-brand);
 }
 
 [data-theme="dark"] .trust-badge {
@@ -447,16 +473,45 @@
     border-color: hsla(220, 20%, 94%, 0.08);
 }
 
+[data-theme="dark"] .trust-badge svg {
+    color: var(--color-text-muted);
+}
+
+[data-theme="dark"] .trust-badge:hover {
+    background: hsla(215, 75%, 65%, 0.12);
+    border-color: hsla(215, 75%, 65%, 0.25);
+    box-shadow: 0 2px 8px hsla(215, 75%, 65%, 0.15);
+}
+
+[data-theme="dark"] .trust-badge:hover svg {
+    color: var(--color-brand);
+}
+
 .trust-badge--highlight {
     font-weight: 700;
     color: var(--color-brand);
-    background: hsla(215, 65%, 38%, 0.06);
-    border-color: hsla(215, 65%, 38%, 0.12);
+    background: hsla(215, 65%, 38%, 0.12);
+    border-color: hsla(215, 65%, 38%, 0.2);
+}
+
+.trust-badge--highlight svg {
+    color: var(--color-brand);
+}
+
+.trust-badge--highlight:hover {
+    background: hsla(215, 65%, 38%, 0.2);
+    border-color: var(--color-brand);
+    box-shadow: 0 2px 8px hsla(215, 65%, 38%, 0.15);
 }
 
 [data-theme="dark"] .trust-badge--highlight {
-    background: hsla(215, 75%, 65%, 0.08);
-    border-color: hsla(215, 75%, 65%, 0.18);
+    background: hsla(215, 75%, 65%, 0.12);
+    border-color: hsla(215, 75%, 65%, 0.2);
+}
+
+[data-theme="dark"] .trust-badge--highlight:hover {
+    background: hsla(215, 75%, 65%, 0.2);
+    border-color: var(--color-brand);
 }
 
 
