@@ -1,0 +1,263 @@
+/* =========================================
+   Scrollspy navigation — article TOC
+   Sticky top bar; horizontal on desktop,
+   collapsible dropdown on mobile/tablet.
+   ========================================= */
+
+/* Top offset so nav sits below site header */
+:root {
+  --scrollspy-header-offset: 56px;
+}
+
+.scrollspy-nav {
+  position: sticky;
+  top: var(--scrollspy-header-offset);
+  z-index: 40;
+  margin: 0 calc(-1 * var(--content-padding-mobile, 1rem));
+  margin-bottom: var(--space-sm);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Mobile: compact bar, tight margin below title */
+@media screen and (max-width: 767px) {
+  .scrollspy-nav {
+    margin-bottom: var(--space-xs);
+  }
+}
+
+/* Sentinel: 1px trigger for Intersection Observer; when it scrolls past top, nav becomes fixed */
+.scrollspy-sentinel {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.scrollspy-spacer {
+  display: block;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* When user has scrolled past the scrollspy, fix it to the top of the viewport */
+.scrollspy-nav.is-stuck {
+  position: fixed;
+  top: var(--scrollspy-header-offset);
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scrollspy-nav[hidden] {
+  display: none !important;
+}
+
+.scrollspy-nav.has-items {
+  display: block;
+}
+
+.scrollspy-inner {
+  max-width: var(--container-base, 720px);
+  margin: 0 auto;
+  padding: 0 var(--content-padding-mobile, 1rem);
+}
+
+/* ----- Desktop: horizontal list ----- */
+.scrollspy-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.scrollspy-list .scrollspy-item {
+  margin: 0;
+}
+
+.scrollspy-list .scrollspy-link {
+  display: inline-block;
+  padding: 0.35rem 0.5rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast), background-color var(--transition-fast),
+    font-weight var(--transition-fast), box-shadow var(--transition-fast);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.scrollspy-list .scrollspy-link:hover {
+  color: var(--color-text-main);
+  background: var(--color-border);
+}
+
+.scrollspy-list .scrollspy-link:focus-visible {
+  outline: 2px solid var(--color-brand, #2563eb);
+  outline-offset: 2px;
+}
+
+.scrollspy-list .scrollspy-link.is-active {
+  font-weight: 700;
+  color: var(--color-text-main);
+  box-shadow: inset 0 -2px 0 var(--color-brand, #2563eb);
+}
+
+/* Nested (h3): slight indent on desktop */
+.scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
+  padding-left: 1rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.scrollspy-list .scrollspy-item.is-nested .scrollspy-link.is-active {
+  font-weight: 700;
+}
+
+/* ----- Mobile/tablet: trigger + collapsible list ----- */
+.scrollspy-trigger {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-main);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--transition-fast);
+  gap: 0.5rem;
+  min-height: 2.25rem;
+}
+
+.scrollspy-trigger-label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scrollspy-trigger:hover {
+  background: var(--color-border);
+}
+
+.scrollspy-trigger:focus-visible {
+  outline: 2px solid var(--color-brand, #2563eb);
+  outline-offset: 2px;
+}
+
+.scrollspy-chevron {
+  flex-shrink: 0;
+  transition: transform var(--transition-medium);
+}
+
+.scrollspy-nav.is-open .scrollspy-chevron {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 767px) {
+  .scrollspy-trigger {
+    display: flex;
+    padding: 0.4rem 0;
+  }
+
+  .scrollspy-list {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 0 0.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .scrollspy-nav.is-open .scrollspy-list {
+    display: flex;
+  }
+
+  .scrollspy-list .scrollspy-link {
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    width: 100%;
+  }
+
+  .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
+    padding-left: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .scrollspy-nav {
+    margin-bottom: var(--space-xs);
+  }
+
+  .scrollspy-trigger {
+    display: flex;
+  }
+
+  .scrollspy-list {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 0 0.5rem;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .scrollspy-nav.is-open .scrollspy-list {
+    display: flex;
+  }
+
+  .scrollspy-inner {
+    padding: 0 var(--content-padding-tablet, 1.5rem);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .scrollspy-nav {
+    margin: 0 calc(-1 * var(--content-padding-desktop, 1.5rem));
+  }
+
+  .scrollspy-inner {
+    padding: 0 var(--content-padding-desktop, 1.5rem);
+  }
+
+  .scrollspy-trigger {
+    display: none;
+  }
+
+  .scrollspy-list {
+    display: flex;
+  }
+}
+
+/* Smooth scroll target offset (for fixed header + scrollspy) */
+.scrollspy-nav + .post-navigation-top,
+.scrollspy-nav + * {
+  scroll-margin-top: calc(var(--scrollspy-header-offset) + 60px);
+}
+
+.post-content.surface-panel h2[id],
+.post-content.surface-panel h3[id] {
+  scroll-margin-top: calc(var(--scrollspy-header-offset) + 60px);
+}

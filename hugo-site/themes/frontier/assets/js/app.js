@@ -211,5 +211,11 @@ if (themeToggleBtn) {
 
 import './audio-player.js';
 import './ai-chat.js';
+import { runScrollspy } from './scrollspy.js';
+
+document.addEventListener('DOMContentLoaded', runScrollspy);
+if (window.swup && window.swup.hooks) {
+  window.swup.hooks.on('page:view', () => requestAnimationFrame(runScrollspy));
+}
 
 console.log('Frontier Theme: Swup & Interactivity Configuration Complete');
