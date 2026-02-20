@@ -64,27 +64,52 @@
         {{ block "main" . }}{{ end }}
     </main>
 
-    <!-- Audio Player Bar (Persistent) -->
-    <div id="audio-player-bar" class="player-bar surface-panel hidden">
-        <div class="player-info">
-            <span id="player-title" class="player-title">Now Playing...</span>
+    <!-- Audio Player Bar (Persistent — enhanced with progress, seek, speed) -->
+    <div id="audio-player-bar" class="player-bar glass-panel hidden">
+        <div class="player-bar-top">
+            <div class="player-info">
+                <span id="player-title" class="player-title">Now Playing...</span>
+                <span id="player-time" class="player-time">0:00 / 0:00</span>
+            </div>
+            <div class="player-controls">
+                <button id="player-rewind" class="btn-icon" title="Rewind 15 seconds" aria-label="Rewind 15 seconds">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 4v6h6"></path>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                </button>
+                <button id="player-play-pause" class="btn-icon player-play-pause-btn" title="Play / Pause" aria-label="Play or Pause">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+                <button id="player-forward" class="btn-icon" title="Forward 15 seconds" aria-label="Forward 15 seconds">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6"></path>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </button>
+                <button id="player-speed" class="btn-icon player-speed-btn" title="Playback speed" aria-label="Change playback speed">1&times;</button>
+                <button id="player-close" class="btn-icon" title="Close player" aria-label="Close player">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div class="player-controls">
-            <button id="player-play-pause" class="btn-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-            </button>
-            <button id="player-close" class="btn-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
+        <div class="player-progress-container" id="player-progress-container" role="slider"
+             aria-label="Audio seek bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="player-progress-track">
+                <div class="player-progress-filled" id="player-progress-filled"></div>
+                <div class="player-progress-thumb" id="player-progress-thumb"></div>
+            </div>
         </div>
-        <audio id="global-audio"></audio>
+        <audio id="global-audio" preload="metadata"></audio>
     </div>
 
     <!-- AI Chat Panel (Persistent) -->

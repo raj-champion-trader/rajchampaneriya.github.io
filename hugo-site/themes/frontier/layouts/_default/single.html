@@ -1,4 +1,23 @@
 {{ define "main" }}
+{{/* --- Resolve page-bundle audio resource (convention: audio/ subfolder) --- */}}
+{{ $audioResource := false }}
+{{ $audioSrc := "" }}
+{{ $audioTitle := .Params.audioTitle | default .Title }}
+{{ with .Resources.GetMatch "audio/*" }}
+  {{ $audioResource = true }}
+  {{ $audioSrc = .Permalink }}
+{{ end }}
+{{/* Allow front-matter override: audio: "/path/to/file.mp3" */}}
+{{ with .Params.audio }}
+  {{ $audioResource = true }}
+  {{ $audioSrc = . }}
+{{ end }}
+
+{{/* Hidden data element for the global audio player JS to discover */}}
+{{ if $audioResource }}
+<div id="page-audio-data" data-src="{{ $audioSrc }}" data-title="{{ $audioTitle }}" hidden aria-hidden="true"></div>
+{{ end }}
+
 <article class="single-post">
     <div class="post-navigation-top scroll-reveal" style="margin-bottom: var(--space-md);">
         {{ if eq .Section "blog" }}
@@ -14,9 +33,9 @@
             <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
             <span>•</span>
             <span>{{ .ReadingTime }} min read</span>
+            {{ if $audioResource }}
             <span>•</span>
-            <button class="btn-text" onclick="playAudio('{{ .Params.audio | default " /audio/demo.mp3"
-                }}', '{{ .Title }}' )">
+            <button class="btn-text listen-btn" onclick="playAudio('{{ $audioSrc }}', '{{ $audioTitle }}')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
                     <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
@@ -26,6 +45,7 @@
                 </svg>
                 Listen
             </button>
+            {{ end }}
         </div>
         <h1>{{ .Title }}</h1>
         {{ with .Params.description }}
