@@ -9,16 +9,35 @@
   --scrollspy-header-offset: 56px;
 }
 
+/* Scrollspy: sticky in flow, then fixed when scrolled past; glass + high z-index */
 .scrollspy-nav {
   position: sticky;
   top: var(--scrollspy-header-offset);
-  z-index: 40;
+  z-index: 50;
   margin: 0 calc(-1 * var(--content-padding-mobile, 1rem));
   margin-bottom: var(--space-sm);
+  /* Solid fallback for glass */
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Glass effect: semi-transparent + blur when supported */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .scrollspy-nav {
+    background: var(--color-surface-glass, rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scrollspy-nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--color-surface);
+  }
 }
 
 /* Mobile: compact bar, tight margin below title */
@@ -55,6 +74,27 @@
   margin-right: 0;
   width: 100%;
   box-sizing: border-box;
+  z-index: 50;
+  /* Stronger background when fixed so content doesn’t show through */
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .scrollspy-nav.is-stuck {
+    background: var(--color-surface-glass, rgba(255, 255, 255, 0.92));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scrollspy-nav.is-stuck {
+    background: var(--color-surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 .scrollspy-nav[hidden] {
@@ -233,6 +273,7 @@
   }
 }
 
+/* Desktop: same collapsible trigger + dropdown as mobile/tablet for consistency */
 @media screen and (min-width: 1024px) {
   .scrollspy-nav {
     margin: 0 calc(-1 * var(--content-padding-desktop, 1.5rem));
@@ -243,11 +284,29 @@
   }
 
   .scrollspy-trigger {
-    display: none;
+    display: flex;
   }
 
   .scrollspy-list {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 0 0.5rem;
+    max-height: 55vh;
+    overflow-y: auto;
+  }
+
+  .scrollspy-nav.is-open .scrollspy-list {
     display: flex;
+  }
+
+  .scrollspy-list .scrollspy-link {
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    width: 100%;
+  }
+
+  .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
+    padding-left: 1rem;
   }
 }
 
@@ -260,4 +319,29 @@
 .post-content.surface-panel h2[id],
 .post-content.surface-panel h3[id] {
   scroll-margin-top: calc(var(--scrollspy-header-offset) + 60px);
+}
+
+/* =========================================
+   Scroll to Top — glass effect (match scrollspy / site chrome)
+   ========================================= */
+.scroll-to-top {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .scroll-to-top {
+    background: var(--color-surface-glass, rgba(255, 255, 255, 0.88));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scroll-to-top {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--color-surface);
+  }
 }
