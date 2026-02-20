@@ -1,0 +1,40 @@
+/*
+  TL;DR / article summary box — visual distinction at top of long posts.
+  Uses Frontier design tokens; scoped to .post-content so it doesn't affect other pages.
+*/
+
+.post-content .tldr-box {
+  --tldr-bg: hsl(var(--hue-brand), 55%, 96%);
+  --tldr-border: hsl(var(--hue-brand), 55%, 85%);
+  --tldr-label: var(--color-brand);
+  margin: 0 0 var(--space-md) 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--tldr-bg);
+  border: 1px solid var(--tldr-border);
+  border-left: 4px solid var(--tldr-label);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-content .tldr-box p {
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.post-content .tldr-box p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content .tldr-box strong {
+  color: var(--tldr-label);
+}
+
+/* Optional: slightly smaller "In this post" line for hierarchy */
+.post-content .tldr-box p:nth-child(2) {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+[data-theme="dark"] .post-content .tldr-box {
+  --tldr-bg: hsla(var(--hue-brand), 30%, 18%, 0.4);
+  --tldr-border: hsla(var(--hue-brand), 40%, 45%, 0.5);
+}
