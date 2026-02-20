@@ -13,7 +13,7 @@
 {{ if $pages }}
 <div class="feed-grid">
     {{ range $idx, $page := $pages.ByDate.Reverse }}
-    <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add (mod $idx 6) 1 }}">
+    <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add (mod $idx 6) 1 }}" {{ with $page.Params.tags }}data-tags="{{ delimit (apply . "urlize" ".") "," }}"{{ end }}>
         <div class="card-content">
             <div class="card-meta">
                 <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "Jan 2, 2006" }}</time>

@@ -63,6 +63,43 @@ swup.hooks.on('page:view', () => {
   requestAnimationFrame(initScrollReveal);
 });
 
+function initBlogTagFilter() {
+  const feedGrid = document.querySelector('.feed-grid');
+  if (!feedGrid) return;
+  const params = new URLSearchParams(window.location.search);
+  const tag = (params.get('tag') || params.get('tags'));
+  if (!tag) return;
+
+  const normalizedTag = tag.toString().toLowerCase();
+  const cards = feedGrid.querySelectorAll('.feed-card');
+  let found = 0;
+  cards.forEach(card => {
+    const tagsAttr = (card.getAttribute('data-tags') || '').toLowerCase();
+    const tags = tagsAttr.split(',').map(t => t.trim()).filter(Boolean);
+    if (tags.includes(normalizedTag)) {
+      card.style.display = '';
+      found++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const existing = document.getElementById('blog-filter-empty');
+  if (existing) existing.remove();
+  if (found === 0) {
+    const msg = document.createElement('div');
+    msg.id = 'blog-filter-empty';
+    msg.className = 'no-results surface-panel';
+    msg.textContent = `No posts found for "${tag}".`;
+    feedGrid.parentNode.insertBefore(msg, feedGrid.nextSibling);
+  } else {
+    window.scrollTo({ top: feedGrid.offsetTop - 20, behavior: 'smooth' });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initBlogTagFilter);
+swup.hooks.on('page:view', () => { requestAnimationFrame(initBlogTagFilter); });
+
 // Theme Toggle Logic
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeIcon = themeToggleBtn?.querySelector('.theme-icon');
