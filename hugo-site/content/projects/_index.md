@@ -3,11 +3,15 @@ title: "Architecture Blueprints"
 url: "/projects/"
 summary: "System design stories — real architectures, strategic decisions, production-grade outcomes."
 description: "Architecture blueprints, system design case studies, and reference implementations built from real-world enterprise engagements by Raj Champaneriya."
+audio: "/audio/projects.wav"
+audioTitle: "Architecture Blueprints"
 ---
 
-System design stories — real architectures, strategic decisions, production-grade outcomes.
+<div class="content-callout">
 
----
+Real-world enterprise architecture blueprints & case studies by Raj Champaneriya — Each case study walks through the tradeoffs, constraints, and outcomes
+
+</div>
 
 ## Featured Project
 
@@ -29,6 +33,8 @@ System design stories — real architectures, strategic decisions, production-gr
   </div>
 </a>
 
----
+<div class="content-callout">
 
 *More architecture case studies will be published as they are refined and production-ready.*
+
+</div>
