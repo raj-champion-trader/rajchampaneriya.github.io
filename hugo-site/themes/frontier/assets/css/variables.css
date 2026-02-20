@@ -22,6 +22,7 @@
   --color-text-muted: hsl(220, 10%, 42%);
   /* Slate */
   --color-border: hsla(220, 30%, 12%, 0.08);
+  --border: var(--color-border); /* alias for legacy/consistency */
 
   /* Accent Colors */
   --color-accent-gold: hsl(42, 85%, 55%);
@@ -112,6 +113,28 @@
   --metric-item-max: 140px;
   --player-info-max: 120px;
 
+  /* Responsive typography — per breakpoint (use in @media) */
+  --hero-name-mobile: clamp(1.25rem, 4vw + 1rem, 1.5rem);
+  --hero-name-tablet: clamp(1.5rem, 3vw + 1rem, 1.75rem);
+  --hero-name-desktop: var(--text-2xl);
+  --hero-headline-mobile: var(--text-base);
+  --hero-headline-desktop: var(--text-lg);
+  --hero-tagline-mobile: var(--text-sm);
+  --hero-tagline-desktop: var(--text-sm);
+  --btn-font-mobile: var(--text-xs);
+  --btn-font-desktop: var(--text-sm);
+
+  /* Avatar sizes — per breakpoint */
+  --avatar-mobile: 88px;
+  --avatar-tablet: 110px;
+  --avatar-desktop: 130px;
+  --avatar-wide: 140px;
+
+  /* Home container padding — responsive */
+  --home-padding-mobile: var(--space-sm);
+  --home-padding-tablet: var(--space-md);
+  --home-padding-desktop: var(--space-lg);
+
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
   /* Overlay opacity token (easy tuning for all fullscreen overlays) */
@@ -139,6 +162,7 @@
     --color-text-muted: hsl(220, 12%, 65%);
     /* Silver */
     --color-border: hsla(220, 20%, 94%, 0.08);
+    --border: var(--color-border);
 
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);

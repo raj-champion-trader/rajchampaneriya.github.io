@@ -64,13 +64,25 @@ p {
     line-height: 1.7;
 }
 
-/* Layout Containers */
+/* Layout Containers — responsive padding via design tokens */
 .container {
     width: 100%;
     max-width: var(--container-base);
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-sm);
     overflow-x: clip;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 0 var(--space-lg);
+    }
 }
 
 /* Header — moved from `hugo-site/assets/css/extended/header-fixes.css` (2.2: File Boundaries)
@@ -415,7 +427,8 @@ a:hover {
     /* Title in brand color */
 }
 
-/* Responsive — Tablet & Desktop enhancements (implements 1.5) */
+/* Responsive — Tablet & Desktop enhancements (implements 1.5)
+   Hero layout is fully handled by premium-hero.css; do not override here. */
 @media (min-width: 768px) {
   .app-layout {
     padding-bottom: 40px; /* reduce mobile buffer on large screens */
@@ -426,50 +439,15 @@ a:hover {
     display: none;
   }
 
-  /* Hero becomes two-column on tablet and up */
-  .hero-premium__card {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: var(--space-lg);
-    align-items: center;
-    padding: var(--space-lg);
-  }
-
-  .hero-premium__avatar {
-    width: 140px;
-    height: 140px;
-    border-radius: 12px;
-  }
-
-  .care-teaser__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-  }
-
   /* Feed grid -> multi-column on tablet */
   .feed-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
   }
-
-  .container {
-    padding: 0 var(--space-lg);
-  }
 }
 
 @media (min-width: 1024px) {
-  .hero-premium__card {
-    grid-template-columns: 220px 1fr;
-    padding: var(--space-xl);
-  }
-
-  .hero-premium__avatar {
-    width: 200px;
-    height: 200px;
-  }
-
   .feed-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);

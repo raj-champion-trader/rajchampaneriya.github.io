@@ -49,18 +49,25 @@
    PREMIUM HERO SECTION
    ============================================ */
 
-/* Home page container: comfortable reading width and spacing */
+/* Home page container: comfortable reading width and spacing
+   Uses design tokens for consistent responsive padding. */
 .home-container {
     width: 100%;
     max-width: var(--container-home-sm);
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 var(--home-padding-mobile);
+}
+
+@media screen and (min-width: 768px) {
+    .home-container {
+        padding: 0 var(--home-padding-tablet);
+    }
 }
 
 @media screen and (min-width: 1024px) {
     .home-container {
         max-width: var(--container-home-md);
-        padding: 0 var(--space-lg);
+        padding: 0 var(--home-padding-desktop);
     }
 }
 
@@ -144,8 +151,8 @@
 }
 
 .hero-premium__avatar {
-    width: 110px;
-    height: 110px;
+    width: var(--avatar-tablet);
+    height: var(--avatar-tablet);
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--color-brand);
@@ -169,7 +176,7 @@
 }
 
 .hero-premium__name {
-    font-size: var(--text-2xl);
+    font-size: var(--hero-name-desktop);
     font-weight: 800;
     margin: 0;
     letter-spacing: -0.03em;
@@ -222,7 +229,7 @@
 }
 
 .hero-premium__headline {
-    font-size: var(--text-lg);
+    font-size: var(--hero-headline-desktop);
     font-weight: 700;
     color: var(--color-text-main);
     margin: 0.5rem 0 0.15rem;
@@ -231,7 +238,7 @@
 }
 
 .hero-premium__tagline {
-    font-size: var(--text-sm);
+    font-size: var(--hero-tagline-desktop);
     color: var(--color-text-muted);
     margin: 0;
     max-width: 50ch;
@@ -256,7 +263,7 @@
     padding: 10px 20px;
     border-radius: 100px;
     font-weight: 600;
-    font-size: var(--text-sm);
+    font-size: var(--btn-font-desktop);
     transition: transform var(--transition-medium), background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -798,14 +805,14 @@ pre code.language-json {
    Content tailored per breakpoint to reduce clutter and focus attention.
    ============================================ */
 
-/* ----- Mobile first: focus on name, role, headline, CTAs ----- */
-@media screen and (max-width: 768px) {
+/* ----- Mobile (< 768px): stacked layout, focus on name, headline, CTAs ----- */
+@media screen and (max-width: 767px) {
     .hero-premium {
         padding: var(--space-xs) 0;
     }
 
     .hero-premium__card {
-        padding: var(--space-md) var(--space-sm);
+        padding: var(--space-md) var(--home-padding-mobile);
     }
 
     .hero-premium__header {
@@ -816,8 +823,8 @@ pre code.language-json {
     }
 
     .hero-premium__avatar {
-        width: 88px;
-        height: 88px;
+        width: var(--avatar-mobile);
+        height: var(--avatar-mobile);
     }
 
     .hero-premium__info {
@@ -825,7 +832,7 @@ pre code.language-json {
     }
 
     .hero-premium__name {
-        font-size: clamp(1.35rem, 5vw, 1.75rem);
+        font-size: var(--hero-name-mobile);
         line-height: 1.25;
         margin-bottom: 0.15rem;
     }
@@ -837,7 +844,7 @@ pre code.language-json {
     }
 
     .hero-premium__role {
-        font-size: 0.7rem;
+        font-size: var(--text-2xs);
     }
 
     .hero-premium__cert {
@@ -852,7 +859,7 @@ pre code.language-json {
     }
 
     .hero-premium__headline {
-        font-size: var(--text-base);
+        font-size: var(--hero-headline-mobile);
         margin: 0.5rem 0 0;
         line-height: 1.35;
         -webkit-line-clamp: 2;
@@ -879,6 +886,7 @@ pre code.language-json {
         width: 100%;
         justify-content: center;
         padding: 12px 20px;
+        font-size: var(--btn-font-mobile);
     }
 
     .hero-premium__metrics {
@@ -906,7 +914,7 @@ pre code.language-json {
     }
 
     .hero-metric__label {
-        font-size: 0.6rem;
+        font-size: var(--text-2xs);
         line-height: 1.2;
     }
 
@@ -929,7 +937,7 @@ pre code.language-json {
     }
 
     .care-teaser {
-        padding: var(--space-md) var(--space-sm);
+        padding: var(--space-md) var(--home-padding-mobile);
         margin-top: var(--space-md);
     }
 
@@ -987,8 +995,12 @@ pre code.language-json {
     }
 }
 
-/* ----- Tablet: more content, still scannable ----- */
+/* ----- Tablet (768px–1023px): centered layout, 2x2 metrics, all trust badges ----- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .hero-premium__card {
+        padding: var(--space-lg) var(--home-padding-tablet);
+    }
+
     .hero-premium__header {
         flex-direction: column;
         align-items: center;
@@ -997,8 +1009,12 @@ pre code.language-json {
     }
 
     .hero-premium__avatar {
-        width: 100px;
-        height: 100px;
+        width: var(--avatar-tablet);
+        height: var(--avatar-tablet);
+    }
+
+    .hero-premium__name {
+        font-size: var(--hero-name-tablet);
     }
 
     .hero-premium__role-row {
@@ -1031,8 +1047,14 @@ pre code.language-json {
     }
 
     .hero-premium__trust {
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         text-align: center;
+    }
+
+    .trust-badges--symmetric {
+        justify-content: center;
     }
 
     .trust-partners {
@@ -1050,25 +1072,26 @@ pre code.language-json {
     }
 }
 
-/* ----- Desktop: full layout, avatar left, info right ----- */
-@media screen and (min-width: 900px) {
+/* ----- Desktop (1024px+): full layout, avatar left, info right ----- */
+@media screen and (min-width: 1024px) {
     .hero-premium__card {
         padding: var(--space-lg) var(--space-xl);
     }
 
     .hero-premium__header {
+        flex-direction: row;
         align-items: flex-start;
         text-align: left;
         gap: var(--space-lg);
     }
 
     .hero-premium__avatar {
-        width: 120px;
-        height: 120px;
+        width: var(--avatar-desktop);
+        height: var(--avatar-desktop);
     }
 
     .hero-premium__name {
-        font-size: var(--text-2xl);
+        font-size: var(--hero-name-desktop);
     }
 
     .hero-premium__tagline {
@@ -1089,6 +1112,7 @@ pre code.language-json {
     }
 
     .hero-premium__trust {
+        flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
     }
@@ -1102,27 +1126,10 @@ pre code.language-json {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .hero-premium__header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .hero-premium__role-row {
-        justify-content: center;
-    }
-
-    .hero-premium__actions {
-        justify-content: center;
-    }
-
-    .hero-premium__trust {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .trust-partners {
-        margin-left: 0;
+/* ----- Wide desktop (1280px+): larger avatar ----- */
+@media screen and (min-width: 1280px) {
+    .hero-premium__avatar {
+        width: var(--avatar-wide);
+        height: var(--avatar-wide);
     }
 }
