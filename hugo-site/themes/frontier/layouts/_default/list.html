@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="page-header">
+<section class="page-header scroll-reveal">
     <h1>{{ .Title }}</h1>
     {{ with .Content }}
     <div class="page-content surface-panel" style="padding: var(--space-md); margin-top: var(--space-sm); border-radius: var(--radius-md);">
@@ -12,19 +12,19 @@
 {{ $pages := where .Site.RegularPages "Section" $section }}
 {{ if $pages }}
 <div class="feed-grid">
-    {{ range $pages.ByDate.Reverse }}
-    <article class="feed-card surface-panel">
+    {{ range $idx, $page := $pages.ByDate.Reverse }}
+    <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add (mod $idx 6) 1 }}">
         <div class="card-content">
             <div class="card-meta">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-                {{ with .Params.categories }}
+                <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "Jan 2, 2006" }}</time>
+                {{ with $page.Params.categories }}
                 <span class="card-category">{{ index . 0 }}</span>
                 {{ end }}
             </div>
-            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-            <p>{{ .Summary | truncate 120 }}</p>
+            <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+            <p>{{ $page.Summary | truncate 120 }}</p>
             <div class="card-actions">
-                <a href="{{ .RelPermalink }}" class="read-more btn-text">Read {{ if eq $section "projects" }}Case Study{{ else }}Article{{ end }} →</a>
+                <a href="{{ $page.RelPermalink }}" class="read-more btn-text">Read {{ if eq $section "projects" }}Case Study{{ else }}Article{{ end }} →</a>
             </div>
         </div>
     </article>

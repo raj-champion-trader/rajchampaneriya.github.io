@@ -165,6 +165,14 @@
   pointer-events: none;
 }
 
+/* When bottom pane is collapsed, hide player bar and its toggle for distraction-free reading */
+body.bottom-nav-collapsed .player-bar,
+body.bottom-nav-collapsed .player-bar-toggle {
+  transform: translateY(150%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Toggle handle shown above the bottom nav; remains visible when collapsed */
 .bottom-nav-toggle {
   position: fixed;
@@ -192,7 +200,7 @@
 .bottom-nav.collapsed + .bottom-nav-toggle svg,
 .bottom-nav-toggle.collapsed svg { transform: rotate(180deg); }
 
-/* Player-bar toggle (small handle next to the bottom-nav toggle) */
+/* Player-bar toggle: only visible when Now Playing bar is shown (audio actively playing) */
 .player-bar-toggle {
   position: fixed;
   left: calc(50% + 56px);
@@ -211,6 +219,13 @@
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   transition: transform var(--transition-medium), background var(--transition-medium), box-shadow var(--transition-medium);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.player-bar-visible .player-bar-toggle {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .player-bar-toggle svg { transform-origin: center; transition: transform var(--transition-medium); }
@@ -236,6 +251,9 @@
 
 /* Reduce page bottom padding when bottom-nav collapsed */
 .app-layout.bottom-nav-collapsed { padding-bottom: 32px; }
+
+/* Scroll-to-top moves down when bottom pane collapsed for better reach */
+body.bottom-nav-collapsed .scroll-to-top { bottom: 60px; }
 
 /* Reduce page bottom padding when player-bar collapsed */
 .app-layout.player-bar-collapsed { padding-bottom: 80px; }

@@ -12,7 +12,8 @@
 html {
     font-family: var(--font-sans);
     font-size: 16px;
-    scroll-behavior: smooth;
+    /* Use auto for snappier scroll; smooth can feel slow on long pages */
+    scroll-behavior: auto;
 }
 
 body {
@@ -181,6 +182,15 @@ p {
 
 /* Safety guard: prevent header from creating page-level horizontal scroll */
 .site-header, .site-header .container { overflow-x: hidden; }
+
+/* Single post: one scroll context only — avoid nested scroll bars */
+.single-post,
+.single-post .post-content.surface-panel,
+#swup {
+    overflow-y: visible;
+    max-height: none;
+}
+#swup { overflow-x: hidden; }
 
 /* Post content containment — prevent code blocks from blowing out viewport */
 .post-content {

@@ -144,17 +144,6 @@
             </svg>
             <span class="label">Listen</span>
         </button>
-        <!-- Bottom-nav collapse toggle (persistent) -->
-        <!-- Visible overlay toggle so user can hide/unhide the bottom navigation for distraction-free reading -->
-        <button id="bottom-nav-toggle" class="bottom-nav-toggle" aria-controls="bottom-nav" aria-expanded="true" title="Hide bottom navigation">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-
-        <!-- Player-bar toggle: hide/show Now Playing pane (user preference persisted) -->
-        <button id="player-bar-toggle" class="player-bar-toggle" aria-controls="audio-player-bar" aria-expanded="true" title="Hide Now Playing pane">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19V6l12-3v13"></path><circle cx="6" cy="18" r="3"></circle></svg>
-        </button>
-
         <a href="/about" class="nav-item {{ if eq .Section "about" }}active{{ end }}">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -164,6 +153,16 @@
             <span class="label">About</span>
         </a>
     </nav>
+
+    <!-- Bottom pane collapse toggle — outside nav so it stays visible when collapsed -->
+    <button id="bottom-nav-toggle" class="bottom-nav-toggle" aria-controls="bottom-nav" aria-expanded="true" title="Hide bottom navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+
+    <!-- Player-bar toggle — only visible when Now Playing bar is shown -->
+    <button id="player-bar-toggle" class="player-bar-toggle" aria-controls="audio-player-bar" aria-expanded="true" title="Hide Now Playing pane">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19V6l12-3v13"></path><circle cx="6" cy="18" r="3"></circle></svg>
+    </button>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to Top">

@@ -1,0 +1,32 @@
+/* Scroll-triggered reveal animations — tokens only, no hardcoded values.
+   Elements with .scroll-reveal get .in-view when entering viewport (see app.js).
+   Respects prefers-reduced-motion via variables.css. */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(var(--scroll-reveal-offset-y));
+  transition:
+    opacity var(--scroll-reveal-duration) var(--scroll-reveal-easing),
+    transform var(--scroll-reveal-duration) var(--scroll-reveal-easing);
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for lists/grids */
+.scroll-reveal.scroll-reveal--delay-1 { transition-delay: calc(1 * var(--scroll-reveal-stagger)); }
+.scroll-reveal.scroll-reveal--delay-2 { transition-delay: calc(2 * var(--scroll-reveal-stagger)); }
+.scroll-reveal.scroll-reveal--delay-3 { transition-delay: calc(3 * var(--scroll-reveal-stagger)); }
+.scroll-reveal.scroll-reveal--delay-4 { transition-delay: calc(4 * var(--scroll-reveal-stagger)); }
+.scroll-reveal.scroll-reveal--delay-5 { transition-delay: calc(5 * var(--scroll-reveal-stagger)); }
+.scroll-reveal.scroll-reveal--delay-6 { transition-delay: calc(6 * var(--scroll-reveal-stagger)); }
+
+/* Smaller motion on small viewports */
+/* Tablet/mobile: smaller offset (breakpoint matches --bp-md) */
+@media (max-width: 767px) {
+  .scroll-reveal {
+    transform: translateY(var(--scroll-reveal-offset-y-sm));
+  }
+}

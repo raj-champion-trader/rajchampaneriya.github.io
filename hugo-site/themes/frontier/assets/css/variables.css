@@ -59,6 +59,14 @@
   --transition-medium: 0.25s ease-out;
   --transition-slow: 0.35s ease-out;
 
+  /* Scroll reveal animation tokens (all form factors) */
+  --scroll-reveal-duration: 0.5s;
+  --scroll-reveal-easing: ease-out;
+  --scroll-reveal-offset-y: 1.5rem;
+  --scroll-reveal-offset-y-sm: 1rem;
+  --scroll-reveal-stagger: 0.08s;
+  --scroll-reveal-threshold: 0.12;
+
   /* Responsive breakpoints (mobile-first tokens) */
   --bp-sm: 480px;
   --bp-md: 768px;   /* tablet */

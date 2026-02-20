@@ -23,24 +23,22 @@ function loadState() {
     const saved = localStorage.getItem('frontier_audio_state');
     if (saved) {
         const state = JSON.parse(saved);
-        if (state.src && state.visible && !state.paused) {
-            // Only restore if audio was actively playing (not just visible/paused)
+        if (state.src) {
             audio.src = state.src;
             audio.currentTime = state.currentTime;
             titleDisplay.textContent = state.title || 'Now Playing...';
-            playerBar.classList.remove('hidden');
-            // Don't auto-play on load to avoid browser policies blocking
-        } else {
-            // Keep player hidden — no active audio
-            playerBar.classList.add('hidden');
         }
     }
+    // Only show bar when something is actually playing; never show on load (we don't auto-play)
+    playerBar.classList.add('hidden');
 }
 
 // Controls
 function togglePlay() {
     if (audio.paused) {
         audio.play();
+        playerBar.classList.remove('hidden');
+        document.body.classList.add('player-bar-visible');
         playPauseBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
     } else {
         audio.pause();
@@ -52,18 +50,21 @@ function togglePlay() {
 function closePlayer() {
     audio.pause();
     playerBar.classList.add('hidden');
+    document.body.classList.remove('player-bar-visible');
     saveState();
 }
 
-function showPlayer() {
-    const collapsed = localStorage.getItem('playerBarCollapsed') === '1';
-    // Respect user preference: do not force UI open if user hid the player pane
-    if (collapsed) {
-        // ensure saved state reflects visibility=false
+function hideBarIfNotPlaying() {
+    if (audio.paused || !audio.src) {
+        playerBar.classList.add('hidden');
+        document.body.classList.remove('player-bar-visible');
         saveState();
-        return;
     }
-    playerBar.classList.remove('hidden');
+}
+
+function showPlayer() {
+    // Bar only appears when audio is actively playing — never on Listen click alone
+    // User must start playback from content (playAudio) to see the bar
     saveState();
 }
 
@@ -76,6 +77,8 @@ audio.addEventListener('timeupdate', () => {
     // Save state occasionally or on pause, not every tick to avoid performance hit
     if (Math.floor(audio.currentTime) % 5 === 0) saveState();
 });
+audio.addEventListener('pause', hideBarIfNotPlaying);
+audio.addEventListener('ended', hideBarIfNotPlaying);
 
 // Load on init
 loadState();
@@ -84,8 +87,9 @@ loadState();
 window.playAudio = (src, title) => {
     audio.src = src;
     titleDisplay.textContent = title;
-    showPlayer();
+    playerBar.classList.remove('hidden');
+    document.body.classList.add('player-bar-visible');
     audio.play();
-    playPauseBtn.textContent = '⏸️';
+    if (playPauseBtn) playPauseBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
     saveState();
 };

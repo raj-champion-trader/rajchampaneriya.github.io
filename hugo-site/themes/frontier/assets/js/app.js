@@ -24,6 +24,31 @@ function updateNav() {
 swup.hooks.on('page:view', updateNav);
 updateNav(); // Initial run
 
+// ------------------ Scroll reveal (Intersection Observer) ------------------
+function initScrollReveal() {
+  const container = document.querySelector('#swup');
+  const root = container || document;
+  const els = root.querySelectorAll('.scroll-reveal');
+  if (!els.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    },
+    { root: null, rootMargin: '40px 0px', threshold: 0.01 }
+  );
+  els.forEach((el) => observer.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', initScrollReveal);
+swup.hooks.on('page:view', () => {
+  requestAnimationFrame(() => {
+    setTimeout(initScrollReveal, 50);
+  });
+});
+
 // Theme Toggle Logic
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeIcon = themeToggleBtn?.querySelector('.theme-icon');

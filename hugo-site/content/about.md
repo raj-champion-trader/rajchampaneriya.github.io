@@ -3,7 +3,7 @@ title: "About Me"
 description: "IBM Enterprise Architect specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
 ---
 
-<div class="about-intro">
+<div class="about-intro scroll-reveal">
 <div class="about-intro-text">
 
 I'm **Raj Champaneriya** — an **IBM Enterprise Architect** who protects technology leaders through high-stakes digital transformations.
@@ -26,7 +26,7 @@ I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, 
 
 Every high-stakes transformation I lead follows a proven framework:
 
-<div class="process-flow">
+<div class="process-flow scroll-reveal">
   <div class="process-step process-step--blue">
     <div class="process-step__number">C</div>
     <div class="process-step__title">Clarity</div>
@@ -56,7 +56,7 @@ Every high-stakes transformation I lead follows a proven framework:
 
 ## What I Deliver
 
-<div class="capability-tree">
+<div class="capability-tree scroll-reveal">
   <div class="capability-root capability-root--blue">Enterprise Architecture</div>
   <div class="capability-branches">
     <div class="capability-branch">
@@ -98,7 +98,7 @@ Every high-stakes transformation I lead follows a proven framework:
 
 ## Impact at Scale
 
-<div class="impact-grid">
+<div class="impact-grid scroll-reveal">
   <div class="impact-card impact-card--blue">
     <div class="impact-card__number">$8M+</div>
     <div class="impact-card__label">Zero-Downtime Modernization</div>
@@ -137,7 +137,7 @@ Selected outcomes:
 
 ## Technical Depth
 
-<div class="tech-grid">
+<div class="tech-grid scroll-reveal">
   <div class="tech-category tech-category--blue">
     <div class="tech-category__title">Cloud & Platform</div>
     <div class="tech-category__pills">
@@ -191,7 +191,7 @@ Selected outcomes:
 
 **Strategic Partnerships**
 
-<div class="partnerships-strip">
+<div class="partnerships-strip scroll-reveal">
   <div class="partnership-badge partnership-badge--primary">
     <strong>IBM</strong> — Enterprise Architecture
   </div>

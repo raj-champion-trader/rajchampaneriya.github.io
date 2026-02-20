@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="home-container">
     <!-- Premium Hero Section -->
-    <section class="hero-premium">
+    <section class="hero-premium scroll-reveal">
         <div class="hero-premium__card surface-panel">
             <div class="hero-premium__header">
                 <img src="{{ .Site.Params.profileMode.imageUrl }}" 
@@ -87,29 +87,29 @@
     </section>
 
     <!-- CARE Method Teaser -->
-    <section class="care-teaser surface-panel">
+    <section class="care-teaser surface-panel scroll-reveal">
         <h2 class="care-teaser__title">The CARE Architecture Method</h2>
         <p class="care-teaser__subtitle">A proven framework for high-stakes enterprise transformations</p>
         <div class="care-teaser__grid">
-            <div class="care-step care-step--clarity">
+            <div class="care-step care-step--clarity scroll-reveal scroll-reveal--delay-1">
                 <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">C</span></span>
                 <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
                 <span class="care-step__word">Clarity</span>
                 <span class="care-step__desc">Decompose ambiguity into actionable decisions</span>
             </div>
-            <div class="care-step care-step--alignment">
+            <div class="care-step care-step--alignment scroll-reveal scroll-reveal--delay-2">
                 <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">A</span></span>
                 <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
                 <span class="care-step__word">Alignment</span>
                 <span class="care-step__desc">Map technical direction to business outcomes</span>
             </div>
-            <div class="care-step care-step--reality">
+            <div class="care-step care-step--reality scroll-reveal scroll-reveal--delay-3">
                 <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">R</span></span>
                 <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
                 <span class="care-step__word">Reality</span>
                 <span class="care-step__desc">Validate through prototypes & decision frameworks</span>
             </div>
-            <div class="care-step care-step--execution">
+            <div class="care-step care-step--execution scroll-reveal scroll-reveal--delay-4">
                 <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">E</span></span>
                 <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
                 <span class="care-step__word">Execution</span>
@@ -119,26 +119,26 @@
     </section>
 
     <!-- Content Feed -->
-    <section class="latest-feed">
+    <section class="latest-feed scroll-reveal">
         <h2 class="section-title">Strategic Insights</h2>
         <div class="feed-grid">
             {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-            {{ range first 5 $pages }}
-            <article class="feed-card surface-panel">
+            {{ range $idx, $p := first 5 $pages }}
+            <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add $idx 1 }}">
                 <div class="card-content">
                     <div class="card-meta">
-                        <span class="card-date">{{ .Date.Format "Jan 2, 2006" }}</span>
-                        {{ with .Params.categories }}
+                        <span class="card-date">{{ $p.Date.Format "Jan 2, 2006" }}</span>
+                        {{ with $p.Params.categories }}
                         <span class="card-category">{{ index . 0 }}</span>
                         {{ end }}
                     </div>
-                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                    <p>{{ .Summary | truncate 120 }}</p>
+                    <h3><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+                    <p>{{ $p.Summary | truncate 120 }}</p>
                 </div>
             </article>
             {{ end }}
         </div>
-        <div class="view-all">
+        <div class="view-all scroll-reveal scroll-reveal--delay-6">
             <a href="/blog" class="btn btn-text">View All Insights →</a>
         </div>
     </section>
