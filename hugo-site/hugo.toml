@@ -65,7 +65,7 @@ enableRobotsTXT = true
   # Premium positioning (no employer/vendor branding — personal views only)
   [params.premium]
     headline = "Enterprise Architect & Strategic Technology Leader"
-    tagline = "Enterprise architecture that protects careers and accelerates transformations"
+    tagline = "Architecture that protects careers and accelerates transformations"
     experience = "13+ years across 4 Fortune 500 industries"
     methodology = "The CARE Architecture Method"
     methodologyParts = ["Clarity", "Alignment", "Reality", "Execution"]
