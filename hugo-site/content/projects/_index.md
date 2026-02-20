@@ -16,13 +16,14 @@ System design stories — real architectures, strategic decisions, production-gr
   <div class="featured-project-body">
     <h3 class="featured-project-title">Stock Market Simulator</h3>
     <p class="featured-project-desc">
-      Real-time market data streaming through Redis, SSE, and .NET Aspire — documented with C4 diagrams and formal ADRs.
+      The key to greatness lies in the details — a masterclass in real‑time architecture: quant models, sub‑100ms latency, and deliberate tradeoffs from Redis to SSE. Don't just watch the data flow; study the decisions that make it reliable.
     </p>
     <div class="featured-project-tags">
       <span>.NET 10</span>
       <span>Redis Streams</span>
-      <span>React 19</span>
-      <span>C4 Model</span>
+      <span>Real-time</span>
+      <span>Low-latency</span>
+      <span>Quant models</span>
       <span>SSE</span>
     </div>
   </div>

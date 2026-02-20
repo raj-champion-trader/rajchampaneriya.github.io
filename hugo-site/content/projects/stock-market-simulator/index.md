@@ -3,9 +3,9 @@ title: "Stock Market Simulator"
 date: 2026-01-23
 draft: false
 slug: "stock-market-simulator"
-tags: ["architecture", "streaming", "real-time", "software-engineering", "c4-model", "dotnet", "redis", "sse"]
+tags: ["architecture", "real-time", "low-latency", "event-driven", "quant-models", "redis-streams", "sse", "dotnet-10", "c4-model", "d3js"]
 categories: ["Architecture Work"]
-summary: "Real-time market data simulation showcasing modern event-driven architecture with C4 model documentation"
+summary: "The key to greatness lies in the details. This simulator isn't just code; it's a masterclass in real-time architecture. With quant models and sub-100mili sec latency, every choice—from Redis to SSE—is deliberate. Don't just watch the data flow. Study the tradeoffs. That is the mark of an architect."
 cover:
   image: "/images/project/stock-market-simulator/front-end-chart-full.png"
   alt: "Stock Market Simulator — live candlestick charts with real-time streaming data"
@@ -17,6 +17,8 @@ ShowToc: true
 ---
 
 <div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
+
+> **Executive summary:** The key to greatness lies in the details. This simulator isn't just code; it's a masterclass in real-time architecture. With quant models and sub-100mili sec latency, every choice—from Redis to SSE—is deliberate. Don't just watch the data flow. Study the tradeoffs. That is the mark of an architect.
 
 ## What is Stock Market Simulator?
 
