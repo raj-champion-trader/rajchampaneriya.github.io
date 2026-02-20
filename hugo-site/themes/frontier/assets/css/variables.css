@@ -124,6 +124,15 @@
   --measure-tablet: 720px;
   --measure-desktop: var(--measure-lg);
 
+  /* Content block (callout, blockquote, raw div) — responsive padding */
+  --content-block-padding-mobile: var(--space-xs);
+  --content-block-padding-tablet: var(--space-sm);
+  --content-block-padding-desktop: var(--space-md);
+  /* Body text in post content — per breakpoint (readability) */
+  --content-body-mobile: var(--text-sm);
+  --content-body-tablet: var(--text-base);
+  --content-body-desktop: var(--text-base);
+
   /* Layout / container width tokens (use instead of ad-hoc px) */
   --container-base: 1200px;      /* default site container */
   --container-wide: 1400px;      /* ultra-wide container */

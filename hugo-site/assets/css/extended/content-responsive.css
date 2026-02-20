@@ -1,0 +1,102 @@
+/*
+  Content responsiveness — uses Frontier design tokens only.
+  Ensures post/project body and callouts (blockquotes, raw divs) adapt
+  across mobile (≤767px), tablet (768px–1023px), and desktop (1024px+).
+  Breakpoints: 480px (sm), 768px (md), 1024px (lg) — see variables.css.
+*/
+
+/* -------------------------------------------------------------------------
+   Post content body — typography scale by breakpoint (tokens)
+   ------------------------------------------------------------------------- */
+.single-post .post-content.surface-panel,
+.single-post .post-content {
+  font-size: var(--content-body-mobile);
+  line-height: var(--leading-relaxed);
+}
+
+@media screen and (min-width: 768px) {
+  .single-post .post-content.surface-panel,
+  .single-post .post-content {
+    font-size: var(--content-body-tablet);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .single-post .post-content.surface-panel,
+  .single-post .post-content {
+    font-size: var(--content-body-desktop);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Raw divs inside post content (e.g. executive summary wrapper)
+   Use tokens for padding; prevent overflow on narrow viewports.
+   ------------------------------------------------------------------------- */
+.post-content > div {
+  padding: var(--content-block-padding-mobile);
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-sm);
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media screen and (min-width: 768px) {
+  .post-content > div {
+    padding: var(--content-block-padding-tablet);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .post-content > div {
+    padding: var(--content-block-padding-desktop);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Content callout (executive summary, highlights) — token-based, theme-aware
+   Use class="content-callout" in markdown for consistent responsive styling.
+   Matches site surface and text colors in both light and dark theme.
+   ------------------------------------------------------------------------- */
+.post-content .content-callout {
+  padding: var(--content-block-padding-mobile);
+  margin-bottom: var(--space-md);
+  background: var(--color-brand-glow);
+  border-left: 3px solid var(--color-brand);
+  border-radius: var(--radius-xs);
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  color: var(--color-text-main);
+}
+
+.post-content .content-callout blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  color: var(--color-text-muted);
+}
+
+@media screen and (min-width: 768px) {
+  .post-content .content-callout {
+    padding: var(--content-block-padding-tablet);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .post-content .content-callout {
+    padding: var(--content-block-padding-desktop);
+  }
+}
+
+/* Blockquote (general) — ensure it never overflows; padding remains from enterprise.css */
+.post-content blockquote {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

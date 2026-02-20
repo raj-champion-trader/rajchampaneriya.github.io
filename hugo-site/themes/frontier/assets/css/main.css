@@ -72,6 +72,7 @@ p {
     margin: 0 auto;
     padding: 0 var(--content-padding-mobile);
     overflow-x: clip;
+    min-width: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -250,6 +251,8 @@ p {
 
 .single-post {
     padding: var(--content-padding-mobile) 0;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .post-navigation-top {
@@ -338,12 +341,33 @@ p {
 }
 
 /* Post content containment — prevent code blocks from blowing out viewport.
-   `clip` avoids the implicit overflow-y:auto that `hidden` triggers. */
+   `clip` avoids the implicit overflow-y:auto that `hidden` triggers.
+   width/min-width ensure content stays within viewport on all breakpoints. */
 .post-content {
     overflow-x: clip;
     max-width: 100%;
+    width: 100%;
+    min-width: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+/* All content children must stay within bounds and wrap text (mobile/tablet/desktop) */
+.post-content > div,
+.post-content blockquote,
+.post-content p,
+.post-content li,
+.post-content td,
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .post-content pre {

@@ -16,9 +16,11 @@ weight: 1
 ShowToc: true
 ---
 
-<div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
+<div class="content-callout">
 
-> **Executive summary:** The key to greatness lies in the details. This simulator isn't just code; it's a masterclass in real-time architecture. With quant models and sub-100mili sec latency, every choice—from Redis to SSE—is deliberate. Don't just watch the data flow. Study the tradeoffs. That is the mark of an architect.
+> **At a glance:** The key to greatness lies in the details. This simulator isn't just code; it's a masterclass in real-time architecture. With quant models and sub-100ms latency, every choice—from Redis to SSE—is deliberate. Don't just watch the data flow. Study the tradeoffs. That is the mark of an architect.
+
+</div>
 
 ## What is Stock Market Simulator?
 
