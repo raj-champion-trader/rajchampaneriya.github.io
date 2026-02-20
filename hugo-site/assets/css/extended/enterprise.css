@@ -33,8 +33,9 @@
   --blue-border: var(--color-brand-glow);
 }
 
-/* Prevent horizontal scroll globally */
-html, body {
+/* Prevent horizontal scroll globally — only on body so the viewport
+   inherits body's overflow and a single scroll context exists. */
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
