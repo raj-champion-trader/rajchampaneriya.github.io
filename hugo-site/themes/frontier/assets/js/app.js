@@ -86,7 +86,7 @@ function setTheme(theme) {
 } 
 
 // Init Theme
-const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+const savedTheme = 'light';
 setTheme(savedTheme);
 
 if (themeToggleBtn) {
