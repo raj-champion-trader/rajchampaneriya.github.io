@@ -251,10 +251,12 @@ Changes made:
 
 ### 3.2 Motion and `prefers-reduced-motion`
 
-- **`extended/animations.css`** has a `@media (prefers-reduced-motion: reduce)` block that short-circuits animations and transitions. Good.
-- **Frontier `main.css`** does not. Transitions on `body`, `.player-bar`, `.chat-panel`, `.scroll-to-top`, etc. will still run for users who prefer reduced motion.
+**Status (3.2): implemented ✅** — Global reduced-motion handling has been consolidated into the theme token file and now applies site-wide.
 
-**Recommendation:** Add this block to `variables.css` and remove the duplicate from `animations.css`:
+- **What changed:** added the global `@media (prefers-reduced-motion: reduce)` override to `themes/frontier/assets/css/variables.css` and removed the duplicate from `themes/frontier/assets/css/main.css`. `hugo-site/assets/css/extended/animations.css` remains a stub (no duplicate present).
+- **Why:** centralizes accessibility behavior so all components inherit the preference and contributors can find the rule in the theme's token file.
+
+The global rule now lives in the theme (for easy discovery and consistent application):
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -265,6 +267,10 @@ Changes made:
   }
 }
 ```
+
+**Status (3.3): implemented ✅** — Added transition tokens and standardized transitions across the theme and extended styles. Converted the `post-title` underline from a `width` animation to a `transform` (scaleX) and replaced `transition: all` with property-specific, tokenized transitions.
+
+**Files changed:** `themes/frontier/assets/css/variables.css`, `themes/frontier/assets/css/main.css`, `hugo-site/assets/css/extended/premium-hero.css`, `hugo-site/assets/css/extended/enterprise.css`, `hugo-site/assets/css/extended/featured-project.css`, `hugo-site/assets/css/extended/diagrams.css`, `hugo-site/assets/css/extended/mermaid.css`, `hugo-site/assets/css/extended/profile-layout.css`, `hugo-site/assets/css/extended/about-page.css`, `hugo-site/assets/css/extended/blog-filter.css`
 
 ### 3.3 Transition Standards
 
@@ -348,7 +354,7 @@ Before merging styling changes:
 
 - [x] No new `.glass-panel`; total glass surfaces ≤ 2 per viewport.
 - [x] `prefers-reduced-transparency` and `@supports` fallbacks implemented for blur/glass.
-- [ ] `prefers-reduced-motion` respected for new animations.
+- [x] `prefers-reduced-motion` respected for new animations.
 
 ### User experience
 

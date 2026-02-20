@@ -54,6 +54,11 @@
   --radius-md: 16px;
   --radius-lg: 32px;
 
+  /* Motion / Transition tokens (§3.3) */
+  --transition-fast: 0.18s ease-out;
+  --transition-medium: 0.25s ease-out;
+  --transition-slow: 0.35s ease-out;
+
   /* Responsive breakpoints (mobile-first tokens) */
   --bp-sm: 480px;
   --bp-md: 768px;   /* tablet */
@@ -149,4 +154,14 @@
 
   --color-accent-gold: hsl(42, 85%, 55%);
   --code-bg: hsl(220, 18%, 13%);
+}
+
+/* Reduced-motion: global accessibility preference moved to variables for
+   consistent, theme-wide application (see §3.2). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

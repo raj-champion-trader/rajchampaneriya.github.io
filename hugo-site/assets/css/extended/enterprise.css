@@ -62,7 +62,7 @@ code, pre, kbd, samp{
 .profile img{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   border: 3px solid rgba(255, 255, 255, 0.9);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 [data-theme="dark"] .profile img{
@@ -170,7 +170,7 @@ a:hover{
   color: var(--primary);
   border-bottom: 2px solid var(--tertiary);
   padding-bottom: 0.5rem;
-  transition: border-color 0.3s ease;
+  transition: border-color var(--transition-slow);
 }
 
 /* h2 border stays stable — no hover distraction while reading */
@@ -214,7 +214,7 @@ a:hover{
   background: var(--entry);
   padding: 1.25rem 1.5rem;
   border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .post-content blockquote:hover {
@@ -256,7 +256,7 @@ a:hover{
   background: var(--entry);
   border-radius: 6px;
   font-size: 0.875rem;
-  transition: background 0.2s ease;
+  transition: background var(--transition-medium);
 }
 
 .post-meta .meta-item:hover {
@@ -278,7 +278,7 @@ a:hover{
   border-radius: 8px;
   font-size: 0.875rem;
   color: var(--secondary);
-  transition: all 0.2s ease;
+  transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium);
   text-decoration: none;
 }
 
@@ -309,7 +309,7 @@ a:hover{
   font-weight: 500;
   color: var(--color-brand, var(--link, #1D4ED8));
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
   letter-spacing: 0.01em;
 }
 

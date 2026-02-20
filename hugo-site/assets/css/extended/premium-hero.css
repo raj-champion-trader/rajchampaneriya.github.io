@@ -153,7 +153,7 @@
         0 4px 16px var(--color-brand-glow),
         0 0 0 1px hsla(220, 20%, 100%, 0.4);
     flex-shrink: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .hero-premium__avatar:hover {
@@ -257,7 +257,7 @@
     border-radius: 100px;
     font-weight: 600;
     font-size: var(--text-sm);
-    transition: all 0.2s ease;
+    transition: transform var(--transition-medium), background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -308,7 +308,7 @@
     border-radius: var(--radius-md);
     background: transparent;
     border: 1px solid hsla(215, 65%, 38%, 0.06);
-    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .hero-metric:hover {
@@ -416,7 +416,7 @@
     border: 1px solid hsla(220, 30%, 12%, 0.08);
     padding: 0.4rem 0.65rem;
     border-radius: 100px;
-    transition: all 0.2s ease;
+    transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     min-height: 28px;

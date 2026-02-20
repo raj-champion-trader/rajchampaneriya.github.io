@@ -763,7 +763,7 @@
   border: 1px solid var(--color-border, var(--tertiary, #e2e8f0));
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium);
 }
 
 .partnership-badge:hover {

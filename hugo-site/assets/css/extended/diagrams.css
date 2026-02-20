@@ -90,7 +90,7 @@
     .post-content img[src*="diagram"],
     .post-content img[src*="architecture"] {
         cursor: pointer;
-        transition: transform 0.2s ease;
+        transition: transform var(--transition-medium);
     }
     
     /* Subtle hint that images are tappable */
