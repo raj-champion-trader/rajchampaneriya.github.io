@@ -214,7 +214,9 @@ Changes made:
 
 ### 3.1 Glass / Blur Budget
 
-**Current state:** 5+ `.glass-panel` elements with `backdrop-filter: blur(16px)` on the homepage. On older or low-power mobile devices, this can cause jank and battery drain.
+**Status (3.1): implemented ✅** — Reduced the blur/glass budget so only the `site-header` and `bottom-nav` remain translucent. The homepage `hero`, `CARE` teaser, `feed` cards, article containers, `player-bar` and `ai-chat-panel` are now `surface-panel` (solid surface without `backdrop-filter`). `prefers-reduced-transparency` and `@supports` fallbacks are present in the theme for accessibility and browser compatibility. (Files changed: `themes/frontier/layouts/index.html`, `hugo-site/assets/css/extended/premium-hero.css`, and `themes/frontier/assets/css/main.css`.)
+
+**Current state:** 5+ `.glass-panel` elements with `backdrop-filter: blur(16px)` on the homepage (prior state). On older or low-power mobile devices, this can cause jank and battery drain.
 
 **Recommendations:**
 
@@ -345,7 +347,7 @@ Before merging styling changes:
 ### Performance
 
 - [x] No new `.glass-panel`; total glass surfaces ≤ 2 per viewport.
-- [ ] `prefers-reduced-transparency` and `@supports` fallbacks implemented for blur/glass.
+- [x] `prefers-reduced-transparency` and `@supports` fallbacks implemented for blur/glass.
 - [ ] `prefers-reduced-motion` respected for new animations.
 
 ### User experience
