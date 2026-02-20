@@ -70,7 +70,7 @@ p {
     max-width: var(--container-base);
     margin: 0 auto;
     padding: 0 var(--space-md);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* Header — moved from `hugo-site/assets/css/extended/header-fixes.css` (2.2: File Boundaries)
@@ -180,21 +180,14 @@ p {
   .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: 6px; }
 }
 
-/* Safety guard: prevent header from creating page-level horizontal scroll */
-.site-header, .site-header .container { overflow-x: hidden; }
+/* Safety guard: prevent header from creating page-level horizontal scroll.
+   `clip` prevents overflow without creating a scroll context (no extra scrollbar). */
+.site-header, .site-header .container { overflow-x: clip; }
 
-/* Single post: one scroll context only — avoid nested scroll bars */
-.single-post,
-.single-post .post-content.surface-panel,
-#swup {
-    overflow-y: visible;
-    max-height: none;
-}
-#swup { overflow-x: hidden; }
-
-/* Post content containment — prevent code blocks from blowing out viewport */
+/* Post content containment — prevent code blocks from blowing out viewport.
+   `clip` avoids the implicit overflow-y:auto that `hidden` triggers. */
 .post-content {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;

@@ -114,4 +114,4 @@
 }
 
 /* Safety guard: prevent header from creating page-level horizontal scroll */
-.site-header, .site-header .container { overflow-x: hidden; }
+.site-header, .site-header .container { overflow-x: clip; }

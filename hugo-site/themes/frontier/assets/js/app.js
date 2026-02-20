@@ -28,25 +28,39 @@ updateNav(); // Initial run
 function initScrollReveal() {
   const container = document.querySelector('#swup');
   const root = container || document;
-  const els = root.querySelectorAll('.scroll-reveal');
+  const els = root.querySelectorAll('.scroll-reveal:not(.in-view)');
   if (!els.length) return;
+
+  const viewH = window.innerHeight;
+  const deferred = [];
+
+  els.forEach((el) => {
+    if (el.getBoundingClientRect().top < viewH + 40) {
+      el.classList.add('in-view');
+    } else {
+      deferred.push(el);
+    }
+  });
+
+  if (!deferred.length) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
       });
     },
     { root: null, rootMargin: '40px 0px', threshold: 0.01 }
   );
-  els.forEach((el) => observer.observe(el));
+  deferred.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener('DOMContentLoaded', initScrollReveal);
 swup.hooks.on('page:view', () => {
-  requestAnimationFrame(() => {
-    setTimeout(initScrollReveal, 50);
-  });
+  requestAnimationFrame(initScrollReveal);
 });
 
 // Theme Toggle Logic
