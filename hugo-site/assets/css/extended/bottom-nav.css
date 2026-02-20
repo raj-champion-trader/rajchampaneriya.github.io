@@ -141,6 +141,16 @@
   }
 }
 
+/* Desktop: hide bottom nav so it never overlaps article content (readability) */
+@media (min-width: 768px) {
+  .bottom-nav,
+  .bottom-nav-toggle {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .bottom-nav {
     max-width: var(--bottom-nav-md);

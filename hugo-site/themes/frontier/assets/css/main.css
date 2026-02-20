@@ -26,16 +26,15 @@ body {
     max-width: 100vw;
 }
 
-/* Typography */
+/* Typography — uses fluid scale from variables.css */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    line-height: 1.1;
+    line-height: var(--leading-tight);
     font-weight: 800;
-    /* Bolder headings */
     letter-spacing: -0.03em;
     color: var(--color-text-main);
 }
@@ -46,22 +45,24 @@ h1 {
     background: linear-gradient(135deg, var(--color-text-main), var(--color-text-muted));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* Gradient text effect */
 }
 
 h2 {
     font-size: var(--text-xl);
-    /* Slightly smaller for density */
     margin-bottom: var(--space-xs);
     margin-top: var(--space-md);
 }
+
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-base); }
+h5 { font-size: var(--text-sm); }
+h6 { font-size: var(--text-xs); }
 
 p {
     margin-bottom: var(--space-sm);
     font-size: var(--text-base);
     color: var(--color-text-muted);
-    /* Better readability */
-    line-height: 1.7;
+    line-height: var(--leading-relaxed);
 }
 
 /* Layout Containers — responsive padding via design tokens */
@@ -69,19 +70,66 @@ p {
     width: 100%;
     max-width: var(--container-base);
     margin: 0 auto;
-    padding: 0 var(--space-sm);
+    padding: 0 var(--content-padding-mobile);
     overflow-x: clip;
 }
 
 @media screen and (min-width: 768px) {
     .container {
-        padding: 0 var(--space-md);
+        padding: 0 var(--content-padding-tablet);
     }
 }
 
 @media screen and (min-width: 1024px) {
     .container {
-        padding: 0 var(--space-lg);
+        padding: 0 var(--content-padding-desktop);
+    }
+}
+
+/* List pages (blog, projects) — page header */
+.page-header {
+    padding: var(--content-padding-mobile) 0;
+}
+
+.page-header h1 {
+    font-size: var(--post-title-mobile);
+}
+
+.page-content.surface-panel,
+.page-content {
+    padding: var(--content-padding-mobile);
+    margin-top: var(--space-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+}
+
+@media screen and (min-width: 768px) {
+    .page-header {
+        padding: var(--content-padding-tablet) 0;
+    }
+
+    .page-header h1 {
+        font-size: var(--post-title-tablet);
+    }
+
+    .page-content.surface-panel,
+    .page-content {
+        padding: var(--content-padding-tablet);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .page-header {
+        padding: var(--content-padding-desktop) 0;
+    }
+
+    .page-header h1 {
+        font-size: var(--post-title-desktop);
+    }
+
+    .page-content.surface-panel,
+    .page-content {
+        padding: var(--content-padding-desktop);
     }
 }
 
@@ -196,6 +244,99 @@ p {
    `clip` prevents overflow without creating a scroll context (no extra scrollbar). */
 .site-header, .site-header .container { overflow-x: clip; }
 
+/* =========================================
+   Single Post & Project — shared layout
+   ========================================= */
+
+.single-post {
+    padding: var(--content-padding-mobile) 0;
+}
+
+.post-navigation-top {
+    margin-bottom: var(--space-md);
+}
+
+.single-post .post-header h1 {
+    font-size: var(--post-title-mobile);
+    -webkit-text-fill-color: var(--color-text-main);
+    background: none;
+}
+
+.single-post .post-description {
+    font-size: var(--post-description-mobile);
+    margin-top: var(--space-xs);
+}
+
+.single-post .post-meta {
+    font-size: var(--post-meta-mobile);
+    margin-bottom: var(--space-sm);
+}
+
+.single-post .post-content.surface-panel,
+.single-post .post-content {
+    padding: var(--content-padding-mobile);
+    font-size: var(--text-base);
+}
+
+.single-post .post-content h1,
+.single-post .post-content h2,
+.single-post .post-content h3,
+.single-post .post-content h4 {
+    font-size: var(--text-xl);
+}
+
+.single-post .post-content h2 { font-size: var(--text-lg); }
+.single-post .post-content h3 { font-size: var(--text-base); }
+.single-post .post-content h4 { font-size: var(--text-sm); }
+
+@media screen and (min-width: 768px) {
+    .single-post {
+        padding: var(--content-padding-tablet) 0;
+    }
+
+    .single-post .post-header h1 {
+        font-size: var(--post-title-tablet);
+    }
+
+    .single-post .post-description {
+        font-size: var(--post-description-desktop);
+    }
+
+    .single-post .post-meta {
+        font-size: var(--post-meta-desktop);
+    }
+
+    .single-post .post-content.surface-panel,
+    .single-post .post-content {
+        padding: var(--content-padding-tablet);
+    }
+
+    .single-post .post-content h1 { font-size: var(--text-2xl); }
+    .single-post .post-content h2 { font-size: var(--text-xl); }
+    .single-post .post-content h3 { font-size: var(--text-lg); }
+    .single-post .post-content h4 { font-size: var(--text-base); }
+}
+
+@media screen and (min-width: 1024px) {
+    .single-post {
+        padding: var(--content-padding-desktop) 0;
+    }
+
+    .single-post .post-header h1 {
+        font-size: var(--post-title-desktop);
+    }
+
+    .single-post .post-content.surface-panel,
+    .single-post .post-content {
+        padding: var(--content-padding-desktop);
+    }
+
+    .single-post .post-content h1 { font-size: var(--text-3xl); }
+    .single-post .post-content h2 { font-size: var(--text-xl); }
+    .single-post .post-content h3 { font-size: var(--text-lg); }
+    .single-post .post-content h4 { font-size: var(--text-base); }
+}
+
 /* Post content containment — prevent code blocks from blowing out viewport.
    `clip` avoids the implicit overflow-y:auto that `hidden` triggers. */
 .post-content {
@@ -222,16 +363,51 @@ p {
 
 .post-content img,
 .post-content video,
-.post-content iframe,
-.post-content table {
+.post-content iframe {
     max-width: 100%;
-    overflow-x: auto;
 }
 
+/* Tables — proper borders, responsive horizontal scroll */
 .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+    font-size: var(--text-sm);
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.post-content thead {
+    border-bottom: 2px solid var(--color-brand);
+}
+
+.post-content th {
+    background: var(--color-surface);
+    font-weight: 700;
+    text-align: left;
+    color: var(--color-text-main);
+    padding: var(--space-xs) var(--space-sm);
+    white-space: nowrap;
+}
+
+.post-content td {
+    padding: var(--space-xs) var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    vertical-align: top;
+}
+
+.post-content tbody tr:hover {
+    background: var(--color-brand-glow);
+}
+
+[data-theme="dark"] .post-content th {
+    background: hsla(220, 20%, 20%, 0.5);
+}
+
+[data-theme="dark"] .post-content tbody tr:hover {
+    background: hsla(215, 75%, 65%, 0.06);
 }
 
 /* Post meta — moved from `hugo-site/assets/css/extended/post-meta.css` */
@@ -400,9 +576,8 @@ a:hover {
 }
 
 .feed-card {
-    padding: var(--space-md);
+    padding: var(--content-padding-mobile);
     border-bottom: 1px solid var(--color-border);
-    /* Minimalist separator */
     border-radius: var(--radius-md);
 }
 
@@ -411,8 +586,10 @@ a:hover {
     /* Subtle brand tint on hover */
 }
 
-.card-date {
-    font-size: var(--text-xs);
+/* Feed card typography — responsive via design tokens */
+.card-date,
+.card-meta {
+    font-size: var(--card-meta-mobile);
     color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -420,23 +597,51 @@ a:hover {
     margin-bottom: var(--space-xs);
 }
 
+.card-content h2,
 .card-content h3 {
     margin: 0 0 var(--space-sm) 0;
-    font-size: var(--text-lg);
+    font-size: var(--card-title-mobile);
     color: var(--color-brand);
-    /* Title in brand color */
+}
+
+.card-content p {
+    font-size: var(--card-summary-mobile);
+}
+
+@media screen and (min-width: 768px) {
+    .card-date,
+    .card-meta {
+        font-size: var(--card-meta-desktop);
+    }
+
+    .card-content h2,
+    .card-content h3 {
+        font-size: var(--card-title-tablet);
+    }
+
+    .card-content p {
+        font-size: var(--card-summary-desktop);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .card-content h2,
+    .card-content h3 {
+        font-size: var(--card-title-desktop);
+    }
 }
 
 /* Responsive — Tablet & Desktop enhancements (implements 1.5)
    Hero layout is fully handled by premium-hero.css; do not override here. */
 @media (min-width: 768px) {
   .app-layout {
-    padding-bottom: 40px; /* reduce mobile buffer on large screens */
+    /* Enough clearance so last line of content is never covered by fixed UI */
+    padding-bottom: 3rem;
   }
 
-  /* Hide mobile bottom navigation on wider viewports */
+  /* Hide mobile bottom navigation on tablet/desktop — prevents overlap with article content */
   .bottom-nav {
-    display: none;
+    display: none !important;
   }
 
   /* Feed grid -> multi-column on tablet */
@@ -444,6 +649,18 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
+  }
+
+  .feed-card {
+    padding: var(--content-padding-tablet);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .post-content {
+    max-width: var(--measure-tablet);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -453,8 +670,12 @@ a:hover {
     gap: var(--space-lg);
   }
 
+  .feed-card {
+    padding: var(--content-padding-desktop);
+  }
+
   .post-content {
-    max-width: var(--measure-lg);
+    max-width: var(--measure-desktop);
     margin-left: auto;
     margin-right: auto;
   }

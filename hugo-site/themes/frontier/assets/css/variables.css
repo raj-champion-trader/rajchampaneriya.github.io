@@ -92,6 +92,34 @@
   --bp-lg: 1024px;
   --bp-xl: 1280px;
 
+  /* Content padding — responsive (blog post & project single) */
+  --content-padding-mobile: var(--space-sm);
+  --content-padding-tablet: var(--space-md);
+  --content-padding-desktop: var(--space-lg);
+
+  /* Post/Project single — typography per breakpoint */
+  --post-title-mobile: clamp(1.5rem, 5vw + 1rem, 2rem);
+  --post-title-tablet: clamp(1.75rem, 4vw + 1rem, 2.25rem);
+  --post-title-desktop: var(--text-3xl);
+  --post-description-mobile: var(--text-sm);
+  --post-description-desktop: var(--text-base);
+  --post-meta-mobile: var(--text-xs);
+  --post-meta-desktop: var(--text-sm);
+
+  /* Feed card (blog list & project list) — typography */
+  --card-title-mobile: var(--text-base);
+  --card-title-tablet: var(--text-lg);
+  --card-title-desktop: var(--text-xl);
+  --card-summary-mobile: var(--text-sm);
+  --card-summary-desktop: var(--text-base);
+  --card-meta-mobile: var(--text-2xs);
+  --card-meta-desktop: var(--text-xs);
+
+  /* Content measure — responsive reading width (post/project body) */
+  --measure-mobile: 100%;
+  --measure-tablet: 720px;
+  --measure-desktop: var(--measure-lg);
+
   /* Layout / container width tokens (use instead of ad-hoc px) */
   --container-base: 1200px;      /* default site container */
   --container-wide: 1400px;      /* ultra-wide container */
