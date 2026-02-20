@@ -1,72 +1,90 @@
 console.log('Frontier Theme: AI Chat Module Loaded');
 
-const chatPanel = document.getElementById('ai-chat-panel');
-const triggerBtn = document.getElementById('ai-chat-trigger');
-const closeBtn = document.getElementById('chat-close');
-const sendBtn = document.getElementById('chat-send');
-const input = document.getElementById('chat-input');
-const messagesContainer = document.getElementById('chat-messages');
-
-// Config - .NET Backend
 const API_ENDPOINT = 'https://api.rajc.work/ai/chat'; // Placeholder
 
-function toggleChat() {
-    chatPanel.classList.toggle('hidden');
-    if (!chatPanel.classList.contains('hidden')) {
-        input.focus();
-    }
+function safeAppendMessage(container, text, type) {
+  if (!container) {
+    console.warn('AI Chat: messages container missing — message not appended');
+    return;
+  }
+  const div = document.createElement('div');
+  div.classList.add('message', type);
+  div.textContent = text;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
 }
 
-function appendMessage(text, type) {
-    const div = document.createElement('div');
-    div.classList.add('message', type);
-    div.textContent = text;
-    messagesContainer.appendChild(div);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
-async function sendMessage() {
-    const text = input.value.trim();
+function createSendMessageFn(inputEl, messagesContainer) {
+  return async function sendMessage() {
+    const text = inputEl?.value?.trim();
     if (!text) return;
 
-    appendMessage(text, 'user');
-    input.value = '';
+    safeAppendMessage(messagesContainer, text, 'user');
+    if (inputEl) inputEl.value = '';
 
     // Mock Backend Call
-    appendMessage('Thinking...', 'system');
+    safeAppendMessage(messagesContainer, 'Thinking...', 'system');
 
     try {
-        // Implement actual fetch here when backend is ready
-        // const response = await fetch(API_ENDPOINT, { 
-        //     method: 'POST', 
-        //     body: JSON.stringify({ query: text, context: document.body.innerText }) 
-        // });
-
-        setTimeout(() => {
-            // Remove 'Thinking...' (simplification: just append new message)
-            appendMessage(`I'm simulated response. Connect me to ${API_ENDPOINT} to get real answers about this article!`, 'system');
-        }, 1000);
-
-    } catch (e) {
-        appendMessage('Error connecting to AI service.', 'system');
+      // Replace with real fetch when service is available
+      // const response = await fetch(API_ENDPOINT, { method: 'POST', body: JSON.stringify({ query: text }) });
+      setTimeout(() => {
+        safeAppendMessage(messagesContainer, `I'm a simulated response. Connect me to ${API_ENDPOINT} for real answers.`, 'system');
+      }, 900);
+    } catch (err) {
+      safeAppendMessage(messagesContainer, 'Error connecting to AI service.', 'system');
     }
+  };
 }
 
-// Event Listeners
-if (triggerBtn) {
+function initAIChat() {
+  const chatPanel = document.getElementById('ai-chat-panel');
+  if (!chatPanel) return; // no chat UI on this layout
+
+  // Prevent double-binding when header/bottom-nav persist across swup navigations
+  if (chatPanel.dataset.aiChatInit === '1') return;
+  chatPanel.dataset.aiChatInit = '1';
+
+  const triggerBtn = document.getElementById('ai-chat-trigger');
+  const closeBtn = document.getElementById('chat-close');
+  const sendBtn = document.getElementById('chat-send');
+  const input = document.getElementById('chat-input');
+  const messagesContainer = document.getElementById('chat-messages');
+
+  function toggleChat() {
+    chatPanel.classList.toggle('hidden');
+    if (!chatPanel.classList.contains('hidden') && input) input.focus();
+  }
+
+  const sendMessage = createSendMessageFn(input, messagesContainer);
+
+  if (triggerBtn) {
+    // guard against multiple handlers
+    if (!triggerBtn.dataset.aiChatBound) {
+      triggerBtn.addEventListener('click', (e) => { e.preventDefault(); toggleChat(); });
+      triggerBtn.dataset.aiChatBound = '1';
+    }
     console.log('AI Chat: Trigger button found');
-    triggerBtn.onclick = (e) => {
-        console.log('AI Chat: Trigger clicked');
-        e.preventDefault();
-        toggleChat();
-    };
-} else {
-    console.error('AI Chat: Trigger button NOT found');
+  } else {
+    console.info('AI Chat: Trigger button not present on this page (optional)');
+  }
+
+  if (closeBtn && !closeBtn.dataset.aiChatBound) {
+    closeBtn.addEventListener('click', toggleChat);
+    closeBtn.dataset.aiChatBound = '1';
+  }
+  if (sendBtn && !sendBtn.dataset.aiChatBound) {
+    sendBtn.addEventListener('click', sendMessage);
+    sendBtn.dataset.aiChatBound = '1';
+  }
+  if (input && !input.dataset.aiChatBound) {
+    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+    input.dataset.aiChatBound = '1';
+  }
 }
-if (closeBtn) closeBtn.addEventListener('click', toggleChat);
-if (sendBtn) sendBtn.addEventListener('click', sendMessage);
-if (input) {
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+
+// Initialize now and re-run on Swup navigation if Swup is present
+initAIChat();
+if (window.swup && window.swup.hooks) {
+  window.swup.hooks.on('page:view', initAIChat);
 }

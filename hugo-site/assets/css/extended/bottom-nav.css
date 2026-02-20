@@ -152,3 +152,91 @@
     max-width: var(--bottom-nav-lg);
   }
 }
+
+/* ------------------ Collapsible bottom-nav ------------------ */
+.bottom-nav {
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
+  will-change: transform, opacity;
+}
+
+.bottom-nav.collapsed {
+  transform: translateY(120%); /* push out of view */
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Toggle handle shown above the bottom nav; remains visible when collapsed */
+.bottom-nav-toggle {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + var(--space-xs));
+  transform: translateX(-50%);
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-medium), background var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.bottom-nav-toggle svg { transform-origin: center; transition: transform var(--transition-medium); }
+
+/* Rotate arrow when nav is collapsed so it indicates "open" */
+.bottom-nav.collapsed + .bottom-nav-toggle svg,
+.bottom-nav-toggle.collapsed svg { transform: rotate(180deg); }
+
+/* Player-bar toggle (small handle next to the bottom-nav toggle) */
+.player-bar-toggle {
+  position: fixed;
+  left: calc(50% + 56px);
+  bottom: calc(18px + var(--space-xs));
+  transform: translateX(-50%);
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-medium), background var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.player-bar-toggle svg { transform-origin: center; transition: transform var(--transition-medium); }
+.player-bar-toggle.collapsed svg { transform: rotate(180deg); }
+
+/* Smaller handle and reposition when viewport very small */
+@media (max-width: 420px) {
+  .bottom-nav-toggle { width: 40px; height: 30px; bottom: 12px; }
+  .player-bar-toggle { left: calc(50% + 48px); bottom: 12px; }
+}
+
+/* ------------------ Collapsible player-bar ------------------ */
+.player-bar {
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
+  will-change: transform, opacity;
+}
+
+.player-bar.collapsed {
+  transform: translateY(110%); /* push slightly out of view */
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Reduce page bottom padding when bottom-nav collapsed */
+.app-layout.bottom-nav-collapsed { padding-bottom: 32px; }
+
+/* Reduce page bottom padding when player-bar collapsed */
+.app-layout.player-bar-collapsed { padding-bottom: 80px; }
+

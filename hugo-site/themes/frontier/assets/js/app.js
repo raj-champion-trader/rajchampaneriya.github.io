@@ -57,6 +57,82 @@ if (themeToggleBtn) {
     });
 }
 
+// ------------------ Bottom navigation collapse control ------------------
+(function initBottomNavCollapse() {
+  const bottomNav = document.querySelector('.bottom-nav');
+  const toggle = document.getElementById('bottom-nav-toggle');
+  if (!bottomNav || !toggle) return;
+
+  function applyCollapsed(collapsed) {
+    bottomNav.classList.toggle('collapsed', collapsed);
+    document.body.classList.toggle('bottom-nav-collapsed', collapsed);
+    toggle.classList.toggle('collapsed', collapsed);
+    // accessibility
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    localStorage.setItem('bottomNavCollapsed', collapsed ? '1' : '0');
+  }
+
+  // restore state on load
+  const stored = localStorage.getItem('bottomNavCollapsed');
+  const initialCollapsed = stored === '1';
+  applyCollapsed(initialCollapsed);
+
+  toggle.addEventListener('click', (e) => {
+    const isCollapsed = bottomNav.classList.contains('collapsed');
+    applyCollapsed(!isCollapsed);
+  });
+
+  // Re-apply after swup page swaps (persisted state)
+  if (window.swup && window.swup.hooks) {
+    window.swup.hooks.on('page:view', () => {
+      const s = localStorage.getItem('bottomNavCollapsed');
+      applyCollapsed(s === '1');
+    });
+  }
+})();
+
+// ------------------ Player-bar hide/show control ------------------
+(function initPlayerBarToggle() {
+  const playerBar = document.getElementById('audio-player-bar');
+  const toggle = document.getElementById('player-bar-toggle');
+  const audioEl = document.getElementById('global-audio');
+  if (!playerBar || !toggle) return;
+
+  function applyPlayerCollapsed(collapsed) {
+    playerBar.classList.toggle('collapsed', collapsed);
+    document.body.classList.toggle('player-bar-collapsed', collapsed);
+    toggle.classList.toggle('collapsed', collapsed);
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    localStorage.setItem('playerBarCollapsed', collapsed ? '1' : '0');
+
+    // When user explicitly hides the player, also hide the visible UI to avoid accidental reopen
+    if (collapsed) playerBar.classList.add('hidden');
+    else {
+      // if audio is currently playing/showing, reveal; otherwise keep hidden until user triggers play
+      const isPlaying = audioEl && !audioEl.paused && audioEl.src;
+      if (isPlaying) playerBar.classList.remove('hidden');
+    }
+  }
+
+  // restore state on load
+  const stored = localStorage.getItem('playerBarCollapsed');
+  const initialCollapsed = stored === '1';
+  applyPlayerCollapsed(initialCollapsed);
+
+  toggle.addEventListener('click', () => {
+    const isCollapsed = playerBar.classList.contains('collapsed');
+    applyPlayerCollapsed(!isCollapsed);
+  });
+
+  // Re-apply after swup page swaps (persisted state)
+  if (window.swup && window.swup.hooks) {
+    window.swup.hooks.on('page:view', () => {
+      const s = localStorage.getItem('playerBarCollapsed');
+      applyPlayerCollapsed(s === '1');
+    });
+  }
+})();
+
 import './audio-player.js';
 import './ai-chat.js';
 

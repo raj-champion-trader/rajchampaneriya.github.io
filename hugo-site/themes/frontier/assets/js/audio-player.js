@@ -56,6 +56,13 @@ function closePlayer() {
 }
 
 function showPlayer() {
+    const collapsed = localStorage.getItem('playerBarCollapsed') === '1';
+    // Respect user preference: do not force UI open if user hid the player pane
+    if (collapsed) {
+        // ensure saved state reflects visibility=false
+        saveState();
+        return;
+    }
     playerBar.classList.remove('hidden');
     saveState();
 }
