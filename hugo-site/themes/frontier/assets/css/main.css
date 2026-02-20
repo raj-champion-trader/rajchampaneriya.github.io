@@ -639,11 +639,6 @@ a:hover {
     padding-bottom: 3rem;
   }
 
-  /* Hide mobile bottom navigation on tablet/desktop — prevents overlap with article content */
-  .bottom-nav {
-    display: none !important;
-  }
-
   /* Feed grid -> multi-column on tablet */
   .feed-grid {
     display: grid;

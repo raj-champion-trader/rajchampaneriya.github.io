@@ -1,3 +1,6 @@
+/* Media query reference — use these literal values in @media (CSS vars not allowed there):
+   sm: 480px   md: 768px   lg: 1024px   xl: 1280px
+   Mobile-first: min-width 768px, min-width 1024px. Mobile-only: max-width 767px, max-width 479px. */
 :root {
   /* Brand Colors - "Executive Authority" Theme */
   --hue-brand: 215;
@@ -63,6 +66,7 @@
   --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
   --shadow-lg: 0 15px 30px hsla(220, 20%, 10%, 0.1);
   --blur-glass: blur(20px);
+  --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
@@ -169,6 +173,39 @@
   --overlay-backdrop-strength: 0.85;
   --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
   /* Theme-aware full-screen overlay background (used by Mermaid fullscreen) */
+
+  /* About page — layout and sizing */
+  --about-photo-mobile: 120px;
+  --about-photo-tablet: 160px;
+  --about-photo-desktop: 200px;
+  --about-process-number-size: 1.75rem;
+  --about-card-radius: 10px;
+
+  /* About page — accent palette (process, impact, tech, capability) — light */
+  --about-accent-blue-bg: #eff6ff;
+  --about-accent-blue-border: #bfdbfe;
+  --about-accent-blue-text: #1e40af;
+  --about-accent-blue-number: #2563eb;
+  --about-accent-orange-bg: #fff7ed;
+  --about-accent-orange-border: #fed7aa;
+  --about-accent-orange-text: #9a3412;
+  --about-accent-orange-number: #ea580c;
+  --about-accent-purple-bg: #faf5ff;
+  --about-accent-purple-border: #e9d5ff;
+  --about-accent-purple-text: #6b21a8;
+  --about-accent-purple-number: #9333ea;
+  --about-accent-green-bg: #f0fdf4;
+  --about-accent-green-border: #bbf7d0;
+  --about-accent-green-text: #166534;
+  --about-accent-green-number: #16a34a;
+  --about-accent-gray-bg: #f8fafc;
+  --about-accent-gray-border: #e2e8f0;
+  --about-accent-gray-text: #334155;
+  --about-accent-blue-pill-bg: rgba(219, 234, 254, 0.7);
+  --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
+  --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
+  --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
+  --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
 }
 
 /* Dark Mode - Boardroom After Hours */
@@ -195,6 +232,31 @@
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
     --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
+    /* About page accents — dark */
+    --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
+    --about-accent-blue-border: rgba(37, 99, 235, 0.3);
+    --about-accent-blue-text: #93c5fd;
+    --about-accent-blue-number: #2563eb;
+    --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
+    --about-accent-orange-border: rgba(234, 88, 12, 0.3);
+    --about-accent-orange-text: #fdba74;
+    --about-accent-orange-number: #ea580c;
+    --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
+    --about-accent-purple-border: rgba(147, 51, 234, 0.3);
+    --about-accent-purple-text: #d8b4fe;
+    --about-accent-purple-number: #9333ea;
+    --about-accent-green-bg: rgba(22, 163, 74, 0.1);
+    --about-accent-green-border: rgba(22, 163, 74, 0.3);
+    --about-accent-green-text: #86efac;
+    --about-accent-green-number: #16a34a;
+    --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
+    --about-accent-gray-border: rgba(100, 116, 139, 0.25);
+    --about-accent-gray-text: #cbd5e1;
+    --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
+    --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
+    --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
+    --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
+    --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
   }
 }
 
@@ -215,6 +277,31 @@
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
   --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
+  /* About page accents — dark */
+  --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
+  --about-accent-blue-border: rgba(37, 99, 235, 0.3);
+  --about-accent-blue-text: #93c5fd;
+  --about-accent-blue-number: #2563eb;
+  --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
+  --about-accent-orange-border: rgba(234, 88, 12, 0.3);
+  --about-accent-orange-text: #fdba74;
+  --about-accent-orange-number: #ea580c;
+  --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
+  --about-accent-purple-border: rgba(147, 51, 234, 0.3);
+  --about-accent-purple-text: #d8b4fe;
+  --about-accent-purple-number: #9333ea;
+  --about-accent-green-bg: rgba(22, 163, 74, 0.1);
+  --about-accent-green-border: rgba(22, 163, 74, 0.3);
+  --about-accent-green-text: #86efac;
+  --about-accent-green-number: #16a34a;
+  --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
+  --about-accent-gray-border: rgba(100, 116, 139, 0.25);
+  --about-accent-gray-text: #cbd5e1;
+  --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
+  --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
+  --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
+  --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
+  --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
 }
 
 [data-theme="light"] {

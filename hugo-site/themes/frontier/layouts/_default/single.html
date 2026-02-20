@@ -29,6 +29,7 @@
         {{ end }}
     </div>
     <header class="post-header scroll-reveal">
+        {{ if ne .File.Path "about.md" }}
         <div class="post-meta">
             <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
             <span>•</span>
@@ -47,6 +48,7 @@
             </button>
             {{ end }}
         </div>
+        {{ end }}
         <h1>{{ .Title }}</h1>
         {{ with .Params.description }}
         <p class="post-description">{{ . }}</p>

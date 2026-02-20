@@ -861,7 +861,7 @@ pre code.language-json {
    ============================================ */
 
 /* ----- Mobile (< 768px): stacked layout, focus on name, headline, CTAs ----- */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .hero-premium {
         padding: var(--space-xs) 0;
     }
@@ -1050,8 +1050,8 @@ pre code.language-json {
     }
 }
 
-/* ----- Tablet (768px–1023px): centered layout, 2x2 metrics, all trust badges ----- */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+/* ----- Tablet (768px–1024px): centered layout, 2x2 metrics, all trust badges ----- */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     .hero-premium__card {
         padding: var(--space-lg) var(--home-padding-tablet);
     }
