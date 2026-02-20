@@ -1,0 +1,63 @@
+/* Global site footer — social links, email, tagline */
+
+.site-footer {
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  padding: var(--space-md) 0 var(--space-lg);
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.site-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.site-footer-social {
+  gap: var(--space-lg);
+}
+
+.site-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-main);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  font-size: var(--text-sm);
+  transition: color 0.15s ease;
+}
+
+.site-footer-link:hover {
+  color: var(--color-brand);
+}
+
+.site-footer-icon {
+  flex-shrink: 0;
+}
+
+.site-footer-tagline {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.site-footer-tagline a {
+  color: var(--color-text-main);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.site-footer-tagline a:hover {
+  color: var(--color-brand);
+}
