@@ -9,9 +9,11 @@ const swup = new Swup({
 // Expose globally so module scripts (mermaid, etc.) can hook into page transitions
 window.swup = swup;
 
-// Navigation Active State Update
+// Navigation Active State Update + LinkedIn Share link (so Share always points to current page URL)
 function updateNav() {
     const path = window.location.pathname;
+    // Use current page URL so share works on client-side nav, localhost, and correct baseURL
+    const shareURL = window.location.href;
     document.querySelectorAll('.bottom-nav .nav-item').forEach(el => {
         el.classList.remove('active');
         const href = el.getAttribute('href');
@@ -19,10 +21,19 @@ function updateNav() {
             el.classList.add('active');
         }
     });
+    // Update every LinkedIn share link on the page (bottom nav + any in-content) to current URL
+    document.querySelectorAll('a[href*="linkedin.com/sharing"]').forEach(el => {
+        el.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareURL);
+    });
 }
 
 swup.hooks.on('page:view', updateNav);
-updateNav(); // Initial run
+// Run when DOM is ready and after Swup so share URL is always correct
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateNav);
+} else {
+    updateNav();
+}
 
 // ------------------ Scroll reveal (Intersection Observer) ------------------
 function initScrollReveal() {

@@ -1083,7 +1083,17 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* 2. Audio Player Mobile Responsiveness — moved to assets/css/extended/audio-player.css */
+/* 2. Bottom nav: hide text labels on mobile to reduce clutter; icons only */
+@media (max-width: 768px) {
+    .bottom-nav .nav-item .label {
+        display: none;
+    }
+    .bottom-nav .nav-item {
+        gap: 0;
+    }
+}
+
+/* 3. Audio Player Mobile Responsiveness — moved to assets/css/extended/audio-player.css */
 @media (max-width: 375px) {
     .bottom-nav {
         width: 96%;
@@ -1092,7 +1102,7 @@ a:hover {
     }
 }
 
-/* 3. Syntax Highlighting Tweaks (Chroma / Pygments) */
+/* 4. Syntax Highlighting Tweaks (Chroma / Pygments) */
 /* Ensure code blocks have contrast and border */
 .highlight {
     background: var(--code-bg, #1e1e1e) !important;
