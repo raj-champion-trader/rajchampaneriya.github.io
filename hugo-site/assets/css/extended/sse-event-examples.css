@@ -1,0 +1,64 @@
+/*
+  SSE event examples — compact, visual display of "browser receives events like" blocks.
+  Truncated data keeps flow; card layout adds visual interest. Uses Frontier tokens.
+*/
+
+.post-content .sse-event-examples {
+  margin: var(--space-md) 0;
+}
+
+.post-content .sse-event-examples-intro {
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.post-content .sse-event-examples-list {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 480px) {
+  .post-content .sse-event-examples-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.post-content .sse-event-card {
+  --card-bg: hsl(var(--hue-brand), 25%, 97%);
+  --card-border: hsl(var(--hue-brand), 30%, 88%);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.post-content .sse-event-card .sse-event-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.post-content .sse-event-card .sse-event-field {
+  color: var(--color-brand);
+  font-weight: 600;
+  margin-right: 0.25em;
+}
+
+.post-content .sse-event-card .sse-event-data {
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+[data-theme="dark"] .post-content .sse-event-card {
+  --card-bg: hsla(var(--hue-brand), 20%, 18%, 0.4);
+  --card-border: hsla(var(--hue-brand), 30%, 35%, 0.5);
+}

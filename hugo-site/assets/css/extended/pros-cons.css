@@ -1,0 +1,119 @@
+/*
+  Pros & Cons blocks — visual distinction for advantages/disadvantages lists.
+  Uses Frontier design tokens. Reusable for any pros/cons section in post content.
+*/
+
+.post-content .pros-cons {
+  display: grid;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+@media screen and (min-width: 768px) {
+  .post-content .pros-cons {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+.post-content .pros-cons-block {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  box-shadow: var(--shadow-sm);
+}
+
+.post-content .pros-cons-block.pros {
+  --block-bg: hsl(150, 35%, 96%);
+  --block-border: hsl(150, 30%, 88%);
+  --block-accent: hsl(150, 45%, 38%);
+  background: var(--block-bg);
+  border-color: var(--block-border);
+  border-left: 4px solid var(--block-accent);
+}
+
+.post-content .pros-cons-block.cons {
+  --block-bg: hsl(30, 30%, 97%);
+  --block-border: hsl(30, 25%, 90%);
+  --block-accent: hsl(30, 50%, 45%);
+  background: var(--block-bg);
+  border-color: var(--block-border);
+  border-left: 4px solid var(--block-accent);
+}
+
+.post-content .pros-cons-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin: 0 0 var(--space-xs) 0;
+  color: var(--color-text-main);
+}
+
+.post-content .pros-cons-block.pros .pros-cons-title {
+  color: var(--block-accent);
+}
+
+.post-content .pros-cons-block.cons .pros-cons-title {
+  color: var(--block-accent);
+}
+
+.post-content .pros-cons-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-content .pros-cons-list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+}
+
+.post-content .pros-cons-list li:first-child {
+  margin-top: 0;
+}
+
+.post-content .pros-cons-block.pros .pros-cons-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--block-accent);
+}
+
+.post-content .pros-cons-block.cons .pros-cons-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--block-accent);
+}
+
+.post-content .pros-cons-list li strong {
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.post-content .pros-cons-list li strong::after {
+  content: " ";
+}
+
+[data-theme="dark"] .post-content .pros-cons-block.pros {
+  --block-bg: hsla(150, 25%, 18%, 0.4);
+  --block-border: hsla(150, 30%, 35%, 0.5);
+  --block-accent: hsl(150, 45%, 55%);
+}
+
+[data-theme="dark"] .post-content .pros-cons-block.cons {
+  --block-bg: hsla(30, 20%, 18%, 0.4);
+  --block-border: hsla(30, 25%, 35%, 0.5);
+  --block-accent: hsl(30, 50%, 55%);
+}
