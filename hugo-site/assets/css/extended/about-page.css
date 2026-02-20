@@ -1,4 +1,46 @@
-/* About page — intro layout with photo */
+/* ============================================
+   About page — match single-post layout; header with photo only
+   ============================================ */
+
+/* About uses .single-post, .post-navigation-top, .post-header, .post-content.surface-panel
+   like blog/project singles. Only addition: profile photo in header. */
+
+.post-header--about .post-header__about-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.post-header--about .post-header__about-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-header--about .post-header__about-photo {
+  flex-shrink: 0;
+}
+
+.post-header--about .post-header__about-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .post-header--about .post-header__about-inner {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ============================================
+   About page — intro layout with photo (in-content)
+   ============================================ */
+
 .about-intro {
   display: flex;
   gap: var(--space-lg);

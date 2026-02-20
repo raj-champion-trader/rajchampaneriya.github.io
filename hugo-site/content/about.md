@@ -1,25 +1,10 @@
 ---
 title: "About Me"
+layout: "about"
 description: "Enterprise Architect & Strategic Technology Leader specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
----
-
-<div class="about-intro scroll-reveal">
-<div class="about-intro-text">
-
-I'm **Raj Champaneriya** — an **Enterprise Architect** who protects technology leaders through high-stakes digital transformations.
-
-I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, architect platforms that deliver **99.95% uptime SLAs**, and build teams that ship without career-damaging failures — across **13+ years and 4 Fortune 500 industries**.
-
-> Enterprise architecture should protect careers and accelerate transformations — not just solve technical problems.
-
-</div>
-<div class="about-intro-photo">
-
-![Raj Champaneriya](/images/profile.jpg)
-
-</div>
-</div>
-
+summary: "Enterprise Architect with 13+ years across Fortune 500. Expert in de-risk multi-million dollar modernizations, deliver 99.95% uptime SLAs, and mentor teams to ship without career-damaging failures. He CARE for Clarity → Alignment → Reality → Execution."
+audio: "/audio/about-me.wav"
+audioTitle: "About Me"
 ---
 
 ## The CARE Architecture Method
@@ -179,8 +164,6 @@ Selected outcomes:
     </div>
   </div>
 </div>
-
----
 
 ## Credentials
 

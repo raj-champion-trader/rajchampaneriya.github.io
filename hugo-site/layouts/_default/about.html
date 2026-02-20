@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{ $audioSrc := "" }}
+{{ $audioTitle := .Params.audioTitle | default .Title }}
+{{ with .Params.audio }}
+  {{ $audioSrc = . }}
+{{ end }}
+{{ if $audioSrc }}
+<div id="page-audio-data" data-src="{{ $audioSrc }}" data-title="{{ $audioTitle }}" hidden aria-hidden="true"></div>
+{{ end }}
+
+<article class="single-post">
+  <div class="post-navigation-top scroll-reveal">
+    <a href="{{ "" | absLangURL }}" class="btn-text">← Back Home</a>
+  </div>
+
+  <header class="post-header post-header--about scroll-reveal">
+    <div class="post-header__about-inner">
+      <div class="post-header__about-text">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.summary }}
+        <p class="post-description">{{ . }}</p>
+        {{ end }}
+      </div>
+      <div class="post-header__about-photo">
+        <img src="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}" alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}" width="120" height="120" loading="eager">
+      </div>
+    </div>
+  </header>
+
+  <nav id="scrollspy-nav" class="scrollspy-nav" aria-label="About page contents" hidden>
+    <div class="scrollspy-inner">
+      <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
+        <span class="scrollspy-trigger-label">Contents</span>
+        <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
+    </div>
+  </nav>
+
+  <div class="post-content surface-panel">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
