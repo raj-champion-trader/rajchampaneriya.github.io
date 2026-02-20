@@ -98,61 +98,35 @@ a:hover{
   animation: fadeInUp 0.6s ease-out;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Blog post title styling */
 .post-header h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
   letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
   font-weight: 700;
   animation: fadeInDown 0.5s ease-out;
 }
 
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Post meta (date, author) styling */
 .post-meta {
   color: var(--secondary);
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-lg);
   animation: fadeIn 0.7s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 /* Content paragraphs with better spacing and readability */
 .post-content p {
-  line-height: 1.75;
-  margin-bottom: 1.5rem;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-md);
   color: var(--content);
-  font-size: 1.05rem;
+  font-size: var(--text-base);
 }
 
 /* Emphasized text in posts */
@@ -163,30 +137,28 @@ a:hover{
 
 /* Headings in blog posts */
 .post-content h2 {
-  font-size: 1.75rem;
+  font-size: var(--text-2xl);
   font-weight: 700;
-  margin-top: 1.75rem;
-  margin-bottom: 1rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
   letter-spacing: -0.015em;
   color: var(--primary);
   border-bottom: 2px solid var(--tertiary);
-  padding-bottom: 0.5rem;
+  padding-bottom: var(--space-xs);
   transition: border-color var(--transition-slow);
 }
 
-/* h2 border stays stable — no hover distraction while reading */
-
 .post-content h3 {
-  font-size: 1.35rem;
+  font-size: var(--text-xl);
   font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
   color: var(--primary);
 }
 
 /* Horizontal rule styling */
 .post-content hr {
-  margin: 1.5rem 0;
+  margin: var(--space-md) 0;
   border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--tertiary), transparent);
@@ -196,25 +168,24 @@ a:hover{
 /* List styling in posts */
 .post-content ul,
 .post-content ol {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-md);
 }
 
 .post-content li {
-  margin-bottom: 0.5rem;
-  line-height: 1.7;
+  margin-bottom: var(--space-xs);
+  line-height: var(--leading-relaxed);
 }
 
 /* Blockquote styling for emphasis */
 .post-content blockquote {
   border-left: 4px solid var(--link);
-  padding-left: 1.5rem;
-  margin: 2rem 0;
+  margin: var(--space-lg) 0;
   font-style: italic;
   color: var(--secondary);
   background: var(--entry);
-  padding: 1.25rem 1.5rem;
-  border-radius: 8px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
   transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
@@ -238,8 +209,8 @@ a:hover{
 
 /* Post footer navigation */
 .post-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--tertiary);
   animation: fadeIn 0.8s ease-out;
 }
@@ -252,11 +223,11 @@ a:hover{
 /* Reading time and word count badges */
 .post-meta .meta-item {
   display: inline-block;
-  margin-right: 1rem;
-  padding: 0.25rem 0.75rem;
+  margin-right: var(--space-sm);
+  padding: var(--space-2xs) var(--space-xs);
   background: var(--entry);
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   transition: background var(--transition-medium);
 }
 
@@ -266,18 +237,18 @@ a:hover{
 
 /* Tags styling */
 .post-tags {
-  margin-top: 2rem;
+  margin-top: var(--space-lg);
   animation: fadeIn 0.9s ease-out;
 }
 
 .post-tags a {
   display: inline-block;
-  padding: 0.4rem 0.9rem;
-  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: var(--space-2xs) var(--space-xs);
+  margin: var(--space-2xs) var(--space-2xs) var(--space-2xs) 0;
   background: var(--entry);
   border: 1px solid var(--tertiary);
-  border-radius: 8px;
-  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
   color: var(--secondary);
   transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium);
   text-decoration: none;
@@ -327,9 +298,9 @@ a:hover{
 .toc {
   background: var(--entry);
   border: 1px solid var(--tertiary);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
   animation: fadeIn 0.6s ease-out;
 }
 
@@ -376,7 +347,7 @@ a:hover{
 .footer-link {
   color: var(--secondary);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: var(--text-xs);
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -488,4 +459,66 @@ a:hover{
   color: var(--color-text-muted, var(--secondary));
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+/* ===================================
+   Responsive Blog / Post Content
+   =================================== */
+
+@media (max-width: 768px) {
+  .post-header h1 {
+    letter-spacing: -0.015em;
+    margin-bottom: var(--space-xs);
+  }
+
+  .post-meta {
+    margin-bottom: var(--space-md);
+  }
+
+  .post-content blockquote {
+    margin: var(--space-md) 0;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: var(--space-sm);
+  }
+
+  .post-footer {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+  }
+
+  .toc {
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .post-footer .tags {
+    gap: var(--space-2xs);
+    padding-top: var(--space-sm);
+  }
+
+  .post-footer .tags .tag {
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--text-2xs);
+  }
+
+  .footer-links {
+    gap: var(--space-xs) var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .post-content blockquote {
+    padding: var(--space-xs);
+    margin: var(--space-sm) 0;
+  }
+
+  .post-meta .meta-item {
+    margin-right: var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--text-xs);
+  }
 }

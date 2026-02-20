@@ -103,7 +103,7 @@
 }
 
 /* Very small screens: allow wrapping so nothing escapes viewport */
-@media screen and (max-width: var(--bp-sm)) {
+@media screen and (max-width: 480px) {
   .site-header .header-inner {
     justify-content: center;
     flex-wrap: wrap; /* let the toggle drop to next line if needed */

@@ -14,7 +14,7 @@
 }
 
 /* Mobile-specific diagram handling */
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .architecture-diagram {
         overflow-x: auto;
         overflow-y: hidden;
@@ -62,7 +62,7 @@
     }
 }
 
-@media screen and (max-width: var(--bp-sm)) {
+@media screen and (max-width: 480px) {
     .architecture-diagram {
         margin: 1.5rem -0.75rem;
         padding: 0.75rem 0.5rem;
@@ -86,7 +86,7 @@
     border: 1px solid var(--color-border);
 }
 
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .post-content img[src*="diagram"],
     .post-content img[src*="architecture"] {
         cursor: pointer;

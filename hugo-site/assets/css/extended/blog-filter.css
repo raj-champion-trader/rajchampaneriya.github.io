@@ -76,7 +76,7 @@
 }
 
 /* Responsive */
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .category-filter-bar {
         gap: 0.4rem;
         margin: 1rem 0 1.25rem;

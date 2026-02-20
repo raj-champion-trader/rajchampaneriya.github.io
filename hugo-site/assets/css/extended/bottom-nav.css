@@ -122,7 +122,7 @@
 }
 
 /* ----- Responsive: mobile / tablet / desktop ----- */
-@media (max-width: var(--bp-sm)) {
+@media (max-width: 480px) {
   .bottom-nav .nav-item {
     min-width: 44px;
     padding: 6px 2px;
@@ -141,13 +141,13 @@
   }
 }
 
-@media (min-width: var(--bp-md)) and (max-width: calc(var(--bp-lg) - 1px)) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .bottom-nav {
     max-width: var(--bottom-nav-md);
   }
 }
 
-@media (min-width: var(--bp-lg)) {
+@media (min-width: 1024px) {
   .bottom-nav {
     max-width: var(--bottom-nav-lg);
   }

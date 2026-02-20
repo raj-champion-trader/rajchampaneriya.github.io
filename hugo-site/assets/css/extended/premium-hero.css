@@ -57,14 +57,14 @@
     padding: 0 var(--space-md);
 }
 
-@media screen and (min-width: var(--bp-lg)) {
+@media screen and (min-width: 1024px) {
     .home-container {
         max-width: var(--container-home-md);
         padding: 0 var(--space-lg);
     }
 }
 
-@media screen and (min-width: var(--bp-xl)) {
+@media screen and (min-width: 1280px) {
     .home-container {
         max-width: var(--container-home-lg);
     }
@@ -188,7 +188,7 @@
 }
 
 .hero-premium__role {
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 700;
     color: var(--color-brand);
     letter-spacing: 0.02em;
@@ -200,7 +200,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.2rem;
-    font-size: 0.6rem;
+    font-size: var(--text-2xs);
     font-weight: 600;
     color: var(--color-brand);
     background: var(--color-brand-glow);
@@ -380,7 +380,7 @@
 }
 
 .trust-label {
-    font-size: 0.62rem;
+    font-size: var(--text-2xs);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -409,7 +409,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    font-size: 0.68rem;
+    font-size: var(--text-2xs);
     font-weight: 500;
     color: var(--color-text-muted);
     background: transparent;
@@ -799,7 +799,7 @@ pre code.language-json {
    ============================================ */
 
 /* ----- Mobile first: focus on name, role, headline, CTAs ----- */
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .hero-premium {
         padding: var(--space-xs) 0;
     }
@@ -840,7 +840,6 @@ pre code.language-json {
         font-size: 0.7rem;
     }
 
-    /* Certifications: compact pills, wrap, keep icons */
     .hero-premium__cert {
         font-size: 0.55rem;
         padding: 0.2rem 0.4rem;
@@ -863,12 +862,10 @@ pre code.language-json {
         overflow: hidden;
     }
 
-    /* Hide tagline on mobile to reduce clutter; primary message is headline */
     .hero-premium__tagline {
         display: none;
     }
 
-    /* Buttons: full width, stack, clear tap targets */
     .hero-premium__actions {
         flex-direction: column;
         width: 100%;
@@ -884,7 +881,6 @@ pre code.language-json {
         padding: 12px 20px;
     }
 
-    /* Metrics: show only first 2 on mobile to keep focus */
     .hero-premium__metrics {
         margin-top: var(--space-md);
         padding-top: var(--space-md);
@@ -914,7 +910,6 @@ pre code.language-json {
         line-height: 1.2;
     }
 
-    /* Trust: show only "Trusted Across" + Fortune 500 on mobile */
     .hero-premium__trust {
         flex-direction: column;
         align-items: center;
@@ -933,7 +928,6 @@ pre code.language-json {
         margin-left: 0;
     }
 
-    /* CARE: 2 columns, hide long descriptions on mobile */
     .care-teaser {
         padding: var(--space-md) var(--space-sm);
         margin-top: var(--space-md);
@@ -979,7 +973,6 @@ pre code.language-json {
         display: none;
     }
 
-    /* Feed: fewer cards visible on mobile, more spacing */
     .latest-feed .feed-grid {
         gap: var(--space-sm);
     }
@@ -995,7 +988,7 @@ pre code.language-json {
 }
 
 /* ----- Tablet: more content, still scannable ----- */
-@media screen and (min-width: var(--bp-md)) and (max-width: calc(var(--bp-lg) - 1px)) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .hero-premium__header {
         flex-direction: column;
         align-items: center;
@@ -1109,8 +1102,7 @@ pre code.language-json {
     }
 }
 
-/* Overrides for 768px and below (legacy alignment with existing behavior) */
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .hero-premium__header {
         flex-direction: column;
         align-items: center;

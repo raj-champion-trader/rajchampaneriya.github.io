@@ -170,10 +170,10 @@ p {
   color: var(--color-text-main);
 }
 
-@media screen and (max-width: var(--bp-sm)) {
+@media screen and (max-width: 480px) {
   .site-header .header-inner {
     justify-content: center;
-    flex-wrap: wrap; /* let the toggle drop to next line if needed */
+    flex-wrap: wrap;
     gap: 0.25rem;
   }
   .site-header .header-inner .logo { max-width: 100%; }
@@ -533,7 +533,7 @@ a:hover {
     user-select: none;
 } 
 
-@media screen and (max-width: var(--bp-md)) {
+@media screen and (max-width: 768px) {
     .menu-separator { display: none; }
     #menu { overflow-x: hidden; white-space: normal; flex-wrap: wrap; justify-content: center; padding: 0; margin: 8px var(--gap); }
     #menu li { margin: 4px 8px !important; }
@@ -543,7 +543,7 @@ a:hover {
     .logo { margin: auto; justify-content: center; }
 }
 
-@media screen and (max-width: var(--bp-sm)) {
+@media screen and (max-width: 480px) {
     #menu a { font-size: 13px; }
     #menu li { margin: 3px 6px !important; }
 }
@@ -673,20 +673,6 @@ a:hover {
     border: 1px solid var(--color-border);
     background: var(--color-bg);
     color: var(--color-text-main);
-}
-
-.btn-primary {
-    background: var(--color-brand);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.btn-primary:hover {
-    background: var(--color-brand-dim);
 }
 
 /* FAB Trigger style override if needed */

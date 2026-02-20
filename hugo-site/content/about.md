@@ -189,20 +189,6 @@ Selected outcomes:
 - AWS Certified Solutions Architect — Associate
 - Microsoft Specialist — Programming in C#
 
-**Strategic Partnerships**
-
-<div class="partnerships-strip scroll-reveal">
-  <div class="partnership-badge partnership-badge--primary">
-    <strong>IBM</strong> — Enterprise Architecture
-  </div>
-  <div class="partnership-badge">
-    <strong>Microsoft Azure</strong> — Cloud & AI
-  </div>
-  <div class="partnership-badge">
-    <strong>AWS</strong> — Infrastructure
-  </div>
-</div>
-
 **Education** — M.Sc. Information Technology · B.Sc. Information Technology
 
 ---
@@ -213,6 +199,6 @@ Whether you're navigating a high-stakes modernization or evaluating cloud strate
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
-- **Email**: [raj.champaneriya1@ibm.com](mailto:raj.champaneriya1@ibm.com)
+- **Email**: [champaneriyaraj@gmail.com](mailto:champaneriyaraj@gmail.com)
 
 *All opinions expressed on this site are my own.*

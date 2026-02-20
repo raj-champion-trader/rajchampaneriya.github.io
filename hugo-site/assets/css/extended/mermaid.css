@@ -438,7 +438,7 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: var(--bp-md)) {
+@media (max-width: 768px) {
     .mermaid {
         padding: 0.5rem;
     }
@@ -763,8 +763,7 @@
   stroke: #94A3B8 !important;
 }
 
-/* Mobile responsive fullscreen — compact header, focus on content */
-@media (max-width: var(--bp-md)) {
+@media (max-width: 768px) {
   .mermaid-fullscreen-dialog {
     padding: 4px;
   }
