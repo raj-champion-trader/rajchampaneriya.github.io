@@ -161,24 +161,42 @@ Notes:
 Follow-ups:
 1. Update `README`/contribution guide to document the rule and token usage.
 2. Consider extracting additional primitives from `enterprise.css` where appropriate.
+
 ### 2.3 Fix Duplicate Mermaid Load
 
-Remove `$mermaidCSS` from the `style.css` concat in `baseof.html`. Mermaid styles will load once via `extended-all.css`.
+**Status (2.3): implemented ✅** — `mermaid.css` was removed from the `style.css` concatenation in `themes/frontier/layouts/_default/baseof.html`. Mermaid styling now loads only once via `hugo-site/assets/css/extended/mermaid.css` (served by `extended-all.css`), preventing duplicate rules and specificity conflicts.
 
 ### 2.4 Bug: Invalid `rgba()` in Mermaid Overlay
 
-In `main.css` (around line 483):
+In `main.css` (fixed):
 
 ```css
 .mermaid-overlay {
-    background: rgba(var(--color-bg), 0.95);
-    ...
+    background: var(--overlay-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2000;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .mermaid-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--color-surface);
+  }
 }
 ```
 
-`--color-bg` is `hsl(220, 25%, 7%)`, not RGB components. `rgba(var(--color-bg), 0.95)` is invalid and will not work as intended.
+`--color-bg` is `hsl(220, 25%, 7%)`, not RGB components — `rgba(var(--color-bg), 0.95)` is invalid and has been removed.
 
-**Fix (implemented):** A theme-aware `--overlay-bg` token was added to `variables.css` and `.mermaid-overlay` now uses it in `main.css`. I also added a `prefers-reduced-transparency` fallback so devices that request reduced transparency/blur get a non-blurred, solid overlay.
+**Status (2.4): implemented ✅** — Added `--overlay-bg` and `--overlay-backdrop-strength` in `variables.css`; `.mermaid-overlay` now uses `var(--overlay-bg)` in `main.css` and respects `prefers-reduced-transparency`.
 
 Changes made:
 - `themes/frontier/assets/css/variables.css`: added `--overlay-bg` for default, `prefers-color-scheme: dark`, and `[data-theme]` overrides; removed duplicate declarations.
@@ -322,7 +340,7 @@ Before merging styling changes:
 
 - [ ] Uses Frontier tokens (`--color-*`, `--space-*`, `--text-*`).
 - [ ] Styles are in the correct location (theme vs `extended/`).
-- [ ] No new duplicate CSS loads (e.g. mermaid).
+- [x] No new duplicate CSS loads (e.g. mermaid).
 
 ### Performance
 
