@@ -14,7 +14,11 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  description = "Enterprise Architect & Strategic Technology Leader. Views on high-stakes transformations, zero-downtime modernizations, and architecture that protects careers and accelerates change."
+  description = "raj see dot work is the portfolio of Raj Champaneriya, an Enterprise Architect & Strategic Technology Leader. He shares views on high-stakes transformations, zero-downtime modernizations, and architecture that protects careers and accelerates change."
+
+  # Landing page audio (Listen button on home)
+  landingAudioSrc = "/audio/landing.wav"
+  landingAudioTitle = "Raj Champaneriya — Portfolio Overview"
   author = "Raj Champaneriya"
   mainSections = ["blog"]
   keywords = ["enterprise architecture", "strategic technology leader", "Fortune 500 transformation", "legacy modernization", "cloud-native architecture", "solution architecture", "event-driven architecture", "system design", "CARE architecture method"]

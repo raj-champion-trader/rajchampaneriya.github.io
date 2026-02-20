@@ -1,4 +1,8 @@
 {{ define "main" }}
+{{/* --- Landing page audio (Listen button) --- */}}
+{{ with .Site.Params.landingAudioSrc }}
+<div id="page-audio-data" data-src="{{ . }}" data-title="{{ $.Site.Params.landingAudioTitle | default "Portfolio Overview" }}" hidden aria-hidden="true"></div>
+{{ end }}
 <div class="home-container">
     <!-- Premium Hero Section -->
     <section class="hero-premium scroll-reveal">
