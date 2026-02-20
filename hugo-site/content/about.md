@@ -1,12 +1,12 @@
 ---
 title: "About Me"
-description: "IBM Enterprise Architect specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
+description: "Enterprise Architect & Strategic Technology Leader specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
 ---
 
 <div class="about-intro scroll-reveal">
 <div class="about-intro-text">
 
-I'm **Raj Champaneriya** — an **IBM Enterprise Architect** who protects technology leaders through high-stakes digital transformations.
+I'm **Raj Champaneriya** — an **Enterprise Architect** who protects technology leaders through high-stakes digital transformations.
 
 I help CTOs and VPs of Engineering de-risk multi-million dollar modernizations, architect platforms that deliver **99.95% uptime SLAs**, and build teams that ship without career-damaging failures — across **13+ years and 4 Fortune 500 industries**.
 

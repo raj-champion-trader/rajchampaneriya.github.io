@@ -17,7 +17,9 @@ function updateNav() {
     document.querySelectorAll('.bottom-nav .nav-item').forEach(el => {
         el.classList.remove('active');
         const href = el.getAttribute('href');
-        if (href && (href === path || (href !== '/' && path.startsWith(href)))) {
+        if (!href) return;
+        const hrefPath = href.startsWith('http') ? new URL(href).pathname : href;
+        if (hrefPath === path || (hrefPath !== '/' && path.startsWith(hrefPath.replace(/\/$/, '')))) {
             el.classList.add('active');
         }
     });

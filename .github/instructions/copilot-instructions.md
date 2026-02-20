@@ -6,7 +6,7 @@ applyTo: "**"
 
 ## Site Identity & Positioning
 
-**rajc.work** is the digital presence of **Raj Champaneriya**, an IBM Enterprise Architect specializing in high-stakes enterprise transformations for Fortune 500 clients.
+**rajc.work** is the digital presence of **Raj Champaneriya**, an Enterprise Architect specializing in high-stakes enterprise transformations for Fortune 500 clients.
 
 ### Positioning Statement
 This site must communicate **"elite strategic advisor"** — not "mid-level consultant" or "technical blogger." Every piece of content, visual choice, and interaction should reinforce top 1% enterprise architect positioning.
@@ -20,7 +20,7 @@ This site must communicate **"elite strategic advisor"** — not "mid-level cons
 ### Headline & Tagline
 - **Headline**: "Enterprise Architect for High-Stakes Transformations"
 - **Tagline**: "Enterprise Architecture That Protects Careers and Accelerates Transformations"
-- **Contact**: raj.champaneriya1@ibm.com
+- **Contact**: champaneriyaraj@gmail.com
 
 ### Target Audience
 - CTOs, VPs of Engineering, technology leaders making seven-figure architecture decisions
@@ -43,12 +43,11 @@ This site must communicate **"elite strategic advisor"** — not "mid-level cons
 - Reference real impact metrics when possible
 
 ### Authority Signals to Include
-1. **IBM Enterprise Architect** — prominent brand association
-2. **Strategic Partnerships**: IBM, Microsoft (Azure), AWS
-3. **Quantified Experience**: "13+ years across 4 Fortune 500 industries"
-4. **Certifications**: Azure AI Engineer (AI-102), AWS Solutions Architect, Microsoft C# Specialist
-5. **Industry Domains**: Healthcare, Property Insurance, Media & Entertainment, Logistics
-6. **The CARE Architecture Method**: Clarity, Alignment, Reality, Execution
+1. **Enterprise Architect** — prominent brand association
+2. **Quantified Experience**: "13+ years across 4 Fortune 500 industries"
+3. **Certifications**: Azure AI Engineer (AI-102), AWS Solutions Architect, Microsoft C# Specialist
+4. **Industry Domains**: Healthcare, Property Insurance, Media & Entertainment, Logistics
+5. **The CARE Architecture Method**: Clarity, Alignment, Reality, Execution
 
 ## Visual & Design Standards
 

@@ -8,7 +8,7 @@
 
 ## Brand Positioning
 
-rajc.work is the digital advisory presence of an IBM Enterprise Architect who serves Fortune 500 clients. The visual identity must communicate:
+rajc.work is the digital advisory presence of an Enterprise Architect who serves Fortune 500 clients. The visual identity must communicate:
 - **Authority** — Commanding, not decorative
 - **Premium** — Consulting-grade, not weekend-project
 - **Trust** — Institutional credibility, not personal flair

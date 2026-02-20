@@ -139,7 +139,7 @@
             </svg>
             <span class="label">Home</span>
         </a>
-        <a href="/blog" class="nav-item {{ if eq .Section "blog" }}active{{ end }}" aria-label="Insights">
+        <a href="{{ "/blog/" | absLangURL }}" class="nav-item {{ if eq .Section "blog" }}active{{ end }}" aria-label="Insights">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
@@ -147,7 +147,7 @@
             </svg>
             <span class="label">Insights</span>
         </a>
-        <a href="/projects" class="nav-item {{ if eq .Section "projects" }}active{{ end }}" aria-label="Architecture Blueprints">
+        <a href="{{ "/projects/" | absLangURL }}" class="nav-item {{ if eq .Section "projects" }}active{{ end }}" aria-label="Architecture Blueprints">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -183,7 +183,7 @@
             </svg>
             <span class="label">Share</span>
         </a>
-        <a href="/about" class="nav-item {{ if eq .Section "about" }}active{{ end }}" aria-label="About">
+        <a href="{{ "/about/" | absLangURL }}" class="nav-item {{ if eq .Section "about" }}active{{ end }}" aria-label="About">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>

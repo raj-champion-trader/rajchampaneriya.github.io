@@ -21,11 +21,11 @@
 <article class="single-post">
     <div class="post-navigation-top scroll-reveal">
         {{ if eq .Section "blog" }}
-        <a href="/blog/" class="btn-text">← Back to Blog</a>
+        <a href="{{ "/blog/" | absLangURL }}" class="btn-text">← Back to Blog</a>
         {{ else if eq .Section "projects" }}
-        <a href="/projects/" class="btn-text">← Back to Projects</a>
+        <a href="{{ "/projects/" | absLangURL }}" class="btn-text">← Back to Projects</a>
         {{ else }}
-        <a href="/" class="btn-text">← Back Home</a>
+        <a href="{{ "" | absLangURL }}" class="btn-text">← Back Home</a>
         {{ end }}
     </div>
     <header class="post-header scroll-reveal">
