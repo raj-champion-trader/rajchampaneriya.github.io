@@ -35,6 +35,15 @@
     {{ else }}
     <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
     {{ end }}
+    {{ else if eq .Layout "about" }}
+    <!-- Preload LCP image (about header photo) on about page only -->
+    {{ $profile := resources.Get "images/profile.jpg" }}
+    {{ if $profile }}
+    {{ $profileWebP := $profile.Fill "240x240 webp q82" }}
+    <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
+    {{ else }}
+    <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
+    {{ end }}
     {{ end }}
 
     <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->

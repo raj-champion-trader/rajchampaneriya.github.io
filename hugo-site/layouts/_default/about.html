@@ -22,7 +22,27 @@
         {{ end }}
       </div>
       <div class="post-header__about-photo">
-        <img src="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}" alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}" width="120" height="120" loading="eager">
+        {{ $profile := resources.Get "images/profile.jpg" }}
+        {{ if $profile }}
+        {{ $profileWebP := $profile.Fill "240x240 webp q82" }}
+        {{ $profileJpg := $profile.Fill "240x240 q85" }}
+        <picture>
+          <source type="image/webp" srcset="{{ $profileWebP.RelPermalink }}">
+          <img src="{{ $profileJpg.RelPermalink }}"
+               alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}"
+               width="120"
+               height="120"
+               loading="eager"
+               fetchpriority="high">
+        </picture>
+        {{ else }}
+        <img src="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}"
+             alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}"
+             width="120"
+             height="120"
+             loading="eager"
+             fetchpriority="high">
+        {{ end }}
       </div>
     </div>
   </header>
