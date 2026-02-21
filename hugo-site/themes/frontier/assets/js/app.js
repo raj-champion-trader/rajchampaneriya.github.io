@@ -1,4 +1,6 @@
-import Swup from 'swup';
+// Swup loaded from CDN in baseof.html (window.Swup) to avoid npm resolution in theme during Hugo js.Build
+const Swup = window.Swup;
+if (!Swup) throw new Error('Swup not loaded');
 
 const swup = new Swup({
     containers: ["#swup"],

@@ -211,7 +211,8 @@
         </svg>
     </button>
 
-    <!-- Scripts -->
+    <!-- Scripts: Swup from CDN (avoids npm resolution in theme during Hugo js.Build) -->
+    <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js"></script>
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 
