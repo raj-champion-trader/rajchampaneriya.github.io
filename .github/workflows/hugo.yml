@@ -49,9 +49,12 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Install Node.js dependencies
+      - name: Install Node.js dependencies (site)
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
         working-directory: hugo-site
+      - name: Install Node.js dependencies (frontier theme)
+        run: "[[ -f package.json ]] && npm install || true"
+        working-directory: hugo-site/themes/frontier
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

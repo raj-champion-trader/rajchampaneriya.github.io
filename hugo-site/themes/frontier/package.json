@@ -1,0 +1,8 @@
+{
+  "name": "frontier-theme",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "swup": "^4.8.2"
+  }
+}
