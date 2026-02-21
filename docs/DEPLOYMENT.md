@@ -30,13 +30,13 @@ cd /Users/champion.trader/Code/public_repo
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
 
 # Push to GitHub
-git push -u origin main
+git push -u origin experiment/mobile-native
 ```
 
 **Example with actual username:**
 ```bash
 git remote add origin https://github.com/rajchampaneriyar/rajchampaneriyar.github.io.git
-git push -u origin main
+git push -u origin experiment/mobile-native
 ```
 
 You'll be prompted for your GitHub credentials. Use a Personal Access Token if prompted.
@@ -130,12 +130,22 @@ The site will automatically rebuild and deploy!
 
 The GitHub Actions workflow (`.github/workflows/hugo.yml`) will:
 
-1. **Trigger** on every push to the `main` branch
+1. **Trigger** on every push to the `experiment/mobile-native` branch (deploys to racj.work)
 2. **Build** your Hugo site with the latest content
 3. **Deploy** to GitHub Pages automatically
 4. **Complete** in 1-2 minutes
 
 **You don't need to do anything manually!** Just push changes and they'll be live.
+
+### Default branch (racj.work)
+
+The deploy branch is `experiment/mobile-native`. To make it the **default branch** on GitHub:
+
+1. Go to your repo → **Settings** → **General**
+2. Under "Default branch", click the switch icon
+3. Select **experiment/mobile-native** and confirm
+
+New clones and PRs will then default to this branch.
 
 ---
 

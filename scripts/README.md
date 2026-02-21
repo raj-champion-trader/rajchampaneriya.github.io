@@ -14,7 +14,7 @@ Interactive deployment script for publishing your site to GitHub Pages.
 
 **What it does:**
 - Checks for git remote configuration
-- Verifies you're on the main branch
+- Verifies you're on the experiment/mobile-native branch (deploy branch)
 - Stages and commits changes
 - Pushes to GitHub
 - Provides helpful prompts throughout

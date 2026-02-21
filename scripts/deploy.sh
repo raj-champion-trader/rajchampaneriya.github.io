@@ -42,12 +42,12 @@ fi
 CURRENT_BRANCH=$(git branch --show-current)
 echo "Current branch: $CURRENT_BRANCH"
 
-if [ "$CURRENT_BRANCH" != "main" ]; then
-    echo "⚠️  You're not on the 'main' branch"
-    read -p "Switch to main branch? (y/n): " SWITCH
+if [ "$CURRENT_BRANCH" != "experiment/mobile-native" ]; then
+    echo "⚠️  You're not on the 'experiment/mobile-native' branch (deploy branch)"
+    read -p "Switch to experiment/mobile-native branch? (y/n): " SWITCH
     if [ "$SWITCH" = "y" ]; then
-        git checkout -B main
-        echo "✓ Switched to main branch"
+        git checkout experiment/mobile-native
+        echo "✓ Switched to experiment/mobile-native branch"
     fi
 fi
 

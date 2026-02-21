@@ -37,7 +37,7 @@ cd /Users/champion.trader/Code/public_repo
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
 
 # Push to GitHub
-git push -u origin main
+git push -u origin experiment/mobile-native
 ```
 
 ### Step 3: Enable GitHub Pages
