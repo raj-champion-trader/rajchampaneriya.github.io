@@ -36,7 +36,7 @@ The Stock Market Simulator is a **real-time market data simulation system** that
 The system is organized in four logical layers: **Presentation**, **Application**, **Integration & Data**, and **Data Source**. The diagram below is the single source of truth for how capabilities are grouped and how data and control flow between them.
 
 <figure class="project-diagram project-diagram-hero">
-  {{< projectimg src="images/project/stock-market-simulator/logical-architecture.svg" alt="Logical Architecture: Presentation (Trader/Viewer, Web Frontend), Application (Market Ingestion API, Broker Service, OpenTelemetry), Integration and Data (Redis Streams), Data Source (Market Simulator)" width="1200" height="720" >}}
+  {{< projectimg src="images/project/stock-market-simulator/logical-architecture.svg" alt="Logical Architecture: Presentation (Trader/Viewer, Web Frontend), Application (Market Ingestion API, Broker Service, OpenTelemetry), Integration and Data (Redis Streams), Data Source (Market Simulator)" width="1200" height="720" priority="true" >}}
   <figcaption>Logical architecture — Presentation, Application, Integration &amp; Data, Data Source. For C4 and sequence diagrams see the <a href="https://github.com/raj-champion-trader/stock-market-simulator">repository</a>.</figcaption>
 </figure>
 

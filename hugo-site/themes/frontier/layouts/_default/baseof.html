@@ -44,6 +44,9 @@
     {{ else }}
     <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
     {{ end }}
+    {{ else if and (eq .Section "projects") (eq .Params.slug "stock-market-simulator") }}
+    <!-- Preload LCP image (hero diagram) on Stock Market Simulator project page -->
+    <link rel="preload" as="image" href="{{ "images/project/stock-market-simulator/logical-architecture.svg" | relURL }}">
     {{ end }}
 
     <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
@@ -234,21 +237,14 @@
         </svg>
     </button>
 
-    <!-- Scripts: Swup from CDN (avoids npm resolution in theme during Hugo js.Build) -->
-    <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js"></script>
+    <!-- Scripts: Swup from CDN (defer to avoid render-blocking) -->
+    <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js" defer></script>
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 
     <!-- Mermaid v11 - Lazy loaded only when page has diagrams -->
     <script type="module">
-      // --- Scroll to Top ---
-      const initScrollToTop = () => {
-        const btn = document.getElementById('scrollToTop');
-        if (!btn) return;
-        const onScroll = () => btn.classList.toggle('visible', window.scrollY > 300);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      };
+      const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));};
 
       // --- Semantic class color definitions (light/dark) ---
       const semanticColors = {
