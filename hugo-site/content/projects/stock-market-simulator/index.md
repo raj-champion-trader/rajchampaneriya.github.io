@@ -28,13 +28,17 @@ The Stock Market Simulator is a **real-time market data simulation system** buil
 
 Four Indian market symbols — **NIFTY50**, **BANKNIFTY**, **RELIANCE**, and **TCS** — are simulated with distinct volatility profiles, producing a continuous stream of price ticks that flow through Redis Streams and arrive in the browser via Server-Sent Events.
 
-### Why Build This?
+<div class="content-callout">
+
+**Why Build This?**
 
 This system delivers value across three dimensions:
 
-1. **Educational Tool**: Demonstrates event-driven patterns, message streaming, and real-time data delivery without connecting to actual market data providers
-2. **Technical Demonstration**: Showcases modern .NET 10 capabilities — SSE with dual-channel multiplexing, Redis Streams consumer groups, bounded channels for backpressure, and realistic price generation using quantitative finance models
-3. **Architecture Reference**: A complete implementation of a streaming pipeline documented with the C4 model, backed by formal Architecture Decision Records
+1. **Educational Tool** — Demonstrates event-driven patterns, message streaming, and real-time data delivery without connecting to actual market data providers.
+2. **Technical Demonstration** — Showcases modern .NET 10 capabilities: SSE with dual-channel multiplexing, Redis Streams consumer groups, bounded channels for backpressure, and realistic price generation using quantitative finance models.
+3. **Architecture Reference** — A complete implementation of a streaming pipeline documented with the C4 model, backed by formal Architecture Decision Records.
+
+</div>
 
 ---
 
@@ -46,23 +50,10 @@ This system is documented using the **C4 model**, providing clear visualizations
 
 Shows the Stock Market Simulator system and its relationship with users.
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-
-    subgraph External_Users["External Users"]
-        Trader(("Trader")):::highlight
-    end
-
-    subgraph Stock_Market_Simulator["Stock Market Simulator System"]
-        System["Stock Market Simulator<br/>Real-time market data<br/>streaming system"]:::primary
-    end
-
-    Trader -->|"Views real-time<br/>stock prices via browser"| System
-```
-
-The Trader interacts with the Stock Market Simulator to view real-time stock price updates displayed in a TradingView-inspired interface with live candlestick charts and price tickers.
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/system-context.svg" alt="System context: Trader views real-time stock prices via browser; Stock Market Simulator system provides real-time market data streaming" width="520" height="200" loading="lazy" />
+  <figcaption>Trader interacts with the Stock Market Simulator to view real-time stock price updates in a TradingView-inspired interface with live candlestick charts and price tickers.</figcaption>
+</figure>
 
 ---
 
@@ -70,36 +61,10 @@ The Trader interacts with the Stock Market Simulator to view real-time stock pri
 
 Shows the high-level technology choices and how containers communicate. The entire system is orchestrated by **.NET Aspire**, which handles service discovery, health checks, and startup ordering.
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-
-    subgraph User[" "]
-        Trader(("Trader")):::highlight
-    end
-
-    subgraph Aspire["Stock Market Simulator — Orchestrated by .NET Aspire"]
-        WebApp["Web Application<br/>React 19 · TypeScript · MUI 7"]:::primary
-        
-        BrokerService["Broker Service<br/>.NET 10 API"]:::secondary
-        
-        IngestionAPI["Ingestion API<br/>.NET 10 Minimal API"]:::accent
-        
-        MarketSimulator["Market Simulator<br/>.NET 10 Worker Service"]:::accent
-        
-        RedisDB[("Redis 7<br/>Streams + Commander")]:::danger
-    end
-
-    Trader -->|"HTTPS"| WebApp
-    WebApp -->|"SSE<br/>dual-channel"| BrokerService
-    BrokerService -->|"XREADGROUP<br/>consumer groups"| RedisDB
-    IngestionAPI -->|"XADD<br/>~10K max"| RedisDB
-    MarketSimulator -->|"HTTP POST<br/>every 300ms"| IngestionAPI
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/container-diagram.svg" alt="Container diagram: Trader, Web Application, Broker Service, Ingestion API, Market Simulator, Redis 7 — orchestrated by .NET Aspire" width="720" height="380" loading="lazy" />
+  <figcaption>Containers and communication: HTTPS, SSE dual-channel, XREADGROUP, XADD, HTTP POST every 300ms.</figcaption>
+</figure>
 
 **Container Responsibilities**:
 
@@ -119,27 +84,10 @@ flowchart TB
 
 The simulator uses a sophisticated price engine combining multiple quantitative finance models.
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph MarketSimulatorService["Market Simulator Service"]
-        Program["Program.cs<br/>Entry Point"]:::neutral
-        ExchangeSimulator["ExchangeSimulator<br/>BackgroundService"]:::primary
-        PriceEngine["RealisticPriceEngine<br/>GBM + GARCH"]:::secondary
-        SymbolProfiles["SymbolProfiles<br/>Per-symbol config"]:::neutral
-        HttpClientFactory["HttpClientFactory"]:::neutral
-    end
-
-    Program --> ExchangeSimulator
-    ExchangeSimulator --> PriceEngine
-    PriceEngine --> SymbolProfiles
-    ExchangeSimulator --> HttpClientFactory
-    HttpClientFactory -->|"HTTP POST<br/>with retry"| IngestionAPI["Ingestion API"]:::accent
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/market-simulator-components.svg" alt="Market Simulator components: Program, ExchangeSimulator, RealisticPriceEngine, SymbolProfiles, HttpClientFactory, Ingestion API" width="600" height="340" loading="lazy" />
+  <figcaption>Market Simulator Service: entry point, background service, price engine (GBM + GARCH), symbol config, HTTP client with retry to Ingestion API.</figcaption>
+</figure>
 
 | Component | Type | Responsibility |
 |-----------|------|---------------|
@@ -162,34 +110,10 @@ Normal random samples are generated via the Box-Muller transform. Volume correla
 
 #### 3.2 Market Ingestion API Components
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph IngestionAPIService["Market Ingestion API"]
-        Program["Program.cs<br/>Minimal API"]:::neutral
-        MarketDataEndpoint["POST /api/marketdata"]:::primary
-        HealthEndpoint["GET /health"]:::neutral
-        Validation["ValidateMarketData"]:::accent
-        RedisPublisher["Redis Publisher<br/>XADD"]:::secondary
-    end
-
-    subgraph External["External"]
-        Redis[("Redis Streams")]:::danger
-        Simulator["Market Simulator"]:::neutral
-    end
-
-    Simulator -->|"POST"| MarketDataEndpoint
-    MarketDataEndpoint --> Validation
-    Validation -->|"Valid"| RedisPublisher
-    Validation -->|"Invalid"| Error["400 ValidationProblem"]:::danger
-    RedisPublisher -->|"XADD MAXLEN ~10000"| Redis
-    HealthEndpoint -->|"Ping"| Redis
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/ingestion-api-components.svg" alt="Market Ingestion API components: Program, POST /api/marketdata, GET /health, ValidateMarketData, Redis Publisher, Redis Streams" width="580" height="340" loading="lazy" />
+  <figcaption>Market Ingestion API: Minimal API, market data endpoint, validation, Redis publisher (XADD MAXLEN ~10000), health check.</figcaption>
+</figure>
 
 | Component | Type | Responsibility |
 |-----------|------|---------------|
@@ -207,44 +131,10 @@ Validation rules enforce data integrity: no empty symbols, positive prices, non-
 
 The Broker Service is the most architecturally rich component, handling fan-out broadcasting, candlestick aggregation, and SSE multiplexing.
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph BrokerServiceContainer["Broker Service"]
-        Program["Program.cs"]:::neutral
-        RedisConsumer["RedisStreamConsumer<br/>BackgroundService"]:::primary
-        TickBroadcaster["TickBroadcaster"]:::secondary
-        ClientManager["SseClientManager<br/>Per-client channels"]:::secondary
-        Aggregator["CandlestickAggregator<br/>1-min OHLCV"]:::accent
-        CandleHistory["CandlestickHistory<br/>Ring buffer + seeding"]:::neutral
-        EventBuffer["MarketEventBuffer<br/>Last-Event-ID replay"]:::highlight
-        SseController["SseController<br/>Dual-channel SSE"]:::primary
-        SecurityCache["Security Cache<br/>Dictionary"]:::neutral
-    end
-
-    subgraph External["External"]
-        Redis[("Redis Streams")]:::danger
-        Browser["Web Browser"]:::highlight
-    end
-
-    Redis -->|"XREADGROUP"| RedisConsumer
-    RedisConsumer --> SecurityCache
-    RedisConsumer --> TickBroadcaster
-    TickBroadcaster --> ClientManager
-    TickBroadcaster --> Aggregator
-    Aggregator --> CandleHistory
-    Aggregator -->|"Broadcast candles"| ClientManager
-    ClientManager -->|"Per-client tick channel"| SseController
-    ClientManager -->|"Per-client candle channel"| SseController
-    EventBuffer --> SseController
-    SseController -->|"SSE: marketdata + candlestick"| Browser
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/broker-service-components.svg" alt="Broker Service components: RedisStreamConsumer, TickBroadcaster, SseClientManager, CandlestickAggregator, CandlestickHistory, MarketEventBuffer, SseController, Security Cache" width="700" height="380" loading="lazy" />
+  <figcaption>Broker Service: Redis consumer, tick broadcaster, per-client channels, OHLCV aggregation, ring buffer, Last-Event-ID replay, dual-channel SSE to browser.</figcaption>
+</figure>
 
 | Component | Type | Responsibility |
 |-----------|------|---------------|
@@ -257,7 +147,11 @@ flowchart TB
 | SseController | ApiController | Multiplexes tick and candle channels into a single SSE stream |
 | Security Cache | Dictionary | Tracks latest prices, computes change and change percentage |
 
-**Key architectural pattern**: Each SSE client gets its own pair of bounded channels (tick capacity: 500, candle capacity: 500) with `DropOldest` backpressure. This solves the classic single-consumer-steals-message problem — every client independently receives every event.
+<div class="content-callout">
+
+**Key architectural pattern:** Each SSE client gets its own pair of bounded channels (tick capacity: 500, candle capacity: 500) with `DropOldest` backpressure. This solves the classic single-consumer-steals-message problem — every client independently receives every event.
+
+</div>
 
 The SSE stream multiplexes two event types using `Task.WhenAny`:
 - `marketdata` events: Real-time price ticks
@@ -269,44 +163,10 @@ A heartbeat event fires every 15 seconds to keep connections alive through proxi
 
 #### 3.4 Web Application Components
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph WebAppContainer["Web Application"]
-        AppComponent["App.tsx<br/>Router"]:::primary
-        Dashboard["Dashboard<br/>TradingView layout"]:::primary
-        UseMarketData["useMarketData<br/>SSE hook"]:::secondary
-        StockCard["StockCard<br/>Watchlist row"]:::accent
-        CandlestickChart["CandlestickChart<br/>Custom D3.js"]:::accent
-        PriceAggregator["PriceAggregator<br/>Candle manager"]:::secondary
-        RedisMonitoring["RedisMonitoring<br/>Stream inspector"]:::neutral
-        Navigation["Navigation<br/>App bar"]:::neutral
-        Theme["Theme<br/>TradingView dark"]:::neutral
-    end
-
-    subgraph External["External"]
-        EventSourceAPI["EventSource API"]:::neutral
-        D3js["D3.js 7.9"]:::neutral
-        MaterialUI["MUI 7"]:::neutral
-    end
-
-    AppComponent --> Dashboard
-    AppComponent --> RedisMonitoring
-    AppComponent --> Navigation
-    Dashboard --> UseMarketData
-    Dashboard --> StockCard
-    Dashboard --> CandlestickChart
-    UseMarketData --> EventSourceAPI
-    UseMarketData --> PriceAggregator
-    CandlestickChart --> D3js
-    StockCard --> MaterialUI
-    Navigation --> MaterialUI
-    Dashboard --> Theme
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/web-app-components.svg" alt="Web Application components: App.tsx, Dashboard, useMarketData, StockCard, CandlestickChart, PriceAggregator, RedisMonitoring, Navigation, Theme, EventSource API, D3.js, MUI" width="640" height="360" loading="lazy" />
+  <figcaption>Web Application: Router, TradingView layout, SSE hook, watchlist row, D3 candlestick chart, candle manager, Redis inspector, app bar, TradingView dark theme.</figcaption>
+</figure>
 
 | Component | Type | Responsibility |
 |-----------|------|---------------|
@@ -327,97 +187,24 @@ Price updates trigger CSS flash animations (green for up, red for down) on the w
 
 ## Data Flow
 
-<div style="margin: 2rem 0; text-align: center;">
-  <img src="/images/project/stock-market-simulator/train-simulator.svg" alt="Stock Market Simulator — end-to-end data flow from price generation through Redis Streams to browser rendering" style="max-width: 100%; height: auto; border-radius: 8px;" />
-  <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">End-to-end data flow: ticks travel from the price engine through Redis Streams to live browser charts</p>
-</div>
+<figure class="project-diagram project-diagram-hero">
+  <img src="/images/project/stock-market-simulator/train-simulator.svg" alt="Stock Market Simulator — end-to-end data flow from price generation through Redis Streams to browser rendering" width="1200" height="auto" loading="lazy" />
+  <figcaption>End-to-end data flow: ticks travel from the price engine through Redis Streams to live browser charts.</figcaption>
+</figure>
 
 ### End-to-End Pipeline
 
-```mermaid
-flowchart LR
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-
-    subgraph Generation["1. Generation"]
-        MS["Market Simulator<br/>GBM + GARCH<br/>4 symbols @ 300ms"]:::accent
-    end
-
-    subgraph Ingestion["2. Ingestion"]
-        API["Ingestion API<br/>Validate + XADD"]:::secondary
-    end
-
-    subgraph Storage["3. Storage"]
-        Redis[("Redis Streams<br/>~10K buffer")]:::danger
-    end
-
-    subgraph Distribution["4. Distribution"]
-        Broker["Broker Service<br/>Fan-out + Aggregate"]:::highlight
-    end
-
-    subgraph Presentation["5. Presentation"]
-        Web["Web App<br/>D3 Charts + Watchlist"]:::primary
-    end
-
-    MS -->|"HTTP POST"| API
-    API -->|"XADD"| Redis
-    Redis -->|"XREADGROUP"| Broker
-    Broker -->|"SSE dual-channel"| Web
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/data-flow-pipeline.svg" alt="End-to-end pipeline: Generation (Market Simulator) to Ingestion (API) to Storage (Redis) to Distribution (Broker) to Presentation (Web App)" width="860" height="260" loading="lazy" />
+  <figcaption>Five-stage pipeline: HTTP POST → XADD → XREADGROUP → SSE dual-channel to Web App.</figcaption>
+</figure>
 
 ### Sequence Diagram: Complete Data Flow
 
-```mermaid
-sequenceDiagram
-    participant MS as Market Simulator
-    participant API as Ingestion API
-    participant Redis as Redis Streams
-    participant Broker as Broker Service
-    participant Web as Web Application
-    participant User as Trader
-
-    Note over MS: PeriodicTimer every 300ms<br/>GBM + GARCH price engine
-
-    loop Every 300ms per symbol
-        MS->>MS: RealisticPriceEngine.GenerateTick()
-        MS->>API: POST /api/marketdata
-        
-        activate API
-        API->>API: ValidateMarketData
-        API->>Redis: XADD marketdata:stream MAXLEN ~10000
-        Redis-->>API: Message ID
-        API-->>MS: 200 OK
-        deactivate API
-    end
-
-    Note over Broker: RedisStreamConsumer (BackgroundService)
-
-    loop Continuous consumption (100ms polling)
-        Broker->>Redis: XREADGROUP brokers broker-{host}-{guid}
-        Redis-->>Broker: Stream entries (batch of 10)
-        Broker->>Broker: Update SecurityCache
-        Broker->>Broker: TickBroadcaster → per-client channels
-        Broker->>Broker: CandlestickAggregator → 1-min OHLCV
-        Broker->>Redis: XACK
-    end
-
-    Note over Web: EventSource SSE connection
-
-    Web->>Broker: GET /api/marketdata/stream
-    Broker-->>Web: SSE: connected
-    Broker-->>Web: SSE: candlestick (30 seed candles)
-
-    loop Multiplexed via Task.WhenAny
-        Broker->>Web: SSE: marketdata (price tick)
-        Broker->>Web: SSE: candlestick (OHLCV update)
-        Broker->>Web: SSE: heartbeat (every 15s)
-        Web->>Web: Update React state + PriceAggregator
-        Web->>User: Render updated prices + charts
-    end
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/sequence-data-flow.svg" alt="Sequence: Market Simulator POST to Ingestion API, XADD to Redis, Broker XREADGROUP, SSE to Web App, render to Trader" width="740" height="360" loading="lazy" />
+  <figcaption>Flow: 300ms ticks → Validate → XADD → XREADGROUP → fan-out → SSE → React state + D3 charts. Heartbeat every 15s; Last-Event-ID replay on reconnect.</figcaption>
+</figure>
 
 ---
 
@@ -427,44 +214,10 @@ sequenceDiagram
 
 The entire system starts with a single command: `dotnet run` in the AppHost project. .NET Aspire handles service discovery, health-check-based startup ordering, and Redis provisioning via Docker.
 
-```mermaid
-flowchart TB
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-    classDef highlight fill:#f3e8ff,stroke:#9333ea,color:#6b21a8
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph Aspire["Aspire AppHost — single dotnet run"]
-        subgraph Docker["Docker (auto-provisioned)"]
-            Redis[("Redis 7<br/>+ Data Volume")]:::danger
-            Commander["Redis Commander<br/>Web UI"]:::neutral
-        end
-        
-        subgraph DotNet[".NET 10 Services"]
-            MarketSim["Market Simulator<br/>(Worker)"]:::accent
-            IngestionAPI["Ingestion API<br/>:5001"]:::secondary
-            BrokerService["Broker Service<br/>:5002"]:::secondary
-        end
-        
-        subgraph Vite["Vite Dev Server"]
-            WebApp["Web App<br/>:5000"]:::primary
-        end
-    end
-
-    subgraph Browser["Browser"]
-        UserInterface["Trader View"]:::highlight
-    end
-
-    Aspire -.->|"Startup order:<br/>Redis → API → Simulator<br/>Redis → Broker → Frontend"| Aspire
-    MarketSim --> IngestionAPI
-    IngestionAPI --> Redis
-    Redis --> BrokerService
-    BrokerService --> WebApp
-    WebApp --> UserInterface
-    Redis --> Commander
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/deployment-aspire.svg" alt="Aspire AppHost: Docker (Redis 7, Redis Commander), .NET 10 Services (Market Simulator, Ingestion API :5001, Broker Service :5002), Vite Web App :5000, Browser Trader View" width="700" height="380" loading="lazy" />
+  <figcaption>Aspire AppHost: single <code>dotnet run</code>. Startup order: Redis → API → Simulator, Redis → Broker → Frontend.</figcaption>
+</figure>
 
 Aspire enforces startup ordering via `WaitFor()`: Redis starts first, then the Ingestion API and Broker Service (which depend on Redis), then the Market Simulator (which depends on the Ingestion API), and finally the frontend (which depends on the Broker Service).
 
@@ -474,39 +227,10 @@ Aspire enforces startup ordering via `WaitFor()`: Redis starts first, then the I
 
 Each layer implements targeted resilience patterns:
 
-```mermaid
-flowchart LR
-    classDef primary fill:#dbeafe,stroke:#2563eb,color:#1e40af
-    classDef secondary fill:#dcfce7,stroke:#16a34a,color:#166534
-    classDef accent fill:#ffedd5,stroke:#ea580c,color:#9a3412
-    classDef danger fill:#fee2e2,stroke:#dc2626,color:#991b1b
-    classDef neutral fill:#f1f5f9,stroke:#64748b,color:#334155
-
-    subgraph Simulator["Market Simulator"]
-        SE1["HTTP Error"]:::danger --> SE2["Exponential Backoff<br/>100ms → 200ms → 400ms"]:::accent
-        SE2 --> SE3{"Max 3<br/>retries?"}:::primary
-        SE3 -->|"No"| SE1
-        SE3 -->|"Yes"| SE4["Skip tick"]:::neutral
-    end
-
-    subgraph Ingestion["Ingestion API"]
-        IE1["Invalid data"]:::danger --> IE2["400 ValidationProblem"]:::danger
-        IE3["Redis down"]:::danger --> IE4["503 Unavailable"]:::danger
-        IE5["Redis timeout"]:::danger --> IE6["504 Timeout"]:::danger
-    end
-
-    subgraph Broker["Broker Service"]
-        BE1["Redis connection loss"]:::danger --> BE2["Retry after 5s"]:::secondary
-        BE3["Redis timeout"]:::danger --> BE4["Retry after 2s"]:::secondary
-        BE5["Unknown error"]:::danger --> BE6["Retry after 10s"]:::secondary
-    end
-
-    subgraph WebApp["Web App (SSE)"]
-        WE1["SSE Error"]:::danger --> WE2{"Attempt<br/> ≤ 5?"}:::primary
-        WE2 -->|"Yes"| WE3["Reconnect"]:::secondary
-        WE2 -->|"No"| WE4["Show error state"]:::danger
-    end
-```
+<figure class="project-diagram">
+  <img src="/images/project/stock-market-simulator/error-handling.svg" alt="Error handling: Market Simulator (HTTP error, exponential backoff, max 3 retries); Ingestion API (400, 503, 504); Broker (retry 5s, 2s, 10s); Web App SSE (reconnect or show error)" width="800" height="300" loading="lazy" />
+  <figcaption>Resilience by layer: Simulator backoff and skip; Ingestion validation and Redis errors; Broker retries; Web App SSE reconnect (≤5 attempts) or error state.</figcaption>
+</figure>
 
 The Broker Service additionally supports **`Last-Event-ID` replay** — when a client reconnects, it sends the last event ID it received, and the broker replays missed events from an in-memory buffer of the last 1,000 messages. This provides at-least-once delivery semantics without requiring the client to handle gaps.
 
@@ -660,7 +384,11 @@ The Stock Market Simulator demonstrates how modern architecture principles creat
 
 The interesting engineering isn't in any single component. It's in how they compose: a price engine that produces statistically realistic data, a streaming pipeline that never drops messages, a broadcast system that isolates client backpressure, and a frontend that renders it all at financial-grade fidelity.
 
+<div class="content-callout">
+
 > **"The quality of your work reflects the quality of your thinking. Build systems that think clearly."**
+
+</div>
 
 ---
 

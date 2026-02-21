@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 360" width="740" height="360">
+  <defs>
+    <marker id="arrs" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="#64748b"/></marker>
+    <filter id="shs"><feDropShadow dx="0" dy="1" stdDeviation="0.5" flood-opacity="0.1"/></filter>
+  </defs>
+  <style>.t { font-size: 20px; font-family: system-ui, sans-serif; fill: #1e293b; } .l { font-size: 16px; font-family: system-ui, sans-serif; fill: #64748b; }</style>
+  <text x="70" y="38" class="t" font-weight="600">Market Sim</text>
+  <text x="175" y="38" text-anchor="middle" class="t" font-weight="600">Ingestion API</text>
+  <text x="300" y="38" text-anchor="middle" class="t" font-weight="600">Redis</text>
+  <text x="425" y="38" text-anchor="middle" class="t" font-weight="600">Broker</text>
+  <text x="550" y="38" text-anchor="middle" class="t" font-weight="600">Web App</text>
+  <text x="670" y="38" text-anchor="middle" class="t" font-weight="600">Trader</text>
+  <line x1="70" y1="52" x2="70" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="175" y1="52" x2="175" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="300" y1="52" x2="300" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="425" y1="52" x2="425" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="550" y1="52" x2="550" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="670" y1="52" x2="670" y2="330" stroke="#cbd5e1" stroke-width="1"/>
+  <!-- Arrows: start/end at lifeline x; end x = target lifeline + 7 for refX=7 -->
+  <path d="M 75 75 L 168 75" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrs)"/>
+  <text x="121" y="68" text-anchor="middle" class="l">POST /api/marketdata</text>
+  <path d="M 182 100 L 293 100" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrs)"/>
+  <text x="237" y="93" text-anchor="middle" class="l">XADD marketdata:stream</text>
+  <path d="M 307 125 L 418 125" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrs)"/>
+  <text x="362" y="118" text-anchor="middle" class="l">XREADGROUP</text>
+  <path d="M 432 150 L 543 150" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrs)"/>
+  <text x="487" y="143" text-anchor="middle" class="l">SSE: marketdata + candlestick</text>
+  <path d="M 557 175 L 663 175" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrs)"/>
+  <text x="610" y="168" text-anchor="middle" class="l">Render prices + charts</text>
+  <rect x="30" y="210" width="680" height="120" rx="8" ry="8" fill="#f8fafc" stroke="#e2e8f0" filter="url(#shs)"/>
+  <text x="370" y="245" text-anchor="middle" class="l">Loop: 300ms ticks - Validate - XADD - XREADGROUP - Fan-out - SSE - React state + D3 charts. Heartbeat every 15s.</text>
+  <text x="370" y="268" text-anchor="middle" class="l">Broker: per-client bounded channels (tick + candle). Last-Event-ID replay on reconnect.</text>
+</svg>

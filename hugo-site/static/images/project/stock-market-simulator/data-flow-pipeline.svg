@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 260" width="860" height="260">
+  <defs>
+    <marker id="arrf" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <filter id="shf"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.12"/></filter>
+  </defs>
+  <style>.t { font-size: 22px; font-family: system-ui, sans-serif; fill: #1e293b; } .l { font-size: 18px; font-family: system-ui, sans-serif; fill: #64748b; }</style>
+  <!-- 1. Generation: 20,60 160x120 right 180 -->
+  <rect x="20" y="60" width="160" height="120" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 2"/>
+  <text x="100" y="98" text-anchor="middle" class="l">1. Generation</text>
+  <rect x="40" y="115" width="120" height="50" rx="8" ry="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2" filter="url(#shf)"/>
+  <text x="100" y="142" text-anchor="middle" class="t" font-weight="600">Market Simulator</text>
+  <text x="100" y="158" text-anchor="middle" class="l">GBM + GARCH, 4 symbols @ 300ms</text>
+  <!-- Arrow: end at 189 (Ingestion left 190) -->
+  <path d="M 180 140 L 199 140" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrf)"/>
+  <text x="189" y="132" text-anchor="middle" class="l">HTTP POST</text>
+  <!-- 2. Ingestion: 190,60 160x120 right 350 left 190 -->
+  <rect x="190" y="60" width="160" height="120" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 2"/>
+  <text x="270" y="98" text-anchor="middle" class="l">2. Ingestion</text>
+  <rect x="210" y="115" width="120" height="50" rx="8" ry="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#shf)"/>
+  <text x="270" y="142" text-anchor="middle" class="t" font-weight="600">Ingestion API</text>
+  <text x="270" y="158" text-anchor="middle" class="l">Validate + XADD</text>
+  <path d="M 350 140 L 369 140" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrf)"/>
+  <text x="359" y="132" text-anchor="middle" class="l">XADD</text>
+  <!-- 3. Storage: 360,60 160x120 right 520 left 360 -->
+  <rect x="360" y="60" width="160" height="120" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 2"/>
+  <text x="440" y="98" text-anchor="middle" class="l">3. Storage</text>
+  <rect x="380" y="115" width="120" height="50" rx="8" ry="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2" filter="url(#shf)"/>
+  <text x="440" y="142" text-anchor="middle" class="t" font-weight="600">Redis Streams</text>
+  <text x="440" y="158" text-anchor="middle" class="l">~10K buffer</text>
+  <path d="M 520 140 L 539 140" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrf)"/>
+  <text x="529" y="132" text-anchor="middle" class="l">XREADGROUP</text>
+  <!-- 4. Distribution: 530,60 160x120 right 690 left 530 -->
+  <rect x="530" y="60" width="160" height="120" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 2"/>
+  <text x="610" y="98" text-anchor="middle" class="l">4. Distribution</text>
+  <rect x="550" y="115" width="120" height="50" rx="8" ry="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2" filter="url(#shf)"/>
+  <text x="610" y="142" text-anchor="middle" class="t" font-weight="600">Broker Service</text>
+  <text x="610" y="158" text-anchor="middle" class="l">Fan-out + Aggregate</text>
+  <path d="M 690 140 L 709 140" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrf)"/>
+  <text x="699" y="132" text-anchor="middle" class="l">SSE dual-channel</text>
+  <!-- 5. Presentation: 700,60 140x120 left 700 right 840 -->
+  <rect x="700" y="60" width="140" height="120" rx="10" ry="10" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 2"/>
+  <text x="770" y="98" text-anchor="middle" class="l">5. Presentation</text>
+  <rect x="715" y="115" width="110" height="50" rx="8" ry="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#shf)"/>
+  <text x="770" y="142" text-anchor="middle" class="t" font-weight="600">Web App</text>
+  <text x="770" y="158" text-anchor="middle" class="l">D3 Charts + Watchlist</text>
+</svg>

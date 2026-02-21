@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" width="700" height="380">
+  <defs>
+    <marker id="arb" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <filter id="shb"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.12"/></filter>
+  </defs>
+  <style>.t { font-size: 18px; font-family: system-ui, sans-serif; fill: #1e293b; } .l { font-size: 15px; font-family: system-ui, sans-serif; fill: #64748b; }</style>
+  <rect x="20" y="20" width="660" height="340" rx="12" ry="12" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4 2"/>
+  <text x="350" y="52" text-anchor="middle" class="l">Broker Service</text>
+  <!-- Program 40,60 90x55 right 130 -->
+  <rect x="40" y="60" width="90" height="55" rx="8" ry="8" fill="#f1f5f9" stroke="#64748b" filter="url(#shb)"/>
+  <text x="85" y="92" text-anchor="middle" class="t" font-weight="600">Program.cs</text>
+  <!-- RedisStreamConsumer 145,55 150x65 right 295 -->
+  <rect x="145" y="55" width="150" height="65" rx="8" ry="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#shb)"/>
+  <text x="220" y="88" text-anchor="middle" class="t" font-weight="600">RedisStreamConsumer</text>
+  <text x="220" y="108" text-anchor="middle" class="l">BackgroundService</text>
+  <!-- TickBroadcaster 305,55 110x65 right 415 -->
+  <rect x="305" y="55" width="110" height="65" rx="8" ry="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#shb)"/>
+  <text x="360" y="88" text-anchor="middle" class="t" font-weight="600">TickBroadcaster</text>
+  <!-- SseClientManager 425,55 120x65 right 545 -->
+  <rect x="425" y="55" width="120" height="65" rx="8" ry="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#shb)"/>
+  <text x="485" y="88" text-anchor="middle" class="t" font-weight="600">SseClientManager</text>
+  <!-- CandlestickAggregator 305,140 150x60 right 455 -->
+  <rect x="305" y="140" width="150" height="60" rx="8" ry="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2" filter="url(#shb)"/>
+  <text x="380" y="172" text-anchor="middle" class="t" font-weight="600">CandlestickAggregator</text>
+  <!-- CandlestickHistory 465,140 120x60 right 585 -->
+  <rect x="465" y="140" width="120" height="60" rx="8" ry="8" fill="#f1f5f9" stroke="#64748b" filter="url(#shb)"/>
+  <text x="525" y="172" text-anchor="middle" class="t" font-weight="600">CandlestickHistory</text>
+  <!-- MarketEventBuffer 465,215 130x60 right 595 -->
+  <rect x="465" y="215" width="130" height="60" rx="8" ry="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2" filter="url(#shb)"/>
+  <text x="530" y="247" text-anchor="middle" class="t" font-weight="600">MarketEventBuffer</text>
+  <!-- SseController 305,215 150x60 right 455 -->
+  <rect x="305" y="215" width="150" height="60" rx="8" ry="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#shb)"/>
+  <text x="380" y="247" text-anchor="middle" class="t" font-weight="600">SseController</text>
+  <!-- Security Cache 40,215 100x60 right 140 -->
+  <rect x="40" y="215" width="100" height="60" rx="8" ry="8" fill="#f1f5f9" stroke="#64748b" filter="url(#shb)"/>
+  <text x="90" y="247" text-anchor="middle" class="t" font-weight="600">Security Cache</text>
+  <!-- Redis 580,155 80x75 left 580 right 660 -->
+  <rect x="580" y="155" width="80" height="75" rx="8" ry="8" fill="#fee2e2" stroke="#dc2626" filter="url(#shb)"/>
+  <text x="620" y="192" text-anchor="middle" class="t" font-weight="600">Redis</text>
+  <!-- Browser 580,250 80x60 left 580 -->
+  <rect x="580" y="250" width="80" height="60" rx="8" ry="8" fill="#f3e8ff" stroke="#9333ea" filter="url(#shb)"/>
+  <text x="620" y="282" text-anchor="middle" class="t" font-weight="600">Browser</text>
+  <!-- Arrows: Redis left 580 to RedisStreamConsumer left 145 end 136 -->
+  <path d="M 580 192 L 136 87" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+  <!-- RedisStreamConsumer right 295 to TickBroadcaster left 305 end 314 -->
+  <path d="M 295 87 L 314 87" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+  <!-- TickBroadcaster right 415 to SseClientManager left 425 end 434 -->
+  <path d="M 415 87 L 434 87" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+  <!-- TickBroadcaster bottom 120 to CandlestickAggregator top 140 end y 137 -->
+  <path d="M 360 120 L 360 137" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+  <!-- CandlestickAggregator bottom 200 to SseController top 215 end y 212 -->
+  <path d="M 380 200 L 380 212" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+  <!-- SseController right 455 to Browser left 580 end 589 -->
+  <path d="M 455 245 L 589 280" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arb)"/>
+</svg>

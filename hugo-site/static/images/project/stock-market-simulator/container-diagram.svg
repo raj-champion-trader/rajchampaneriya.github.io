@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380">
+  <defs>
+    <marker id="arr2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <filter id="sh2" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.12"/></filter>
+  </defs>
+  <style>.t { font-size: 20px; font-family: system-ui, sans-serif; fill: #1e293b; } .l { font-size: 16px; font-family: system-ui, sans-serif; fill: #64748b; }</style>
+  <!-- Trader 20,20 100x60 right 120 -->
+  <rect x="20" y="20" width="100" height="60" rx="8" ry="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2" filter="url(#sh2)"/>
+  <text x="70" y="52" text-anchor="middle" class="t" font-weight="600">Trader</text>
+  <rect x="140" y="100" width="560" height="260" rx="12" ry="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <text x="420" y="132" text-anchor="middle" class="l">Stock Market Simulator - .NET Aspire</text>
+  <!-- WebApp 170,150 140x70 left 170 right 310 -->
+  <rect x="170" y="150" width="140" height="70" rx="8" ry="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2" filter="url(#sh2)"/>
+  <text x="240" y="182" text-anchor="middle" class="t" font-weight="600">Web Application</text>
+  <text x="240" y="202" text-anchor="middle" class="l">React 19 - TypeScript - MUI 7</text>
+  <!-- Broker 330,150 120x70 left 330 right 450 -->
+  <rect x="330" y="150" width="120" height="70" rx="8" ry="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#sh2)"/>
+  <text x="390" y="182" text-anchor="middle" class="t" font-weight="600">Broker Service</text>
+  <text x="390" y="202" text-anchor="middle" class="l">.NET 10 API</text>
+  <!-- Ingestion 470,150 120x70 left 470 right 590 -->
+  <rect x="470" y="150" width="120" height="70" rx="8" ry="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2" filter="url(#sh2)"/>
+  <text x="530" y="182" text-anchor="middle" class="t" font-weight="600">Ingestion API</text>
+  <text x="530" y="202" text-anchor="middle" class="l">.NET 10 Minimal API</text>
+  <!-- Market Sim 610,150 70x70 left 610 right 680 -->
+  <rect x="610" y="150" width="70" height="70" rx="8" ry="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2" filter="url(#sh2)"/>
+  <text x="645" y="188" text-anchor="middle" class="t" font-weight="600">Market</text>
+  <text x="645" y="206" text-anchor="middle" class="t">Simulator</text>
+  <!-- Redis 330,260 120x80 left 330 top 260 -->
+  <rect x="330" y="260" width="120" height="80" rx="8" ry="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2" filter="url(#sh2)"/>
+  <text x="390" y="298" text-anchor="middle" class="t" font-weight="600">Redis 7</text>
+  <text x="390" y="318" text-anchor="middle" class="l">Streams + Commander</text>
+  <!-- Arrows: start at source edge, end at target+9 so tip touches -->
+  <path d="M 120 50 L 179 185" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+  <text x="140" y="115" class="l">HTTPS</text>
+  <path d="M 310 185 L 339 185" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+  <text x="318" y="178" class="l">SSE dual-channel</text>
+  <path d="M 390 220 L 390 257" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+  <text x="400" y="242" class="l">XREADGROUP</text>
+  <path d="M 590 185 L 339 260" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+  <text x="468" y="228" class="l">XADD</text>
+  <path d="M 645 220 L 479 185" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+  <text x="568" y="208" class="l">HTTP POST 300ms</text>
+</svg>
