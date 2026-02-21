@@ -272,14 +272,18 @@
   align-items: center;
 }
 
+/* Touch target ≥44px for accessibility (dot visual 10px, padding expands hit area) */
 .screenshot-carousel-dot {
   width: 10px;
   height: 10px;
+  padding: 17px;
+  margin: -17px;
   border-radius: 50%;
   border: 1px solid var(--color-border, #cbd5e1);
   background: transparent;
   cursor: pointer;
   transition: background 0.2s, transform 0.15s;
+  box-sizing: content-box;
 }
 
 .screenshot-carousel-dot:hover {

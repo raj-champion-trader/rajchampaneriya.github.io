@@ -1,2 +1,12 @@
 /*
   Permissions-Policy: local-network=()
+  Cache-Control: no-cache
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/files/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/audio/*
+  Cache-Control: public, max-age=86400

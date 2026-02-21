@@ -102,7 +102,7 @@ function updateProgress() {
   const pct = (audio.currentTime / audio.duration) * 100;
   if (progressFilled) progressFilled.style.width = `${pct}%`;
   if (progressThumb) progressThumb.style.left = `${pct}%`;
-  if (progressContainer) progressContainer.setAttribute('aria-valuenow', Math.round(pct));
+  if (progressContainer) progressContainer.setAttribute('aria-valuenow', String(Math.round(pct)));
 }
 
 function updateTimeDisplay() {
