@@ -26,20 +26,34 @@
     <!-- Preconnect for Mermaid CDN (lazy-loaded on pages with diagrams) -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-    <!-- CSS (Hugo Pipes - Concatenation) -->
+    {{ if .IsHome }}
+    <!-- Preload LCP image (hero avatar) on homepage only -->
+    {{ $profile := resources.Get "images/profile.jpg" }}
+    {{ if $profile }}
+    {{ $profileWebP := $profile.Fill "320x320 webp q82" }}
+    <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
+    {{ else }}
+    <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
+    {{ end }}
+    {{ end }}
+
+    <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
+    {{ $critical := resources.Get "css/critical.css" | minify }}
+    <style>{{ $critical.Content | safeCSS }}</style>
+
+    <!-- Full CSS loaded async (non-render-blocking) -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
-    <!-- NOTE: `mermaid.css` is intentionally NOT included in `style.css` here to avoid
-         duplicated Mermaid diagram rules. Mermaid diagram styles live in
-         `assets/css/extended/mermaid.css` and are loaded via `extended-all.css`. -->
     {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    <link rel="preload" href="{{ $style.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $style.RelPermalink }}"></noscript>
 
-    <!-- Extended CSS (site-level overrides) -->
+    <!-- Extended CSS (site-level overrides) — async -->
     {{ $extended := (resources.Match "css/extended/*.css") }}
     {{ if $extended }}
     {{ $extendedCSS := $extended | resources.Concat "css/extended-all.css" | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $extendedCSS.RelPermalink }}">
+    <link rel="preload" href="{{ $extendedCSS.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $extendedCSS.RelPermalink }}"></noscript>
     {{ end }}
 </head>
 

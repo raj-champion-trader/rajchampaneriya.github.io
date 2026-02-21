@@ -8,9 +8,31 @@
     <section class="hero-premium scroll-reveal">
         <div class="hero-premium__card surface-panel">
             <div class="hero-premium__header">
-                <img src="{{ .Site.Params.profileMode.imageUrl }}" 
+                {{ $w := .Site.Params.profileMode.imageWidth | default 160 }}
+                {{ $h := .Site.Params.profileMode.imageHeight | default 160 }}
+                {{ $profile := resources.Get "images/profile.jpg" }}
+                {{ if $profile }}
+                {{ $profileWebP := $profile.Fill (printf "%dx%d webp q82" (mul $w 2) (mul $h 2)) }}
+                {{ $profileJpg := $profile.Fill (printf "%dx%d q85" (mul $w 2) (mul $h 2)) }}
+                <picture>
+                    <source type="image/webp" srcset="{{ $profileWebP.RelPermalink }}">
+                    <img src="{{ $profileJpg.RelPermalink }}"
+                         alt="{{ .Site.Params.profileMode.imageTitle }}"
+                         width="{{ $w }}"
+                         height="{{ $h }}"
+                         loading="eager"
+                         fetchpriority="high"
+                         class="hero-premium__avatar">
+                </picture>
+                {{ else }}
+                <img src="{{ .Site.Params.profileMode.imageUrl | absURL }}"
                      alt="{{ .Site.Params.profileMode.imageTitle }}"
+                     width="{{ $w }}"
+                     height="{{ $h }}"
+                     loading="eager"
+                     fetchpriority="high"
                      class="hero-premium__avatar">
+                {{ end }}
                 <div class="hero-premium__info">
                     <h1 class="hero-premium__name">{{ .Site.Params.profileMode.title }}</h1>
                     <p class="hero-premium__headline">{{ .Site.Params.premium.headline }}</p>
