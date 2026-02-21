@@ -2,4 +2,4 @@
 {{- $alt := .Get "alt" -}}
 {{- $width := .Get "width" | default "1200" -}}
 {{- $height := .Get "height" | default "720" -}}
-<img src="{{ $src | absURL }}" alt="{{ $alt }}" width="{{ $width }}" height="{{ $height }}" loading="lazy">
+<img src="{{ $src | relURL }}" alt="{{ $alt }}" width="{{ $width }}" height="{{ $height }}" loading="lazy">

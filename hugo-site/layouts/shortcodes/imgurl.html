@@ -1,2 +1,2 @@
 {{- $path := .Get 0 | strings.TrimPrefix "/" -}}
-{{- $path | absURL -}}
+{{- $path | relURL -}}

@@ -6,7 +6,7 @@
   <div class="screenshot-carousel-frame">
     <div class="screenshot-carousel-track">
       {{- range $i, $p := $paths -}}
-        {{- $src := trim $p " " | absURL -}}
+        {{- $src := trim $p " " | relURL -}}
         <div class="screenshot-carousel-slide {{ if eq $i 0 }}active{{ end }}" data-index="{{ $i }}" aria-hidden="{{ ne $i 0 }}">
           <img src="{{ $src }}" alt="Screenshot {{ add $i 1 }}" loading="lazy">
         </div>

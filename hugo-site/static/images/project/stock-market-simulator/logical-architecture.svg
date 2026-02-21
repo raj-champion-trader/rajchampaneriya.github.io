@@ -41,7 +41,7 @@
   <!-- Left-Aligned Layer Titles -->
   <text x="80" y="90" class="layer-title" text-anchor="start">Presentation</text>
   <text x="80" y="210" class="layer-title" text-anchor="start">Application</text>
-  <text x="80" y="360" class="layer-title" text-anchor="start">Integration & Data</text>
+  <text x="80" y="360" class="layer-title" text-anchor="start">Integration &amp; Data</text>
   <text x="80" y="520" class="layer-title" text-anchor="start">Data Source</text>
 
   <!-- Presentation Layer -->
@@ -66,7 +66,7 @@
   <text x="1030" y="270" text-anchor="middle" font-size="16" font-weight="bold">OpenTelemetry</text>
   <text x="1030" y="290" text-anchor="middle" font-size="13">OTLP</text>
 
-  <!-- Integration & Data -->
+  <!-- Integration &amp; Data -->
   <rect x="475" y="390" width="300" height="100" class="box" fill="#E0E7FF"/>
   <text x="625" y="425" text-anchor="middle" font-size="16" font-weight="bold">Redis Streams</text>
   <text x="625" y="445" text-anchor="middle" font-size="13">Message Broker · Consumer Groups</text>
