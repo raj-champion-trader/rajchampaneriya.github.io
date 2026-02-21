@@ -16,7 +16,7 @@ Real-world enterprise architecture blueprints & case studies by Raj Champaneriya
 ## Featured Project
 
 <a href="/projects/stock-market-simulator/" class="featured-project-card">
-  <img src="/images/project/stock-market-simulator/front-end-chart-full.png" alt="Stock Market Simulator — live candlestick charts streaming real-time data" class="featured-project-img" />
+  <img src="/images/project/stock-market-simulator/logical-architecture.svg" alt="Stock Market Simulator — logical architecture: Presentation, Application, Integration &amp; Data, Data Source" class="featured-project-img" />
   <div class="featured-project-body">
     <h3 class="featured-project-title">Stock Market Simulator</h3>
     <p class="featured-project-desc">
