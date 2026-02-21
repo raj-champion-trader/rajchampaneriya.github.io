@@ -97,10 +97,6 @@ enableRobotsTXT = true
     url = "https://linkedin.com/in/rajchampaneriya"
 
   [[params.socialIcons]]
-    name = "email"
-    url = "mailto:champaneriyaraj@gmail.com"
-
-  [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
 

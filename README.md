@@ -4,8 +4,6 @@ Enterprise Architect for High-Stakes Transformations — Enterprise Architecture
 
 Professional knowledge system for thought leadership, architecture maturity, and sustainable content creation.
 
-Contact: `champaneriyaraj@gmail.com`
-
 ## 📝 Content Pillars
 
 1. **Architecture Patterns on Azure** - Reference architectures, trade-offs, decision frameworks

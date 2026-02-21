@@ -20,7 +20,6 @@ This site must communicate **"elite strategic advisor"** — not "mid-level cons
 ### Headline & Tagline
 - **Headline**: "Enterprise Architect for High-Stakes Transformations"
 - **Tagline**: "Enterprise Architecture That Protects Careers and Accelerates Transformations"
-- **Contact**: champaneriyaraj@gmail.com
 
 ### Target Audience
 - CTOs, VPs of Engineering, technology leaders making seven-figure architecture decisions

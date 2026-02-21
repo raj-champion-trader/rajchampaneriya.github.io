@@ -182,6 +182,5 @@ Whether you're navigating a high-stakes modernization or evaluating cloud strate
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
-- **Email**: [champaneriyaraj@gmail.com](mailto:champaneriyaraj@gmail.com)
 
 *All opinions expressed on this site are my own.*
