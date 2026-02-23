@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="520" height="320" role="img">
+  <title>System Prompt Layer and User Prompt Layer: where Custom Instructions, Custom Agent, Prompt File, Environment, and Your Message live</title>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- System Prompt Layer (dashed box) -->
+  <rect fill="none" stroke="#cbd5e1" stroke-dasharray="6 4" stroke-width="1.5" x="20" y="36" width="200" height="260" rx="4"/>
+  <text x="30" y="28" font-weight="600" font-size="12px" font-family="system-ui,sans-serif" fill="#64748b">System Prompt Layer</text>
+
+  <!-- Base AI Instructions -->
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="36" y="48" width="168" height="56" rx="4"/>
+  <text x="120" y="78" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Base AI Instructions</text>
+
+  <!-- Custom Instructions -->
+  <rect fill="#ffedd5" stroke="#ea580c" x="36" y="118" width="168" height="56" rx="4"/>
+  <text x="120" y="148" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Custom Instructions</text>
+
+  <line x1="120" y1="104" x2="120" y2="114" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <line x1="120" y1="174" x2="120" y2="184" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Custom Agent -->
+  <rect fill="#ffedd5" stroke="#ea580c" x="36" y="188" width="168" height="56" rx="4"/>
+  <text x="120" y="218" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Custom Agent</text>
+
+  <line x1="120" y1="244" x2="120" y2="254" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- User Prompt Layer (dashed box) -->
+  <rect fill="none" stroke="#cbd5e1" stroke-dasharray="6 4" stroke-width="1.5" x="300" y="36" width="200" height="260" rx="4"/>
+  <text x="310" y="28" font-weight="600" font-size="12px" font-family="system-ui,sans-serif" fill="#64748b">User Prompt Layer</text>
+
+  <!-- Prompt File -->
+  <rect fill="#f3e8ff" stroke="#9333ea" x="316" y="48" width="168" height="56" rx="4"/>
+  <text x="400" y="78" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Prompt File</text>
+
+  <!-- Environment and Context -->
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="316" y="118" width="168" height="56" rx="4"/>
+  <text x="400" y="148" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Environment and Context</text>
+
+  <!-- Your Message -->
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="316" y="188" width="168" height="56" rx="4"/>
+  <text x="400" y="218" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Your Message</text>
+
+  <line x1="400" y1="104" x2="400" y2="114" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="174" x2="400" y2="184" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <line x1="400" y1="244" x2="400" y2="254" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Horizontal arrow: System layer to User layer -->
+  <path d="M 204 200 L 296 200" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 530" width="580" height="530" role="img">
+  <title>Context window architecture: request splits into System Prompt and User Prompt, then the model processes and responds</title>
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Column layout: left x=24 width=248 (center 148), gap 24, right x=296 width=248 (center 420) -->
+
+  <!-- Start: Chat request to Copilot -->
+  <rect fill="#f1f5f9" stroke="#64748b" x="190" y="12" width="200" height="40" rx="8"/>
+  <text x="290" y="37" text-anchor="middle" font-size="13px" font-family="system-ui,sans-serif" fill="#334155">Request to Copilot</text>
+
+  <line x1="290" y1="52" x2="148" y2="96" stroke="#64748b" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
+  <line x1="290" y1="52" x2="420" y2="96" stroke="#64748b" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- SYSTEM PROMPT header -->
+  <rect fill="#dbeafe" stroke="#2563eb" x="24" y="96" width="248" height="36" rx="6"/>
+  <text x="148" y="119" text-anchor="middle" font-weight="600" font-size="13px" font-family="system-ui,sans-serif" fill="#1e40af">SYSTEM PROMPT</text>
+
+  <!-- USER PROMPT header -->
+  <rect fill="#dcfce7" stroke="#16a34a" x="296" y="96" width="248" height="36" rx="6"/>
+  <text x="420" y="119" text-anchor="middle" font-weight="600" font-size="13px" font-family="system-ui,sans-serif" fill="#166534">USER PROMPT</text>
+
+  <!-- Uniform row height 44px; all boxes same width per column -->
+  <!-- System column: x=24, width=248, center=148 -->
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="24" y="144" width="248" height="44" rx="6"/>
+  <text x="148" y="170" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">AI Identity &amp; Behavioral Rules</text>
+
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="24" y="196" width="248" height="44" rx="6"/>
+  <text x="148" y="218" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">Tool Instructions</text>
+  <text x="148" y="231" text-anchor="middle" font-size="10px" font-family="system-ui,sans-serif" fill="#64748b">terminal, files, search</text>
+
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="24" y="248" width="248" height="44" rx="6"/>
+  <text x="148" y="274" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">Output Formatting Guidelines</text>
+
+  <rect fill="#ffedd5" stroke="#ea580c" x="24" y="300" width="248" height="44" rx="6"/>
+  <text x="148" y="322" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#9a3412">Custom Instructions</text>
+  <text x="148" y="335" text-anchor="middle" font-size="10px" font-family="system-ui,sans-serif" fill="#9a3412">your project context</text>
+
+  <rect fill="#ffedd5" stroke="#ea580c" x="24" y="352" width="248" height="44" rx="6"/>
+  <text x="148" y="374" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#9a3412">Custom Agent</text>
+  <text x="148" y="387" text-anchor="middle" font-size="10px" font-family="system-ui,sans-serif" fill="#9a3412">persona &amp; workflow</text>
+
+  <!-- Vertical arrows system column -->
+  <line x1="148" y1="188" x2="148" y2="192" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="148" y1="240" x2="148" y2="244" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="148" y1="292" x2="148" y2="296" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="148" y1="344" x2="148" y2="348" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="148" y1="396" x2="148" y2="400" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+
+  <!-- User column: x=296, width=248, center=420. Same row y as system -->
+  <rect fill="#f3e8ff" stroke="#9333ea" x="296" y="144" width="248" height="44" rx="6"/>
+  <text x="420" y="166" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#6b21a8">Prompt File</text>
+  <text x="420" y="179" text-anchor="middle" font-size="10px" font-family="system-ui,sans-serif" fill="#6b21a8">reusable template + config</text>
+
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="296" y="196" width="248" height="44" rx="6"/>
+  <text x="420" y="218" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">Environment Info</text>
+  <text x="420" y="231" text-anchor="middle" font-size="10px" font-family="system-ui,sans-serif" fill="#64748b">OS, workspace, files</text>
+
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="296" y="248" width="248" height="44" rx="6"/>
+  <text x="420" y="274" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">Conversation History</text>
+
+  <rect fill="#f1f5f9" stroke="#94a3b8" x="296" y="300" width="248" height="44" rx="6"/>
+  <text x="420" y="326" text-anchor="middle" font-size="11px" font-family="system-ui,sans-serif" fill="#334155">Your Actual Message</text>
+
+  <line x1="420" y1="188" x2="420" y2="192" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="420" y1="240" x2="420" y2="244" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="420" y1="292" x2="420" y2="296" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+  <line x1="420" y1="344" x2="420" y2="348" stroke="#64748b" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Symmetric connectors: both meet at center (290,408) -->
+  <path d="M 148 400 L 148 408 L 290 408" stroke="#64748b" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
+  <path d="M 420 348 L 420 408 L 290 408" stroke="#64748b" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Model processes the assembled prompt -->
+  <rect fill="#ffedd5" stroke="#ea580c" x="210" y="408" width="160" height="44" rx="6"/>
+  <text x="290" y="435" text-anchor="middle" font-weight="600" font-size="12px" font-family="system-ui,sans-serif" fill="#9a3412">Model Processes</text>
+
+  <line x1="290" y1="452" x2="290" y2="468" stroke="#64748b" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Copilot's response -->
+  <rect fill="#f1f5f9" stroke="#64748b" x="190" y="468" width="200" height="40" rx="8"/>
+  <text x="290" y="493" text-anchor="middle" font-size="12px" font-family="system-ui,sans-serif" fill="#334155">Copilot's Response</text>
+</svg>
