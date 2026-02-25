@@ -148,7 +148,7 @@
     <section class="latest-feed scroll-reveal">
         <h2 class="section-title">Strategic Insights</h2>
         <div class="feed-grid">
-            {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+            {{ $pages := (where .Site.RegularPages "Type" "in" .Site.Params.mainSections).ByDate.Reverse }}
             {{ range $idx, $p := first 5 $pages }}
             <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add $idx 1 }}">
                 <div class="card-content">
