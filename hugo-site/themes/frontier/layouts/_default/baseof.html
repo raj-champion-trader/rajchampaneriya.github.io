@@ -181,7 +181,7 @@
             </svg>
             <span class="label">Blueprints</span>
         </a>
-        {{ if and (eq .Section "projects") (eq .Params.slug "stock-market-simulator") .Params.githubRepo }}
+        {{ if .Params.githubRepo }}
         <a href="{{ .Params.githubRepo }}" class="nav-item" target="_blank" rel="noopener noreferrer" aria-label="View project on GitHub">
             <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
