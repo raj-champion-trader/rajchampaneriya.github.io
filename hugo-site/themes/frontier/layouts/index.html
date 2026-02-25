@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ partial "page-data-meta.html" . }}
 {{/* --- Landing page audio (Listen button) --- */}}
 {{ with .Site.Params.landingAudioSrc }}
 <div id="page-audio-data" data-src="{{ . }}" data-title="{{ $.Site.Params.landingAudioTitle | default "Portfolio Overview" }}" hidden aria-hidden="true"></div>

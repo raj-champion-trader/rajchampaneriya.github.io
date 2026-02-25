@@ -774,6 +774,10 @@ a:hover {
     color: var(--color-brand);
 }
 
+.bottom-nav .nav-item.hidden {
+    display: none;
+}
+
 .nav-item .icon {
     font-size: 1.2rem;
 }

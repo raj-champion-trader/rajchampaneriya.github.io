@@ -12,6 +12,7 @@ const swup = new Swup({
 window.swup = swup;
 
 // Navigation Active State Update + LinkedIn Share link (so Share always points to current page URL)
+// + GitHub nav link sync (so client-side Swup navigation shows the correct repo or hides the link)
 function updateNav() {
     const path = window.location.pathname;
     // Use current page URL so share works on client-side nav, localhost, and correct baseURL
@@ -29,6 +30,23 @@ function updateNav() {
     document.querySelectorAll('a[href*="linkedin.com/sharing"]').forEach(el => {
         el.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareURL);
     });
+
+    // Sync bottom nav GitHub link from the current page's content (inside #swup) so it updates after Swup navigation
+    const githubLink = document.getElementById('bottom-nav-github-link');
+    if (githubLink) {
+        const swupContainer = document.querySelector('#swup');
+        const meta = swupContainer && swupContainer.querySelector('meta[name="page-github-repo"]');
+        const repo = meta ? (meta.getAttribute('content') || '').trim() : '';
+        if (repo) {
+            githubLink.href = repo;
+            githubLink.classList.remove('hidden');
+            githubLink.removeAttribute('aria-hidden');
+        } else {
+            githubLink.href = '#';
+            githubLink.classList.add('hidden');
+            githubLink.setAttribute('aria-hidden', 'true');
+        }
+    }
 }
 
 swup.hooks.on('page:view', updateNav);
