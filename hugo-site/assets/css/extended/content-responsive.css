@@ -90,6 +90,34 @@
 @media screen and (min-width: 1024px) {
   .post-content .content-callout {
     padding: var(--content-block-padding-desktop);
+    margin-bottom: var(--space-xl);
+    background: hsla(220, 20%, 50%, 0.04);
+    border-left: 3px solid var(--color-border);
+    color: var(--color-text-main);
+  }
+
+  .post-content .content-callout strong {
+    color: var(--color-text-main);
+  }
+
+  .post-content .content-callout blockquote {
+    color: var(--color-text-muted);
+  }
+}
+
+/* Desktop: dark theme — keep callout subtle */
+@media screen and (min-width: 1024px) {
+  [data-theme="dark"] .post-content .content-callout {
+    background: hsla(220, 20%, 94%, 0.04);
+    border-left-color: hsla(220, 20%, 94%, 0.15);
+  }
+
+  [data-theme="dark"] .post-content .content-callout strong {
+    color: var(--color-text-main);
+  }
+
+  [data-theme="dark"] .post-content .content-callout blockquote {
+    color: var(--color-text-muted);
   }
 }
 

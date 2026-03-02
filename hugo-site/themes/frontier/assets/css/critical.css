@@ -46,7 +46,7 @@ body{background-color:var(--color-bg);color:var(--color-text-main);line-height:1
 .site-header .header-inner .logo-sep::before{content:'·';}
 .site-header .header-inner .logo-suffix{font-weight:500;color:var(--color-text-muted);}
 .site-header,.site-header .container{overflow-x:clip;}
-.home-container{width:100%;max-width:var(--container-home-sm);margin:0 auto;padding:0 var(--home-padding-mobile);background-color:hsl(220,18%,94%);}
+.home-container{width:100%;max-width:var(--container-home-sm);margin:0 auto;padding:0 var(--home-padding-mobile);}
 @media screen and (min-width:768px){.home-container{padding:0 var(--home-padding-tablet);}}
 .hero-premium{padding:var(--space-sm) 0;}
 .hero-premium__card{padding:var(--space-lg) var(--space-md);position:relative;overflow:hidden;}

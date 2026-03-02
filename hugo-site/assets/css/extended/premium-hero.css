@@ -57,11 +57,6 @@
     max-width: var(--container-home-sm);
     margin: 0 auto;
     padding: 0 var(--home-padding-mobile);
-    background-color: hsl(220, 18%, 94%);
-}
-
-[data-theme="dark"] .home-container {
-    background-color: hsl(220, 22%, 6%);
 }
 
 @media screen and (min-width: 768px) {
@@ -72,14 +67,15 @@
 
 @media screen and (min-width: 1024px) {
     .home-container {
-        max-width: var(--container-home-md);
+        /* Match list pages (blog, projects): use full container width on desktop */
+        max-width: var(--container-wide);
         padding: 0 var(--home-padding-desktop);
     }
 }
 
 @media screen and (min-width: 1280px) {
     .home-container {
-        max-width: var(--container-home-lg);
+        max-width: var(--container-wide);
     }
 }
 
@@ -1156,6 +1152,11 @@ pre code.language-json {
 
 /* ----- Desktop (1024px+): full layout, avatar left, info right ----- */
 @media screen and (min-width: 1024px) {
+    .hero-premium {
+        padding-top: var(--space-sm);
+        padding-bottom: var(--space-md);
+    }
+
     .hero-premium__card {
         padding: var(--space-lg) var(--space-xl);
     }
@@ -1177,7 +1178,7 @@ pre code.language-json {
     }
 
     .hero-premium__tagline {
-        max-width: 48ch;
+        max-width: 55ch;
     }
 
     .hero-premium__actions {
@@ -1186,11 +1187,16 @@ pre code.language-json {
 
     .hero-premium__metrics {
         flex-wrap: nowrap;
-        gap: var(--space-md);
+        gap: var(--space-lg);
     }
 
     .hero-metric {
         min-width: 110px;
+    }
+
+    /* Desktop: show max 3 metrics for cleaner hierarchy */
+    .hero-premium__metrics .hero-metric:nth-child(n+4) {
+        display: none;
     }
 
     .hero-premium__trust {
@@ -1199,12 +1205,34 @@ pre code.language-json {
         align-items: center;
     }
 
+    .hero-premium__trust .trust-badges--symmetric {
+        max-width: var(--trust-badges-max);
+    }
+
     .trust-partners {
         margin-left: auto;
     }
 
+    .care-teaser {
+        margin-top: var(--space-xl);
+        padding-top: var(--space-lg);
+    }
+
+    .care-teaser__subtitle {
+        display: none;
+    }
+
     .care-teaser__grid {
         grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-lg);
+    }
+
+    .latest-feed {
+        margin-top: var(--space-2xl);
+    }
+
+    .latest-feed .section-title {
+        margin-top: 0;
     }
 }
 

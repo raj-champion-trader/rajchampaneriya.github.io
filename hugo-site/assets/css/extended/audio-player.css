@@ -295,3 +295,14 @@
     transform: translateX(-50%) translateY(150%);
   }
 }
+
+/* Desktop: bottom nav hidden — position player bar in consistent corner */
+@media (min-width: 1024px) {
+  .player-bar {
+    bottom: var(--space-lg);
+  }
+
+  .player-bar.hidden {
+    transform: translateX(-50%) translateY(150%);
+  }
+}

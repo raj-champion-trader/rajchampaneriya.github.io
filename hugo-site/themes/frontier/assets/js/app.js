@@ -47,6 +47,17 @@ function updateNav() {
             githubLink.setAttribute('aria-hidden', 'true');
         }
     }
+
+    // Desktop top nav: sync active state (same path logic as bottom nav)
+    document.querySelectorAll('.desktop-top-nav a.desktop-nav-link').forEach(el => {
+        el.classList.remove('active');
+        const href = el.getAttribute('href');
+        if (!href || href === '#' || href.startsWith('http')) return;
+        const hrefPath = href.startsWith('http') ? new URL(href).pathname : href;
+        if (hrefPath === path || (hrefPath !== '/' && path.startsWith(hrefPath.replace(/\/$/, '')))) {
+            el.classList.add('active');
+        }
+    });
 }
 
 swup.hooks.on('page:view', updateNav);
@@ -165,6 +176,32 @@ if (themeToggleBtn) {
         setTheme(current === 'dark' ? 'light' : 'dark');
     });
 }
+
+// ------------------ Desktop top nav: Listen button triggers audio player ------------------
+function initDesktopAudioTrigger() {
+  const desktopTrigger = document.querySelector('.desktop-audio-trigger');
+  const mainTrigger = document.getElementById('audio-player-trigger');
+  if (!desktopTrigger) return;
+  // Avoid attaching the same listener multiple times (e.g. after Swup page:view)
+  if (desktopTrigger.dataset.audioListenerAttached) return;
+  desktopTrigger.dataset.audioListenerAttached = '1';
+
+  desktopTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Read page audio from current page content so playback starts on first click (desktop)
+    const dataEl = document.getElementById('page-audio-data');
+    if (dataEl && dataEl.dataset.src) {
+      if (typeof window.playAudio === 'function') {
+        window.playAudio(dataEl.dataset.src, dataEl.dataset.title || 'Now Playing...');
+      }
+      return;
+    }
+    // No page audio: toggle play/pause or no-op via the main trigger (e.g. after nav away)
+    if (mainTrigger) mainTrigger.click();
+  });
+}
+document.addEventListener('DOMContentLoaded', initDesktopAudioTrigger);
+swup.hooks.on('page:view', () => { initDesktopAudioTrigger(); });
 
 // ------------------ Bottom navigation collapse control ------------------
 (function initBottomNavCollapse() {

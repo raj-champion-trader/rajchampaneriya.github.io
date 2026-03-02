@@ -153,6 +153,14 @@
   }
 }
 
+/* Desktop: hide bottom nav and its toggle to reclaim vertical space */
+@media screen and (min-width: 1024px) {
+  .bottom-nav,
+  .bottom-nav-toggle {
+    display: none !important;
+  }
+}
+
 /* ------------------ Collapsible bottom-nav ------------------ */
 .bottom-nav {
   transition: transform var(--transition-medium), opacity var(--transition-medium);

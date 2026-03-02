@@ -241,6 +241,81 @@ p {
   .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: 6px; }
 }
 
+/* Desktop-only top nav: show at 1024px, same links as bottom nav */
+.desktop-top-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  flex-wrap: wrap;
+}
+.desktop-top-nav .desktop-nav-link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-medium);
+}
+.desktop-top-nav .desktop-nav-link:hover {
+  color: var(--color-text-main);
+}
+.desktop-top-nav .desktop-nav-link.active {
+  color: var(--color-brand);
+}
+.site-header .header-inner .theme-toggle-btn {
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+.site-header .header-inner .theme-toggle-btn:hover {
+  color: var(--color-text-main);
+}
+
+@media screen and (min-width: 1024px) {
+  .site-header .header-inner {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+  .site-header .header-inner .logo {
+    max-width: none;
+    flex-shrink: 0;
+  }
+  .desktop-top-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  .desktop-top-nav .desktop-nav-link {
+    min-height: 44px;
+    padding: 0.5rem 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .site-header .header-inner #theme-toggle,
+  .site-header .header-inner .theme-toggle-btn {
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+  }
+}
+
 /* Safety guard: prevent header from creating page-level horizontal scroll.
    `clip` prevents overflow without creating a scroll context (no extra scrollbar). */
 .site-header, .site-header .container { overflow-x: clip; }
@@ -358,6 +433,10 @@ p {
 @media screen and (min-width: 1024px) {
     .single-post {
         padding: var(--content-padding-desktop) 0;
+    }
+
+    .single-post .post-header {
+        margin-bottom: var(--space-xl);
     }
 
     .single-post .post-header h1 {
@@ -721,7 +800,7 @@ a:hover {
 @media (min-width: 1024px) {
   .feed-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+    gap: var(--space-xl);
   }
 
   .feed-card {
@@ -734,8 +813,23 @@ a:hover {
     margin-right: auto;
   }
 
+  /* Match list pages: single-post content uses full container width on desktop */
+  .single-post .post-content {
+    max-width: 100%;
+  }
+
   .container {
     max-width: var(--container-wide);
+  }
+
+  /* Bottom nav hidden on desktop — reduce bottom padding */
+  .app-layout {
+    padding-bottom: 2rem;
+  }
+
+  /* Scroll-to-top: consistent corner when bottom nav is hidden */
+  .scroll-to-top {
+    bottom: var(--space-lg);
   }
 }
 

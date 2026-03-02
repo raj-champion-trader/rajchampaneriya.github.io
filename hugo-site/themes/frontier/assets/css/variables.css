@@ -131,7 +131,7 @@
   /* Body text in post content — per breakpoint (readability) */
   --content-body-mobile: var(--text-sm);
   --content-body-tablet: var(--text-base);
-  --content-body-desktop: var(--text-base);
+  --content-body-desktop: var(--text-lg);
 
   /* Layout / container width tokens (use instead of ad-hoc px) */
   --container-base: 1200px;      /* default site container */
