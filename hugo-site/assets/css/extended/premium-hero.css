@@ -87,6 +87,7 @@
     padding: var(--space-lg) var(--space-md);
     position: relative;
     overflow: hidden;
+    border-radius: var(--radius-md);
 }
 
 .hero-premium__card.surface-panel,
@@ -100,6 +101,30 @@
         inset 0 1px 0 hsla(220, 20%, 100%, 0.8);
 }
 
+/* Authenticity photo as gradient background — premium fade so content stays readable */
+.hero-premium__card.surface-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background-image:
+        linear-gradient(
+            to right,
+            hsl(215, 30%, 98%) 0%,
+            hsla(215, 30%, 98%, 0.97) 22%,
+            hsla(215, 30%, 98%, 0.88) 40%,
+            hsla(220, 25%, 96%, 0.5) 65%,
+            hsla(220, 25%, 94%, 0.2) 85%,
+            transparent 100%
+        ),
+        url(/images/home-page.jpeg);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
 [data-theme="dark"] .hero-premium__card.surface-panel {
     background: hsl(215, 22%, 12%);
     border-color: hsla(220, 20%, 94%, 0.1);
@@ -107,6 +132,20 @@
         0 2px 8px hsla(0, 0%, 0%, 0.25),
         0 16px 40px hsla(0, 0%, 0%, 0.15),
         inset 0 1px 0 hsla(220, 20%, 100%, 0.06);
+}
+
+[data-theme="dark"] .hero-premium__card.surface-panel::after {
+    background-image:
+        linear-gradient(
+            to right,
+            hsl(215, 22%, 12%) 0%,
+            hsla(215, 22%, 12%, 0.97) 22%,
+            hsla(215, 22%, 12%, 0.88) 40%,
+            hsla(220, 25%, 10%, 0.5) 65%,
+            hsla(220, 25%, 8%, 0.2) 85%,
+            transparent 100%
+        ),
+        url(/images/home-page.jpeg);
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
