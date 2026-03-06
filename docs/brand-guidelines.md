@@ -1,10 +1,6 @@
 # Visual Brand Guidelines — rajc.work
 
-**Version:** 1.0  
-**Date:** February 14, 2026  
 **Purpose:** Define premium visual identity for elite enterprise architect positioning.
-
----
 
 ## Brand Positioning
 
@@ -14,16 +10,12 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 - **Trust** — Institutional credibility, not personal flair
 - **Clarity** — Enterprise-grade information hierarchy
 
----
-
 ## Style architecture
 
 - **Theme (global):** Styles that define the look and layout of the site live in `themes/frontier/assets/css/` — `variables.css` (design tokens), `main.css` (base and components), `critical.css` (inlined above-the-fold).
 - **Site overrides:** Feature-specific and site-level overrides live in `assets/css/extended/`. Files are concatenated in alphabetical order; avoid same-specificity overrides across files so cascade remains predictable.
-- **Tokens:** Prefer design tokens from `variables.css` for color, spacing, radius, shadow, transition, z-index, and focus/selection. Do not introduce new magic numbers for spacing, color, or z-index.
+- **Tokens:** Prefer design tokens from `variables.css` for color, spacing, radius, shadow, transition, z-index, and focus/selection; avoid new magic numbers for spacing, color, or z-index.
 - **No inline styles:** Keep presentation in CSS; use classes and tokens.
-
----
 
 ## Color System
 
@@ -65,9 +57,7 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 
 ### Legacy enterprise token mapping
 
-To support legacy styles (`enterprise.css`) the following enterprise tokens now *derive* from the canonical Frontier tokens. Prefer `--color-*`, `--text-*`, `--space-*` tokens for all new work; treat the `--theme` / `--entry` set as legacy aliases.
-
-**Semantic note:** `--primary` / `--secondary` / `--tertiary` are **text and border roles** (main text, muted text, borders). For brand and CTAs use `--color-brand`, `--color-brand-dim`, and `--color-on-brand` instead.
+Enterprise tokens derive from Frontier; prefer `--color-*`, `--text-*`, `--space-*` for new work. For brand/CTAs use `--color-brand`, `--color-brand-dim`, `--color-on-brand` — not `--primary`/`--secondary`.
 
 | Enterprise token | Maps to Frontier token | Note |
 |------------------|------------------------|------|
@@ -83,7 +73,7 @@ To support legacy styles (`enterprise.css`) the following enterprise tokens now 
 | `--blue-bg`      | `var(--color-brand-glow)` | Badge/pill tint |
 | `--blue-border`  | `var(--color-brand-glow)` | Badge border (use sparingly) |
 
-> Guidance: Use Frontier tokens for consistency and to avoid token fragmentation. Only add new tokens to `variables.css` (Frontier) — do not create parallel enterprise tokens.
+Prefer Frontier tokens; add new tokens only in `variables.css`.
 
 ### Overlay & Backdrop tokens
 
@@ -92,7 +82,7 @@ To support legacy styles (`enterprise.css`) the following enterprise tokens now 
 | `--overlay-backdrop-strength` | `0.85` | Global alpha (0–1) used by fullscreen/backdrop overlays (dialogs, Mermaid fullscreen). Tune for perceived depth; recommended range: 0.70–0.95. |
 | `--overlay-bg` | `hsla(..., var(--overlay-backdrop-strength))` | Theme-aware overlay background — use `var(--overlay-bg)` for fullscreen overlays instead of hard-coded HSLA. |
 
-> Design note: Lower values increase translucency and show more content beneath the overlay; higher values focus attention on the overlay content. Use conservatively to retain premium depth.
+Lower alpha = more translucency; higher = more focus on overlay content.
 
 ### Text and link roles
 
@@ -120,11 +110,7 @@ Apply these rules consistently so link and button hovers are predictable across 
 | **Buttons — text/outline** | `--color-brand` | `--color-brand-dim` (or inverse) |
 | **Scrollspy / TOC links** | Muted | `--color-brand` |
 
-Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance inconsistent and can harm contrast. Use explicit `color` (and optionally `background`) per context above.
-
-**Transitions:** Use design tokens for all interactive transitions so timing is consistent. Use `--transition-fast` (0.18s), `--transition-medium` (0.25s), or `--transition-slow` (0.35s) from `variables.css`; avoid raw values like `0.2s ease` or `0.3s ease`.
-
----
+Do not use global `a:hover { opacity: 0.7 }`; use explicit color/background per context above. Use `--transition-fast/medium/slow` from `variables.css` for transitions; avoid raw values like `0.2s ease`.
 
 ## Typography
 
@@ -143,12 +129,7 @@ Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance
 | `--text-sm` | `clamp(0.875rem, 0.8rem + 0.375vw, 1rem)` | Meta text |
 | `--text-xs` | `clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)` | Labels, badges |
 
-### Heading Style
-- Weight: 800 for h1, 700 for h2-h3, 600 for h4-h6
-- Letter-spacing: -0.03em for h1, -0.02em for h2-h3
-- Line-height: 1.1
-
----
+**Heading style:** Weight 800 (h1), 700 (h2–h3), 600 (h4–h6); letter-spacing -0.03em (h1), -0.02em (h2–h3); line-height 1.1.
 
 ## Code Block Styling
 
@@ -175,8 +156,6 @@ Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance
 | JSON Values (strings) | Green | `#a6e22e` |
 | JSON Values (numbers) | Purple | `#ae81ff` |
 
----
-
 ## Spacing System
 
 | Token | Value | Usage |
@@ -189,7 +168,7 @@ Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance
 | `--space-xl` | `4rem` | Hero padding, page sections |
 | `--space-2xl` | `6rem` | Large section separation |
 
-Use only these tokens (and content tokens like `--content-padding-mobile`, `--home-padding-*`) for margins, padding, and gaps. Avoid raw `rem`/`px` so the scale drives list pages, hero, about, and post content consistently.
+Use only these tokens (and content tokens like `--content-padding-mobile`, `--home-padding-*`) for margins, padding, and gaps; avoid raw rem/px.
 
 **Radius scale:** Use `--radius-xs` (6px), `--radius-sm` (8px), `--radius-md` (16px), `--radius-lg` (32px), `--radius-pill` (100px), `--radius-card` (10px for card-style panels), `--radius-2xs` (3px for tiny elements), and `--radius-scrollbar` (4px) from `variables.css`. Avoid hardcoded border-radius values.
 
@@ -199,13 +178,7 @@ Use only these tokens (and content tokens like `--content-padding-mobile`, `--ho
 
 **Touch targets:** Use `--touch-target-min` (44px) for interactive elements (buttons, nav items, toggles) so they meet accessibility guidelines on touch devices.
 
-### Blog Card Spacing Rules
-- Feed grid gap: `var(--space-md)` (consistent 1.5rem between all cards)
-- Card padding: `var(--space-md)` uniform
-- Card border-radius: `var(--radius-md)` (16px)
-- No extra `border-bottom` — use gap-based spacing only
-
----
+**Blog cards:** Feed gap and card padding: `--space-md`; card radius: `--radius-md`; no border-bottom — use gap only.
 
 ## Component Patterns
 
@@ -219,22 +192,13 @@ box-shadow: 0 2px 4px hsla(220, 20%, 10%, 0.05);
 ```
 
 ### Premium Buttons
-- Primary: Brand color fill, `--color-on-brand` text, pill shape (border-radius: 100px)
-- Outline: Transparent background, brand border, brand text
-- Hover: Fill with `--color-brand`, text `--color-on-brand`; subtle translateY(-1px) with box-shadow increase
+- Primary: Brand fill, `--color-on-brand` text, pill shape (border-radius: 100px). Outline: Transparent background, brand border, brand text. Hover per "Hover and interactive states" table; optional subtle translateY(-1px) and box-shadow increase.
 
 ### Metric Cards
-- Large number in brand color, bold weight
-- Small label below in muted text
-- Grouped in horizontal flex with even spacing
+- Large number in brand color, bold; small muted label below; horizontal flex with even spacing.
 
 ### Certification Badges
-- Tiny inline pills with check icon
-- Background: Brand glow color
-- Border: Subtle brand border
-- Text: Brand color, uppercase, 0.62rem
-
----
+- Tiny inline pills with check icon, brand glow background, subtle brand border; brand color text, uppercase, 0.62rem.
 
 ## Responsive Breakpoints
 
@@ -245,8 +209,6 @@ box-shadow: 0 2px 4px hsla(220, 20%, 10%, 0.05);
 | `max-width: 1024px` | Small laptops |
 | Default | Desktop |
 
----
-
 ## Dark/Light Mode
 
 Both modes must feel equally premium. Dark mode is NOT an afterthought — many executives browse in dark mode. Ensure:
@@ -255,10 +217,8 @@ Both modes must feel equally premium. Dark mode is NOT an afterthought — many 
 - Glass panel effects visible in both modes
 - Code blocks consistent across modes
 
----
-
 ## Accessibility and contrast
 
 - **Target ratios**: At least **4.5:1** for normal text, **3:1** for large text (WCAG AA). Prefer higher where possible.
 - **Token pairs**: When defining text-on-background (e.g. about page accents), list the pair and verify contrast. All `--about-accent-*-text` / `-number` vs `-bg` pairs in `variables.css` should meet these targets.
-- **Avoid opacity for body-like text**: Do not rely on `opacity: 0.75` or similar for paragraph or label text; use a proper muted token or a darker/lighter accent variant so contrast is predictable.
+- **Avoid opacity for body-like text**: Use muted tokens or accent variants instead of `opacity` for paragraph/label text so contrast is predictable.
