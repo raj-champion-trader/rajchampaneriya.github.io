@@ -14,7 +14,7 @@
   position: sticky;
   top: var(--scrollspy-header-offset);
   z-index: 50;
-  margin: 0 calc(-1 * var(--content-padding-mobile, 1rem));
+  margin: 0 calc(-1 * var(--content-padding-mobile));
   margin-bottom: var(--space-sm);
   /* Solid fallback for glass */
   background: var(--color-surface);
@@ -26,7 +26,7 @@
 /* Glass effect: semi-transparent + blur when supported */
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .scrollspy-nav {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.85));
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -78,12 +78,12 @@
   /* Stronger background when fixed so content doesn’t show through */
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .scrollspy-nav.is-stuck {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.92));
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -106,9 +106,9 @@
 }
 
 .scrollspy-inner {
-  max-width: var(--container-base, 720px);
+  max-width: var(--container-base);
   margin: 0 auto;
-  padding: 0 var(--content-padding-mobile, 1rem);
+  padding: 0 var(--content-padding-mobile);
 }
 
 /* ----- Desktop: horizontal list ----- */
@@ -269,18 +269,18 @@
   }
 
   .scrollspy-inner {
-    padding: 0 var(--content-padding-tablet, 1.5rem);
+    padding: 0 var(--content-padding-tablet);
   }
 }
 
 /* Desktop: same collapsible trigger + dropdown as mobile/tablet for consistency */
 @media screen and (min-width: 1024px) {
   .scrollspy-nav {
-    margin: 0 calc(-1 * var(--content-padding-desktop, 1.5rem));
+    margin: 0 calc(-1 * var(--content-padding-desktop));
   }
 
   .scrollspy-inner {
-    padding: 0 var(--content-padding-desktop, 1.5rem);
+    padding: 0 var(--content-padding-desktop);
   }
 
   .scrollspy-trigger {
@@ -327,12 +327,12 @@
 .scroll-to-top {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .scroll-to-top {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.88));
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }

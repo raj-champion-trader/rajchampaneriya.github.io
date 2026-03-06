@@ -32,6 +32,16 @@
   --color-border: hsla(220, 30%, 12%, 0.08);
   --border: var(--color-border); /* alias for legacy/consistency */
 
+  /* Callout / content block (sidebar, blockquote) — theme-aware */
+  --color-callout-bg: hsla(220, 20%, 50%, 0.04);
+  --color-callout-border: hsla(220, 30%, 12%, 0.12);
+
+  /* Filter chips (blog filter bar) — theme-aware */
+  --filter-chip-bg: hsla(220, 20%, 99%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(220, 65%, 38%, 0.15);
+  --filter-chip-border-active: hsla(220, 65%, 38%, 0.25);
+
   /* Accent Colors */
   --color-accent-gold: hsl(42, 85%, 55%);
   /* Premium Gold */
@@ -83,6 +93,7 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
+  --radius-pill: 100px;
 
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
@@ -264,6 +275,14 @@
     --color-border: hsla(220, 20%, 94%, 0.08);
     --border: var(--color-border);
 
+    --color-callout-bg: hsla(220, 20%, 94%, 0.04);
+    --color-callout-border: hsla(220, 20%, 94%, 0.15);
+
+    --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
+    --filter-chip-border: var(--color-border);
+    --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
+    --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
     --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
@@ -311,6 +330,14 @@
   --color-text-muted: hsl(220, 12%, 65%);
   --color-border: hsla(220, 20%, 94%, 0.08);
 
+  --color-callout-bg: hsla(220, 20%, 94%, 0.04);
+  --color-callout-border: hsla(220, 20%, 94%, 0.15);
+
+  --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
+  --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
   --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
@@ -355,6 +382,14 @@
   --color-text-main: hsl(220, 30%, 12%);
   --color-text-muted: hsl(220, 10%, 42%);
   --color-border: hsla(220, 30%, 12%, 0.08);
+
+  --color-callout-bg: hsla(220, 20%, 50%, 0.04);
+  --color-callout-border: hsla(220, 30%, 12%, 0.12);
+
+  --filter-chip-bg: hsla(220, 20%, 99%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(215, 65%, 38%, 0.12);
+  --filter-chip-border-active: hsla(215, 65%, 38%, 0.25);
 
   --color-accent-gold: hsl(42, 85%, 55%);
   --code-bg: hsl(220, 18%, 13%);

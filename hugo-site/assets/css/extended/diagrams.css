@@ -1,9 +1,9 @@
 /* Architecture Diagram Styling */
 .architecture-diagram {
-    margin: 2rem 0;
-    padding: 1rem;
+    margin: var(--space-lg) 0;
+    padding: var(--space-sm);
     background: var(--color-surface);
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
 }
 
@@ -19,8 +19,8 @@
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
-        padding: 1rem 0.5rem;
-        margin: 1.5rem -1rem;
+        padding: var(--space-sm) var(--space-xs);
+        margin: var(--space-md) -1rem;
         position: relative;
     }
     
@@ -35,26 +35,26 @@
         content: '← Scroll to view diagram →';
         display: block;
         text-align: center;
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         color: var(--color-text-muted);
-        padding: 0.5rem 0 0.25rem;
+        padding: var(--space-xs) 0 var(--space-2xs);
         font-style: italic;
         opacity: 0.8;
     }
     
     /* Add visual scrollbar styling */
     .architecture-diagram::-webkit-scrollbar {
-        height: 8px;
+        height: var(--space-xs);
     }
     
     .architecture-diagram::-webkit-scrollbar-track {
         background: var(--color-border);
-        border-radius: 4px;
+        border-radius: var(--radius-xs);
     }
-    
+
     .architecture-diagram::-webkit-scrollbar-thumb {
         background: var(--color-text-muted);
-        border-radius: 4px;
+        border-radius: var(--radius-xs);
     }
     
     .architecture-diagram::-webkit-scrollbar-thumb:hover {
@@ -64,16 +64,12 @@
 
 @media screen and (max-width: 480px) {
     .architecture-diagram {
-        margin: 1.5rem -0.75rem;
-        padding: 0.75rem 0.5rem;
+        margin: var(--space-md) -0.75rem;
+        padding: var(--space-xs) var(--space-xs);
     }
-    
-    .architecture-diagram svg {
-        min-width: 500px;
-    }
-    
+
     .architecture-diagram::after {
-        font-size: 0.8rem;
+        font-size: var(--text-xs);
     }
 }
 
@@ -82,7 +78,7 @@
 .post-content img[src*="architecture"] {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
 }
 

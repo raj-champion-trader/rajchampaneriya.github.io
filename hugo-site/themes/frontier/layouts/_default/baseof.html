@@ -262,31 +262,49 @@
     <script type="module">
       const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));};
 
-      // --- Semantic class color definitions (light/dark) ---
-      const semanticColors = {
-        dark: {
-          primary:   { fill: '#1e3a5f', stroke: '#60a5fa', strokeWidth: '2.5px', color: '#dbeafe' },
-          secondary: { fill: '#14532d', stroke: '#4ade80', strokeWidth: '2.5px', color: '#dcfce7' },
-          accent:    { fill: '#7c2d12', stroke: '#fb923c', strokeWidth: '2.5px', color: '#ffedd5' },
-          highlight: { fill: '#581c87', stroke: '#c084fc', strokeWidth: '2.5px', color: '#f3e8ff' },
-          danger:    { fill: '#7f1d1d', stroke: '#f87171', strokeWidth: '2.5px', color: '#fee2e2' },
-          neutral:   { fill: '#1e293b', stroke: '#94a3b8', strokeWidth: '2.5px', color: '#e2e8f0' }
-        },
-        light: {
-          primary:   { fill: '#dbeafe', stroke: '#2563eb', strokeWidth: '1.5px', color: '#1e40af' },
-          secondary: { fill: '#dcfce7', stroke: '#16a34a', strokeWidth: '1.5px', color: '#166534' },
-          accent:    { fill: '#ffedd5', stroke: '#ea580c', strokeWidth: '1.5px', color: '#9a3412' },
-          highlight: { fill: '#f3e8ff', stroke: '#9333ea', strokeWidth: '1.5px', color: '#6b21a8' },
-          danger:    { fill: '#fee2e2', stroke: '#dc2626', strokeWidth: '1.5px', color: '#991b1b' },
-          neutral:   { fill: '#f1f5f9', stroke: '#64748b', strokeWidth: '1.5px', color: '#334155' }
-        }
-      };
+      // --- Read theme colors from CSS variables (single source of truth) ---
+      function cssVarToHex(varName) {
+        const el = document.createElement('div');
+        el.style.cssText = `color: var(${varName}); position: absolute; opacity: 0;`;
+        document.documentElement.appendChild(el);
+        const computed = getComputedStyle(el).color;
+        document.documentElement.removeChild(el);
+        const m = computed.match(/^rgb(a?)\((\d+),\s*(\d+),\s*(\d+)/);
+        if (!m) return '#333333';
+        const r = Number(m[2]).toString(16).padStart(2, '0');
+        const g = Number(m[3]).toString(16).padStart(2, '0');
+        const b = Number(m[4]).toString(16).padStart(2, '0');
+        return '#' + r + g + b;
+      }
+      function getThemeColors() {
+        return {
+          brand: cssVarToHex('--color-brand'),
+          bg: cssVarToHex('--color-bg'),
+          surface: cssVarToHex('--color-surface'),
+          textMain: cssVarToHex('--color-text-main'),
+          textMuted: cssVarToHex('--color-text-muted'),
+          border: cssVarToHex('--color-border'),
+          brandGlow: cssVarToHex('--color-brand-glow'),
+          onBrand: cssVarToHex('--color-on-brand'),
+          codeBg: cssVarToHex('--code-bg')
+        };
+      }
 
-      function applySemanticClassOverrides(container) {
-        const theme = document.documentElement.dataset.theme;
-        const isDark = theme === 'dark' ||
-                       (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        const palette = isDark ? semanticColors.dark : semanticColors.light;
+      // --- Semantic class color definitions (derived from theme) ---
+      function getSemanticColors() {
+        const c = getThemeColors();
+        const isDark = document.documentElement.dataset.theme === 'dark' ||
+          (document.documentElement.dataset.theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const strokeW = isDark ? '2.5px' : '1.5px';
+        return {
+          primary:   { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          secondary: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          accent:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          highlight: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          danger:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          neutral:   { fill: c.surface, stroke: c.textMuted, strokeWidth: strokeW, color: c.textMuted }
+        };
+      }
         for (const [cls, colors] of Object.entries(palette)) {
           container.querySelectorAll(`.node.${cls}`).forEach(node => {
             node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
@@ -314,33 +332,34 @@
 
       function getMermaidConfig() {
         const dark = isDarkMode();
+        const c = getThemeColors();
         return {
           startOnLoad: false,
           theme: 'base',
           themeVariables: dark ? {
-            primaryColor: '#1168BD', primaryTextColor: '#ffffff',
-            primaryBorderColor: 'rgba(255,255,255,0.1)', lineColor: '#94A3B8',
-            secondaryColor: '#1E3A5F', tertiaryColor: 'rgba(255,255,255,0.04)',
-            noteBkgColor: '#2D2A1E', noteTextColor: '#E2E8F0', noteBorderColor: '#5C5630',
-            actorBkg: '#1168BD', actorTextColor: '#ffffff', actorBorder: 'rgba(255,255,255,0.1)',
-            signalColor: '#94A3B8', signalTextColor: '#94A3B8',
-            background: '#0F172A', mainBkg: '#1168BD',
-            nodeBorder: 'rgba(255,255,255,0.1)',
-            clusterBkg: 'rgba(255,255,255,0.04)', clusterBorder: '#667',
-            titleColor: '#94A3B8', edgeLabelBackground: '#0B1220',
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, tertiaryColor: c.border,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMuted, edgeLabelBackground: c.bg,
             fontFamily: 'Inter, system-ui, sans-serif'
           } : {
-            primaryColor: '#438DD5', primaryTextColor: '#ffffff',
-            primaryBorderColor: 'rgba(0,0,0,0.15)', lineColor: '#475569',
-            secondaryColor: '#85BBF0', secondaryTextColor: '#334155',
-            tertiaryColor: 'rgba(0,0,0,0.03)', tertiaryTextColor: '#334155',
-            noteBkgColor: '#FFF8DC', noteTextColor: '#333333', noteBorderColor: '#D4C68A',
-            actorBkg: '#438DD5', actorTextColor: '#ffffff', actorBorder: 'rgba(0,0,0,0.15)',
-            signalColor: '#475569', signalTextColor: '#475569',
-            background: '#F8FAFC', mainBkg: '#438DD5',
-            nodeBorder: 'rgba(0,0,0,0.15)',
-            clusterBkg: 'rgba(0,0,0,0.04)', clusterBorder: '#94A3B8',
-            titleColor: '#334155', edgeLabelBackground: '#F8FAFC', textColor: '#334155',
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, secondaryTextColor: c.textMain,
+            tertiaryColor: c.border, tertiaryTextColor: c.textMain,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMain, edgeLabelBackground: c.bg, textColor: c.textMain,
             fontFamily: 'Inter, system-ui, sans-serif'
           },
           securityLevel: 'loose',

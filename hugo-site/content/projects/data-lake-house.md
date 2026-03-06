@@ -9,7 +9,7 @@ summary: "Think of example to learn deep about Data Lake House Architecture usin
 weight: 1
 ---
 
-<div style="padding: 1rem; background: var(--code-bg); border-left: 3px solid var(--tertiary); margin-bottom: 2rem; border-radius: 4px;">
+<div class="callout-code">
 
 **Architecture · Streaming · .NET**  
 _Work in Progress_
