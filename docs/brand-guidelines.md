@@ -172,6 +172,12 @@ Use only these tokens (and content tokens like `--content-padding-mobile`, `--ho
 
 **Radius scale:** Use `--radius-xs` (6px), `--radius-sm` (8px), `--radius-md` (16px), `--radius-lg` (32px), `--radius-pill` (100px), `--radius-card` (10px for card-style panels), `--radius-2xs` (3px for tiny elements), and `--radius-scrollbar` (4px) from `variables.css`. Avoid hardcoded border-radius values.
 
+**Font weight scale:** Use `--fw-normal` (400), `--fw-medium` (500), `--fw-semibold` (600), `--fw-bold` (700), `--fw-extrabold` (800) from `variables.css` instead of raw numbers. Heading weight remains `--font-weight-heading` (maps to `--fw-bold`).
+
+**Opacity (icons/decorative only):** Use `--opacity-icon` (0.95), `--opacity-icon-muted` (0.7), `--opacity-muted` (0.6). Do not use opacity for body or label text; use `--color-text-muted` for hierarchy.
+
+**Shadow elevation:** Use `--shadow-sm`, `--shadow-md`, `--shadow-lg` for depth; `--shadow-hover` for buttons and cards on hover (theme-aware).
+
 **Z-index scale:** Use tokens from `variables.css` so stacking order is consistent: `--z-header` (50), `--z-chat` (101), `--z-nav` (1000), `--z-player` (1001), `--z-scroll-top` (1002), `--z-overlay` (2000), `--z-overlay-content` (2001), `--z-dialog` (10000). Avoid magic numbers.
 
 **Focus and selection:** Use `--focus-ring-color`, `--focus-ring-offset`, `--focus-ring-width` for `:focus-visible`; use `--selection-bg` and `--selection-text` for `::selection`. See variables.css.
@@ -222,3 +228,5 @@ Both modes must feel equally premium. Dark mode is NOT an afterthought — many 
 - **Target ratios**: At least **4.5:1** for normal text, **3:1** for large text (WCAG AA). Prefer higher where possible.
 - **Token pairs**: When defining text-on-background (e.g. about page accents), list the pair and verify contrast. All `--about-accent-*-text` / `-number` vs `-bg` pairs in `variables.css` should meet these targets.
 - **Avoid opacity for body-like text**: Use muted tokens or accent variants instead of `opacity` for paragraph/label text so contrast is predictable.
+
+**Further detail:** For a full audit of spacing, radii, hover states, and tokenization across the codebase, see [UI Architect Recommendations](UI-ARCHITECT-RECOMMENDATIONS.md).

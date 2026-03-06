@@ -68,7 +68,13 @@
   /* Semantic type aliases (nav, meta, labels) */
   --text-meta: var(--text-sm);
   --text-label: var(--text-xs);
-  --font-weight-heading: 700;
+  /* Font weight scale — use these instead of raw numbers for consistent hierarchy */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --font-weight-heading: var(--fw-bold);
 
   /* Line Heights */
   --leading-tight: 1.15;
@@ -88,6 +94,8 @@
   --shadow-sm: 0 2px 4px hsla(220, 20%, 10%, 0.05);
   --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
   --shadow-lg: 0 15px 30px hsla(220, 20%, 10%, 0.1);
+  /* Elevated hover (buttons, cards) — theme-aware via brand glow */
+  --shadow-hover: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(var(--hue-brand), 65%, 38%, 0.2);
   --blur-glass: blur(20px);
   --radius-xs: 6px;
   --radius-sm: 8px;
@@ -121,8 +129,19 @@
   /* Touch targets — minimum 44px for interactive elements (accessibility) */
   --touch-target-min: 44px;
 
+  /* Opacity — icons and decorative elements only; do not use for body text */
+  --opacity-icon: 0.95;
+  --opacity-icon-muted: 0.7;
+  --opacity-muted: 0.6;
+
+  /* Main content bottom spacing — reserve before footer (and for fixed bottom nav on mobile) */
+  --main-bottom-spacing: 8.75rem; /* ~140px — space for bottom nav + player + buffer on mobile */
+  /* Gap above site footer — consistent separation from main content */
+  --footer-gap: var(--space-xl);
+
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
+  --transition-fast-duration: 0.18s;
   --transition-medium: 0.25s ease-out;
   --transition-slow: 0.35s ease-out;
 
@@ -214,6 +233,10 @@
   --bottom-nav-max: 400px;
   --bottom-nav-md: 420px;
   --bottom-nav-lg: 440px;
+
+  /* Featured project card — image heights */
+  --featured-img-height: 260px;
+  --featured-img-height-mobile: 180px;
 
   /* Component tokens */
   --trust-badges-max: 560px;
@@ -387,6 +410,7 @@
 
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
+  --shadow-hover: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(215, 75%, 65%, 0.25);
   --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
   --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
   --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
