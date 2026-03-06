@@ -9,7 +9,8 @@
     <!-- Meta -->
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
     <meta name="theme-color" content="#ffffff">
-    <script>(function(){try{var s=localStorage.getItem('theme');var d=document.documentElement;var m=document.querySelector('meta[name="theme-color"]');if(s==='dark'||s==='light'){d.setAttribute('data-theme',s);if(m)m.setAttribute('content',s==='dark'?'#0a0a0c':'#ffffff');}else{var dark=window.matchMedia('(prefers-color-scheme: dark)').matches;d.setAttribute('data-theme',dark?'dark':'light');if(m)m.setAttribute('content',dark?'#0a0a0c':'#ffffff');}}catch(e){})();</script>
+    {{ $themeInit := resources.Get "js/theme-init.js" }}
+    {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).Permalink }}"></script>{{ end }}
 
     <!-- Prevent local network access prompts on iOS -->
     <meta http-equiv="Permissions-Policy" content="local-network=()">

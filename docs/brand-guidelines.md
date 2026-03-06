@@ -37,6 +37,8 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 | `--color-on-brand` | `hsl(0, 0%, 100%)` | Text on brand background (buttons, tags, badges) |
 | `--color-accent-gold` | `hsl(42, 85%, 55%)` | Accent Gold — Premium highlight |
 
+**Borders:** Use `--color-border` as the canonical token. The alias `--border` exists in `variables.css` for legacy compatibility only; prefer `--color-border` in new and updated CSS.
+
 ### Dark Mode — "Boardroom After Hours"
 
 | Token | Value | Usage |
@@ -229,4 +231,4 @@ Both modes must feel equally premium. Dark mode is NOT an afterthought — many 
 - **Token pairs**: When defining text-on-background (e.g. about page accents), list the pair and verify contrast. All `--about-accent-*-text` / `-number` vs `-bg` pairs in `variables.css` should meet these targets.
 - **Avoid opacity for body-like text**: Use muted tokens or accent variants instead of `opacity` for paragraph/label text so contrast is predictable.
 
-**Further detail:** For a full audit of spacing, radii, hover states, and tokenization across the codebase, see [UI Architect Recommendations](UI-ARCHITECT-RECOMMENDATIONS.md).
+**Further detail:** For a full audit of spacing, radii, hover states, and tokenization across the codebase, see [UI Architect Recommendations](UI-ARCHITECT-RECOMMENDATIONS.md). P2 (font-weight and mermaid tokenization) and P3 (deprecated stubs, border alias) are implemented.
