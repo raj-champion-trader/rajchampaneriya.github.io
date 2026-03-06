@@ -1,8 +1,9 @@
 /*
   Enterprise tokens now derive from Frontier's canonical design tokens.
   DEPRECATED: Treat `--theme` / `--entry` / `--primary` etc. as legacy aliases.
+  Primary/secondary/tertiary = text and border roles; for brand/CTA use --color-brand, --color-brand-dim, --color-on-brand.
   For all new work, prefer Frontier tokens: `--color-*`, `--text-*`, `--space-*`.
-  Mapping and guidance live in `docs/plans/brand-guidelines.md`.
+  Mapping and guidance live in `docs/brand-guidelines.md`.
 */
 :root{
   --theme: var(--color-bg);           /* page background */
@@ -77,10 +78,10 @@ code, pre, kbd, samp{
 }
 
 a{
-  color: var(--link);
+  color: var(--color-brand);
 }
 a:hover{
-  color: var(--link-hover);
+  color: var(--color-brand-dim);
 }
 
 /* Slightly more "enterprise" buttons */
@@ -95,7 +96,7 @@ a:hover{
 
 /* Smooth page entrance animation */
 .post-content {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp var(--animation-in-duration) var(--animation-in-easing);
 }
 
 /* Blog post title styling */
@@ -105,7 +106,7 @@ a:hover{
   letter-spacing: -0.02em;
   margin-bottom: var(--space-sm);
   font-weight: 700;
-  animation: fadeInDown 0.5s ease-out;
+  animation: fadeInDown var(--animation-in-duration) var(--animation-in-easing);
 }
 
 @keyframes fadeInDown {
@@ -115,24 +116,24 @@ a:hover{
 
 /* Post meta (date, author) styling */
 .post-meta {
-  color: var(--secondary);
+  color: var(--color-text-muted);
   font-size: var(--text-sm);
   margin-bottom: var(--space-lg);
-  animation: fadeIn 0.7s ease-out;
+  animation: fadeIn var(--animation-in-duration) var(--animation-in-easing) 0.1s both;
 }
 
 /* Content paragraphs with better spacing and readability */
 .post-content p {
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-md);
-  color: var(--content);
+  color: var(--color-text-main);
   font-size: var(--text-base);
 }
 
 /* Emphasized text in posts */
 .post-content strong {
   font-weight: 600;
-  color: var(--primary);
+  color: var(--color-text-main);
 }
 
 /* Headings in blog posts */
@@ -142,8 +143,8 @@ a:hover{
   margin-top: var(--space-lg);
   margin-bottom: var(--space-sm);
   letter-spacing: -0.015em;
-  color: var(--primary);
-  border-bottom: 2px solid var(--tertiary);
+  color: var(--color-text-main);
+  border-bottom: 2px solid var(--color-border);
   padding-bottom: var(--space-xs);
   transition: border-color var(--transition-slow);
 }
@@ -153,7 +154,7 @@ a:hover{
   font-weight: 600;
   margin-top: var(--space-md);
   margin-bottom: var(--space-xs);
-  color: var(--primary);
+  color: var(--color-text-main);
 }
 
 /* Horizontal rule styling */
@@ -161,7 +162,7 @@ a:hover{
   margin: var(--space-md) 0;
   border: none;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--tertiary), transparent);
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
   opacity: 0.6;
 }
 
@@ -179,11 +180,11 @@ a:hover{
 
 /* Blockquote styling for emphasis */
 .post-content blockquote {
-  border-left: 4px solid var(--link);
+  border-left: 4px solid var(--color-brand);
   margin: var(--space-lg) 0;
   font-style: italic;
-  color: var(--secondary);
-  background: var(--entry);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-sm);
   transition: transform var(--transition-medium), box-shadow var(--transition-medium);
@@ -195,16 +196,16 @@ a:hover{
 
 /* Link styling in post content */
 .post-content a {
-  color: var(--link);
+  color: var(--color-brand);
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+  transition: text-decoration-color var(--transition-fast), color var(--transition-fast);
 }
 
 .post-content a:hover {
-  color: var(--link-hover);
-  text-decoration-color: var(--link-hover);
+  color: var(--color-brand-dim);
+  text-decoration-color: var(--color-brand-dim);
 }
 
 /* Post footer navigation */
@@ -212,12 +213,12 @@ a:hover{
   margin-top: var(--space-md);
   padding-top: var(--space-sm);
   border-top: 1px solid var(--color-border);
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn var(--animation-in-duration) var(--animation-in-easing) 0.15s both;
 }
 
 /* Subtle hover effect on the entire post card */
 .post-single {
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-fast);
 }
 
 /* Reading time and word count badges */
@@ -225,31 +226,31 @@ a:hover{
   display: inline-block;
   margin-right: var(--space-sm);
   padding: var(--space-2xs) var(--space-xs);
-  background: var(--entry);
+  background: var(--color-surface);
   border-radius: var(--radius-xs);
   font-size: var(--text-sm);
   transition: background var(--transition-medium);
 }
 
 .post-meta .meta-item:hover {
-  background: var(--tertiary);
+  background: var(--color-border);
 }
 
 /* Tags styling */
 .post-tags {
   margin-top: var(--space-lg);
-  animation: fadeIn 0.9s ease-out;
+  animation: fadeIn var(--animation-in-duration) var(--animation-in-easing) 0.2s both;
 }
 
 .post-tags a {
   display: inline-block;
   padding: var(--space-2xs) var(--space-xs);
   margin: var(--space-2xs) var(--space-2xs) var(--space-2xs) 0;
-  background: var(--entry);
-  border: 1px solid var(--tertiary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
-  color: var(--secondary);
+  color: var(--color-text-muted);
   transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium);
   text-decoration: none;
 }
@@ -296,12 +297,12 @@ a:hover{
 
 /* Table of contents styling */
 .toc {
-  background: var(--entry);
-  border: 1px solid var(--tertiary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   margin-bottom: var(--space-lg);
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn var(--animation-in-duration) var(--animation-in-easing) 0.1s both;
 }
 
 .toc ul {
@@ -314,19 +315,19 @@ a:hover{
 }
 
 .toc a {
-  color: var(--secondary);
-  transition: color 0.2s ease, padding-left 0.2s ease;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
   display: inline-block;
 }
 
 .toc a:hover {
-  color: var(--link);
+  color: var(--color-brand);
   padding-left: var(--space-xs);
 }
 
 /* Dark mode adjustments */
 [data-theme="dark"] .post-content h2 {
-  border-bottom-color: var(--tertiary);
+  border-bottom-color: var(--color-border);
 }
 
 /* Dark mode tag hover inherits base styles — no extra glow */
@@ -345,13 +346,13 @@ a:hover{
 }
 
 .footer-link {
-  color: var(--secondary);
+  color: var(--color-text-muted);
   text-decoration: none;
   font-size: var(--text-xs);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 .footer-link:hover {
@@ -415,7 +416,7 @@ a:hover{
   font-weight: 600;
   color: var(--color-brand);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 .read-more:hover {
@@ -441,7 +442,7 @@ a:hover{
 .feed-card h3 a {
   color: var(--color-brand);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 .feed-card h2 a:hover,

@@ -17,14 +17,14 @@
 .post-content pre,
 .post-content table {
   scrollbar-width: thin;
-  scrollbar-color: hsla(220, 20%, 60%, 0.5) hsla(220, 20%, 20%, 0.3);
+  scrollbar-color: var(--scrollbar-thumb-code) var(--scrollbar-track-code);
 }
 
 [data-theme="dark"] .highlight,
 [data-theme="dark"] .highlight pre,
 [data-theme="dark"] .post-content pre,
 [data-theme="dark"] .post-content table {
-  scrollbar-color: hsla(220, 20%, 70%, 0.4) hsla(220, 20%, 15%, 0.4);
+  scrollbar-color: var(--scrollbar-thumb-code) var(--scrollbar-track-code);
 }
 
 /* Webkit fallback for Safari < 16.4 and older Chrome — code blocks only */
@@ -38,19 +38,19 @@
 .highlight pre::-webkit-scrollbar-track,
 .post-content pre::-webkit-scrollbar-track,
 .post-content table::-webkit-scrollbar-track {
-  background: hsla(220, 20%, 20%, 0.3);
-  border-radius: 4px;
+  background: var(--scrollbar-track-code);
+  border-radius: var(--radius-scrollbar);
 }
 
 .highlight pre::-webkit-scrollbar-thumb,
 .post-content pre::-webkit-scrollbar-thumb,
 .post-content table::-webkit-scrollbar-thumb {
-  background: hsla(220, 20%, 60%, 0.5);
-  border-radius: 4px;
+  background: var(--scrollbar-thumb-code);
+  border-radius: var(--radius-scrollbar);
 }
 
 .highlight pre::-webkit-scrollbar-thumb:hover,
 .post-content pre::-webkit-scrollbar-thumb:hover,
 .post-content table::-webkit-scrollbar-thumb:hover {
-  background: hsla(220, 20%, 70%, 0.7);
+  background: var(--scrollbar-thumb-code-hover);
 }

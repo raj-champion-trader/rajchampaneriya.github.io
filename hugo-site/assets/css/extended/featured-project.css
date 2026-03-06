@@ -26,7 +26,7 @@
 
 .featured-project-card:active {
   transform: translateY(-2px);
-  transition-duration: 0.1s;
+  transition-duration: 0.18s; /* --transition-fast duration for snappier active */
 }
 
 /* Image — inset to align with body text and theme padding */

@@ -7,7 +7,7 @@
     margin: 1.5rem 0;
     padding: 1rem;
     background: var(--code-bg);
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -32,7 +32,7 @@
     font-family: var(--font-sans);
     background: var(--code-bg) !important;
     padding: 2px 6px !important;
-    border-radius: 3px !important;
+    border-radius: var(--radius-2xs) !important;
 }
 
 .mermaid text {
@@ -651,7 +651,7 @@
 
 .mermaid-fullscreen-content-inner {
   transform-origin: top left;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--transition-slow) cubic-bezier(0.22, 1, 0.36, 1);
   display: inline-block;
   min-width: min-content;
   width: max-content;

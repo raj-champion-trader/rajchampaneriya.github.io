@@ -58,6 +58,8 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 
 To support legacy styles (`enterprise.css`) the following enterprise tokens now *derive* from the canonical Frontier tokens. Prefer `--color-*`, `--text-*`, `--space-*` tokens for all new work; treat the `--theme` / `--entry` set as legacy aliases.
 
+**Semantic note:** `--primary` / `--secondary` / `--tertiary` are **text and border roles** (main text, muted text, borders). For brand and CTAs use `--color-brand`, `--color-brand-dim`, and `--color-on-brand` instead.
+
 | Enterprise token | Maps to Frontier token | Note |
 |------------------|------------------------|------|
 | `--theme`        | `var(--color-bg)`      | Page background |
@@ -110,6 +112,8 @@ Apply these rules consistently so link and button hovers are predictable across 
 | **Scrollspy / TOC links** | Muted | `--color-brand` |
 
 Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance inconsistent and can harm contrast. Use explicit `color` (and optionally `background`) per context above.
+
+**Transitions:** Use design tokens for all interactive transitions so timing is consistent. Use `--transition-fast` (0.18s), `--transition-medium` (0.25s), or `--transition-slow` (0.35s) from `variables.css`; avoid raw values like `0.2s ease` or `0.3s ease`.
 
 ---
 
@@ -177,6 +181,8 @@ Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance
 | `--space-2xl` | `6rem` | Large section separation |
 
 Use only these tokens (and content tokens like `--content-padding-mobile`, `--home-padding-*`) for margins, padding, and gaps. Avoid raw `rem`/`px` so the scale drives list pages, hero, about, and post content consistently.
+
+**Radius scale:** Use `--radius-xs` (6px), `--radius-sm` (8px), `--radius-md` (16px), `--radius-lg` (32px), `--radius-pill` (100px), `--radius-card` (10px for card-style panels), `--radius-2xs` (3px for tiny elements), and `--radius-scrollbar` (4px) from `variables.css`. Avoid hardcoded border-radius values.
 
 ### Blog Card Spacing Rules
 - Feed grid gap: `var(--space-md)` (consistent 1.5rem between all cards)

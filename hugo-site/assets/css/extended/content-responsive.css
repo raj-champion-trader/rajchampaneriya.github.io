@@ -274,7 +274,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.28s ease-out;
+  transition: opacity var(--transition-slow) ease-out;
   pointer-events: none;
 }
 
@@ -312,7 +312,7 @@
   background: var(--color-surface);
   color: var(--color-text-main);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.15s;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
 }
 
 .screenshot-carousel-btn:hover {
@@ -342,7 +342,7 @@
   border: 1px solid var(--color-border);
   background: transparent;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: background var(--transition-fast), transform var(--transition-fast);
   box-sizing: content-box;
 }
 
@@ -390,7 +390,7 @@
   background: var(--color-surface-elevated);
   color: var(--color-text-muted);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .pdf-carousel-preview:hover {

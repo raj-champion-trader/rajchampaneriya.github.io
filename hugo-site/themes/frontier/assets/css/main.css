@@ -577,7 +577,7 @@ p {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-bottom: 140px;
+    padding-bottom: var(--main-bottom-spacing);
     /* Space for bottom nav + player + buffer */
 }
 
@@ -931,7 +931,7 @@ a {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: color 0.2s ease, background 0.2s ease;
+    transition: color var(--transition-fast), background var(--transition-fast);
 }
 
 #theme-toggle:hover {
@@ -955,7 +955,7 @@ a {
     font-size: var(--text-lg);
     padding: var(--space-2xs);
     border-radius: 50%;
-    transition: background 0.2s;
+    transition: background var(--transition-fast);
 }
 
 .btn-icon:hover {
@@ -974,7 +974,7 @@ a {
     display: flex;
     flex-direction: column;
     z-index: 101;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform var(--transition-slow), opacity var(--transition-slow);
 }
 
 .chat-panel.hidden {
@@ -1071,7 +1071,7 @@ a {
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-slow);
 }
 
 .visible.mermaid-overlay {
@@ -1091,7 +1091,7 @@ a {
 
 .mermaid-zoom-container {
     transform-origin: 0 0;
-    transition: transform 0.1s ease-out;
+    transition: transform var(--transition-fast);
     /* Smooth pan feel, fast enough for direct manipulation */
     /* Ensure content is centered initially handled by flex on overlay, transform overrides */
 }
@@ -1122,7 +1122,7 @@ a {
 /* Animations & motion (moved from `hugo-site/assets/css/extended/animations.css`) */
 /* Profile Image — gentle scale only */
 .profile-image {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .profile-image:hover {
@@ -1140,7 +1140,7 @@ a {
 
 /* Social Icons — subtle lift */
 .social-icons a {
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform var(--transition-fast), color var(--transition-fast);
     display: inline-flex;
 }
 
@@ -1149,7 +1149,7 @@ a {
     color: var(--color-text-main);
 }
 
-.social-icons a svg { transition: stroke 0.2s ease; }
+.social-icons a svg { transition: stroke var(--transition-fast); }
 
 /* Buttons — subtle lift, no decorative sweep */
 .button { position: relative; overflow: hidden; transition: transform var(--transition-medium), box-shadow var(--transition-medium); }
@@ -1157,17 +1157,17 @@ a {
 .button-inner { transition: transform var(--transition-medium), opacity var(--transition-medium), color var(--transition-medium); }
 
 /* Recent Posts — subtle border highlight instead of shifting content */
-.post-entry-horizontal { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.post-entry-horizontal { transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
 .post-entry-horizontal:hover { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
 [data-theme="dark"] .post-entry-horizontal:hover { box-shadow: var(--shadow-md); }
 
 /* Post title underline — kept, this aids content navigation */
-.post-title a { position: relative; transition: color 0.2s ease; }
+.post-title a { position: relative; transition: color var(--transition-fast); }
 .post-title a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--color-brand); transform: scaleX(0); transform-origin: left; transition: transform var(--transition-slow); }
 .post-title a:hover::after { transform: scaleX(1); }
 
 /* Theme Toggle — color feedback only (no transform to avoid scrollbar on hover) */
-#theme-toggle { transition: color 0.2s ease; }
+#theme-toggle { transition: color var(--transition-fast); }
 #theme-toggle:hover { /* no transform/scale so hover never causes a scrollbar */ }
 #theme-toggle svg { transition: opacity var(--transition-slow); }
 
@@ -1179,11 +1179,11 @@ a {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-.profile-horizontal { animation: fadeIn 0.4s ease-out; }
-.profile-left { animation: fadeInUp 0.4s ease-out 0.05s both; }
-.profile-right { animation: fadeInUp 0.4s ease-out 0.1s both; }
-.recent-posts-section h2 { animation: fadeInUp 0.4s ease-out 0.15s both; }
-.post-entry-horizontal { animation: fadeIn 0.4s ease-out 0.2s both; }
+.profile-horizontal { animation: fadeIn var(--animation-in-duration) var(--animation-in-easing); }
+.profile-left { animation: fadeInUp var(--animation-in-duration) var(--animation-in-easing) 0.05s both; }
+.profile-right { animation: fadeInUp var(--animation-in-duration) var(--animation-in-easing) 0.1s both; }
+.recent-posts-section h2 { animation: fadeInUp var(--animation-in-duration) var(--animation-in-easing) 0.15s both; }
+.post-entry-horizontal { animation: fadeIn var(--animation-in-duration) var(--animation-in-easing) 0.2s both; }
 
 /* Reduced-motion handling moved to `variables.css` (globalized) */
 
@@ -1208,7 +1208,7 @@ a {
     /* Above Bottom Nav (1000) and Chat (101) */
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s;
+    transition: opacity var(--transition-slow), transform var(--transition-slow), background-color var(--transition-fast);
     box-shadow: var(--shadow-md);
     color: var(--color-text-main);
 }
@@ -1267,7 +1267,7 @@ code {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
     margin-bottom: var(--space-lg);
     text-decoration: none;
     /* Remove default link underline */

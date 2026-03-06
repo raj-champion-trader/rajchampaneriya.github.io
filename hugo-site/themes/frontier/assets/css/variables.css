@@ -94,11 +94,25 @@
   --radius-md: 16px;
   --radius-lg: 32px;
   --radius-pill: 100px;
+  /* Card-style panels (e.g. about page); 10px sits between sm and md for visual balance */
+  --radius-card: 10px;
+  /* Scrollbar thumb/track (small UI element) */
+  --radius-scrollbar: 4px;
+  /* Scrollbar colors for code blocks / dark contexts (theme-aware) */
+  --scrollbar-track-code: hsla(220, 20%, 20%, 0.3);
+  --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+  /* Tiny elements (e.g. diagram labels) */
+  --radius-2xs: 3px;
 
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
   --transition-medium: 0.25s ease-out;
   --transition-slow: 0.35s ease-out;
+
+  /* Entrance animation tokens (page load, sections) */
+  --animation-in-duration: 0.5s;
+  --animation-in-easing: ease-out;
 
   /* Scroll reveal animation tokens (all form factors) */
   --scroll-reveal-duration: 0.5s;
@@ -147,6 +161,9 @@
   --measure-mobile: 100%;
   --measure-tablet: 720px;
   --measure-desktop: var(--measure-lg);
+
+  /* Main content bottom spacing — reserve before footer (and for fixed bottom nav on mobile) */
+  --main-bottom-spacing: 8.75rem; /* ~140px — space for bottom nav + player + buffer on mobile */
 
   /* Content block (callout, blockquote, raw div) — responsive padding */
   --content-block-padding-mobile: var(--space-xs);
@@ -220,7 +237,7 @@
   --about-photo-tablet: 160px;
   --about-photo-desktop: 200px;
   --about-process-number-size: 1.75rem;
-  --about-card-radius: 10px;
+  --about-card-radius: var(--radius-card);
 
   /* About page — accent palette (process, impact, tech, capability).
      Text/background pairs should meet WCAG AA (4.5:1 normal, 3:1 large). */
@@ -286,6 +303,9 @@
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
     --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
+    --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
+    --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
+    --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
     /* About page accents — dark */
     --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
     --about-accent-blue-border: rgba(37, 99, 235, 0.3);
@@ -341,6 +361,9 @@
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
   --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
+  --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
+  --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
   /* About page accents — dark */
   --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
   --about-accent-blue-border: rgba(37, 99, 235, 0.3);

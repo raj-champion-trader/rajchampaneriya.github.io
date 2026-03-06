@@ -190,7 +190,7 @@ body.bottom-nav-collapsed .player-bar-toggle {
   width: 44px;
   height: 32px;
   padding: var(--space-xs);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
@@ -217,7 +217,7 @@ body.bottom-nav-collapsed .player-bar-toggle {
   width: 40px;
   height: 30px;
   padding: var(--space-xs);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);

@@ -69,37 +69,34 @@ if (document.readyState === 'loading') {
 }
 
 // ------------------ Scroll reveal (Intersection Observer) ------------------
+// Re-triggers every time elements enter/leave viewport (no unobserve).
 function initScrollReveal() {
   const container = document.querySelector('#swup');
   const root = container || document;
-  const els = root.querySelectorAll('.scroll-reveal:not(.in-view)');
+  const els = root.querySelectorAll('.scroll-reveal');
   if (!els.length) return;
 
   const viewH = window.innerHeight;
-  const deferred = [];
 
   els.forEach((el) => {
     if (el.getBoundingClientRect().top < viewH + 40) {
       el.classList.add('in-view');
-    } else {
-      deferred.push(el);
     }
   });
-
-  if (!deferred.length) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('in-view');
         }
       });
     },
     { root: null, rootMargin: '40px 0px', threshold: 0.01 }
   );
-  deferred.forEach((el) => observer.observe(el));
+  els.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener('DOMContentLoaded', initScrollReveal);
