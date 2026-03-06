@@ -148,7 +148,7 @@ p {
   background: var(--color-surface-glass);
   backdrop-filter: saturate(130%) blur(8px);
   -webkit-backdrop-filter: saturate(130%) blur(8px);
-  z-index: 50; /* keep header above decorative panels */
+  z-index: var(--z-header); /* keep header above decorative panels */
 }
 
 [data-theme="dark"] .site-header.glass-panel,
@@ -222,8 +222,8 @@ p {
   flex-shrink: 0;
   border-radius: 0 !important;
   overflow: hidden;
-  min-width: 32px;
-  min-height: 32px;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
 }
 .site-header .header-inner #theme-toggle:hover {
   background: transparent !important;
@@ -277,8 +277,8 @@ p {
   background: transparent;
   border-radius: 0;
   overflow: hidden;
-  min-width: 32px;
-  min-height: 32px;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   padding: var(--space-xs);
   cursor: pointer;
   color: var(--color-text-muted);
@@ -629,6 +629,35 @@ a {
     transition: color var(--transition-medium);
 }
 
+/* Focus visible — keyboard focus ring using design tokens; do not remove for accessibility */
+a:focus-visible,
+button:focus-visible,
+[type="button"]:focus-visible,
+[type="submit"]:focus-visible,
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-text:focus-visible,
+.btn-icon:focus-visible,
+#theme-toggle:focus-visible,
+.theme-toggle-btn:focus-visible,
+.scroll-to-top:focus-visible,
+.nav-item:focus-visible,
+.player-bar .btn-icon:focus-visible,
+.bottom-nav-toggle:focus-visible,
+.player-bar-toggle:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* Text selection — theme-aware, uses tokens from variables.css */
+::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
+}
+
 /* Hero Profile Fix */
 .hero-profile {
     padding: var(--space-lg) var(--space-md);
@@ -853,7 +882,7 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: 1000;
+    z-index: var(--z-nav);
     /* Ensure Top Layer */
     background: var(--color-surface-glass);
     border-radius: var(--radius-pill);
@@ -954,6 +983,12 @@ a {
     cursor: pointer;
     font-size: var(--text-lg);
     padding: var(--space-2xs);
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     transition: background var(--transition-fast);
 }
@@ -973,7 +1008,7 @@ a {
     max-height: 60vh;
     display: flex;
     flex-direction: column;
-    z-index: 101;
+    z-index: var(--z-chat);
     transition: transform var(--transition-slow), opacity var(--transition-slow);
 }
 
@@ -1063,7 +1098,7 @@ a {
     /* High opacity for focus */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 2000;
+    z-index: var(--z-overlay);
     /* Topmost */
     cursor: grab;
     display: flex;
@@ -1103,7 +1138,7 @@ a {
     background: var(--color-surface);
     width: 40px;
     height: 40px;
-    z-index: 2001;
+    z-index: var(--z-overlay-content);
     box-shadow: var(--shadow-sm);
 }
 
@@ -1204,7 +1239,7 @@ a {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1002;
+    z-index: var(--z-scroll-top);
     /* Above Bottom Nav (1000) and Chat (101) */
     opacity: 0;
     pointer-events: none;

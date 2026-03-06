@@ -163,9 +163,11 @@ function setTheme(theme) {
     }
 } 
 
-// Init Theme
-const savedTheme = 'light';
-setTheme(savedTheme);
+// Init Theme — respect localStorage first, then system preference
+const savedTheme = localStorage.getItem('theme');
+const systemDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+const initialTheme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : (systemDark ? 'dark' : 'light');
+setTheme(initialTheme);
 
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {

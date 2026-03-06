@@ -1,7 +1,16 @@
 /*
   Pros & Cons blocks — visual distinction for advantages/disadvantages lists.
-  Uses Frontier design tokens. Reusable for any pros/cons section in post content.
+  Uses Frontier design tokens and local hue variables for theme consistency.
 */
+
+/* Component hues — pros (green), cons (orange); dark overrides below */
+.post-content .pros-cons-block.pros {
+  --pros-hue: 150;
+}
+
+.post-content .pros-cons-block.cons {
+  --cons-hue: 30;
+}
 
 .post-content .pros-cons {
   display: grid;
@@ -24,18 +33,18 @@
 }
 
 .post-content .pros-cons-block.pros {
-  --block-bg: hsl(150, 35%, 96%);
-  --block-border: hsl(150, 30%, 88%);
-  --block-accent: hsl(150, 45%, 38%);
+  --block-bg: hsl(var(--pros-hue), 35%, 96%);
+  --block-border: hsl(var(--pros-hue), 30%, 88%);
+  --block-accent: hsl(var(--pros-hue), 45%, 38%);
   background: var(--block-bg);
   border-color: var(--block-border);
   border-left: 4px solid var(--block-accent);
 }
 
 .post-content .pros-cons-block.cons {
-  --block-bg: hsl(30, 30%, 97%);
-  --block-border: hsl(30, 25%, 90%);
-  --block-accent: hsl(30, 50%, 45%);
+  --block-bg: hsl(var(--cons-hue), 30%, 97%);
+  --block-border: hsl(var(--cons-hue), 25%, 90%);
+  --block-accent: hsl(var(--cons-hue), 50%, 45%);
   background: var(--block-bg);
   border-color: var(--block-border);
   border-left: 4px solid var(--block-accent);
@@ -107,13 +116,13 @@
 }
 
 [data-theme="dark"] .post-content .pros-cons-block.pros {
-  --block-bg: hsla(150, 25%, 18%, 0.4);
-  --block-border: hsla(150, 30%, 35%, 0.5);
-  --block-accent: hsl(150, 45%, 55%);
+  --block-bg: hsla(var(--pros-hue), 25%, 18%, 0.4);
+  --block-border: hsla(var(--pros-hue), 30%, 35%, 0.5);
+  --block-accent: hsl(var(--pros-hue), 45%, 55%);
 }
 
 [data-theme="dark"] .post-content .pros-cons-block.cons {
-  --block-bg: hsla(30, 20%, 18%, 0.4);
-  --block-border: hsla(30, 25%, 35%, 0.5);
-  --block-accent: hsl(30, 50%, 55%);
+  --block-bg: hsla(var(--cons-hue), 20%, 18%, 0.4);
+  --block-border: hsla(var(--cons-hue), 25%, 35%, 0.5);
+  --block-accent: hsl(var(--cons-hue), 50%, 55%);
 }

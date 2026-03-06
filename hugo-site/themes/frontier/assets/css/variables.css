@@ -102,13 +102,38 @@
   --scrollbar-track-code: hsla(220, 20%, 20%, 0.3);
   --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
   --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+  /* Main document scrollbar (light) — dark override in [data-theme="dark"] */
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-track: transparent;
   /* Tiny elements (e.g. diagram labels) */
   --radius-2xs: 3px;
+
+  /* Z-index scale — use these instead of magic numbers */
+  --z-header: 50;
+  --z-chat: 101;
+  --z-nav: 1000;
+  --z-player: 1001;
+  --z-scroll-top: 1002;
+  --z-overlay: 2000;
+  --z-overlay-content: 2001;
+  --z-dialog: 10000;
+
+  /* Touch targets — minimum 44px for interactive elements (accessibility) */
+  --touch-target-min: 44px;
 
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
   --transition-medium: 0.25s ease-out;
   --transition-slow: 0.35s ease-out;
+
+  /* Focus ring — keyboard-visible focus (use with :focus-visible) */
+  --focus-ring-color: var(--color-brand);
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+
+  /* Text selection — theme-aware for contrast */
+  --selection-bg: var(--color-brand-glow);
+  --selection-text: var(--color-text-main);
 
   /* Entrance animation tokens (page load, sections) */
   --animation-in-duration: 0.5s;
@@ -306,6 +331,8 @@
     --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
     --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
     --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+    --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
+    --scrollbar-track: transparent;
     /* About page accents — dark */
     --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
     --about-accent-blue-border: rgba(37, 99, 235, 0.3);
@@ -364,6 +391,8 @@
   --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
   --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
   --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+  --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
+  --scrollbar-track: transparent;
   /* About page accents — dark */
   --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
   --about-accent-blue-border: rgba(37, 99, 235, 0.3);
@@ -416,6 +445,36 @@
 
   --color-accent-gold: hsl(42, 85%, 55%);
   --code-bg: hsl(220, 18%, 13%);
+  --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
+  --scrollbar-track-code: hsla(220, 20%, 20%, 0.3);
+  --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+
+  /* About page accents — light */
+  --about-accent-blue-bg: #eff6ff;
+  --about-accent-blue-border: #bfdbfe;
+  --about-accent-blue-text: #1e40af;
+  --about-accent-blue-number: #2563eb;
+  --about-accent-orange-bg: #fff7ed;
+  --about-accent-orange-border: #fed7aa;
+  --about-accent-orange-text: #9a3412;
+  --about-accent-orange-number: #ea580c;
+  --about-accent-purple-bg: #faf5ff;
+  --about-accent-purple-border: #e9d5ff;
+  --about-accent-purple-text: #6b21a8;
+  --about-accent-purple-number: #9333ea;
+  --about-accent-green-bg: #f0fdf4;
+  --about-accent-green-border: #bbf7d0;
+  --about-accent-green-text: #166534;
+  --about-accent-green-number: #16a34a;
+  --about-accent-gray-bg: #f8fafc;
+  --about-accent-gray-border: #e2e8f0;
+  --about-accent-gray-text: #334155;
+  --about-accent-blue-pill-bg: rgba(219, 234, 254, 0.7);
+  --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
+  --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
+  --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
+  --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
 }
 
 /* Reduced-motion: global accessibility preference moved to variables for
@@ -425,5 +484,20 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* High-contrast preference — stronger borders and muted text for readability */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: hsla(220, 30%, 12%, 0.18);
+    --color-text-muted: hsl(220, 10%, 35%);
+  }
+}
+
+@media (prefers-contrast: more) {
+  [data-theme="dark"] {
+    --color-border: hsla(220, 20%, 94%, 0.18);
+    --color-text-muted: hsl(220, 12%, 72%);
   }
 }

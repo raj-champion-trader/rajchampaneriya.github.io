@@ -1,0 +1,34 @@
+/* Print styles — hide chrome, simplify layout; uses design tokens where applicable. */
+
+@media print {
+  .site-header,
+  .bottom-nav,
+  #audio-player-bar,
+  .player-bar,
+  .scroll-to-top,
+  .bottom-nav-toggle,
+  .player-bar-toggle,
+  .chat-panel,
+  .nav-item.fab-trigger,
+  .icon-fab,
+  .mermaid-overlay,
+  .mermaid-fullscreen-dialog {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #444;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+}

@@ -16,6 +16,15 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 
 ---
 
+## Style architecture
+
+- **Theme (global):** Styles that define the look and layout of the site live in `themes/frontier/assets/css/` — `variables.css` (design tokens), `main.css` (base and components), `critical.css` (inlined above-the-fold).
+- **Site overrides:** Feature-specific and site-level overrides live in `assets/css/extended/`. Files are concatenated in alphabetical order; avoid same-specificity overrides across files so cascade remains predictable.
+- **Tokens:** Prefer design tokens from `variables.css` for color, spacing, radius, shadow, transition, z-index, and focus/selection. Do not introduce new magic numbers for spacing, color, or z-index.
+- **No inline styles:** Keep presentation in CSS; use classes and tokens.
+
+---
+
 ## Color System
 
 ### Light Mode — "Executive Clarity"
@@ -183,6 +192,12 @@ Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance
 Use only these tokens (and content tokens like `--content-padding-mobile`, `--home-padding-*`) for margins, padding, and gaps. Avoid raw `rem`/`px` so the scale drives list pages, hero, about, and post content consistently.
 
 **Radius scale:** Use `--radius-xs` (6px), `--radius-sm` (8px), `--radius-md` (16px), `--radius-lg` (32px), `--radius-pill` (100px), `--radius-card` (10px for card-style panels), `--radius-2xs` (3px for tiny elements), and `--radius-scrollbar` (4px) from `variables.css`. Avoid hardcoded border-radius values.
+
+**Z-index scale:** Use tokens from `variables.css` so stacking order is consistent: `--z-header` (50), `--z-chat` (101), `--z-nav` (1000), `--z-player` (1001), `--z-scroll-top` (1002), `--z-overlay` (2000), `--z-overlay-content` (2001), `--z-dialog` (10000). Avoid magic numbers.
+
+**Focus and selection:** Use `--focus-ring-color`, `--focus-ring-offset`, `--focus-ring-width` for `:focus-visible`; use `--selection-bg` and `--selection-text` for `::selection`. See variables.css.
+
+**Touch targets:** Use `--touch-target-min` (44px) for interactive elements (buttons, nav items, toggles) so they meet accessibility guidelines on touch devices.
 
 ### Blog Card Spacing Rules
 - Feed grid gap: `var(--space-md)` (consistent 1.5rem between all cards)
