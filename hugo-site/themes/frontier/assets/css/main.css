@@ -700,6 +700,19 @@ a {
     border: 1px solid var(--color-border);
 }
 
+/* Button/link icons — token-based spacing (replaces inline margin-right) */
+.btn-text svg,
+.listen-btn svg,
+.post-meta .btn-text svg,
+.icon-minimal {
+    margin-right: var(--space-xs);
+    vertical-align: middle;
+}
+
+.page-header .post-meta {
+    margin-bottom: var(--space-sm);
+}
+
 /* Feed Cards */
 .feed-grid {
     display: flex;
@@ -715,8 +728,7 @@ a {
 }
 
 .feed-card:hover {
-    background: hsla(215, 20%, 20%, 0.05);
-    /* Subtle brand tint on hover */
+    background: var(--color-brand-glow);
 }
 
 /* Feed card typography — responsive via design tokens */
@@ -739,6 +751,7 @@ a {
 
 .card-content p {
     font-size: var(--card-summary-mobile);
+    color: var(--color-text-muted);
 }
 
 @media screen and (min-width: 768px) {
@@ -769,7 +782,7 @@ a {
 @media (min-width: 768px) {
   .app-layout {
     /* Enough clearance so last line of content is never covered by fixed UI */
-    padding-bottom: 3rem;
+    padding-bottom: var(--space-lg);
   }
 
   /* Feed grid -> multi-column on tablet */
@@ -795,7 +808,7 @@ a {
 @media (min-width: 1024px) {
   .feed-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 
   .feed-card {
@@ -819,7 +832,7 @@ a {
 
   /* Bottom nav hidden on desktop — reduce bottom padding */
   .app-layout {
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-md);
   }
 
   /* Scroll-to-top: consistent corner when bottom nav is hidden */
@@ -1196,7 +1209,7 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
     color: var(--color-text-main);
 }
 
