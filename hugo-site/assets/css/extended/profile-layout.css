@@ -179,7 +179,7 @@
 
 .profile-actions .buttons .button:first-child {
     background: var(--color-brand);
-    color: #fff;
+    color: var(--color-on-brand);
 } 
 
 .profile-actions .buttons .button:first-child:hover {
@@ -196,7 +196,7 @@
 
 .profile-actions .buttons .button:not(:first-child):hover {
     background: var(--color-brand);
-    color: #fff;
+    color: var(--color-on-brand);
     transform: translateY(-1px);
     box-shadow: 0 3px 10px rgba(29, 78, 216, 0.15);
 } 

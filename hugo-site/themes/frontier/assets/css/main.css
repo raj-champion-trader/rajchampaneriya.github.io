@@ -696,7 +696,7 @@ a:hover {
 
 .btn-primary {
     background: var(--color-brand);
-    color: #fff;
+    color: var(--color-on-brand);
     box-shadow: 0 4px 12px var(--color-brand-glow);
 }
 
@@ -1006,7 +1006,7 @@ a:hover {
 
 .message.user {
     background: var(--color-brand);
-    color: white;
+    color: var(--color-on-brand);
     align-self: flex-end;
 }
 
@@ -1030,7 +1030,7 @@ a:hover {
 .icon-fab {
     font-size: 1.2rem;
     background: var(--color-brand);
-    color: white;
+    color: var(--color-on-brand);
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -1212,7 +1212,7 @@ a:hover {
 
 .scroll-to-top:hover {
     background: var(--color-brand);
-    color: white;
+    color: var(--color-on-brand);
     transform: translateY(-2px);
 }
 

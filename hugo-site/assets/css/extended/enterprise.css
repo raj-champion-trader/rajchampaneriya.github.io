@@ -41,7 +41,7 @@ body {
 }
 
 body{
-  font-family: "Inter", "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Align navigation and main content widths */
@@ -51,7 +51,7 @@ body{
 }
 
 code, pre, kbd, samp{
-  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: var(--font-mono);
 }
 
 /* Make the profile hero feel more "consulting-grade" */
@@ -255,9 +255,9 @@ a:hover{
 }
 
 .post-tags a:hover {
-  background: var(--link);
-  color: white;
-  border-color: var(--link);
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+  border-color: var(--color-brand);
 }
 
 /* Post footer tags (single.html .tags .tag) */
@@ -273,25 +273,25 @@ a:hover{
 .post-footer .tags .tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.85rem;
-  background: var(--color-surface, var(--entry, #fff));
-  border: 1px solid var(--color-border, var(--tertiary, #e2e8f0));
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 100px;
   font-size: var(--card-meta-desktop);
   font-weight: 500;
-  color: var(--color-brand, var(--link, #1D4ED8));
+  color: var(--color-brand);
   text-decoration: none;
   transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
   letter-spacing: 0.01em;
 }
 
 .post-footer .tags .tag:hover {
-  background: var(--color-brand, var(--link));
-  color: #fff;
-  border-color: var(--color-brand, var(--link));
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+  border-color: var(--color-brand);
   opacity: 1;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px var(--color-brand-glow, rgba(29, 78, 216, 0.15));
+  box-shadow: 0 2px 8px var(--color-brand-glow);
 }
 
 /* Table of contents styling */
@@ -310,7 +310,7 @@ a:hover{
 }
 
 .toc li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-xs);
 }
 
 .toc a {
@@ -321,7 +321,7 @@ a:hover{
 
 .toc a:hover {
   color: var(--link);
-  padding-left: 0.5rem;
+  padding-left: var(--space-xs);
 }
 
 /* Dark mode adjustments */
@@ -340,8 +340,8 @@ a:hover{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem 2rem;
-  margin-bottom: 0.5rem;
+  gap: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-xs);
 }
 
 .footer-link {
@@ -350,12 +350,12 @@ a:hover{
   font-size: var(--text-xs);
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--space-2xs);
   transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: var(--primary);
+  color: var(--color-brand);
 }
 
 /* ===================================
@@ -370,10 +370,10 @@ a:hover{
   font-size: var(--text-2xl, 2rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--color-text-main, var(--primary));
-  -webkit-text-fill-color: var(--color-text-main, var(--primary));
+  color: var(--color-text-main);
+  -webkit-text-fill-color: var(--color-text-main);
   background: none;
-  margin-bottom: var(--space-xs, 0.5rem);
+  margin-bottom: var(--space-xs);
 }
 
 .page-content {
@@ -392,13 +392,13 @@ a:hover{
 
 .page-content ul,
 .page-content ol {
-  margin-bottom: var(--space-sm, 1rem);
-  padding-left: 1.5rem;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
 }
 
 .page-content li {
-  margin-bottom: 0.35rem;
-  color: var(--color-text-muted, var(--secondary));
+  margin-bottom: var(--space-2xs);
+  color: var(--color-text-muted);
 }
 
 .page-content strong {
@@ -411,15 +411,15 @@ a:hover{
 }
 
 .read-more {
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--color-brand, var(--link, #1D4ED8));
+  color: var(--color-brand);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .read-more:hover {
-  color: var(--color-brand-dim, var(--link-hover));
+  color: var(--color-brand-dim);
   opacity: 1;
 }
 
@@ -430,7 +430,7 @@ a:hover{
   color: var(--color-text-muted);
   background: var(--color-border);
   border: 1px solid var(--color-border);
-  padding: 0.2rem 0.65rem;
+  padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-sm, 8px);
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -439,14 +439,14 @@ a:hover{
 /* Ensure card links use brand colors */
 .feed-card h2 a,
 .feed-card h3 a {
-  color: var(--color-brand, var(--link, #1D4ED8));
+  color: var(--color-brand);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .feed-card h2 a:hover,
 .feed-card h3 a:hover {
-  color: var(--color-brand-dim, var(--link-hover));
+  color: var(--color-brand-dim);
   opacity: 1;
 }
 

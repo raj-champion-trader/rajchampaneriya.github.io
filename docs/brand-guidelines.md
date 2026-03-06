@@ -31,6 +31,7 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 | `--color-text-main` | `hsl(220, 30%, 12%)` | Primary text — Near Black |
 | `--color-text-muted` | `hsl(220, 10%, 42%)` | Secondary text — Slate |
 | `--color-border` | `hsla(220, 30%, 12%, 0.08)` | Borders |
+| `--color-on-brand` | `hsl(0, 0%, 100%)` | Text on brand background (buttons, tags, badges) |
 | `--color-accent-gold` | `hsl(42, 85%, 55%)` | Accent Gold — Premium highlight |
 
 ### Dark Mode — "Boardroom After Hours"
@@ -46,6 +47,7 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 | `--color-text-main` | `hsl(220, 20%, 94%)` | Light text |
 | `--color-text-muted` | `hsl(220, 12%, 65%)` | Muted light text |
 | `--color-border` | `hsla(220, 20%, 94%, 0.08)` | Borders |
+| `--color-on-brand` | `hsl(0, 0%, 100%)` | Text on brand background |
 | `--color-accent-gold` | `hsl(42, 80%, 60%)` | Warm Gold accent |
 
 ### Legacy enterprise token mapping
@@ -76,6 +78,26 @@ To support legacy styles (`enterprise.css`) the following enterprise tokens now 
 | `--overlay-bg` | `hsla(..., var(--overlay-backdrop-strength))` | Theme-aware overlay background — use `var(--overlay-bg)` for fullscreen overlays instead of hard-coded HSLA. |
 
 > Design note: Lower values increase translucency and show more content beneath the overlay; higher values focus attention on the overlay content. Use conservatively to retain premium depth.
+
+### Text and link roles
+
+Use exactly two text roles for body and UI so colors stay consistent:
+
+| Role | Token | Use for |
+|------|--------|--------|
+| Primary text | `--color-text-main` | Headings, body copy, primary labels |
+| Secondary / muted | `--color-text-muted` | Meta (date, author), captions, hints, secondary labels |
+| Links and accents | `--color-brand` | Inline links, nav links, tags, CTAs |
+| Link hover | `--color-brand-dim` | Hover state for text links and footer/nav links |
+| Text on brand | `--color-on-brand` | Button text when background is brand (e.g. primary button, tag hover) |
+
+Do not use raw hex or `#fff` for “white on brand” — use `var(--color-on-brand)` so theme and future tweaks stay consistent.
+
+### Hover and interactive states
+
+- **Text links**: default `--color-brand`, hover `--color-brand-dim`.
+- **Buttons with brand fill (e.g. primary, tag hover)**: text `--color-on-brand`.
+- **Footer / nav links**: hover `--color-brand` (same as text links).
 
 ---
 
@@ -134,11 +156,15 @@ To support legacy styles (`enterprise.css`) the following enterprise tokens now 
 
 | Token | Value | Usage |
 |-------|-------|-------|
+| `--space-2xs` | `0.25rem` | Smallest gaps, tight padding |
 | `--space-xs` | `0.5rem` | Tight gaps, badge padding |
 | `--space-sm` | `1rem` | Card padding, small gaps |
 | `--space-md` | `1.5rem` | Section gaps, card margins |
 | `--space-lg` | `2.5rem` | Major section separation |
 | `--space-xl` | `4rem` | Hero padding, page sections |
+| `--space-2xl` | `6rem` | Large section separation |
+
+Use only these tokens (and content tokens like `--content-padding-mobile`, `--home-padding-*`) for margins, padding, and gaps. Avoid raw `rem`/`px` so the scale drives list pages, hero, about, and post content consistently.
 
 ### Blog Card Spacing Rules
 - Feed grid gap: `var(--space-md)` (consistent 1.5rem between all cards)
@@ -160,9 +186,9 @@ box-shadow: 0 2px 4px hsla(220, 20%, 10%, 0.05);
 ```
 
 ### Premium Buttons
-- Primary: Brand color fill, white text, pill shape (border-radius: 100px)
+- Primary: Brand color fill, `--color-on-brand` text, pill shape (border-radius: 100px)
 - Outline: Transparent background, brand border, brand text
-- Hover: Subtle translateY(-1px) with box-shadow increase
+- Hover: Fill with `--color-brand`, text `--color-on-brand`; subtle translateY(-1px) with box-shadow increase
 
 ### Metric Cards
 - Large number in brand color, bold weight
@@ -195,3 +221,11 @@ Both modes must feel equally premium. Dark mode is NOT an afterthought — many 
 - Gold/blue accent colors adjusted for dark backgrounds
 - Glass panel effects visible in both modes
 - Code blocks consistent across modes
+
+---
+
+## Accessibility and contrast
+
+- **Target ratios**: At least **4.5:1** for normal text, **3:1** for large text (WCAG AA). Prefer higher where possible.
+- **Token pairs**: When defining text-on-background (e.g. about page accents), list the pair and verify contrast. All `--about-accent-*-text` / `-number` vs `-bg` pairs in `variables.css` should meet these targets.
+- **Avoid opacity for body-like text**: Do not rely on `opacity: 0.75` or similar for paragraph or label text; use a proper muted token or a darker/lighter accent variant so contrast is predictable.

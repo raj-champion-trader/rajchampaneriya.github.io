@@ -31,6 +31,9 @@
   --color-accent-gold: hsl(42, 85%, 55%);
   /* Premium Gold */
 
+  /* Text on brand background (buttons, tags, badges) — theme-aware */
+  --color-on-brand: hsl(0, 0%, 100%);
+
   /* Typography — Fluid Scale
      Each step uses clamp(min, preferred, max) for smooth scaling.
      min = mobile floor, max = desktop ceiling, preferred = fluid middle. */
@@ -190,7 +193,8 @@
   --about-process-number-size: 1.75rem;
   --about-card-radius: 10px;
 
-  /* About page — accent palette (process, impact, tech, capability) — light */
+  /* About page — accent palette (process, impact, tech, capability).
+     Text/background pairs should meet WCAG AA (4.5:1 normal, 3:1 large). */
   --about-accent-blue-bg: #eff6ff;
   --about-accent-blue-border: #bfdbfe;
   --about-accent-blue-text: #1e40af;

@@ -61,8 +61,8 @@
 }
 
 .mermaid .node .nodeLabel {
-    color: #fff !important;
-    fill: #fff !important;
+    color: var(--color-on-brand) !important;
+    fill: var(--color-on-brand) !important;
 }
 
 /* Person nodes (circles) — darker blue like C4 Person */
@@ -150,8 +150,8 @@
 
 [data-theme="dark"] .mermaid .node .nodeLabel,
 [data-theme="dark"] .mermaid .label {
-    color: #fff !important;
-    fill: #fff !important;
+    color: var(--color-on-brand) !important;
+    fill: var(--color-on-brand) !important;
 }
 
 [data-theme="dark"] .mermaid .cluster rect {
@@ -368,7 +368,7 @@
 }
 
 .mermaid text.actor {
-    fill: #fff !important;
+    fill: var(--color-on-brand) !important;
 }
 
 .mermaid .messageLine0,
@@ -478,7 +478,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--color-surface, #fff);
+  background: var(--color-surface);
   border: 1px solid var(--color-border, rgba(0,0,0,0.1));
   border-radius: 6px;
   padding: 8px 12px;
@@ -531,7 +531,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: var(--color-surface, #fff);
+  background: var(--color-surface);
   border-radius: 8px 8px 0 0;
   margin-bottom: 10px;
 }
@@ -575,7 +575,7 @@
 }
 
 .mermaid-zoom-btn:hover {
-  background: var(--color-surface, #fff);
+  background: var(--color-surface);
 }
 
 .mermaid-zoom-btn svg {
@@ -709,8 +709,8 @@
 }
 
 .mermaid-fullscreen-content-inner .node .nodeLabel {
-  color: #fff !important;
-  fill: #fff !important;
+  color: var(--color-on-brand) !important;
+  fill: var(--color-on-brand) !important;
 }
 
 .mermaid-fullscreen-content-inner .messageText {
