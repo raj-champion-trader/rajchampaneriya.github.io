@@ -1,0 +1,31 @@
+{{- if not . -}}
+<img src="" alt="" loading="lazy" decoding="async">
+{{- else -}}
+{{- $dest := .Destination | default "" -}}
+{{- $src := $dest -}}
+{{- $img := false -}}
+{{- $u := urls.Parse $dest -}}
+{{- if and $u (not $u.IsAbs) -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- $res := false -}}
+  {{- with .PageInner }}{{ $res = .Resources.Get $path }}{{ end -}}
+  {{- if not $res }}{{ with .Page }}{{ $res = .Resources.Get $path }}{{ end }}{{ end -}}
+  {{- if not $res }}{{ $res = resources.Get $path }}{{ end -}}
+  {{- with $res -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery }}{{ $src = printf "%s?%s" $src . }}{{ end -}}
+    {{- with $u.Fragment }}{{ $src = printf "%s#%s" $src . }}{{ end -}}
+    {{- if eq .ResourceType "image" }}{{ $img = . }}{{ end -}}
+  {{- end -}}
+{{- else if $u -}}
+  {{- $src = $u.String -}}
+{{- end -}}
+{{- $attr := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy" "decoding" "async") -}}
+{{- if $img -}}
+  {{- if and $img.Width $img.Height }}{{ $attr = merge $attr (dict "width" $img.Width "height" $img.Height) }}{{ end -}}
+{{- end -}}
+<img
+{{- range $k, $v := $attr -}}
+  {{- if $v }}{{ printf " %s=%q" $k $v | safeHTMLAttr }}{{ end -}}
+{{- end -}}>
+{{- end -}}

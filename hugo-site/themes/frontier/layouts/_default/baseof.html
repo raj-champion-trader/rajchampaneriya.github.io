@@ -15,27 +15,24 @@
     <!-- Prevent local network access prompts on iOS -->
     <meta http-equiv="Permissions-Policy" content="local-network=()">
 
-    <!-- Fonts (Google Fonts: Inter & JetBrains Mono) - Non-render-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Self-hosted fonts (Inter, JetBrains Mono) — preload LCP font -->
+    <link rel="preload" href="{{ "fonts/inter-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
-    <!-- Preconnect for Mermaid CDN (lazy-loaded on pages with diagrams) -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Preconnect for Mermaid CDN (only on pages that contain Mermaid diagrams) -->
+    {{ $hasMermaid := and .IsPage (or (in .Content "language-mermaid") (in .Content "```mermaid")) }}
+    {{ if $hasMermaid }}<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>{{ end }}
 
     {{ if .IsHome }}
-    <!-- Preload LCP image (hero avatar) on homepage only -->
+    <!-- Preload LCP image (hero avatar) on homepage only — 280x280 matches picture source (2× avatar-wide 140) -->
     {{ $profile := resources.Get "images/profile.jpg" }}
     {{ if $profile }}
-    {{ $profileWebP := $profile.Fill "320x320 webp q82" }}
+    {{ $profileWebP := $profile.Fill "280x280 webp q82" }}
     <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
     {{ else }}
     <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
     {{ end }}
+    <!-- Preload hero card background image (reduces contention with LCP) -->
+    <link rel="preload" as="image" href="{{ "images/home-page.jpeg" | relURL }}">
     {{ else if eq .Layout "about" }}
     <!-- Preload LCP image (about header photo) on about page only -->
     {{ $profile := resources.Get "images/profile.jpg" }}
@@ -53,8 +50,10 @@
     <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
     {{ $critical := resources.Get "css/critical.css" | minify }}
     <style>{{ $critical.Content | safeCSS }}</style>
+    <!-- Self-hosted font-face (inline so relURL respects baseURL) -->
+    <style>{{ partial "font-face-css.html" . | safeCSS }}</style>
 
-    <!-- Full CSS loaded async (non-render-blocking) -->
+    <!-- Full CSS loaded async (non-render-blocking) — variables + main -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
     {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
@@ -251,8 +250,9 @@
         </svg>
     </button>
 
-    <!-- Scripts: Swup from CDN (defer to avoid render-blocking) -->
-    <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js" defer></script>
+    <!-- Scripts: Swup (self-hosted for better caching; defer to avoid render-blocking) -->
+    {{ $swup := resources.Get "js/vendor/swup.umd.js" }}
+    {{ if $swup }}<script src="{{ ($swup | minify | fingerprint).Permalink }}" defer></script>{{ end }}
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 

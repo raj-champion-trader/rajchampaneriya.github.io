@@ -54,8 +54,8 @@ enableRobotsTXT = true
     title= "Raj Champaneriya"
     subtitle = "Enterprise Architecture That Protects Careers and Accelerates Transformations"
     imageUrl = "images/profile.jpg"
-    imageWidth = 160
-    imageHeight = 160
+    imageWidth = 140
+    imageHeight = 140
     imageTitle = "Raj Champaneriya — Enterprise Architect & Strategic Technology Leader"
     buttons = [
       { name = "Architecture Blueprints", url = "/projects" },

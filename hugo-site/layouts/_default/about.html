@@ -30,18 +30,20 @@
           <source type="image/webp" srcset="{{ $profileWebP.RelPermalink }}">
           <img src="{{ $profileJpg.RelPermalink }}"
                alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}"
-               width="120"
-               height="120"
+               width="200"
+               height="200"
                loading="eager"
-               fetchpriority="high">
+               fetchpriority="high"
+               decoding="async">
         </picture>
         {{ else }}
         <img src="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}"
              alt="{{ .Site.Params.profileMode.title | default "Raj Champaneriya" }}"
-             width="120"
-             height="120"
+             width="200"
+             height="200"
              loading="eager"
-             fetchpriority="high">
+             fetchpriority="high"
+             decoding="async">
         {{ end }}
       </div>
     </div>
