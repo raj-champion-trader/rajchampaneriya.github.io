@@ -7,7 +7,7 @@
     position: relative;
 }
 
-/* Subtle geometric blueprint background */
+/* Subtle geometric blueprint background — use brand tint from tokens */
 .profile-hero::before {
     content: '';
     position: absolute;
@@ -16,19 +16,19 @@
     width: 40%;
     height: 100%;
     background-image:
-        linear-gradient(rgba(29, 78, 216, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(29, 78, 216, 0.03) 1px, transparent 1px);
+        linear-gradient(var(--color-brand-glow) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-brand-glow) 1px, transparent 1px);
     background-size: 24px 24px;
-    mask-image: linear-gradient(to left, rgba(0,0,0,0.12), transparent);
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.12), transparent);
+    mask-image: linear-gradient(to left, var(--color-border), transparent);
+    -webkit-mask-image: linear-gradient(to left, var(--color-border), transparent);
     pointer-events: none;
     z-index: 0;
 }
 
 [data-theme="dark"] .profile-hero::before {
     background-image:
-        linear-gradient(rgba(96, 165, 250, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(96, 165, 250, 0.04) 1px, transparent 1px);
+        linear-gradient(var(--color-brand-glow) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-brand-glow) 1px, transparent 1px);
 }
 
 .profile-card {
@@ -47,23 +47,23 @@
     width: 130px;
     height: 130px;
     object-fit: cover;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    border: 3px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-sm);
+    border: 3px solid var(--color-border);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-image:hover {
     transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .profile-image {
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .profile-image:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Info */
@@ -206,7 +206,7 @@
 }
 
 [data-theme="dark"] .profile-actions .buttons .button:not(:first-child):hover {
-    box-shadow: 0 3px 10px rgba(96, 165, 250, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 
@@ -225,7 +225,7 @@
 }
 
 [data-theme="dark"] .trusted-by-strip {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-border);
 }
 
 .trusted-label {
@@ -286,7 +286,7 @@
 }
 
 [data-theme="dark"] .domain-badge {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-border);
 }
 
 [data-theme="dark"] .fortune-badge {
@@ -306,7 +306,7 @@
 }
 
 [data-theme="dark"] .recent-posts-section {
-    border-top-color: rgba(255, 255, 255, 0.1);
+    border-top-color: var(--color-border);
 }
 
 .recent-posts-section h2 {
@@ -334,7 +334,7 @@
 } 
 
 [data-theme="dark"] .post-entry-horizontal:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-surface-elevated);
 }
 
 .post-entry-horizontal:not(:last-child) {
@@ -374,7 +374,7 @@
     margin: 0;
     font-size: var(--text-sm);
     line-height: var(--leading-snug);
-    font-weight: 550;
+    font-weight: 600;
 }
 
 .post-title a {

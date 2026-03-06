@@ -13,6 +13,11 @@
   /* Muted Blue */
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
 
+  /* Darker brand for hover/active states (buttons, links) */
+  --color-brand-dark: hsl(215, 65%, 32%);
+  /* Slightly elevated surface (dropdowns, raised panels) */
+  --color-surface-elevated: hsl(220, 20%, 95%);
+
   --color-bg: hsl(220, 20%, 97%);
   /* Cool Paper White */
   --color-surface: hsl(220, 20%, 99%);
@@ -49,6 +54,11 @@
   --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
   --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.5rem);
   --text-4xl: clamp(2.25rem, 2rem + 1.25vw, 3rem);
+
+  /* Semantic type aliases (nav, meta, labels) */
+  --text-meta: var(--text-sm);
+  --text-label: var(--text-xs);
+  --font-weight-heading: 700;
 
   /* Line Heights */
   --leading-tight: 1.15;
@@ -181,6 +191,14 @@
 
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);
+  /* Syntax highlighting (monokai-style; use in .highlight and Mermaid) */
+  --code-fg: #f8f8f2;
+  --code-keyword: #66d9ef;
+  --code-string: #a6e22e;
+  --code-comment: #75715e;
+  --code-number: #ae81ff;
+  --code-function: #e6db74;
+  --code-operator: #f92672;
   /* Overlay opacity token (easy tuning for all fullscreen overlays) */
   --overlay-backdrop-strength: 0.85;
   --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
@@ -228,6 +246,10 @@
     /* Strategic Blue - lighter for dark bg contrast */
     --color-brand-dim: hsl(215, 50%, 50%);
     --color-brand-glow: hsla(215, 75%, 65%, 0.18);
+
+    /* Dark mode: darker brand for hover/active */
+    --color-brand-dark: hsl(215, 75%, 55%);
+    --color-surface-elevated: hsl(220, 20%, 14%);
 
     --color-bg: hsl(220, 25%, 7%);
     /* Deep Navy/Charcoal */
@@ -278,6 +300,8 @@
   --color-brand: hsl(215, 75%, 65%);
   --color-brand-dim: hsl(215, 50%, 50%);
   --color-brand-glow: hsla(215, 75%, 65%, 0.18);
+  --color-brand-dark: hsl(215, 75%, 55%);
+  --color-surface-elevated: hsl(220, 20%, 14%);
 
   --color-bg: hsl(220, 25%, 7%);
   --color-surface: hsl(220, 20%, 11%);
@@ -321,6 +345,8 @@
   --color-brand: hsl(215, 65%, 38%);
   --color-brand-dim: hsl(215, 40%, 55%);
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
+  --color-brand-dark: hsl(215, 65%, 32%);
+  --color-surface-elevated: hsl(220, 20%, 95%);
 
   --color-bg: hsl(220, 20%, 97%);
   --color-surface: hsl(220, 20%, 99%);

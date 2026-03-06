@@ -24,10 +24,12 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 |-------|-------|-------|
 | `--color-brand` | `hsl(215, 65%, 38%)` | Primary brand — Deep Strategic Blue |
 | `--color-brand-dim` | `hsl(215, 40%, 55%)` | Muted brand for secondary elements |
+| `--color-brand-dark` | `hsl(215, 65%, 32%)` | Darker brand for hover/active (buttons, links) |
 | `--color-brand-glow` | `hsla(215, 65%, 38%, 0.12)` | Brand glow/shadow |
 | `--color-bg` | `hsl(220, 20%, 97%)` | Page background — Cool Paper White |
 | `--color-surface` | `hsl(220, 20%, 99%)` | Card/surface — Near White |
 | `--color-surface-glass` | `hsla(220, 20%, 99%, 0.88)` | Glass panel |
+| `--color-surface-elevated` | `hsl(220, 20%, 95%)` | Raised panels, dropdowns |
 | `--color-text-main` | `hsl(220, 30%, 12%)` | Primary text — Near Black |
 | `--color-text-muted` | `hsl(220, 10%, 42%)` | Secondary text — Slate |
 | `--color-border` | `hsla(220, 30%, 12%, 0.08)` | Borders |
@@ -40,10 +42,12 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 |-------|-------|-------|
 | `--color-brand` | `hsl(215, 75%, 65%)` | Strategic Blue — lighter for contrast |
 | `--color-brand-dim` | `hsl(215, 50%, 50%)` | Muted brand |
+| `--color-brand-dark` | `hsl(215, 75%, 55%)` | Darker brand for hover/active |
 | `--color-brand-glow` | `hsla(215, 75%, 65%, 0.18)` | Brand glow |
 | `--color-bg` | `hsl(220, 25%, 7%)` | Deep Navy/Charcoal |
 | `--color-surface` | `hsl(220, 20%, 11%)` | Card surface |
 | `--color-surface-glass` | `hsla(220, 20%, 11%, 0.85)` | Glass panel |
+| `--color-surface-elevated` | `hsl(220, 20%, 14%)` | Raised panels |
 | `--color-text-main` | `hsl(220, 20%, 94%)` | Light text |
 | `--color-text-muted` | `hsl(220, 12%, 65%)` | Muted light text |
 | `--color-border` | `hsla(220, 20%, 94%, 0.08)` | Borders |
@@ -93,11 +97,19 @@ Use exactly two text roles for body and UI so colors stay consistent:
 
 Do not use raw hex or `#fff` for “white on brand” — use `var(--color-on-brand)` so theme and future tweaks stay consistent.
 
-### Hover and interactive states
+### Hover and interactive states — rule set
 
-- **Text links**: default `--color-brand`, hover `--color-brand-dim`.
-- **Buttons with brand fill (e.g. primary, tag hover)**: text `--color-on-brand`.
-- **Footer / nav links**: hover `--color-brand` (same as text links).
+Apply these rules consistently so link and button hovers are predictable across the site:
+
+| Context | Default | Hover |
+|--------|---------|--------|
+| **Text links** (content, footer, cards) | `--color-brand` | `--color-brand-dim` |
+| **Nav links** (header, bottom nav) | Muted or `--color-brand` when active | `--color-brand` (or `--color-text-main` for highlight-only) |
+| **Buttons — primary** (brand fill) | Text `--color-on-brand` | Same text; background can use `--color-brand-dark` or `--color-brand-dim` |
+| **Buttons — text/outline** | `--color-brand` | `--color-brand-dim` (or inverse) |
+| **Scrollspy / TOC links** | Muted | `--color-brand` |
+
+Do **not** use a global `a:hover { opacity: 0.7 }` — it makes hover appearance inconsistent and can harm contrast. Use explicit `color` (and optionally `background`) per context above.
 
 ---
 

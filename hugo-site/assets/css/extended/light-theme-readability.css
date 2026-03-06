@@ -1,18 +1,14 @@
 /* ==============================================
-   Post content block — explicit theme colors
-   so the article body is never wrong in light theme.
-   Root cause: the block uses var(--color-surface), which
-   can be dark when prefers-color-scheme: dark applies
-   before the theme script runs, or when theme is dark.
-   Fix: set light by default; only use dark when
-   [data-theme="dark"] is explicitly set.
+   Post content block — theme-aware colors via design tokens.
+   Uses var(--color-surface), var(--color-text-main), var(--color-text-muted)
+   so [data-theme="dark"] and [data-theme="light"] both apply correctly.
    ============================================== */
 
-/* Default + light theme: light background, dark text */
+/* Default + light: tokens resolve to light surface, dark text */
 .single-post .post-content.surface-panel,
 .single-post .post-content {
-  background: hsl(220, 20%, 99%) !important;
-  color: hsl(220, 30%, 12%) !important;
+  background: var(--color-surface);
+  color: var(--color-text-main);
 }
 
 .single-post .post-content h1,
@@ -21,22 +17,22 @@
 .single-post .post-content h4,
 .single-post .post-content h5,
 .single-post .post-content h6 {
-  color: hsl(220, 30%, 12%) !important;
-  -webkit-text-fill-color: hsl(220, 30%, 12%) !important;
-  background: none !important;
+  color: var(--color-text-main);
+  -webkit-text-fill-color: var(--color-text-main);
+  background: none;
 }
 
 .single-post .post-content p,
 .single-post .post-content .post-description,
 .single-post .post-content li {
-  color: hsl(220, 10%, 42%) !important;
+  color: var(--color-text-muted);
 }
 
-/* Dark theme only: dark background, light text */
+/* Dark theme: same tokens, resolved by [data-theme="dark"] */
 [data-theme="dark"] .single-post .post-content.surface-panel,
 [data-theme="dark"] .single-post .post-content {
-  background: hsl(220, 20%, 11%) !important;
-  color: hsl(220, 20%, 94%) !important;
+  background: var(--color-surface);
+  color: var(--color-text-main);
 }
 
 [data-theme="dark"] .single-post .post-content h1,
@@ -45,12 +41,12 @@
 [data-theme="dark"] .single-post .post-content h4,
 [data-theme="dark"] .single-post .post-content h5,
 [data-theme="dark"] .single-post .post-content h6 {
-  color: hsl(220, 20%, 94%) !important;
-  -webkit-text-fill-color: hsl(220, 20%, 94%) !important;
+  color: var(--color-text-main);
+  -webkit-text-fill-color: var(--color-text-main);
 }
 
 [data-theme="dark"] .single-post .post-content p,
 [data-theme="dark"] .single-post .post-content .post-description,
 [data-theme="dark"] .single-post .post-content li {
-  color: hsl(220, 12%, 65%) !important;
+  color: var(--color-text-muted);
 }

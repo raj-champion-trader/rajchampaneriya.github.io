@@ -61,19 +61,19 @@ code, pre, kbd, samp{
 
 /* Professional profile image styling */
 .profile img{
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--color-border);
   transition: transform var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 [data-theme="dark"] .profile img{
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--color-border);
 }
 
 .profile img:hover{
   transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 a{
@@ -190,7 +190,7 @@ a:hover{
 }
 
 .post-content blockquote:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Link styling in post content */

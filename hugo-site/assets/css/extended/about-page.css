@@ -248,7 +248,7 @@
   font-size: var(--text-xs);
   font-weight: 500;
   line-height: var(--leading-snug);
-  opacity: 0.9;
+  color: inherit;
 }
 
 .impact-card--blue {
@@ -603,15 +603,15 @@
   margin-bottom: var(--space-2xs);
 }
 
-.care-method-step--clarity .care-method-step__letter { color: hsl(215, 65%, 50%); }
-.care-method-step--alignment .care-method-step__letter { color: hsl(160, 55%, 40%); }
-.care-method-step--reality .care-method-step__letter { color: hsl(25, 75%, 50%); }
-.care-method-step--execution .care-method-step__letter { color: hsl(270, 55%, 50%); }
+.care-method-step--clarity .care-method-step__letter { color: var(--color-brand); }
+.care-method-step--alignment .care-method-step__letter { color: var(--about-accent-green-number); }
+.care-method-step--reality .care-method-step__letter { color: var(--about-accent-orange-number); }
+.care-method-step--execution .care-method-step__letter { color: var(--about-accent-purple-number); }
 
-[data-theme="dark"] .care-method-step--clarity .care-method-step__letter { color: hsl(215, 75%, 65%); }
-[data-theme="dark"] .care-method-step--alignment .care-method-step__letter { color: hsl(160, 60%, 55%); }
-[data-theme="dark"] .care-method-step--reality .care-method-step__letter { color: hsl(25, 80%, 60%); }
-[data-theme="dark"] .care-method-step--execution .care-method-step__letter { color: hsl(270, 60%, 65%); }
+[data-theme="dark"] .care-method-step--clarity .care-method-step__letter { color: var(--color-brand); }
+[data-theme="dark"] .care-method-step--alignment .care-method-step__letter { color: var(--about-accent-green-number); }
+[data-theme="dark"] .care-method-step--reality .care-method-step__letter { color: var(--about-accent-orange-number); }
+[data-theme="dark"] .care-method-step--execution .care-method-step__letter { color: var(--about-accent-purple-number); }
 
 .care-method-step__title {
   font-size: var(--text-lg);
