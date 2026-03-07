@@ -16,12 +16,13 @@ Real-world enterprise architecture blueprints & case studies by Raj Champaneriya
 ## Featured Project
 
 <a href="/projects/stock-market-simulator/" class="featured-project-card">
-  <img src="{{< imgurl "images/project/stock-market-simulator/logical-architecture.svg" >}}" alt="Stock Market Simulator — logical architecture: Presentation, Application, Integration &amp; Data, Data Source" class="featured-project-img" />
   <div class="featured-project-body">
     <h3 class="featured-project-title">Stock Market Simulator</h3>
     <p class="featured-project-desc">
       The key to greatness lies in the details — a masterclass in real‑time architecture: quant models, sub‑100ms latency, and deliberate tradeoffs from Redis to SSE. Don't just watch the data flow; study the decisions that make it reliable.
     </p>
+    <img src="{{< imgurl "images/project/stock-market-simulator/logical-architecture.svg" >}}" alt="Stock Market Simulator — logical architecture: Presentation, Application, Integration &amp; Data, Data Source" class="featured-project-img" />
+    <br/>
     <div class="featured-project-tags">
       <span>.NET 10</span>
       <span>Redis Streams</span>

@@ -807,18 +807,19 @@ pre code.language-json {
 }
 
 /* ============================================
-   BLOG CARD SPACING FIX
+   BLOG CARD SPACING FIX — scoped to homepage .latest-feed only
+   List pages (/blog/, /projects/) use main.css grid and responsive padding.
    ============================================ */
 
-/* Consistent spacing between blog cards */
-.feed-grid {
+/* Consistent spacing between blog cards (homepage latest section only) */
+.latest-feed .feed-grid {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
     margin-top: var(--space-md);
 }
 
-.feed-card {
+.latest-feed .feed-card {
     padding: var(--space-md);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
@@ -827,23 +828,23 @@ pre code.language-json {
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.feed-card.surface-panel {
+.latest-feed .feed-card.surface-panel {
     background: var(--color-surface);
 }
 
 /* Keep `surface-panel` solid for performance — remove glass blur on feed cards */
-[data-theme="dark"] .feed-card.surface-panel {
+[data-theme="dark"] .latest-feed .feed-card.surface-panel {
     border-color: var(--color-border);
     box-shadow: var(--shadow-md);
 }
 
-.feed-card:hover {
+.latest-feed .feed-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
     opacity: 1;
 }
 
-.feed-card:last-child {
+.latest-feed .feed-card:last-child {
     border-bottom: none;
 }
 
@@ -854,6 +855,7 @@ pre code.language-json {
 .card-meta {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-sm);
     margin-bottom: var(--space-xs);
 }
