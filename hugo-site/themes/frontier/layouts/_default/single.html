@@ -20,7 +20,7 @@
 {{ end }}
 
 <article class="single-post">
-    <div class="post-navigation-top scroll-reveal">
+    <!-- <div class="post-navigation-top scroll-reveal">
         {{ if eq .Section "blog" }}
         <a href="{{ "/blog/" | absLangURL }}" class="btn btn-text">← Back to Blog</a>
         {{ else if eq .Section "projects" }}
@@ -28,7 +28,7 @@
         {{ else }}
         <a href="{{ "" | absLangURL }}" class="btn btn-text">← Back Home</a>
         {{ end }}
-    </div>
+    </div> -->
     <header class="post-header scroll-reveal">
         {{ if ne .File.Path "about.md" }}
         <div class="post-meta">

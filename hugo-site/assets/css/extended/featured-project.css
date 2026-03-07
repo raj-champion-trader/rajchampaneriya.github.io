@@ -135,8 +135,18 @@
 }
 
 @media (min-width: 1024px) {
+  .featured-project-card {
+    max-width: var(--featured-card-max-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .featured-project-img {
     width: calc(100% - 2 * var(--content-padding-desktop));
+    height: var(--featured-img-height-desktop);
+    max-height: var(--featured-img-height-desktop);
+    max-width: 100%;
+    object-fit: contain;
     margin: var(--content-padding-desktop) var(--content-padding-desktop) 0;
   }
 
