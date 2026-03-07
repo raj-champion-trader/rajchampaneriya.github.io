@@ -117,6 +117,10 @@ Use tokens instead of raw values: `4px` → `var(--radius-scrollbar)` or `var(--
 - **Block-level margins:** Headings, blockquote, lists, hr, tables, figures, `.post-content > div`, `.content-callout`, and `.highlight` use `margin-top: 0` and `margin-bottom: 0` (or equivalent) so they don’t double with the `* + *` rule. Hero/flow figures keep `margin-bottom: var(--space-xl)` for extra space below.
 - **Blog and project singles** use the same layout and the same CSS; no section-specific overrides. Spacing is token-driven so `/blog/` and `/projects/` single pages feel consistent on desktop.
 
+### 2.9 Projects list desktop alignment
+
+- On desktop (1024px+), the **projects list** (`/projects/`) uses the **same content padding as the blog list and the rest of the site**: `--content-padding-desktop` for `.page-content` and `--content-block-padding-desktop` for `.page-content .content-callout`, so the intro panel, callouts, featured card, and feed cards share one content alignment. List-specific overrides in `compact-desktop.css` are **typography-only** (e.g. `--post-title-tablet`, `--content-body-tablet`) to keep the page compact without sacrificing alignment. Do not reintroduce tablet-level padding for projects list at desktop unless a deliberate exception is documented here.
+
 ---
 
 ## 3. Implementation checklist
@@ -126,6 +130,7 @@ Use tokens instead of raw values: `4px` → `var(--radius-scrollbar)` or `var(--
 - [x] Replace all raw spacing in §2.3 with tokens.
 - [x] Consolidate `.icon-fab` to one block with tokens.
 - [x] Set `--footer-inner-gap: var(--space-md)` (or keep sm) and align docs.
+- [x] Projects list desktop: use same content padding as blog/site; compact-desktop typography-only.
 - [ ] Replace raw border-radius and font-weight with `--radius-*` and `--fw-*` in extended CSS.
 - [ ] Fix `card-category` indentation in enterprise.css (use 2 spaces for consistency).
 

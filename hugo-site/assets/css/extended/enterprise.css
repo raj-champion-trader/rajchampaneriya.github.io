@@ -420,7 +420,7 @@ a:hover{
   color: var(--color-text-main);
   -webkit-text-fill-color: var(--color-text-main);
   background: none;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--content-heading-after);
 }
 
 /* Vertical rhythm: use content tokens; horizontal padding comes from container */

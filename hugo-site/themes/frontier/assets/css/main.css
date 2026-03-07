@@ -927,6 +927,11 @@ select:focus-visible {
     padding: var(--content-padding-desktop);
   }
 
+  /* List pages (blog, projects): larger gap between header and intro for vertical rhythm */
+  main:has(.feed-grid) .page-content {
+    margin-top: var(--space-md);
+  }
+
   .post-content {
     max-width: var(--measure-desktop);
     margin-left: auto;

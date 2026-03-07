@@ -68,8 +68,8 @@
   }
 
   /* -------------------------------------------------------------------------
-     Projects list: tablet-level typography and content padding; header uses
-     same vertical padding as rest of site (--space-lg) for cohesion.
+     Projects list: tablet-level typography only; use desktop content padding
+     so intro panel, callouts, featured card, and feed cards share one alignment.
      ------------------------------------------------------------------------- */
   body.page-projects-list .page-header {
     padding: var(--space-lg) 0;
@@ -82,10 +82,10 @@
   body.page-projects-list .page-content.surface-panel,
   body.page-projects-list .page-content {
     font-size: var(--content-body-tablet);
-    padding: var(--content-padding-tablet);
+    padding: var(--content-padding-desktop);
   }
 
   body.page-projects-list .page-content .content-callout {
-    padding: var(--content-block-padding-tablet);
+    padding: var(--content-block-padding-desktop);
   }
 }
