@@ -435,31 +435,32 @@
     --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
     --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
     --scrollbar-track: transparent;
-    /* About page accents — dark (blue from brand) */
+    /* About page accents — dark: monochromatic blue-scale (no rainbow).
+       Differentiation via opacity/saturation within the 215-220° hue family. */
     --about-accent-blue-bg: var(--color-brand-glow);
-    --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.3);
+    --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.25);
     --about-accent-blue-text: var(--color-brand);
     --about-accent-blue-number: var(--color-brand);
-    --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
-    --about-accent-orange-border: rgba(234, 88, 12, 0.3);
-    --about-accent-orange-text: #fdba74;
-    --about-accent-orange-number: #ea580c;
-    --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
-    --about-accent-purple-border: rgba(147, 51, 234, 0.3);
-    --about-accent-purple-text: #d8b4fe;
-    --about-accent-purple-number: #9333ea;
-    --about-accent-green-bg: rgba(22, 163, 74, 0.1);
-    --about-accent-green-border: rgba(22, 163, 74, 0.3);
-    --about-accent-green-text: #86efac;
-    --about-accent-green-number: #16a34a;
-    --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
-    --about-accent-gray-border: rgba(100, 116, 139, 0.25);
-    --about-accent-gray-text: #cbd5e1;
+    --about-accent-orange-bg: hsla(220, 20%, 50%, 0.08);
+    --about-accent-orange-border: hsla(220, 20%, 60%, 0.15);
+    --about-accent-orange-text: hsl(220, 15%, 82%);
+    --about-accent-orange-number: var(--color-brand);
+    --about-accent-purple-bg: hsla(220, 30%, 55%, 0.08);
+    --about-accent-purple-border: hsla(220, 30%, 60%, 0.15);
+    --about-accent-purple-text: hsl(220, 18%, 80%);
+    --about-accent-purple-number: var(--color-brand);
+    --about-accent-green-bg: hsla(215, 25%, 55%, 0.07);
+    --about-accent-green-border: hsla(215, 25%, 60%, 0.14);
+    --about-accent-green-text: hsl(220, 15%, 82%);
+    --about-accent-green-number: var(--color-brand);
+    --about-accent-gray-bg: hsla(220, 15%, 50%, 0.06);
+    --about-accent-gray-border: hsla(220, 15%, 55%, 0.12);
+    --about-accent-gray-text: var(--color-text-muted);
     --about-accent-blue-pill-bg: var(--color-brand-glow);
-    --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
-    --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
-    --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
-    --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+    --about-accent-orange-pill-bg: hsla(220, 20%, 50%, 0.12);
+    --about-accent-purple-pill-bg: hsla(220, 30%, 55%, 0.12);
+    --about-accent-green-pill-bg: hsla(215, 25%, 55%, 0.10);
+    --about-accent-gray-pill-bg: hsla(220, 15%, 50%, 0.10);
 
     /* Hero tokens — dark */
     --hero-divider: hsla(220, 20%, 50%, 0.08);
@@ -513,31 +514,32 @@
   --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
   --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
   --scrollbar-track: transparent;
-  /* About page accents — dark */
+  /* About page accents — dark: monochromatic blue-scale (no rainbow).
+     Differentiation via opacity/saturation within the 215-220° hue family. */
   --about-accent-blue-bg: var(--color-brand-glow);
-  --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.3);
+  --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.25);
   --about-accent-blue-text: var(--color-brand);
   --about-accent-blue-number: var(--color-brand);
-  --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
-  --about-accent-orange-border: rgba(234, 88, 12, 0.3);
-  --about-accent-orange-text: #fdba74;
-  --about-accent-orange-number: #ea580c;
-  --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
-  --about-accent-purple-border: rgba(147, 51, 234, 0.3);
-  --about-accent-purple-text: #d8b4fe;
-  --about-accent-purple-number: #9333ea;
-  --about-accent-green-bg: rgba(22, 163, 74, 0.1);
-  --about-accent-green-border: rgba(22, 163, 74, 0.3);
-  --about-accent-green-text: #86efac;
-  --about-accent-green-number: #16a34a;
-  --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
-  --about-accent-gray-border: rgba(100, 116, 139, 0.25);
-  --about-accent-gray-text: #cbd5e1;
+  --about-accent-orange-bg: hsla(220, 20%, 50%, 0.08);
+  --about-accent-orange-border: hsla(220, 20%, 60%, 0.15);
+  --about-accent-orange-text: hsl(220, 15%, 82%);
+  --about-accent-orange-number: var(--color-brand);
+  --about-accent-purple-bg: hsla(220, 30%, 55%, 0.08);
+  --about-accent-purple-border: hsla(220, 30%, 60%, 0.15);
+  --about-accent-purple-text: hsl(220, 18%, 80%);
+  --about-accent-purple-number: var(--color-brand);
+  --about-accent-green-bg: hsla(215, 25%, 55%, 0.07);
+  --about-accent-green-border: hsla(215, 25%, 60%, 0.14);
+  --about-accent-green-text: hsl(220, 15%, 82%);
+  --about-accent-green-number: var(--color-brand);
+  --about-accent-gray-bg: hsla(220, 15%, 50%, 0.06);
+  --about-accent-gray-border: hsla(220, 15%, 55%, 0.12);
+  --about-accent-gray-text: var(--color-text-muted);
   --about-accent-blue-pill-bg: var(--color-brand-glow);
-  --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
-  --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
-  --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
-  --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+  --about-accent-orange-pill-bg: hsla(220, 20%, 50%, 0.12);
+  --about-accent-purple-pill-bg: hsla(220, 30%, 55%, 0.12);
+  --about-accent-green-pill-bg: hsla(215, 25%, 55%, 0.10);
+  --about-accent-gray-pill-bg: hsla(220, 15%, 50%, 0.10);
 
   /* Hero tokens — dark */
   --hero-divider: hsla(220, 20%, 50%, 0.08);
