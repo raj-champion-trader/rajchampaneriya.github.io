@@ -3,8 +3,8 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --color-brand: hsl(215, 65%, 38%);
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
-  --color-bg: hsl(220, 20%, 97%);
-  --color-surface: hsl(220, 20%, 99%);
+  --color-bg: hsl(220, 14%, 96%);
+  --color-surface: hsl(220, 16%, 99%);
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
   --color-text-main: hsl(220, 30%, 12%);
   --color-text-muted: hsl(220, 10%, 42%);

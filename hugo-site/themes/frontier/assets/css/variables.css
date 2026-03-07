@@ -27,9 +27,9 @@
   /* Slightly elevated surface (dropdowns, raised panels) */
   --color-surface-elevated: hsl(220, 20%, 95%);
 
-  --color-bg: hsl(220, 20%, 98%);
+  --color-bg: hsl(220, 14%, 96%);
   /* Cool Paper — harmonized with surface */
-  --color-surface: hsl(220, 20%, 100%);
+  --color-surface: hsl(220, 16%, 99%);
   /* Near White */
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
   /* Premium Glass */
@@ -38,7 +38,7 @@
   /* Near Black */
   --color-text-muted: hsl(220, 10%, 42%);
   /* Slate */
-  --color-text-meta: hsl(220, 10%, 52%);
+  --color-text-meta: hsl(220, 10%, 48%);
   /* Dates, labels, pill text — tertiary hierarchy */
   --color-heading: var(--color-brand);
   /* Section and card titles — single accent */
