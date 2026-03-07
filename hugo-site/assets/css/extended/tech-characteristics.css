@@ -12,7 +12,7 @@
 }
 
 .post-content dl dt {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-main);
   margin-top: var(--space-xs);
 }
@@ -47,7 +47,7 @@
 
 .post-content .tech-characteristics .tech-characteristics-title {
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--tech-label);
@@ -60,7 +60,7 @@
 
 .post-content .tech-characteristics dl dt {
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-main);
   margin-top: var(--space-xs);
   display: flex;
@@ -92,4 +92,11 @@
 [data-theme="dark"] .post-content .tech-characteristics {
   --tech-bg: hsla(var(--hue-brand), 25%, 18%, 0.35);
   --tech-border: hsla(var(--hue-brand), 35%, 40%, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .post-content .tech-characteristics {
+    --tech-bg: hsla(var(--hue-brand), 25%, 18%, 0.35);
+    --tech-border: hsla(var(--hue-brand), 35%, 40%, 0.4);
+  }
 }

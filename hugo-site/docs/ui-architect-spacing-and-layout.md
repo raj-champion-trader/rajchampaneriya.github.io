@@ -4,6 +4,8 @@
 
 **Scope:** Theme (`themes/frontier/`) + extended CSS (`assets/css/extended/`).
 
+**Extended CSS load order:** Hugo concatenates all `css/extended/*.css` files (see `layouts/_default/baseof.html`). Order is filesystem-dependent. If one extended file must override another, use predictable naming (e.g. `00-base.css`, `99-overrides.css`) or keep overrides in a single file so cascade order is clear.
+
 ---
 
 ## 1. Single source of truth for spacing

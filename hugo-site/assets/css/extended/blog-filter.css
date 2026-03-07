@@ -21,7 +21,7 @@
     background: transparent;
     color: var(--color-text-muted);
     font-size: var(--card-meta-desktop);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     font-family: inherit;
     cursor: pointer;
     transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium);
@@ -47,7 +47,7 @@
 
 .category-count {
     font-size: var(--text-2xs);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     background: var(--code-bg);
     color: var(--color-text-muted);
     padding: var(--space-2xs) var(--space-xs);

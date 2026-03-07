@@ -38,3 +38,10 @@
   --tldr-bg: hsla(var(--hue-brand), 30%, 18%, 0.4);
   --tldr-border: hsla(var(--hue-brand), 40%, 45%, 0.5);
 }
+
+@media (prefers-color-scheme: dark) {
+  .post-content .tldr-box {
+    --tldr-bg: hsla(var(--hue-brand), 30%, 18%, 0.4);
+    --tldr-border: hsla(var(--hue-brand), 40%, 45%, 0.5);
+  }
+}

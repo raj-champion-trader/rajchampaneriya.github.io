@@ -34,7 +34,7 @@ h4,
 h5,
 h6 {
     line-height: var(--leading-tight);
-    font-weight: 800;
+    font-weight: var(--fw-extrabold);
     letter-spacing: -0.03em;
     color: var(--color-text-main);
 }
@@ -103,6 +103,13 @@ p {
     margin-top: var(--space-sm);
     border-radius: var(--radius-md);
     font-size: var(--text-base);
+}
+
+/* List section intro: horizontal inset from container only (avoid double padding) */
+.page-header .page-content.surface-panel,
+.page-header .page-content {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -185,14 +192,14 @@ p {
   margin: 0;
   flex-shrink: 1;
   font-size: clamp(0.9375rem, 1.05rem + 0.375vw, 1.25rem); /* rajc.work visible at all breakpoints */
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
   color: var(--color-text-main);
   text-decoration: none;
 }
 
 .site-header .header-inner .logo-brand {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.04em;
   color: var(--color-text-main);
 }
@@ -203,7 +210,7 @@ p {
   height: auto;
   margin: 0 var(--space-2xs);
   background: none;
-  font-weight: 400;
+  font-weight: var(--fw-normal);
   color: var(--color-text-muted);
   opacity: var(--opacity-icon-muted);
 }
@@ -213,7 +220,7 @@ p {
 }
 
 .site-header .header-inner .logo-suffix {
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   letter-spacing: 0.01em;
   color: var(--color-text-muted);
 }
@@ -258,7 +265,7 @@ p {
 }
 .desktop-top-nav .desktop-nav-link {
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--color-text-muted);
   text-decoration: none;
   background: none;
@@ -370,7 +377,7 @@ main#swup {
    ========================================= */
 
 .single-post {
-    padding: var(--content-padding-mobile) 0;
+    padding: 0;
     min-width: 0;
     max-width: 100%;
 }
@@ -432,7 +439,7 @@ main#swup {
 
 .single-post .post-content.surface-panel,
 .single-post .post-content {
-    padding: var(--content-padding-mobile);
+    padding: var(--content-padding-mobile) 0;
     font-size: var(--text-base);
 }
 
@@ -466,7 +473,7 @@ main#swup {
 
     .single-post .post-content.surface-panel,
     .single-post .post-content {
-        padding: var(--content-padding-tablet);
+        padding: var(--content-padding-tablet) 0;
     }
 
     .single-post .post-content h1 { font-size: var(--text-2xl); }
@@ -490,7 +497,7 @@ main#swup {
 
     .single-post .post-content.surface-panel,
     .single-post .post-content {
-        padding: var(--content-padding-desktop);
+        padding: var(--content-padding-desktop) 0;
     }
 
     .single-post .post-content h1 { font-size: var(--text-3xl); }
@@ -591,7 +598,7 @@ main#swup {
 
 .post-content th {
     background: var(--color-surface);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     text-align: left;
     color: var(--color-text-main);
     padding: var(--space-xs) var(--space-sm);
@@ -778,7 +785,7 @@ select:focus-visible {
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-pill);
     /* Pill shape */
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-size: var(--text-sm);
     transition: transform var(--transition-medium);
 }
@@ -820,7 +827,7 @@ select:focus-visible {
 }
 
 .feed-card {
-    padding: var(--content-padding-mobile);
+    padding: var(--content-padding-mobile) 0;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
@@ -835,6 +842,7 @@ select:focus-visible {
 /* Prevent long titles/summaries from overflowing grid cell */
 .feed-card .card-content {
     min-width: 0;
+    padding: 0 var(--space-xs);
 }
 
 /* Feed card typography — responsive via design tokens */
@@ -903,7 +911,7 @@ select:focus-visible {
   }
 
   .feed-card {
-    padding: var(--content-padding-tablet);
+    padding: var(--content-padding-tablet) 0;
   }
 }
 
@@ -927,7 +935,7 @@ select:focus-visible {
   }
 
   .feed-card {
-    padding: var(--content-padding-desktop);
+    padding: var(--content-padding-desktop) 0;
   }
 
   /* List pages (blog, projects): larger gap between header and intro for vertical rhythm */

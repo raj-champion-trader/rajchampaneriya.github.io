@@ -334,10 +334,11 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
-    padding: 0 0 var(--space-xs);
+    gap: var(--space-xs);
+    padding: var(--space-xs) 0 var(--space-sm);
     max-height: 60vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .scrollspy-nav.is-open .scrollspy-list {
@@ -351,9 +352,18 @@
     margin-top: var(--space-2xs);
   }
 
+  .scrollspy-list .scrollspy-item {
+    min-height: 2.5rem;
+    flex-shrink: 0;
+  }
+
   .scrollspy-list .scrollspy-link {
     padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     width: 100%;
+    line-height: 1.4;
+    min-height: 2.25rem;
+    box-sizing: border-box;
+    display: block;
   }
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {

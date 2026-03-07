@@ -46,6 +46,7 @@
   /* Section and card titles — single accent */
   --color-border: hsla(220, 30%, 12%, 0.08);
   --border: var(--color-border); /* alias for legacy/consistency */
+  --border-width: 1px;
 
   /* Callout / content block (sidebar, blockquote) — theme-aware */
   --color-callout-bg: hsla(220, 20%, 50%, 0.04);
@@ -115,7 +116,7 @@
 
   /* Content spacing — semantic tokens for vertical rhythm (post/about content) */
   --content-heading-after: var(--space-sm);
-  --content-section-gap: var(--space-lg);
+  --content-section-gap: var(--space-md);
   --content-paragraph-after: var(--space-md);
   --content-list-after: var(--space-md);
   --content-list-margin-top: var(--space-sm);
@@ -220,7 +221,7 @@
   /* Content padding — responsive (blog post & project single) */
   --content-padding-mobile: var(--space-sm);
   --content-padding-tablet: var(--space-md);
-  --content-padding-desktop: var(--space-lg);
+  --content-padding-desktop: var(--space-md);
 
   /* Post/Project single — typography per breakpoint */
   --post-title-mobile: clamp(1.5rem, 5vw + 1rem, 2rem);
@@ -378,6 +379,8 @@
   --care-step-bg: hsla(220, 20%, 99%, 0.5);
   --care-step-border: hsla(220, 30%, 12%, 0.06);
   --care-teaser-border: hsla(220, 25%, 15%, 0.1);
+  --glass-border: hsla(220, 20%, 100%, 0.35);
+  --hero-cert-border: hsla(var(--hue-brand), 65%, 38%, 0.15);
   --care-teaser-shadow: 0 2px 6px hsla(220, 20%, 10%, 0.06), 0 12px 32px hsla(220, 20%, 10%, 0.1);
   --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.6);
 }
@@ -435,6 +438,11 @@
     /* override header divider in dark mode for better visibility */
     --header-divider: hsla(220, 20%, 94%, 0.12);
 
+    /* Shadows — dark-appropriate so elevation reads on dark surfaces */
+    --shadow-sm: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+    --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.25);
+    --shadow-lg: 0 15px 30px hsla(0, 0%, 0%, 0.35);
+
     --color-callout-bg: hsla(220, 20%, 94%, 0.04);
     --color-callout-border: hsla(220, 20%, 94%, 0.15);
 
@@ -491,6 +499,8 @@
     --care-step-bg: hsla(220, 20%, 11%, 0.5);
     --care-step-border: hsla(220, 20%, 94%, 0.06);
     --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+    --glass-border: hsla(220, 20%, 100%, 0.06);
+    --hero-cert-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
     --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
     --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
   }
@@ -535,6 +545,10 @@
   --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
   --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
   --scrollbar-track: transparent;
+  /* Shadows — dark-appropriate so elevation reads on dark surfaces */
+  --shadow-sm: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+  --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.25);
+  --shadow-lg: 0 15px 30px hsla(0, 0%, 0%, 0.35);
   /* About page accents — dark: monochromatic blue-scale (no rainbow).
      Differentiation via opacity/saturation within the 215-220° hue family. */
   --about-accent-blue-bg: var(--color-brand-glow);
@@ -572,6 +586,8 @@
   --care-step-bg: hsla(220, 20%, 11%, 0.5);
   --care-step-border: hsla(220, 20%, 94%, 0.06);
   --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+  --glass-border: hsla(220, 20%, 100%, 0.06);
+  --hero-cert-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
   --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
   --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
 }

@@ -52,7 +52,7 @@
 
 .post-content .pros-cons-title {
   font-size: var(--text-base);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   margin: 0 0 var(--space-xs) 0;
   color: var(--color-text-main);
 }
@@ -102,13 +102,13 @@
   top: 0.5em;
   width: 6px;
   height: 2px;
-  border-radius: 1px;
+  border-radius: var(--radius-2xs);
   background: var(--block-accent);
 }
 
 .post-content .pros-cons-list li strong {
   color: var(--color-text-main);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 
 .post-content .pros-cons-list li strong::after {
@@ -125,4 +125,17 @@
   --block-bg: hsla(var(--cons-hue), 20%, 18%, 0.4);
   --block-border: hsla(var(--cons-hue), 25%, 35%, 0.5);
   --block-accent: hsl(var(--cons-hue), 50%, 55%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .post-content .pros-cons-block.pros {
+    --block-bg: hsla(var(--pros-hue), 25%, 18%, 0.4);
+    --block-border: hsla(var(--pros-hue), 30%, 35%, 0.5);
+    --block-accent: hsl(var(--pros-hue), 45%, 55%);
+  }
+  .post-content .pros-cons-block.cons {
+    --block-bg: hsla(var(--cons-hue), 20%, 18%, 0.4);
+    --block-border: hsla(var(--cons-hue), 25%, 35%, 0.5);
+    --block-accent: hsl(var(--cons-hue), 50%, 55%);
+  }
 }

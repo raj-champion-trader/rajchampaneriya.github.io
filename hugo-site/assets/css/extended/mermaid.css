@@ -42,8 +42,8 @@
 
 /* --- C4-style node shapes --- */
 .mermaid .node rect {
-    rx: 6px !important;
-    ry: 6px !important;
+    rx: var(--radius-xs) !important;
+    ry: var(--radius-xs) !important;
     stroke-width: 1px !important;
     stroke: rgba(0, 0, 0, 0.15) !important;
 }
@@ -73,8 +73,8 @@
 
 /* Stadium / pill shapes */
 .mermaid .node .label-container {
-    rx: 6px !important;
-    ry: 6px !important;
+    rx: var(--radius-xs) !important;
+    ry: var(--radius-xs) !important;
 }
 
 /* Database / cylinder shapes — gray tone for infrastructure */
@@ -85,8 +85,8 @@
 
 /* --- C4-style subgraphs (system boundaries) --- */
 .mermaid .cluster rect {
-    rx: 8px !important;
-    ry: 8px !important;
+    rx: var(--radius-sm) !important;
+    ry: var(--radius-sm) !important;
     fill: rgba(0, 0, 0, 0.04) !important;
     stroke: #94A3B8 !important;
     stroke-width: 1.5px !important;
@@ -363,8 +363,8 @@
     fill: #438DD5 !important;
     stroke: rgba(0, 0, 0, 0.15) !important;
     stroke-width: 1px !important;
-    rx: 6px !important;
-    ry: 6px !important;
+    rx: var(--radius-xs) !important;
+    ry: var(--radius-xs) !important;
 }
 
 .mermaid text.actor {
@@ -704,8 +704,8 @@
   stroke: #94A3B8 !important;
   stroke-width: 1.5px !important;
   stroke-dasharray: 8 4 !important;
-  rx: 8px !important;
-  ry: 8px !important;
+  rx: var(--radius-sm) !important;
+  ry: var(--radius-sm) !important;
 }
 
 .mermaid-fullscreen-content-inner .node .nodeLabel {
