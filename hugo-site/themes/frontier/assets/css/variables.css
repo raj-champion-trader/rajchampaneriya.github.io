@@ -262,6 +262,8 @@
   --bottom-nav-max: 400px;
   --bottom-nav-md: 420px;
   --bottom-nav-lg: 440px;
+  /* Gap between player bar and bottom nav when both visible (mobile/tablet) */
+  --bottom-bar-gap: var(--space-xs);
 
   /* Featured project card — image heights */
   --featured-img-height: 260px;
