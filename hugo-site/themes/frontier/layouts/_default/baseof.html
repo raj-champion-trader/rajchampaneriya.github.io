@@ -330,6 +330,8 @@
           neutral:   { fill: c.surface, stroke: c.textMuted, strokeWidth: strokeW, color: c.textMuted }
         };
       }
+      function applySemanticClassOverrides(container) {
+        const palette = getSemanticColors();
         for (const [cls, colors] of Object.entries(palette)) {
           container.querySelectorAll(`.node.${cls}`).forEach(node => {
             node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
