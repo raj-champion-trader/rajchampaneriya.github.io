@@ -631,6 +631,19 @@
   --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
   --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
   --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
+
+  /* Hero / landing — light (so manual light theme overrides prefers-color-scheme) */
+  --hero-divider: hsla(220, 20%, 50%, 0.08);
+  --hero-metric-bg: hsla(220, 20%, 98%, 0.7);
+  --hero-metric-border: hsla(var(--hue-brand), 65%, 38%, 0.12);
+  --hero-trust-badge-bg: hsla(220, 20%, 98%, 0.6);
+  --hero-trust-badge-border: hsla(220, 30%, 12%, 0.18);
+  --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 65%, 38%, 0.2);
+  --care-step-bg: hsla(220, 20%, 99%, 0.5);
+  --care-step-border: hsla(220, 30%, 12%, 0.06);
+  --care-teaser-border: hsla(220, 25%, 15%, 0.1);
+  --care-teaser-shadow: 0 2px 6px hsla(220, 20%, 10%, 0.06), 0 12px 32px hsla(220, 20%, 10%, 0.1);
+  --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.6);
 }
 
 /* Mobile (≤768px): same about-accent overrides when light theme is explicit */
