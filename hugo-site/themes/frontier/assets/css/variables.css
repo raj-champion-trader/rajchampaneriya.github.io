@@ -13,6 +13,7 @@
   /* Brand Colors - "Executive Authority" Theme */
   --hue-brand: 215;
   /* Strategic Blue base */
+  color-scheme: light;
 
   /* Light Mode (Default) - Executive Clarity */
   --color-brand: hsl(215, 65%, 38%);
@@ -343,9 +344,26 @@
   --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.6);
 }
 
+/* Mobile (≤768px): stronger about-accent contrast for device readability (light theme) */
+@media screen and (max-width: 768px) {
+  :root {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
+  }
+}
+
 /* Dark Mode - Boardroom After Hours */
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --color-brand: hsl(215, 75%, 65%);
     /* Strategic Blue - lighter for dark bg contrast */
     --color-brand-dim: hsl(215, 50%, 50%);
@@ -431,6 +449,7 @@
 
 /* Manual Toggle Overrides */
 [data-theme="dark"] {
+  color-scheme: dark;
   --color-brand: hsl(215, 75%, 65%);
   --color-brand-dim: hsl(215, 50%, 50%);
   --color-brand-glow: hsla(215, 75%, 65%, 0.18);
@@ -506,6 +525,7 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
   --color-brand: hsl(215, 65%, 38%);
   --color-brand-dim: hsl(215, 40%, 55%);
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
@@ -566,6 +586,22 @@
   --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
 }
 
+/* Mobile (≤768px): same about-accent overrides when light theme is explicit */
+@media screen and (max-width: 768px) {
+  [data-theme="light"] {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
+  }
+}
+
 /* Reduced-motion: global accessibility preference moved to variables for
    consistent, theme-wide application (see §3.2). */
 @media (prefers-reduced-motion: reduce) {
@@ -581,6 +617,17 @@
   :root {
     --color-border: hsla(220, 30%, 12%, 0.18);
     --color-text-muted: hsl(220, 10%, 35%);
+    /* About page accents — stronger contrast for readable cards on all viewports */
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
   }
 }
 
@@ -588,5 +635,20 @@
   [data-theme="dark"] {
     --color-border: hsla(220, 20%, 94%, 0.18);
     --color-text-muted: hsl(220, 12%, 72%);
+  }
+}
+
+@media (prefers-contrast: more) {
+  [data-theme="light"] {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
   }
 }
