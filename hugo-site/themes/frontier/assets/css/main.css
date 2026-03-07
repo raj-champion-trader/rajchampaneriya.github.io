@@ -157,7 +157,7 @@ p {
 
 [data-theme="dark"] .site-header.glass-panel,
 [data-theme="dark"] .site-header {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--header-divider);
   background: var(--color-surface-glass);
 }
 

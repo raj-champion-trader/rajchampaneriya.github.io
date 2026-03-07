@@ -44,7 +44,7 @@ body{background-color:var(--color-bg);color:var(--color-text-main);line-height:1
 .container{width:100%;max-width:var(--container-base);margin:0 auto;padding:0 var(--content-padding-mobile);overflow-x:clip;min-width:0;}
 @media screen and (min-width:768px){.container{padding:0 var(--content-padding-tablet);}}
 @media screen and (min-width:1024px){.container{padding:0 var(--content-padding-desktop);}}
-.site-header.glass-panel,.site-header{position:sticky;top:0;border-radius:0;border-top:none;border-left:none;border-right:none;border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-sm);background:var(--color-surface-glass);backdrop-filter:saturate(130%) blur(8px);-webkit-backdrop-filter:saturate(130%) blur(8px);z-index:var(--z-header);}
+.site-header.glass-panel,.site-header{position:sticky;top:0;border-radius:0;border-top:none;border-left:none;border-right:none;border-bottom:1px solid var(--header-divider);box-shadow:var(--shadow-sm);background:var(--color-surface-glass);backdrop-filter:saturate(130%) blur(8px);-webkit-backdrop-filter:saturate(130%) blur(8px);z-index:var(--z-header);}
 .site-header .header-inner{display:flex!important;align-items:center!important;justify-content:center;gap:0.5rem;flex-wrap:nowrap;min-width:0;padding-inline:0.5rem;box-sizing:border-box;}
 .site-header .header-inner .logo{display:inline-flex!important;align-items:baseline;gap:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 56px);min-width:0;margin:0;flex-shrink:1;font-size:clamp(0.9375rem,1.05rem + 0.375vw,1.25rem);font-weight:600;letter-spacing:0.02em;color:var(--color-text-main);text-decoration:none;}
 .site-header .header-inner .logo-brand{font-weight:700;letter-spacing:0.04em;color:var(--color-text-main);}

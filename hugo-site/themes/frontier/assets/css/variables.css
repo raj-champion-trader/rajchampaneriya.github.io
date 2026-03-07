@@ -354,6 +354,10 @@
 
   /* Hero / landing — tokenized for premium-hero.css (theme-consistent) */
   --hero-divider: hsla(220, 20%, 50%, 0.08);
+  /* header border is a slightly stronger variant of the generic border token
+     so the desktop nav divider remains visible against both light and dark
+     glass surfaces. 0.12 opacity was chosen after manual inspection. */
+  --header-divider: hsla(220, 30%, 12%, 0.12);
   --hero-metric-bg: hsla(220, 20%, 98%, 0.7);
   --hero-metric-border: hsla(var(--hue-brand), 65%, 38%, 0.12);
   --hero-trust-badge-bg: hsla(220, 20%, 98%, 0.6);
@@ -415,6 +419,8 @@
     /* Dates, labels — tertiary in dark */
     --color-border: hsla(220, 20%, 94%, 0.08);
     --border: var(--color-border);
+    /* override header divider in dark mode for better visibility */
+    --header-divider: hsla(220, 20%, 94%, 0.12);
 
     --color-callout-bg: hsla(220, 20%, 94%, 0.04);
     --color-callout-border: hsla(220, 20%, 94%, 0.15);
@@ -493,6 +499,7 @@
   --color-text-muted: hsl(220, 12%, 65%);
   --color-text-meta: hsl(220, 12%, 72%);
   --color-border: hsla(220, 20%, 94%, 0.08);
+  --header-divider: hsla(220, 20%, 94%, 0.12);
 
   --color-callout-bg: hsla(220, 20%, 94%, 0.04);
   --color-callout-border: hsla(220, 20%, 94%, 0.15);
