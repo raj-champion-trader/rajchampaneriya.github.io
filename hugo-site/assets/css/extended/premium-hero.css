@@ -80,7 +80,7 @@
 }
 
 .hero-premium {
-    padding: var(--space-sm) 0;
+    padding: var(--space-xs) 0;
 }
 
 .hero-premium__card {
@@ -547,7 +547,7 @@
 
 .care-teaser {
     padding: var(--space-lg) var(--space-md);
-    margin-top: var(--space-md);
+    margin-top: var(--space-sm);
     position: relative;
     overflow: hidden;
 }
