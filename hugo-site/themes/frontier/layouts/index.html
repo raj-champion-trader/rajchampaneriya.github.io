@@ -9,8 +9,8 @@
     <section class="hero-premium scroll-reveal">
         <div class="hero-premium__card surface-panel">
             <div class="hero-premium__header">
-                {{ $w := .Site.Params.profileMode.imageWidth | default 160 }}
-                {{ $h := .Site.Params.profileMode.imageHeight | default 160 }}
+                {{ $w := .Site.Params.profileMode.imageWidth | default 140 }}
+                {{ $h := .Site.Params.profileMode.imageHeight | default 140 }}
                 {{ $profile := resources.Get "images/profile.jpg" }}
                 {{ if $profile }}
                 {{ $profileWebP := $profile.Fill (printf "%dx%d webp q82" (mul $w 2) (mul $h 2)) }}
@@ -23,6 +23,7 @@
                          height="{{ $h }}"
                          loading="eager"
                          fetchpriority="high"
+                         decoding="async"
                          class="hero-premium__avatar">
                 </picture>
                 {{ else }}
@@ -32,6 +33,7 @@
                      height="{{ $h }}"
                      loading="eager"
                      fetchpriority="high"
+                     decoding="async"
                      class="hero-premium__avatar">
                 {{ end }}
                 <div class="hero-premium__info">
@@ -42,7 +44,7 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="hero-premium__actions">
+            <!-- <div class="hero-premium__actions">
                 {{ range .Site.Params.profileMode.buttons }}
                 <a href="{{ .url }}" class="btn btn-outline">
                     {{ if eq .name "Architecture Blueprints" }}
@@ -61,7 +63,7 @@
                 </a>
                 {{ end }}
                 {{ end }}
-            </div>
+            </div> -->
 
             <!-- Impact Metrics Strip -->
             <div class="hero-premium__metrics">

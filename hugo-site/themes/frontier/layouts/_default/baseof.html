@@ -8,33 +8,31 @@
 
     <!-- Meta -->
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
-    <meta name="theme-color" content="#ffffff"> <!-- Force light theme -->
-    <script>(function(){try{document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m) m.setAttribute('content','#ffffff');}catch(e){} })();</script>
+    <meta name="theme-color" content="#f5f6f8">
+    {{ $themeInit := resources.Get "js/theme-init.js" }}
+    {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).Permalink }}"></script>{{ end }}
 
     <!-- Prevent local network access prompts on iOS -->
     <meta http-equiv="Permissions-Policy" content="local-network=()">
 
-    <!-- Fonts (Google Fonts: Inter & JetBrains Mono) - Non-render-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Self-hosted fonts (Inter, JetBrains Mono) — preload LCP font -->
+    <link rel="preload" href="{{ "fonts/inter-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
-    <!-- Preconnect for Mermaid CDN (lazy-loaded on pages with diagrams) -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Preconnect for Mermaid CDN (only on pages that contain Mermaid diagrams) -->
+    {{ $hasMermaid := and .IsPage (or (in .Content "language-mermaid") (in .Content "```mermaid")) }}
+    {{ if $hasMermaid }}<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>{{ end }}
 
     {{ if .IsHome }}
-    <!-- Preload LCP image (hero avatar) on homepage only -->
+    <!-- Preload LCP image (hero avatar) on homepage only — 280x280 matches picture source (2× avatar-wide 140) -->
     {{ $profile := resources.Get "images/profile.jpg" }}
     {{ if $profile }}
-    {{ $profileWebP := $profile.Fill "320x320 webp q82" }}
+    {{ $profileWebP := $profile.Fill "280x280 webp q82" }}
     <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
     {{ else }}
     <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
     {{ end }}
+    <!-- Preload hero card background image (reduces contention with LCP) -->
+    <link rel="preload" as="image" href="{{ "images/home-page.jpeg" | relURL }}">
     {{ else if eq .Layout "about" }}
     <!-- Preload LCP image (about header photo) on about page only -->
     {{ $profile := resources.Get "images/profile.jpg" }}
@@ -52,8 +50,10 @@
     <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
     {{ $critical := resources.Get "css/critical.css" | minify }}
     <style>{{ $critical.Content | safeCSS }}</style>
+    <!-- Self-hosted font-face (inline so relURL respects baseURL) -->
+    <style>{{ partial "font-face-css.html" . | safeCSS }}</style>
 
-    <!-- Full CSS loaded async (non-render-blocking) -->
+    <!-- Full CSS loaded async (non-render-blocking) — variables + main -->
     {{ $vars := resources.Get "css/variables.css" }}
     {{ $main := resources.Get "css/main.css" }}
     {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
@@ -69,30 +69,54 @@
     {{ end }}
 </head>
 
-<body class="app-layout">
+<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") .IsNode }} page-projects-list{{ end }}">
 
-    <!-- Header / Top Bar -->
+    <!-- Header / Top Bar (sticky; scrollspy row when on article/about) -->
     <header class="site-header glass-panel">
-        <div class="container header-inner">
-            <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
-            <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
-            <nav class="desktop-top-nav" aria-label="Main">
-                <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
-                <a href="{{ "/blog/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "blog" }}active{{ end }}">Insights</a>
-                <a href="{{ "/projects/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "projects" }}active{{ end }}">Blueprints</a>
-                {{ range site.Params.socialIcons }}{{ if eq .name "github" }}
-                <a href="{{ .url }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-                {{ end }}{{ end }}
-                <button type="button" class="desktop-nav-link desktop-audio-trigger" aria-label="Listen" title="Listen">Listen</button>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">Share</a>
-                <a href="{{ "/about/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+        <div class="header-rows">
+            <div class="container header-inner">
+                <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
+                <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
+                <nav class="desktop-top-nav" aria-label="Main">
+                    <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
+                    <a href="{{ "/blog/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "blog" }}active{{ end }}">Insights</a>
+                    <a href="{{ "/projects/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "projects" }}active{{ end }}">Blueprints</a>
+                    <a href="{{ "/about/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+                    <span class="desktop-nav-sep" aria-hidden="true"></span>
+                    <button type="button" class="desktop-nav-link desktop-nav-link--icon desktop-audio-trigger" aria-label="Listen" title="Listen">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </button>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="desktop-nav-link desktop-nav-link--icon" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    {{ range site.Params.socialIcons }}{{ if eq .name "github" }}
+                    <a href="{{ .url }}" class="desktop-nav-link desktop-nav-link--icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    {{ end }}{{ end }}
+                </nav>
+                <button id="theme-toggle" type="button" accesskey="t" title="Toggle theme (Alt+T)" aria-label="Toggle theme" class="theme-toggle-btn">
+                    <span class="theme-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+                </button>
+            </div>
+            <nav id="scrollspy-nav" class="scrollspy-nav scrollspy-nav--header" aria-label="Article contents" hidden>
+                <div class="scrollspy-inner">
+                    <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
+                        <span class="scrollspy-trigger-label">Contents</span>
+                        <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
+                </div>
             </nav>
-            {{/* Theme toggle hidden — comment restored to show: <button id="theme-toggle" ...> ... </button> */}}
-            <!--
-            <button id="theme-toggle" type="button" accesskey="t" title="Toggle theme (Alt+T)" aria-label="Toggle theme" class="theme-toggle-btn">
-                <span class="theme-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
-            </button>
-            -->
         </div>
     </header>
 
@@ -253,40 +277,61 @@
         </svg>
     </button>
 
-    <!-- Scripts: Swup from CDN (defer to avoid render-blocking) -->
-    <script src="https://cdn.jsdelivr.net/npm/swup@4/dist/Swup.umd.js" defer></script>
+    <!-- Scripts: Swup (self-hosted for better caching; defer to avoid render-blocking) -->
+    {{ $swup := resources.Get "js/vendor/swup.umd.js" }}
+    {{ if $swup }}<script src="{{ ($swup | minify | fingerprint).Permalink }}" defer></script>{{ end }}
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 
     <!-- Mermaid v11 - Lazy loaded only when page has diagrams -->
     <script type="module">
-      const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));};
+      const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>{const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});});};
 
-      // --- Semantic class color definitions (light/dark) ---
-      const semanticColors = {
-        dark: {
-          primary:   { fill: '#1e3a5f', stroke: '#60a5fa', strokeWidth: '2.5px', color: '#dbeafe' },
-          secondary: { fill: '#14532d', stroke: '#4ade80', strokeWidth: '2.5px', color: '#dcfce7' },
-          accent:    { fill: '#7c2d12', stroke: '#fb923c', strokeWidth: '2.5px', color: '#ffedd5' },
-          highlight: { fill: '#581c87', stroke: '#c084fc', strokeWidth: '2.5px', color: '#f3e8ff' },
-          danger:    { fill: '#7f1d1d', stroke: '#f87171', strokeWidth: '2.5px', color: '#fee2e2' },
-          neutral:   { fill: '#1e293b', stroke: '#94a3b8', strokeWidth: '2.5px', color: '#e2e8f0' }
-        },
-        light: {
-          primary:   { fill: '#dbeafe', stroke: '#2563eb', strokeWidth: '1.5px', color: '#1e40af' },
-          secondary: { fill: '#dcfce7', stroke: '#16a34a', strokeWidth: '1.5px', color: '#166534' },
-          accent:    { fill: '#ffedd5', stroke: '#ea580c', strokeWidth: '1.5px', color: '#9a3412' },
-          highlight: { fill: '#f3e8ff', stroke: '#9333ea', strokeWidth: '1.5px', color: '#6b21a8' },
-          danger:    { fill: '#fee2e2', stroke: '#dc2626', strokeWidth: '1.5px', color: '#991b1b' },
-          neutral:   { fill: '#f1f5f9', stroke: '#64748b', strokeWidth: '1.5px', color: '#334155' }
-        }
-      };
+      // --- Read theme colors from CSS variables (single source of truth) ---
+      function cssVarToHex(varName) {
+        const el = document.createElement('div');
+        el.style.cssText = `color: var(${varName}); position: absolute; opacity: 0;`;
+        document.documentElement.appendChild(el);
+        const computed = getComputedStyle(el).color;
+        document.documentElement.removeChild(el);
+        const m = computed.match(/^rgb(a?)\((\d+),\s*(\d+),\s*(\d+)/);
+        if (!m) return '#333333';
+        const r = Number(m[2]).toString(16).padStart(2, '0');
+        const g = Number(m[3]).toString(16).padStart(2, '0');
+        const b = Number(m[4]).toString(16).padStart(2, '0');
+        return '#' + r + g + b;
+      }
+      function getThemeColors() {
+        return {
+          brand: cssVarToHex('--color-brand'),
+          bg: cssVarToHex('--color-bg'),
+          surface: cssVarToHex('--color-surface'),
+          textMain: cssVarToHex('--color-text-main'),
+          textMuted: cssVarToHex('--color-text-muted'),
+          border: cssVarToHex('--color-border'),
+          brandGlow: cssVarToHex('--color-brand-glow'),
+          onBrand: cssVarToHex('--color-on-brand'),
+          codeBg: cssVarToHex('--code-bg')
+        };
+      }
 
+      // --- Semantic class color definitions (derived from theme) ---
+      function getSemanticColors() {
+        const c = getThemeColors();
+        const isDark = document.documentElement.dataset.theme === 'dark' ||
+          (document.documentElement.dataset.theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const strokeW = isDark ? '2.5px' : '1.5px';
+        return {
+          primary:   { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          secondary: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          accent:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          highlight: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          danger:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          neutral:   { fill: c.surface, stroke: c.textMuted, strokeWidth: strokeW, color: c.textMuted }
+        };
+      }
       function applySemanticClassOverrides(container) {
-        const theme = document.documentElement.dataset.theme;
-        const isDark = theme === 'dark' ||
-                       (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        const palette = isDark ? semanticColors.dark : semanticColors.light;
+        const palette = getSemanticColors();
         for (const [cls, colors] of Object.entries(palette)) {
           container.querySelectorAll(`.node.${cls}`).forEach(node => {
             node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
@@ -314,33 +359,34 @@
 
       function getMermaidConfig() {
         const dark = isDarkMode();
+        const c = getThemeColors();
         return {
           startOnLoad: false,
           theme: 'base',
           themeVariables: dark ? {
-            primaryColor: '#1168BD', primaryTextColor: '#ffffff',
-            primaryBorderColor: 'rgba(255,255,255,0.1)', lineColor: '#94A3B8',
-            secondaryColor: '#1E3A5F', tertiaryColor: 'rgba(255,255,255,0.04)',
-            noteBkgColor: '#2D2A1E', noteTextColor: '#E2E8F0', noteBorderColor: '#5C5630',
-            actorBkg: '#1168BD', actorTextColor: '#ffffff', actorBorder: 'rgba(255,255,255,0.1)',
-            signalColor: '#94A3B8', signalTextColor: '#94A3B8',
-            background: '#0F172A', mainBkg: '#1168BD',
-            nodeBorder: 'rgba(255,255,255,0.1)',
-            clusterBkg: 'rgba(255,255,255,0.04)', clusterBorder: '#667',
-            titleColor: '#94A3B8', edgeLabelBackground: '#0B1220',
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, tertiaryColor: c.border,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMuted, edgeLabelBackground: c.bg,
             fontFamily: 'Inter, system-ui, sans-serif'
           } : {
-            primaryColor: '#438DD5', primaryTextColor: '#ffffff',
-            primaryBorderColor: 'rgba(0,0,0,0.15)', lineColor: '#475569',
-            secondaryColor: '#85BBF0', secondaryTextColor: '#334155',
-            tertiaryColor: 'rgba(0,0,0,0.03)', tertiaryTextColor: '#334155',
-            noteBkgColor: '#FFF8DC', noteTextColor: '#333333', noteBorderColor: '#D4C68A',
-            actorBkg: '#438DD5', actorTextColor: '#ffffff', actorBorder: 'rgba(0,0,0,0.15)',
-            signalColor: '#475569', signalTextColor: '#475569',
-            background: '#F8FAFC', mainBkg: '#438DD5',
-            nodeBorder: 'rgba(0,0,0,0.15)',
-            clusterBkg: 'rgba(0,0,0,0.04)', clusterBorder: '#94A3B8',
-            titleColor: '#334155', edgeLabelBackground: '#F8FAFC', textColor: '#334155',
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, secondaryTextColor: c.textMain,
+            tertiaryColor: c.border, tertiaryTextColor: c.textMain,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMain, edgeLabelBackground: c.bg, textColor: c.textMain,
             fontFamily: 'Inter, system-ui, sans-serif'
           },
           securityLevel: 'loose',

@@ -1,10 +1,21 @@
 /* Media query reference — use these literal values in @media (CSS vars not allowed there):
    sm: 480px   md: 768px   lg: 1024px   xl: 1280px
-   Mobile-first: min-width 768px, min-width 1024px. Mobile-only: max-width 767px, max-width 479px. */
+   Mobile-first: min-width 768px, min-width 1024px.
+   Mobile-only: max-width 767px, max-width 479px.
+   Tablet-and-below (e.g. bottom nav visible): max-width 1023px — use 1023px so 1024px is first desktop. */
+
+/* Semantic palette — single source of truth for hierarchy:
+   Primary: --color-brand — CTAs, links, section and card headings (--color-heading).
+   Secondary: --color-text-main — body, primary labels.
+   Tertiary: --color-text-muted — descriptions, secondary paragraphs.
+   Meta: --color-text-meta — dates, labels, category pill text.
+   Surfaces: --color-bg (page), --color-surface (cards/panels); keep same hue family.
+   Full guidance: docs/ui-architect-recommendations.md */
 :root {
   /* Brand Colors - "Executive Authority" Theme */
   --hue-brand: 215;
   /* Strategic Blue base */
+  color-scheme: light;
 
   /* Light Mode (Default) - Executive Clarity */
   --color-brand: hsl(215, 65%, 38%);
@@ -18,9 +29,9 @@
   /* Slightly elevated surface (dropdowns, raised panels) */
   --color-surface-elevated: hsl(220, 20%, 95%);
 
-  --color-bg: hsl(220, 20%, 97%);
-  /* Cool Paper White */
-  --color-surface: hsl(220, 20%, 99%);
+  --color-bg: hsl(220, 14%, 96%);
+  /* Cool Paper — harmonized with surface */
+  --color-surface: hsl(220, 16%, 99%);
   /* Near White */
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
   /* Premium Glass */
@@ -29,8 +40,26 @@
   /* Near Black */
   --color-text-muted: hsl(220, 10%, 42%);
   /* Slate */
+  --color-text-meta: hsl(220, 10%, 48%);
+  /* Dates, labels, pill text — tertiary hierarchy */
+  --color-heading: var(--color-brand);
+  /* Section and card titles — single accent */
   --color-border: hsla(220, 30%, 12%, 0.08);
   --border: var(--color-border); /* alias for legacy/consistency */
+
+  /* Callout / content block (sidebar, blockquote) — theme-aware */
+  --color-callout-bg: hsla(220, 20%, 50%, 0.04);
+  --color-callout-border: hsla(220, 30%, 12%, 0.12);
+
+  /* Filter chips (blog filter bar) — theme-aware */
+  --filter-chip-bg: hsla(220, 20%, 99%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(220, 65%, 38%, 0.15);
+  --filter-chip-border-active: hsla(220, 65%, 38%, 0.25);
+
+  /* Category / label pills — theme-aware */
+  --color-pill-bg: hsla(220, 20%, 94%, 0.9);
+  --color-pill-border: hsla(220, 30%, 12%, 0.06);
 
   /* Accent Colors */
   --color-accent-gold: hsl(42, 85%, 55%);
@@ -58,7 +87,13 @@
   /* Semantic type aliases (nav, meta, labels) */
   --text-meta: var(--text-sm);
   --text-label: var(--text-xs);
-  --font-weight-heading: 700;
+  /* Font weight scale — use these instead of raw numbers for consistent hierarchy */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --font-weight-heading: var(--fw-bold);
 
   /* Line Heights */
   --leading-tight: 1.15;
@@ -75,19 +110,87 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
+  /* Content spacing — semantic tokens for vertical rhythm (post/about content) */
+  --content-heading-after: var(--space-sm);
+  --content-section-gap: var(--space-lg);
+  --content-paragraph-after: var(--space-md);
+  --content-list-after: var(--space-md);
+  --content-list-margin-top: var(--space-sm);
+  --footer-inner-gap: var(--space-md);
+
   --shadow-sm: 0 2px 4px hsla(220, 20%, 10%, 0.05);
   --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
   --shadow-lg: 0 15px 30px hsla(220, 20%, 10%, 0.1);
+  /* Elevated hover (buttons, cards) — theme-aware via brand glow */
+  --shadow-hover: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(var(--hue-brand), 65%, 38%, 0.2);
   --blur-glass: blur(20px);
+  /* Radius scale — use tokens only; no literal px for corners (except 50% for circles).
+     Usage: --radius-2xs (diagram labels, tiny chips); --radius-xs (meta badges, progress tracks, small pills);
+     --radius-sm (buttons non-pill, inputs, nav active state, tags); --radius-card (about/impact/process cards);
+     --radius-md (feed cards, content panel, fixed bars: bottom nav + player bar, TOC);
+     --radius-lg (hero glass cards, large panels); --radius-pill (pill buttons, filter chips, tag pills, toggles);
+     --radius-scrollbar (scrollbar thumb/track only). Fixed glass panels (bottom nav, player bar) must use --radius-md. */
   --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
+  --radius-pill: 100px;
+  /* Card-style panels (e.g. about page); 10px sits between sm and md for visual balance */
+  --radius-card: 10px;
+  /* Scrollbar thumb/track (small UI element) */
+  --radius-scrollbar: 4px;
+  /* Scrollbar colors for code blocks / dark contexts (theme-aware) */
+  --scrollbar-track-code: hsla(220, 20%, 20%, 0.3);
+  --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+  /* Main document scrollbar (light) — dark override in [data-theme="dark"] */
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-track: transparent;
+  /* Tiny elements (e.g. diagram labels) */
+  --radius-2xs: 3px;
+
+  /* Z-index scale — use these instead of magic numbers */
+  --z-header: 50;
+  --header-height: 56px;
+  --z-chat: 101;
+  --z-nav: 1000;
+  --z-player: 1001;
+  --z-scroll-top: 1002;
+  --z-overlay: 2000;
+  --z-overlay-content: 2001;
+  --z-dialog: 10000;
+
+  /* Touch targets — minimum 44px for interactive elements (accessibility) */
+  --touch-target-min: 44px;
+
+  /* Opacity — icons and decorative elements only; do not use for body text */
+  --opacity-icon: 0.95;
+  --opacity-icon-muted: 0.7;
+  --opacity-muted: 0.6;
+
+  /* Main content bottom spacing — reserve for fixed bottom nav + player on mobile only */
+  --main-bottom-spacing: 0;
+  /* Gap above site footer — consistent separation from main content */
+  --footer-gap: var(--space-lg);
 
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
+  --transition-fast-duration: 0.18s;
   --transition-medium: 0.25s ease-out;
   --transition-slow: 0.35s ease-out;
+
+  /* Focus ring — keyboard-visible focus (use with :focus-visible) */
+  --focus-ring-color: var(--color-brand);
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+
+  /* Text selection — theme-aware for contrast */
+  --selection-bg: var(--color-brand-glow);
+  --selection-text: var(--color-text-main);
+
+  /* Entrance animation tokens (page load, sections) */
+  --animation-in-duration: 0.5s;
+  --animation-in-easing: ease-out;
 
   /* Scroll reveal animation tokens (all form factors) */
   --scroll-reveal-duration: 0.5s;
@@ -161,11 +264,22 @@
   --bottom-nav-max: 400px;
   --bottom-nav-md: 420px;
   --bottom-nav-lg: 440px;
+  /* Gap between player bar and bottom nav when both visible (mobile/tablet) */
+  --bottom-bar-gap: var(--space-xs);
+
+  /* Featured project card — image heights */
+  --featured-img-height: 260px;
+  --featured-img-height-mobile: 180px;
+  --featured-img-height-desktop: 400px;
+  --featured-card-max-width: 720px;
 
   /* Component tokens */
   --trust-badges-max: 560px;
   --metric-item-max: 140px;
   --player-info-max: 120px;
+  --metric-icon-size: 28px;
+  --trust-badge-min-height: 28px;
+  --fab-lift: -1.5rem;
 
   /* Responsive typography — per breakpoint (use in @media) */
   --hero-name-mobile: clamp(1.25rem, 4vw + 1rem, 1.5rem);
@@ -209,14 +323,14 @@
   --about-photo-tablet: 160px;
   --about-photo-desktop: 200px;
   --about-process-number-size: 1.75rem;
-  --about-card-radius: 10px;
+  --about-card-radius: var(--radius-card);
 
   /* About page — accent palette (process, impact, tech, capability).
-     Text/background pairs should meet WCAG AA (4.5:1 normal, 3:1 large). */
-  --about-accent-blue-bg: #eff6ff;
-  --about-accent-blue-border: #bfdbfe;
-  --about-accent-blue-text: #1e40af;
-  --about-accent-blue-number: #2563eb;
+     Blue derives from brand (single source of truth); others use consistent hue/saturation for light theme. */
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 65%, 38%, 0.28);
+  --about-accent-blue-text: var(--color-brand-dark);
+  --about-accent-blue-number: var(--color-brand);
   --about-accent-orange-bg: #fff7ed;
   --about-accent-orange-border: #fed7aa;
   --about-accent-orange-text: #9a3412;
@@ -232,16 +346,64 @@
   --about-accent-gray-bg: #f8fafc;
   --about-accent-gray-border: #e2e8f0;
   --about-accent-gray-text: #334155;
-  --about-accent-blue-pill-bg: rgba(219, 234, 254, 0.7);
+  --about-accent-blue-pill-bg: hsla(var(--hue-brand), 65%, 38%, 0.2);
   --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
   --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
   --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
   --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
+
+  /* Hero / landing — tokenized for premium-hero.css (theme-consistent) */
+  --hero-divider: hsla(220, 20%, 50%, 0.08);
+  /* header border is a slightly stronger variant of the generic border token
+     so the desktop nav divider remains visible against both light and dark
+     glass surfaces. 0.12 opacity was chosen after manual inspection. */
+  --header-divider: hsla(220, 30%, 12%, 0.12);
+  --hero-metric-bg: hsla(220, 20%, 98%, 0.7);
+  --hero-metric-border: hsla(var(--hue-brand), 65%, 38%, 0.12);
+  --hero-trust-badge-bg: hsla(220, 20%, 98%, 0.6);
+  --hero-trust-badge-border: hsla(220, 30%, 12%, 0.18);
+  /* Hero buttons/tags — unified border, padding, hover lift */
+  --hero-btn-border-width: 2px;
+  --hero-btn-padding-y: var(--space-xs);
+  --hero-btn-padding-x: var(--space-md);
+  --hero-btn-tag-padding-y: var(--space-2xs);
+  --hero-btn-tag-padding-x: var(--space-xs);
+  --hero-btn-hover-lift: -2px;
+  --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 65%, 38%, 0.2);
+  --care-step-bg: hsla(220, 20%, 99%, 0.5);
+  --care-step-border: hsla(220, 30%, 12%, 0.06);
+  --care-teaser-border: hsla(220, 25%, 15%, 0.1);
+  --care-teaser-shadow: 0 2px 6px hsla(220, 20%, 10%, 0.06), 0 12px 32px hsla(220, 20%, 10%, 0.1);
+  --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.6);
+}
+
+/* Mobile (≤768px): stronger about-accent contrast for device readability (light theme) */
+@media screen and (max-width: 768px) {
+  :root {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
+  }
+}
+
+/* Reserve space below content for fixed bottom nav + player when nav is visible (≤1023px) */
+@media screen and (max-width: 1023px) {
+  :root {
+    --main-bottom-spacing: 5rem;
+  }
 }
 
 /* Dark Mode - Boardroom After Hours */
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --color-brand: hsl(215, 75%, 65%);
     /* Strategic Blue - lighter for dark bg contrast */
     --color-brand-dim: hsl(215, 50%, 50%);
@@ -261,42 +423,77 @@
     /* Clean White */
     --color-text-muted: hsl(220, 12%, 65%);
     /* Silver */
+    --color-text-meta: hsl(220, 12%, 72%);
+    /* Dates, labels — tertiary in dark */
     --color-border: hsla(220, 20%, 94%, 0.08);
     --border: var(--color-border);
+    /* override header divider in dark mode for better visibility */
+    --header-divider: hsla(220, 20%, 94%, 0.12);
+
+    --color-callout-bg: hsla(220, 20%, 94%, 0.04);
+    --color-callout-border: hsla(220, 20%, 94%, 0.15);
+
+    --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
+    --filter-chip-border: var(--color-border);
+    --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
+    --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
+    --color-pill-bg: hsla(220, 20%, 18%, 0.5);
+    --color-pill-border: hsla(220, 20%, 94%, 0.08);
 
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
     --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
-    /* About page accents — dark */
-    --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
-    --about-accent-blue-border: rgba(37, 99, 235, 0.3);
-    --about-accent-blue-text: #93c5fd;
-    --about-accent-blue-number: #2563eb;
-    --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
-    --about-accent-orange-border: rgba(234, 88, 12, 0.3);
-    --about-accent-orange-text: #fdba74;
-    --about-accent-orange-number: #ea580c;
-    --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
-    --about-accent-purple-border: rgba(147, 51, 234, 0.3);
-    --about-accent-purple-text: #d8b4fe;
-    --about-accent-purple-number: #9333ea;
-    --about-accent-green-bg: rgba(22, 163, 74, 0.1);
-    --about-accent-green-border: rgba(22, 163, 74, 0.3);
-    --about-accent-green-text: #86efac;
-    --about-accent-green-number: #16a34a;
-    --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
-    --about-accent-gray-border: rgba(100, 116, 139, 0.25);
-    --about-accent-gray-text: #cbd5e1;
-    --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
-    --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
-    --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
-    --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
-    --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+    --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
+    --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
+    --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+    --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
+    --scrollbar-track: transparent;
+    /* About page accents — dark: monochromatic blue-scale (no rainbow).
+       Differentiation via opacity/saturation within the 215-220° hue family. */
+    --about-accent-blue-bg: var(--color-brand-glow);
+    --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.25);
+    --about-accent-blue-text: var(--color-brand);
+    --about-accent-blue-number: var(--color-brand);
+    --about-accent-orange-bg: hsla(220, 20%, 50%, 0.08);
+    --about-accent-orange-border: hsla(220, 20%, 60%, 0.15);
+    --about-accent-orange-text: hsl(220, 15%, 82%);
+    --about-accent-orange-number: var(--color-brand);
+    --about-accent-purple-bg: hsla(220, 30%, 55%, 0.08);
+    --about-accent-purple-border: hsla(220, 30%, 60%, 0.15);
+    --about-accent-purple-text: hsl(220, 18%, 80%);
+    --about-accent-purple-number: var(--color-brand);
+    --about-accent-green-bg: hsla(215, 25%, 55%, 0.07);
+    --about-accent-green-border: hsla(215, 25%, 60%, 0.14);
+    --about-accent-green-text: hsl(220, 15%, 82%);
+    --about-accent-green-number: var(--color-brand);
+    --about-accent-gray-bg: hsla(220, 15%, 50%, 0.06);
+    --about-accent-gray-border: hsla(220, 15%, 55%, 0.12);
+    --about-accent-gray-text: var(--color-text-muted);
+    --about-accent-blue-pill-bg: var(--color-brand-glow);
+    --about-accent-orange-pill-bg: hsla(220, 20%, 50%, 0.12);
+    --about-accent-purple-pill-bg: hsla(220, 30%, 55%, 0.12);
+    --about-accent-green-pill-bg: hsla(215, 25%, 55%, 0.10);
+    --about-accent-gray-pill-bg: hsla(220, 15%, 50%, 0.10);
+
+    /* Hero tokens — dark */
+    --hero-divider: hsla(220, 20%, 50%, 0.08);
+    --hero-metric-bg: hsla(220, 20%, 14%, 0.6);
+    --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
+    --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
+    --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+    --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
+    --care-step-bg: hsla(220, 20%, 11%, 0.5);
+    --care-step-border: hsla(220, 20%, 94%, 0.06);
+    --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+    --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
+    --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
   }
 }
 
 /* Manual Toggle Overrides */
 [data-theme="dark"] {
+  color-scheme: dark;
   --color-brand: hsl(215, 75%, 65%);
   --color-brand-dim: hsl(215, 50%, 50%);
   --color-brand-glow: hsla(215, 75%, 65%, 0.18);
@@ -309,55 +506,147 @@
 
   --color-text-main: hsl(220, 20%, 94%);
   --color-text-muted: hsl(220, 12%, 65%);
+  --color-text-meta: hsl(220, 12%, 72%);
   --color-border: hsla(220, 20%, 94%, 0.08);
+  --header-divider: hsla(220, 20%, 94%, 0.12);
+
+  --color-callout-bg: hsla(220, 20%, 94%, 0.04);
+  --color-callout-border: hsla(220, 20%, 94%, 0.15);
+
+  --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
+  --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
+  --color-pill-bg: hsla(220, 20%, 18%, 0.5);
+  --color-pill-border: hsla(220, 20%, 94%, 0.08);
 
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
+  --shadow-hover: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(215, 75%, 65%, 0.25);
   --overlay-bg: hsla(220, 25%, 7%, var(--overlay-backdrop-strength));
-  /* About page accents — dark */
-  --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
-  --about-accent-blue-border: rgba(37, 99, 235, 0.3);
-  --about-accent-blue-text: #93c5fd;
-  --about-accent-blue-number: #2563eb;
-  --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
-  --about-accent-orange-border: rgba(234, 88, 12, 0.3);
-  --about-accent-orange-text: #fdba74;
-  --about-accent-orange-number: #ea580c;
-  --about-accent-purple-bg: rgba(147, 51, 234, 0.1);
-  --about-accent-purple-border: rgba(147, 51, 234, 0.3);
-  --about-accent-purple-text: #d8b4fe;
-  --about-accent-purple-number: #9333ea;
-  --about-accent-green-bg: rgba(22, 163, 74, 0.1);
-  --about-accent-green-border: rgba(22, 163, 74, 0.3);
-  --about-accent-green-text: #86efac;
-  --about-accent-green-number: #16a34a;
-  --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
-  --about-accent-gray-border: rgba(100, 116, 139, 0.25);
-  --about-accent-gray-text: #cbd5e1;
-  --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
-  --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
-  --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
-  --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
-  --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+  --scrollbar-track-code: hsla(220, 20%, 15%, 0.4);
+  --scrollbar-thumb-code: hsla(220, 20%, 70%, 0.4);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+  --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
+  --scrollbar-track: transparent;
+  /* About page accents — dark: monochromatic blue-scale (no rainbow).
+     Differentiation via opacity/saturation within the 215-220° hue family. */
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.25);
+  --about-accent-blue-text: var(--color-brand);
+  --about-accent-blue-number: var(--color-brand);
+  --about-accent-orange-bg: hsla(220, 20%, 50%, 0.08);
+  --about-accent-orange-border: hsla(220, 20%, 60%, 0.15);
+  --about-accent-orange-text: hsl(220, 15%, 82%);
+  --about-accent-orange-number: var(--color-brand);
+  --about-accent-purple-bg: hsla(220, 30%, 55%, 0.08);
+  --about-accent-purple-border: hsla(220, 30%, 60%, 0.15);
+  --about-accent-purple-text: hsl(220, 18%, 80%);
+  --about-accent-purple-number: var(--color-brand);
+  --about-accent-green-bg: hsla(215, 25%, 55%, 0.07);
+  --about-accent-green-border: hsla(215, 25%, 60%, 0.14);
+  --about-accent-green-text: hsl(220, 15%, 82%);
+  --about-accent-green-number: var(--color-brand);
+  --about-accent-gray-bg: hsla(220, 15%, 50%, 0.06);
+  --about-accent-gray-border: hsla(220, 15%, 55%, 0.12);
+  --about-accent-gray-text: var(--color-text-muted);
+  --about-accent-blue-pill-bg: var(--color-brand-glow);
+  --about-accent-orange-pill-bg: hsla(220, 20%, 50%, 0.12);
+  --about-accent-purple-pill-bg: hsla(220, 30%, 55%, 0.12);
+  --about-accent-green-pill-bg: hsla(215, 25%, 55%, 0.10);
+  --about-accent-gray-pill-bg: hsla(220, 15%, 50%, 0.10);
+
+  /* Hero tokens — dark */
+  --hero-divider: hsla(220, 20%, 50%, 0.08);
+  --hero-metric-bg: hsla(220, 20%, 14%, 0.6);
+  --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
+  --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
+  --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+  --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
+  --care-step-bg: hsla(220, 20%, 11%, 0.5);
+  --care-step-border: hsla(220, 20%, 94%, 0.06);
+  --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+  --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
+  --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
 }
 
 [data-theme="light"] {
+  color-scheme: light;
   --color-brand: hsl(215, 65%, 38%);
   --color-brand-dim: hsl(215, 40%, 55%);
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
   --color-brand-dark: hsl(215, 65%, 32%);
   --color-surface-elevated: hsl(220, 20%, 95%);
 
-  --color-bg: hsl(220, 20%, 97%);
-  --color-surface: hsl(220, 20%, 99%);
+  --color-bg: hsl(220, 20%, 98%);
+  --color-surface: hsl(220, 20%, 100%);
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
 
   --color-text-main: hsl(220, 30%, 12%);
   --color-text-muted: hsl(220, 10%, 42%);
+  --color-text-meta: hsl(220, 10%, 52%);
   --color-border: hsla(220, 30%, 12%, 0.08);
+
+  --color-callout-bg: hsla(220, 20%, 50%, 0.04);
+  --color-callout-border: hsla(220, 30%, 12%, 0.12);
+
+  --filter-chip-bg: hsla(220, 20%, 99%, 0.6);
+  --filter-chip-border: var(--color-border);
+  --filter-chip-bg-active: hsla(215, 65%, 38%, 0.12);
+  --filter-chip-border-active: hsla(215, 65%, 38%, 0.25);
+
+  --color-pill-bg: hsla(220, 20%, 94%, 0.9);
+  --color-pill-border: hsla(220, 30%, 12%, 0.06);
 
   --color-accent-gold: hsl(42, 85%, 55%);
   --code-bg: hsl(220, 18%, 13%);
+  --overlay-bg: hsla(220, 20%, 97%, var(--overlay-backdrop-strength));
+  --scrollbar-track-code: hsla(220, 20%, 20%, 0.3);
+  --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
+  --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
+
+  /* About page accents — light (blue aligned with brand) */
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 65%, 38%, 0.28);
+  --about-accent-blue-text: var(--color-brand-dark);
+  --about-accent-blue-number: var(--color-brand);
+  --about-accent-orange-bg: #fff7ed;
+  --about-accent-orange-border: #fed7aa;
+  --about-accent-orange-text: #9a3412;
+  --about-accent-orange-number: #ea580c;
+  --about-accent-purple-bg: #faf5ff;
+  --about-accent-purple-border: #e9d5ff;
+  --about-accent-purple-text: #6b21a8;
+  --about-accent-purple-number: #9333ea;
+  --about-accent-green-bg: #f0fdf4;
+  --about-accent-green-border: #bbf7d0;
+  --about-accent-green-text: #166534;
+  --about-accent-green-number: #16a34a;
+  --about-accent-gray-bg: #f8fafc;
+  --about-accent-gray-border: #e2e8f0;
+  --about-accent-gray-text: #334155;
+  --about-accent-blue-pill-bg: hsla(var(--hue-brand), 65%, 38%, 0.2);
+  --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
+  --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
+  --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
+  --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
+}
+
+/* Mobile (≤768px): same about-accent overrides when light theme is explicit */
+@media screen and (max-width: 768px) {
+  [data-theme="light"] {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
+  }
 }
 
 /* Reduced-motion: global accessibility preference moved to variables for
@@ -367,5 +656,46 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* High-contrast preference — stronger borders and muted text for readability */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: hsla(220, 30%, 12%, 0.18);
+    --color-text-muted: hsl(220, 10%, 35%);
+    /* About page accents — stronger contrast for readable cards on all viewports */
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
+  }
+}
+
+@media (prefers-contrast: more) {
+  [data-theme="dark"] {
+    --color-border: hsla(220, 20%, 94%, 0.18);
+    --color-text-muted: hsl(220, 12%, 72%);
+  }
+}
+
+@media (prefers-contrast: more) {
+  [data-theme="light"] {
+    --about-accent-blue-bg: hsla(var(--hue-brand), 65%, 38%, 0.22);
+    --about-accent-blue-text: hsl(215, 65%, 26%);
+    --about-accent-orange-bg: #ffedd5;
+    --about-accent-orange-text: #7c2d12;
+    --about-accent-purple-bg: #f3e8ff;
+    --about-accent-purple-text: #5b21b6;
+    --about-accent-green-bg: #dcfce7;
+    --about-accent-green-text: #14532d;
+    --about-accent-gray-bg: #f1f5f9;
+    --about-accent-gray-text: #1e293b;
   }
 }

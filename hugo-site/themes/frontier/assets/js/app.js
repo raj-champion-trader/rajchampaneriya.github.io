@@ -69,42 +69,128 @@ if (document.readyState === 'loading') {
 }
 
 // ------------------ Scroll reveal (Intersection Observer) ------------------
+// Re-triggers every time elements enter/leave viewport (no unobserve).
 function initScrollReveal() {
   const container = document.querySelector('#swup');
   const root = container || document;
-  const els = root.querySelectorAll('.scroll-reveal:not(.in-view)');
+  const els = root.querySelectorAll('.scroll-reveal');
   if (!els.length) return;
 
   const viewH = window.innerHeight;
-  const deferred = [];
 
   els.forEach((el) => {
     if (el.getBoundingClientRect().top < viewH + 40) {
       el.classList.add('in-view');
-    } else {
-      deferred.push(el);
     }
   });
-
-  if (!deferred.length) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('in-view');
         }
       });
     },
     { root: null, rootMargin: '40px 0px', threshold: 0.01 }
   );
-  deferred.forEach((el) => observer.observe(el));
+  els.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener('DOMContentLoaded', initScrollReveal);
 swup.hooks.on('page:view', () => {
   requestAnimationFrame(initScrollReveal);
+});
+
+// ------------------ Screenshot carousel — init on load and after Swup (inline scripts in replaced content do not run) ------------------
+function initScreenshotCarousels() {
+  const container = document.querySelector('#swup');
+  const root = container || document;
+  const carousels = root.querySelectorAll('.screenshot-carousel');
+  carousels.forEach((rootEl) => {
+    if (rootEl.dataset.carouselInitialized) return;
+    rootEl.dataset.carouselInitialized = '1';
+
+    const slides = rootEl.querySelectorAll('.screenshot-carousel-slide');
+    const dots = rootEl.querySelectorAll('.screenshot-carousel-dot');
+    const pauseBtn = rootEl.querySelector('.screenshot-carousel-pause');
+    if (!pauseBtn || !slides.length) return;
+
+    const intervalMs = parseInt(rootEl.dataset.interval || '4', 10) * 1000;
+    let timer = null;
+    let current = 0;
+    let paused = false;
+
+    function goTo(idx) {
+      if (idx < 0) idx = slides.length - 1;
+      if (idx >= slides.length) idx = 0;
+      current = idx;
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === current);
+        s.setAttribute('aria-hidden', i !== current);
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      const counter = rootEl.querySelector('.screenshot-carousel-counter');
+      if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    function next() {
+      if (slides.length <= 1) return;
+      goTo(current + 1);
+    }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      if (slides.length <= 1 || paused) return;
+      timer = setInterval(next, intervalMs);
+    }
+
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function setPaused(p) {
+      paused = p;
+      pauseBtn.setAttribute('aria-label', paused ? 'Play carousel' : 'Pause carousel');
+      pauseBtn.setAttribute('aria-pressed', paused);
+      const iconPause = pauseBtn.querySelector('.icon-pause');
+      const iconPlay = pauseBtn.querySelector('.icon-play');
+      if (iconPause) iconPause.hidden = paused;
+      if (iconPlay) iconPlay.hidden = !paused;
+      if (paused) stopTimer();
+      else startTimer();
+    }
+
+    pauseBtn.addEventListener('click', () => setPaused(!paused));
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i);
+        if (!paused) startTimer();
+      });
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) startTimer();
+          else stopTimer();
+        });
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(rootEl);
+    startTimer();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initScreenshotCarousels);
+swup.hooks.on('page:view', () => {
+  requestAnimationFrame(initScreenshotCarousels);
 });
 
 function initBlogTagFilter() {
@@ -154,21 +240,33 @@ function setTheme(theme) {
     // Sync browser chrome color so mobile browser UI matches the site theme
     try {
       const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0c' : '#ffffff');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0c' : '#f5f6f8');
     } catch (e) { /* noop */ }
 
+    // update icon and label to reflect the *next* theme on click
     if (themeIcon) {
+        // we show the *opposite* theme's icon to indicate what will happen when
+        // the user clicks the button. dark theme displays sun, light theme shows moon
         if (theme === 'dark') {
-            themeIcon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-        } else {
+            // display light icon (sun)
             themeIcon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+        } else {
+            // display dark icon (moon)
+            themeIcon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
         }
+    }
+
+    if (themeToggleBtn) {
+        const next = theme === 'dark' ? 'light' : 'dark';
+        themeToggleBtn.setAttribute('aria-label', `Switch to ${next} theme`);
     }
 } 
 
-// Init Theme
-const savedTheme = 'light';
-setTheme(savedTheme);
+// Init Theme — respect localStorage first, then system preference
+const savedTheme = localStorage.getItem('theme');
+const systemDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+const initialTheme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : (systemDark ? 'dark' : 'light');
+setTheme(initialTheme);
 
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {

@@ -8,16 +8,16 @@
     gap: var(--space-xs);
     margin: var(--space-md) 0 var(--space-lg);
     padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .category-filter-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    gap: var(--space-2xs);
+    padding: var(--space-2xs) var(--space-xs);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
     background: transparent;
     color: var(--color-text-muted);
     font-size: var(--card-meta-desktop);
@@ -41,8 +41,8 @@
 }
 
 .category-filter-btn.active .category-count {
-    background: rgba(255, 255, 255, 0.25);
-    color: var(--color-bg);
+  background: var(--filter-chip-bg-active);
+  color: var(--color-bg);
 }
 
 .category-count {
@@ -50,7 +50,7 @@
     font-weight: 600;
     background: var(--code-bg);
     color: var(--color-text-muted);
-    padding: 0.1rem 0.45rem;
+    padding: var(--space-2xs) var(--space-xs);
     border-radius: var(--radius-sm);
     line-height: 1.3;
     transition: background var(--transition-medium), color var(--transition-medium);
@@ -58,16 +58,16 @@
 
 /* Dark mode adjustments */
 [data-theme="dark"] .category-filter-bar {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: var(--filter-chip-border);
 }
 
 [data-theme="dark"] .category-filter-btn {
-    border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--filter-chip-border);
 }
 
 [data-theme="dark"] .category-filter-btn:hover {
-    border-color: var(--color-text-main);
-    background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-text-main);
+  background: var(--filter-chip-bg);
 }
 
 [data-theme="dark"] .category-filter-btn.active {
@@ -83,7 +83,7 @@
     }
 
     .category-filter-btn {
-        padding: 0.35rem 0.7rem;
+        padding: var(--space-xs) var(--space-sm);
         font-size: var(--card-meta-mobile);
     }
 }

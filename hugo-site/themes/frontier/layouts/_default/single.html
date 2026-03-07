@@ -20,15 +20,15 @@
 {{ end }}
 
 <article class="single-post">
-    <div class="post-navigation-top scroll-reveal">
+    <!-- <div class="post-navigation-top scroll-reveal">
         {{ if eq .Section "blog" }}
-        <a href="{{ "/blog/" | absLangURL }}" class="btn-text">← Back to Blog</a>
+        <a href="{{ "/blog/" | absLangURL }}" class="btn btn-text">← Back to Blog</a>
         {{ else if eq .Section "projects" }}
-        <a href="{{ "/projects/" | absLangURL }}" class="btn-text">← Back to Projects</a>
+        <a href="{{ "/projects/" | absLangURL }}" class="btn btn-text">← Back to Projects</a>
         {{ else }}
-        <a href="{{ "" | absLangURL }}" class="btn-text">← Back Home</a>
+        <a href="{{ "" | absLangURL }}" class="btn btn-text">← Back Home</a>
         {{ end }}
-    </div>
+    </div> -->
     <header class="post-header scroll-reveal">
         {{ if ne .File.Path "about.md" }}
         <div class="post-meta">
@@ -62,17 +62,6 @@
         <p class="post-description">{{ . }}</p>
         {{ end }}
     </header>
-
-    {{/* Scrollspy TOC: right above article body; populated by JS from .post-content h2/h3; hidden when empty */}}
-    <nav id="scrollspy-nav" class="scrollspy-nav" aria-label="Article contents" hidden>
-        <div class="scrollspy-inner">
-            <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
-                <span class="scrollspy-trigger-label">Contents</span>
-                <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
-        </div>
-    </nav>
 
     <div class="post-content surface-panel">
         {{ .Content }}

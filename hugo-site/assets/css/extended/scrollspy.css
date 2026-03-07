@@ -1,20 +1,136 @@
 /* =========================================
    Scrollspy navigation — article TOC
-   Sticky top bar; horizontal on desktop,
-   collapsible dropdown on mobile/tablet.
+   When in header (.scrollspy-nav--header): second row of sticky header.
+   Standalone (legacy): sticky then fixed when scrolled past.
+   Collapsible dropdown on mobile/tablet.
    ========================================= */
 
-/* Top offset so nav sits below site header */
+/* Top offset for scroll-to-section (header + optional scrollspy row) */
 :root {
   --scrollspy-header-offset: 56px;
+  --header-height-with-scrollspy: 120px; /* updated by JS when scrollspy row visible */
 }
 
-/* Scrollspy: sticky in flow, then fixed when scrolled past; glass + high z-index */
-.scrollspy-nav {
+/* ----- Header-embedded: second row of site header (no sticky/fixed) ----- */
+.scrollspy-nav--header {
+  position: relative;
+  top: auto;
+  z-index: inherit;
+  margin: 0;
+  margin-bottom: 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: none;
+  box-shadow: none;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* Match site header so both rows read as one chrome bar */
+  background: var(--color-surface-glass);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .scrollspy-nav--header {
+    backdrop-filter: saturate(130%) blur(8px);
+    -webkit-backdrop-filter: saturate(130%) blur(8px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scrollspy-nav--header {
+    background: var(--color-surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+[data-theme="dark"] .scrollspy-nav--header {
+  background: var(--color-surface-glass);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  [data-theme="dark"] .scrollspy-nav--header {
+    background: var(--color-surface);
+  }
+}
+
+.scrollspy-nav--header.has-items {
+  display: block;
+  max-height: 15rem; /* allow transition to 0 when hidden */
+  opacity: 1;
+  transition: max-height var(--transition-medium), opacity var(--transition-medium), border-top-width var(--transition-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollspy-nav--header.has-items {
+    transition-duration: 0.05s;
+  }
+}
+
+/* Smart auto-hide: when viewport leaves main content, collapse scrollspy row with subtle animation */
+.scrollspy-nav--header.scrollspy-row-hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-top-width: 0;
+  transition: max-height var(--transition-medium), opacity var(--transition-medium), border-top-width var(--transition-fast);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .scrollspy-nav--header.scrollspy-row-hidden {
+    transition-duration: 0.05s;
+  }
+}
+
+/* Trigger row: align with header (reuses .scrollspy-inner padding) */
+.scrollspy-nav--header .scrollspy-trigger {
+  min-height: var(--space-lg);
+  padding: var(--space-xs) 0;
+}
+
+.scrollspy-nav--header .scrollspy-inner {
+  padding: 0 var(--content-padding-mobile);
+}
+@media screen and (min-width: 768px) {
+  .scrollspy-nav--header .scrollspy-inner {
+    padding: 0 var(--content-padding-tablet);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .scrollspy-nav--header .scrollspy-inner {
+    padding: 0 var(--content-padding-desktop);
+  }
+
+  /* Desktop: horizontal list when expanded — compact, same row as trigger */
+  .scrollspy-nav--header.is-open .scrollspy-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-sm);
+    padding: var(--space-2xs) 0 var(--space-xs);
+    max-height: none;
+    overflow-y: visible;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-2xs);
+    padding-top: var(--space-xs);
+  }
+
+  .scrollspy-nav--header.is-open .scrollspy-list .scrollspy-link {
+    width: auto;
+    padding: var(--space-2xs) var(--space-xs);
+  }
+
+  .scrollspy-nav--header.is-open .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
+    padding-left: var(--space-sm);
+  }
+}
+
+/* Scrollspy: sticky in flow, then fixed when scrolled past (standalone only; not used when in header) */
+.scrollspy-nav:not(.scrollspy-nav--header) {
   position: sticky;
   top: var(--scrollspy-header-offset);
-  z-index: 50;
-  margin: 0 calc(-1 * var(--content-padding-mobile, 1rem));
+  z-index: var(--z-header);
+  margin: 0 calc(-1 * var(--content-padding-mobile));
   margin-bottom: var(--space-sm);
   /* Solid fallback for glass */
   background: var(--color-surface);
@@ -23,26 +139,26 @@
   transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
-/* Glass effect: semi-transparent + blur when supported */
+/* Glass effect for standalone scrollspy only */
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .scrollspy-nav {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.85));
+  .scrollspy-nav:not(.scrollspy-nav--header) {
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .scrollspy-nav {
+  .scrollspy-nav:not(.scrollspy-nav--header) {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: var(--color-surface);
   }
 }
 
-/* Mobile: compact bar, tight margin below title */
+/* Mobile: compact bar (standalone only) */
 @media screen and (max-width: 767px) {
-  .scrollspy-nav {
+  .scrollspy-nav:not(.scrollspy-nav--header) {
     margin-bottom: var(--space-xs);
   }
 }
@@ -64,8 +180,8 @@
   flex-shrink: 0;
 }
 
-/* When user has scrolled past the scrollspy, fix it to the top of the viewport */
-.scrollspy-nav.is-stuck {
+/* When user has scrolled past the scrollspy, fix it to the top (standalone only) */
+.scrollspy-nav:not(.scrollspy-nav--header).is-stuck {
   position: fixed;
   top: var(--scrollspy-header-offset);
   left: 0;
@@ -74,30 +190,30 @@
   margin-right: 0;
   width: 100%;
   box-sizing: border-box;
-  z-index: 50;
+  z-index: var(--z-header);
   /* Stronger background when fixed so content doesn’t show through */
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .scrollspy-nav.is-stuck {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.92));
+  .scrollspy-nav:not(.scrollspy-nav--header).is-stuck {
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .scrollspy-nav.is-stuck {
+  .scrollspy-nav:not(.scrollspy-nav--header).is-stuck {
     background: var(--color-surface);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 }
 
-.scrollspy-nav[hidden] {
+.scrollspy-nav:not(.scrollspy-nav--header)[hidden] {
   display: none !important;
 }
 
@@ -105,10 +221,11 @@
   display: block;
 }
 
-.scrollspy-inner {
-  max-width: var(--container-base, 720px);
+/* Standalone scrollspy only (header-embedded uses .scrollspy-nav--header .scrollspy-inner above) */
+.scrollspy-nav:not(.scrollspy-nav--header) .scrollspy-inner {
+  max-width: var(--container-base);
   margin: 0 auto;
-  padding: 0 var(--content-padding-mobile, 1rem);
+  padding: 0 var(--content-padding-mobile);
 }
 
 /* ----- Desktop: horizontal list ----- */
@@ -116,9 +233,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 1rem;
+  gap: var(--space-2xs) var(--space-sm);
   list-style: none;
-  padding: 0.5rem 0;
+  padding: var(--space-xs) 0;
   margin: 0;
 }
 
@@ -128,9 +245,9 @@
 
 .scrollspy-list .scrollspy-link {
   display: inline-block;
-  padding: 0.35rem 0.5rem;
+  padding: var(--space-2xs) var(--space-xs);
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--color-text-muted);
   text-decoration: none;
   border-radius: var(--radius-xs);
@@ -143,31 +260,26 @@
   width: 100%;
 }
 
-.scrollspy-list .scrollspy-link:hover {
-  color: var(--color-brand);
-  background: var(--color-border);
-}
-
 .scrollspy-list .scrollspy-link:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
 .scrollspy-list .scrollspy-link.is-active {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--color-text-main);
   box-shadow: inset 0 -2px 0 var(--color-brand);
 }
 
 /* Nested (h3): slight indent on desktop */
 .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-  padding-left: 1rem;
+  padding-left: var(--space-sm);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
 }
 
 .scrollspy-list .scrollspy-item.is-nested .scrollspy-link.is-active {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
 /* ----- Mobile/tablet: trigger + collapsible list ----- */
@@ -176,17 +288,17 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: var(--space-xs) 0;
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-main);
   background: transparent;
   border: none;
   cursor: pointer;
   border-radius: var(--radius-xs);
   transition: background-color var(--transition-fast);
-  gap: 0.5rem;
-  min-height: 2.25rem;
+  gap: var(--space-xs);
+  min-height: var(--space-lg);
 }
 
 .scrollspy-trigger-label {
@@ -196,10 +308,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.scrollspy-trigger:hover {
-  background: var(--color-border);
 }
 
 .scrollspy-trigger:focus-visible {
@@ -219,7 +327,7 @@
 @media screen and (max-width: 767px) {
   .scrollspy-trigger {
     display: flex;
-    padding: 0.4rem 0;
+    padding: var(--space-xs) 0;
   }
 
   .scrollspy-list {
@@ -227,7 +335,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 60vh;
     overflow-y: auto;
   }
@@ -236,18 +344,25 @@
     display: flex;
   }
 
+  /* Header-embedded: clear separation between trigger and dropdown list */
+  .scrollspy-nav--header.is-open .scrollspy-list {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-xs);
+    margin-top: var(--space-2xs);
+  }
+
   .scrollspy-list .scrollspy-link {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     width: 100%;
   }
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-    padding-left: 1rem;
+    padding-left: var(--space-sm);
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .scrollspy-nav {
+  .scrollspy-nav:not(.scrollspy-nav--header) {
     margin-bottom: var(--space-xs);
   }
 
@@ -259,7 +374,7 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 50vh;
     overflow-y: auto;
   }
@@ -268,19 +383,26 @@
     display: flex;
   }
 
+  /* Header-embedded: clear separation between trigger and dropdown list */
+  .scrollspy-nav--header.is-open .scrollspy-list {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-xs);
+    margin-top: var(--space-2xs);
+  }
+
   .scrollspy-inner {
-    padding: 0 var(--content-padding-tablet, 1.5rem);
+    padding: 0 var(--content-padding-tablet);
   }
 }
 
 /* Desktop: same collapsible trigger + dropdown as mobile/tablet for consistency */
 @media screen and (min-width: 1024px) {
-  .scrollspy-nav {
-    margin: 0 calc(-1 * var(--content-padding-desktop, 1.5rem));
+  .scrollspy-nav:not(.scrollspy-nav--header) {
+    margin: 0 calc(-1 * var(--content-padding-desktop));
   }
 
   .scrollspy-inner {
-    padding: 0 var(--content-padding-desktop, 1.5rem);
+    padding: 0 var(--content-padding-desktop);
   }
 
   .scrollspy-trigger {
@@ -291,7 +413,7 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 55vh;
     overflow-y: auto;
   }
@@ -301,16 +423,16 @@
   }
 
   .scrollspy-list .scrollspy-link {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     width: 100%;
   }
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-    padding-left: 1rem;
+    padding-left: var(--space-sm);
   }
 }
 
-/* Smooth scroll target offset (for fixed header + scrollspy) */
+/* Smooth scroll target offset: account for sticky header (+ scrollspy row when in header) */
 .scrollspy-nav + .post-navigation-top,
 .scrollspy-nav + * {
   scroll-margin-top: calc(var(--scrollspy-header-offset) + 60px);
@@ -318,7 +440,7 @@
 
 .post-content.surface-panel h2[id],
 .post-content.surface-panel h3[id] {
-  scroll-margin-top: calc(var(--scrollspy-header-offset) + 60px);
+  scroll-margin-top: var(--header-height-with-scrollspy, calc(var(--header-height, 56px) + 60px));
 }
 
 /* =========================================
@@ -327,12 +449,12 @@
 .scroll-to-top {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .scroll-to-top {
-    background: var(--color-surface-glass, rgba(255, 255, 255, 0.88));
+    background: var(--color-surface-glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }

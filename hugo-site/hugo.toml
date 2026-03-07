@@ -54,8 +54,8 @@ enableRobotsTXT = true
     title= "Raj Champaneriya"
     subtitle = "Enterprise Architecture That Protects Careers and Accelerates Transformations"
     imageUrl = "images/profile.jpg"
-    imageWidth = 160
-    imageHeight = 160
+    imageWidth = 140
+    imageHeight = 140
     imageTitle = "Raj Champaneriya — Enterprise Architect & Strategic Technology Leader"
     buttons = [
       { name = "Architecture Blueprints", url = "/projects" },
@@ -78,10 +78,6 @@ enableRobotsTXT = true
       value = "99.95%"
       label = "Uptime SLA"
       icon = "uptime"
-    [[params.premium.metrics]]
-      value = "85%"
-      label = "Mentee Promotion Rate"
-      icon = "promotion"
     [[params.premium.metrics]]
       value = "40%"
       label = "Cost Reduction"

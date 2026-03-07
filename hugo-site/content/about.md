@@ -165,20 +165,11 @@ Selected outcomes:
   </div>
 </div>
 
-## Credentials
-
-**Certifications**
-- Microsoft Azure AI Engineer Associate (AI-102)
-- AWS Certified Solutions Architect — Associate
-- Microsoft Specialist — Programming in C#
-
-**Education** — M.Sc. Information Technology · B.Sc. Information Technology
-
 ---
 
 ## Let's Discuss Your Architecture
 
-Whether you're navigating a high-stakes modernization or evaluating cloud strategy for a seven-figure decision — I'm always open to strategic conversations.
+Whether you're navigating a high-stakes modernization or evaluating cloud strategy for a seven-figure decision — I'm open to strategic conversations.
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
