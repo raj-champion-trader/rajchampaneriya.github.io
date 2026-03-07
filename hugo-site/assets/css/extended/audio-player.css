@@ -227,7 +227,7 @@
 }
 
 .bottom-nav #audio-player-trigger.no-audio {
-  opacity: 0.35;
+  opacity: var(--opacity-muted);
   pointer-events: none;
 }
 
@@ -239,7 +239,7 @@
 /* Pulse animation when audio is playing */
 @keyframes audio-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  50% { opacity: var(--opacity-icon-muted); }
 }
 
 .bottom-nav #audio-player-trigger.is-playing .icon,

@@ -44,7 +44,7 @@
   height: 36px;
   border-radius: var(--radius-sm);
   background: var(--color-brand-glow);
-  opacity: 0.7;
+  opacity: var(--opacity-icon-muted);
   z-index: -1;
 }
 
@@ -90,7 +90,7 @@
   border: none !important;
   box-shadow: none !important;
   background: none !important;
-  opacity: 0.85;
+  opacity: var(--opacity-overlay-soft);
 }
 .bottom-nav .nav-item.active .icon,
 .bottom-nav .nav-item.active svg {
@@ -183,7 +183,7 @@ body.bottom-nav-collapsed .player-bar-toggle {
 .bottom-nav-toggle {
   position: fixed;
   left: 50%;
-  bottom: calc(16px + var(--space-xs));
+  bottom: calc(var(--space-sm) + var(--space-xs));
   transform: translateX(-50%);
   z-index: 80;
   display: inline-flex;
@@ -210,7 +210,7 @@ body.bottom-nav-collapsed .player-bar-toggle {
 .player-bar-toggle {
   position: fixed;
   left: calc(50% + 56px);
-  bottom: calc(18px + var(--space-xs));
+  bottom: calc(var(--space-sm) + var(--space-xs));
   transform: translateX(-50%);
   z-index: 80;
   display: inline-flex;
@@ -239,8 +239,8 @@ body.player-bar-visible .player-bar-toggle {
 
 /* Smaller handle and reposition when viewport very small */
 @media (max-width: 420px) {
-  .bottom-nav-toggle { width: 40px; height: 30px; bottom: 12px; }
-  .player-bar-toggle { left: calc(50% + 48px); bottom: 12px; }
+  .bottom-nav-toggle { width: 40px; height: 30px; bottom: var(--space-sm); }
+  .player-bar-toggle { left: calc(50% + 48px); bottom: var(--space-sm); }
 }
 
 /* ------------------ Collapsible player-bar ------------------ */
@@ -256,11 +256,11 @@ body.player-bar-visible .player-bar-toggle {
 }
 
 /* Reduce page bottom padding when bottom-nav collapsed */
-.app-layout.bottom-nav-collapsed { padding-bottom: 32px; }
+.app-layout.bottom-nav-collapsed { padding-bottom: var(--space-lg); }
 
 /* Scroll-to-top moves down when bottom pane collapsed for better reach */
-body.bottom-nav-collapsed .scroll-to-top { bottom: 60px; }
+body.bottom-nav-collapsed .scroll-to-top { bottom: var(--space-xl); }
 
 /* Reduce page bottom padding when player-bar collapsed */
-.app-layout.player-bar-collapsed { padding-bottom: 80px; }
+.app-layout.player-bar-collapsed { padding-bottom: var(--space-2xl); }
 

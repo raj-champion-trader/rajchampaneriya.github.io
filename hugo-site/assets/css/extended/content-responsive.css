@@ -351,14 +351,14 @@
   border-radius: 50%;
   border: 1px solid var(--color-border);
   background: var(--color-border);
-  opacity: 0.4;
+  opacity: var(--opacity-muted);
   cursor: pointer;
   transition: background var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
   box-sizing: content-box;
 }
 
 .screenshot-carousel-dot:hover {
-  opacity: 0.7;
+  opacity: var(--opacity-icon-muted);
   background: var(--color-border);
 }
 

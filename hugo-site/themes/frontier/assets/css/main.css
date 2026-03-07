@@ -205,7 +205,7 @@ p {
   background: none;
   font-weight: 400;
   color: var(--color-text-muted);
-  opacity: 0.7;
+  opacity: var(--opacity-icon-muted);
 }
 
 .site-header .header-inner .logo-sep::before {
@@ -629,7 +629,7 @@ main#swup {
     display: inline-flex;
     align-items: center;
     color: var(--color-text-muted);
-    opacity: 0.7;
+    opacity: var(--opacity-icon-muted);
     transition: opacity var(--transition-slow);
 }
 
@@ -760,7 +760,7 @@ select:focus-visible {
 
 .subtitle {
     font-size: var(--text-sm);
-    opacity: 0.8;
+    opacity: var(--opacity-icon);
     margin-top: var(--space-xs);
     max-width: var(--measure-sm);
 }
@@ -1007,7 +1007,7 @@ select:focus-visible {
 /* Menu separator & mobile menu responsiveness — moved from `hugo-site/assets/css/extended/menu-separator.css` */
 .menu-separator {
     color: var(--color-text-muted);
-    opacity: 0.5;
+    opacity: var(--opacity-muted);
     padding: 0 var(--space-xs);
     user-select: none;
 } 
@@ -1035,7 +1035,7 @@ select:focus-visible {
 }
 
 .nav-item .icon {
-    opacity: 0.7;
+    opacity: var(--opacity-icon-muted);
 }
 
 .nav-item.active .icon {

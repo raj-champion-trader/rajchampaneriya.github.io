@@ -168,7 +168,7 @@ a:hover{
   border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--color-border), transparent);
-  opacity: 0.6;
+  opacity: var(--opacity-muted);
 }
 
 /* List styling in posts — top spacing from .single-post .post-content > * + * */
@@ -204,7 +204,7 @@ a:hover{
   height: 4px;
   border-radius: 50%;
   background-color: var(--color-brand);
-  opacity: 0.9;
+  opacity: var(--opacity-icon);
 }
 
 .post-content ol {

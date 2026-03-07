@@ -110,6 +110,9 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
+  /* Layout gap — alias for menu/layout consistency (single source for #menu etc.) */
+  --gap: var(--space-sm);
+
   /* Content spacing — semantic tokens for vertical rhythm (post/about content) */
   --content-heading-after: var(--space-sm);
   --content-section-gap: var(--space-lg);
@@ -167,6 +170,8 @@
   --opacity-icon: 0.95;
   --opacity-icon-muted: 0.7;
   --opacity-muted: 0.6;
+  /* Soft overlay / disabled-like states (backdrop, inactive) */
+  --opacity-overlay-soft: 0.85;
 
   /* Main content bottom spacing — reserve for fixed bottom nav + player on mobile only */
   --main-bottom-spacing: 0;

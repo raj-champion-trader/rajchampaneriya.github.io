@@ -670,7 +670,7 @@
 .care-step__icon svg {
     width: 18px;
     height: 18px;
-    opacity: 0.85;
+    opacity: var(--opacity-overlay-soft);
 }
 
 .care-step--clarity .care-step__icon { color: hsl(215, 65%, 48%); }

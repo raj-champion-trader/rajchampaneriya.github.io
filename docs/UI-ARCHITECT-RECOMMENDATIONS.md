@@ -43,6 +43,8 @@
 
 **Tokens:** `--space-2xs` (0.25rem) → `--space-xs` (0.5rem) → `--space-sm` (1rem) → `--space-md` (1.5rem) → `--space-lg` (2.5rem) → `--space-xl` (4rem) → `--space-2xl` (6rem).
 
+**Layout alias:** `--gap: var(--space-sm)` in `variables.css` — use for menu/layout consistency (e.g. `#menu` margin); single source so spacing stays consistent. Prefer `var(--gap)` or the underlying `--space-*` in layout components.
+
 **Actions:**
 - **Replace raw spacing:** Any `margin: 8px`, `padding: 12px`, `gap: 0.5rem`, `margin-top: 24px`, etc. with the closest token (e.g. `8px` → `--space-xs`, `12px` → between `--space-xs` and `--space-sm`; prefer `--space-sm` for consistency, or add `--space-s` only if you introduce a new scale step in `variables.css`).
 - **Content padding:** Use `--content-padding-mobile` / `--content-padding-tablet` / `--content-padding-desktop` for horizontal content; `--home-padding-*` for home container.
@@ -146,6 +148,12 @@
   `--opacity-icon-muted: 0.7;`  
   Use them in footer icons, nav icons, hero metric icons, etc.
 - **Overlays:** Already have `--overlay-backdrop-strength` and `--overlay-bg`; use them for all fullscreen overlays.
+
+### 6.1 Theme and opacity (light/dark parity)
+
+**Rule:** Opacity for non-text UI (icons, separators, decorative elements, overlays) must use the semantic tokens so both light and dark themes feel even. Do not use raw values (e.g. `opacity: 0.7`) for hierarchy.
+
+**Tokens:** `--opacity-icon` (0.95), `--opacity-icon-muted` (0.7), `--opacity-muted` (0.6), `--opacity-overlay-soft` (0.85). Use them in nav icons, footer icons, hero metrics, carousel dots, and overlay/backdrop contexts. Reserve `--color-text-muted` for text hierarchy; avoid opacity on body/meta text so contrast stays predictable (WCAG) in both themes.
 
 ---
 
