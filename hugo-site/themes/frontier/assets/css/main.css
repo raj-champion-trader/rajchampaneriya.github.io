@@ -809,6 +809,10 @@ select:focus-visible {
 /* Responsive — Tablet & Desktop enhancements (implements 1.5)
    Hero layout is fully handled by premium-hero.css; do not override here. */
 @media (min-width: 768px) {
+  :root {
+    --footer-gap: var(--space-lg);
+  }
+
   .app-layout {
     /* Enough clearance so last line of content is never covered by fixed UI */
     padding-bottom: var(--space-lg);
@@ -835,6 +839,11 @@ select:focus-visible {
 }
 
 @media (min-width: 1024px) {
+  :root {
+    /* Tighter content-to-footer transition on desktop (mobile keeps --footer-gap from variables.css) */
+    --footer-gap: var(--space-md);
+  }
+
   .feed-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
@@ -861,7 +870,7 @@ select:focus-visible {
 
   /* Bottom nav hidden on desktop — reduce bottom padding */
   .app-layout {
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
   }
 
   /* Scroll-to-top: consistent corner when bottom nav is hidden */

@@ -125,7 +125,7 @@ a:hover{
 /* Content paragraphs with better spacing and readability */
 .post-content p {
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--content-paragraph-after);
   color: var(--color-text-main);
   font-size: var(--text-base);
 }
@@ -141,7 +141,7 @@ a:hover{
   font-size: var(--text-2xl);
   font-weight: var(--fw-bold);
   margin-top: var(--space-lg);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--content-heading-after);
   letter-spacing: -0.015em;
   color: var(--color-text-main);
   border-bottom: 2px solid var(--color-border);
@@ -149,11 +149,16 @@ a:hover{
   transition: border-color var(--transition-slow);
 }
 
+/* H2 that follows an hr (e.g. "Let's Discuss...") — tighter top margin for consistent section gap */
+.post-content hr + h2 {
+  margin-top: var(--content-section-gap);
+}
+
 .post-content h3 {
   font-size: var(--text-xl);
   font-weight: var(--fw-semibold);
   margin-top: var(--space-md);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--content-heading-after);
   color: var(--color-text-main);
 }
 
@@ -169,13 +174,58 @@ a:hover{
 /* List styling in posts */
 .post-content ul,
 .post-content ol {
-  margin-bottom: var(--space-md);
+  margin-top: var(--content-list-margin-top);
+  margin-bottom: var(--content-list-after);
   padding-left: var(--space-md);
 }
 
 .post-content li {
   margin-bottom: var(--space-xs);
   line-height: var(--leading-relaxed);
+}
+
+/* Custom list markers — premium feel (replaces default bullets) */
+.post-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.post-content ul li {
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.post-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  opacity: 0.9;
+}
+
+.post-content ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: post-list;
+}
+
+.post-content ol li {
+  position: relative;
+  padding-left: calc(var(--space-md) + 1.5em);
+  counter-increment: post-list;
+}
+
+.post-content ol li::before {
+  content: counter(post-list) ".";
+  position: absolute;
+  left: 0;
+  font-weight: var(--fw-semibold);
+  color: var(--color-brand);
+  font-size: var(--text-sm);
 }
 
 /* Blockquote styling for emphasis */
@@ -483,7 +533,15 @@ a:hover{
 
   .post-content ul,
   .post-content ol {
+    padding-left: 0;
+  }
+
+  .post-content ul li {
     padding-left: var(--space-sm);
+  }
+
+  .post-content ol li {
+    padding-left: calc(var(--space-sm) + 1.5em);
   }
 
   .post-footer {

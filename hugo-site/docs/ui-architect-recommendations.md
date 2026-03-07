@@ -2,6 +2,8 @@
 
 **Goal:** Eliminate fragmented visuals and deliver a polished, premium feel across the About page and Landing page in light theme by unifying primary, secondary, and tertiary color usage.
 
+**Content spacing and footer:** For the semantic content spacing scale (`--content-heading-after`, `--content-section-gap`, `--content-paragraph-after`, `--content-list-after`, `--footer-inner-gap`) and footer spacing (`--footer-gap`), see the root **docs/UI-ARCHITECT-RECOMMENDATIONS.md** §2.2 and §2.3.
+
 ---
 
 ## 1. Root Cause Summary

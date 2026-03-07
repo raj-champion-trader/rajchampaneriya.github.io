@@ -108,6 +108,14 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
+  /* Content spacing — semantic tokens for vertical rhythm (post/about content) */
+  --content-heading-after: var(--space-sm);
+  --content-section-gap: var(--space-lg);
+  --content-paragraph-after: var(--space-md);
+  --content-list-after: var(--space-md);
+  --content-list-margin-top: var(--space-sm);
+  --footer-inner-gap: var(--space-sm);
+
   --shadow-sm: 0 2px 4px hsla(220, 20%, 10%, 0.05);
   --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
   --shadow-lg: 0 15px 30px hsla(220, 20%, 10%, 0.1);

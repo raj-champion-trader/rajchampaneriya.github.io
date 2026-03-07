@@ -47,19 +47,36 @@
 - **Replace raw spacing:** Any `margin: 8px`, `padding: 12px`, `gap: 0.5rem`, `margin-top: 24px`, etc. with the closest token (e.g. `8px` → `--space-xs`, `12px` → between `--space-xs` and `--space-sm`; prefer `--space-sm` for consistency, or add `--space-s` only if you introduce a new scale step in `variables.css`).
 - **Content padding:** Use `--content-padding-mobile` / `--content-padding-tablet` / `--content-padding-desktop` for horizontal content; `--home-padding-*` for home container.
 
-### 2.2 Main content bottom spacing and footer
+### 2.2 Content spacing scale (semantic tokens)
+
+**Purpose:** Consistent vertical rhythm in post/about content so headings, paragraphs, lists, and sections feel cohesive.
+
+**Semantic tokens (in `variables.css`):**
+
+| Token | Maps to | Use for |
+|-------|--------|--------|
+| `--content-heading-after` | `var(--space-sm)` | Space below H2/H3 (before paragraph or list). |
+| `--content-section-gap` | `var(--space-lg)` | Space above a new major section (e.g. H2 that follows `hr`). |
+| `--content-paragraph-after` | `var(--space-md)` | Margin below paragraphs; keeps paragraph → list and list → next block even. |
+| `--content-list-after` | `var(--space-md)` | Margin below lists (e.g. contact links). |
+| `--content-list-margin-top` | `var(--space-sm)` | Margin above lists so they don’t sit flush under a paragraph. |
+| `--footer-inner-gap` | `var(--space-md)` | Vertical gap between footer rows (social, email, tagline). |
+
+**Rule of thumb:** New content blocks (custom shortcodes, new about sections) should use these tokens for margins/padding so the site stays consistent. Prefer these over raw `--space-*` in `.post-content` and `.page-content` where vertical rhythm matters.
+
+### 2.3 Main content bottom spacing and footer
 
 **Issue:** Inconsistent gap between main content and footer; mobile bottom nav/player overlap concerns.
 
 **Current:**
-- `main` (via `.app-layout`) has `padding-bottom: var(--main-bottom-spacing)` (8.75rem).
-- `.site-footer` has `margin-top: var(--space-lg)` and `padding: var(--space-md) 0 var(--space-lg)`.
+- `main` (via `.app-layout`) has `padding-bottom: var(--main-bottom-spacing)` (8.75rem) — reserve for bottom nav + player on mobile; do not use to reduce content–footer gap on desktop.
+- `.site-footer` has `margin-top: var(--footer-gap)` (default `var(--space-xl)`; on desktop 1024px+ overridden to `var(--space-lg)` in `main.css`).
+- `.site-footer-inner` uses `gap: var(--footer-inner-gap)` for separation between social row, email row, and tagline.
 
 **Actions:**
-- Introduce a single token for “gap above footer” so it’s consistent and tunable:
-  - In `variables.css`: e.g. `--footer-gap: var(--space-xl);` (or keep reusing `--space-lg` but document it).
-- Use the same token for footer’s top margin: `.site-footer { margin-top: var(--footer-gap); }` (or equivalent in `footer.css`).
-- Ensure `--main-bottom-spacing` remains the single control for “space reserved above bottom nav/player” on mobile; do not mix ad-hoc padding on `main` elsewhere.
+- **Footer gap:** `--footer-gap` in `variables.css` controls margin above the footer; desktop override in `main.css` at `min-width: 1024px` sets `--footer-gap: var(--space-lg)` for a less stark transition.
+- **Footer inner gap:** Use `--footer-inner-gap` in `footer.css` for `.site-footer-inner` so spacing between rows is tunable in one place.
+- Keep `--main-bottom-spacing` as the single control for “space reserved above bottom nav/player” on mobile only.
 
 ---
 
