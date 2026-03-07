@@ -34,7 +34,7 @@
    ------------------------------------------------------------------------- */
 .post-content > div {
   padding: var(--content-block-padding-mobile);
-  margin-bottom: var(--space-md);
+  margin-bottom: 0;
   border-radius: var(--radius-sm);
   min-width: 0;
   max-width: 100%;
@@ -92,7 +92,7 @@
    ------------------------------------------------------------------------- */
 .post-content .content-callout {
   padding: var(--content-block-padding-mobile);
-  margin-bottom: var(--space-md);
+  margin-bottom: 0;
   background: var(--color-brand-glow);
   border-left: 3px solid var(--color-brand);
   border-radius: var(--radius-xs);
@@ -193,9 +193,10 @@
 
 /* -------------------------------------------------------------------------
    Project page diagrams (Excalidraw-style images)
+   Vertical spacing from .single-post .post-content > * + *
    ------------------------------------------------------------------------- */
 .post-content figure.project-diagram {
-  margin: var(--space-lg) 0;
+  margin: 0;
   max-width: 100%;
   text-align: center;
   border-radius: var(--radius-md);
@@ -221,21 +222,22 @@
   color: var(--color-text-muted);
 }
 
+/* Hero diagram — extra space below only; gap above from * + * */
 .post-content figure.project-diagram-hero {
-  margin: var(--space-xl) 0;
+  margin: 0 0 var(--space-xl) 0;
 }
 
 .post-content figure.project-diagram figcaption code {
   font-size: var(--text-sm);
-  padding: 0.1em 0.35em;
+  padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-xs);
   background: var(--code-bg);
   color: var(--color-text-main);
 }
 
-/* Flow diagram (train-simulator) — slightly softer frame for readability */
+/* Flow diagram (train-simulator) — extra space below only; gap above from * + * */
 .post-content figure.project-diagram-flow {
-  margin: var(--space-xl) 0;
+  margin: 0 0 var(--space-xl) 0;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
@@ -248,9 +250,10 @@
 
 /* -------------------------------------------------------------------------
    Screenshot carousel — auto-play in view, pause/play, smooth transition
+   Vertical spacing from * + *
    ------------------------------------------------------------------------- */
 .screenshot-carousel {
-  margin: var(--space-xl) 0;
+  margin: 0;
   max-width: 100%;
 }
 
@@ -343,8 +346,8 @@
   width: 10px;
   height: 10px;
   padding: var(--space-sm);
-  /* Negative margin pulls dot into alignment with track; 17px ≈ half of (44 - 10) */
-  margin: -17px;
+  /* Negative margin pulls dot into alignment with track: center 10px dot in 44px touch target */
+  margin: calc((var(--touch-target-min) - 10px) / -2);
   border-radius: 50%;
   border: 1px solid var(--color-border);
   background: var(--color-border);

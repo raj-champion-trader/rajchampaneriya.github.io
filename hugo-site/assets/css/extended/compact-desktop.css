@@ -68,10 +68,11 @@
   }
 
   /* -------------------------------------------------------------------------
-     Projects list: tablet page title, content font-size and padding
+     Projects list: tablet-level typography and content padding; header uses
+     same vertical padding as rest of site (--space-lg) for cohesion.
      ------------------------------------------------------------------------- */
   body.page-projects-list .page-header {
-    padding: var(--space-md) 0;
+    padding: var(--space-lg) 0;
   }
 
   body.page-projects-list .page-header h1 {

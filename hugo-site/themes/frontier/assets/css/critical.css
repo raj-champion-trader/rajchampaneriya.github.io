@@ -10,6 +10,7 @@
   --color-text-muted: hsl(220, 10%, 42%);
   --color-border: hsla(220, 30%, 12%, 0.08);
   --space-xs: 0.5rem;
+  --space-2xs: 0.25rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
@@ -30,6 +31,7 @@
   --leading-tight: 1.15;
   --avatar-mobile: 88px;
   --avatar-tablet: 110px;
+  --about-photo-mobile: 120px;
   --hero-name-desktop: var(--text-2xl);
   --bottom-nav-max: 400px;
   --transition-slow: 0.35s ease-out;
@@ -60,11 +62,11 @@ body{background-color:var(--color-bg);color:var(--color-text-main);line-height:1
 .hero-premium__info{flex:1;min-width:0;}
 .hero-premium__name{font-size:var(--hero-name-desktop);font-weight:800;margin:0;letter-spacing:-0.03em;color:var(--color-text-main);-webkit-text-fill-color:var(--color-text-main);background:none;line-height:1.2;}
 .bottom-nav{position:fixed;bottom:var(--space-sm);left:50%;transform:translateX(-50%);width:90%;max-width:var(--bottom-nav-max);height:64px;display:flex;justify-content:space-around;align-items:center;z-index:1000;background:var(--color-surface-glass);border-radius:100px;box-shadow:var(--shadow-lg);padding:0 var(--space-sm);}
-.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--color-text-muted);gap:4px;text-decoration:none;}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--color-text-muted);gap:var(--space-2xs);text-decoration:none;}
 .nav-item.active{color:var(--color-brand);}
 /* About page above-the-fold (LCP = header photo) */
 .single-post{padding:var(--content-padding-mobile) 0;min-width:0;max-width:100%;}
 .post-header--about .post-header__about-inner{display:flex;align-items:flex-start;gap:var(--space-lg);}
 .post-header--about .post-header__about-text{flex:1;min-width:0;}
 .post-header--about .post-header__about-photo{flex-shrink:0;}
-.post-header--about .post-header__about-photo img{width:120px;height:120px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm);border:2px solid var(--color-border);}
+.post-header--about .post-header__about-photo img{width:var(--about-photo-mobile);height:var(--about-photo-mobile);border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm);border:2px solid var(--color-border);}

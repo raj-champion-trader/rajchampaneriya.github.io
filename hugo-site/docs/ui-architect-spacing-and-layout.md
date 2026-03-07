@@ -22,6 +22,11 @@
 
 **Rule:** No raw `8px`, `12px`, `14px`, `24px`, `0.35rem`, etc. Use the closest token (e.g. `8px` → `--space-xs`, `24px` → `--space-md` or `--space-lg` per context).
 
+### 1.3 Breakpoint convention
+
+- **Mobile-first:** Use `min-width: 768px` and `min-width: 1024px` for tablet and desktop.
+- **Mobile-only / tablet-and-below:** Use `max-width: 767px` (so 768px is first tablet) and `max-width: 1023px` (so 1024px is first desktop). The 1023px boundary is used for fixed bottom nav and player (variables.css), audio-player, scrollspy, and compact-desktop — keep this convention so layout doesn’t flicker at 1024px.
+
 ### 1.2 Content and layout padding
 
 - **Horizontal content:** `--content-padding-mobile` / `--content-padding-tablet` / `--content-padding-desktop`
@@ -59,8 +64,8 @@ Use `var(--content-padding-mobile)` (and tablet/desktop) for **horizontal** only
 
 **Fix:** Define feed layout in **one** place (e.g. `main.css`). Use consistent tokens:
 
-- Grid gap: `var(--space-md)` everywhere.
-- Card padding: `var(--content-padding-mobile)` (and tablet/desktop) so cards match page content width. Remove duplicate `.feed-grid` / `.feed-card` in `premium-hero.css` or make them only override for `.latest-feed` (e.g. `.latest-feed .feed-grid { gap: var(--space-md); }`) and keep card padding from main.
+- Grid gap: `var(--space-md)` everywhere (including desktop at 1024px).
+- Card padding: `var(--content-padding-mobile)` (and tablet/desktop) so cards match page content width. Homepage `.latest-feed .feed-card` should not override padding — let it inherit from main so desktop is consistent.
 
 ### 2.3 Raw pixel and rem values → tokens
 
@@ -106,15 +111,21 @@ Use tokens instead of raw values: `4px` → `var(--radius-scrollbar)` or `var(--
 - **List pages:** Use `--content-heading-after` for space below page title (e.g. `.page-header h1 { margin-bottom: var(--content-heading-after); }`).
 - **Post/content:** Already using `--content-paragraph-after`, `--content-heading-after`, `--content-section-gap` in enterprise.css; ensure no component overrides with raw margins.
 
+### 2.8 Single page (blog / project) desktop
+
+- **Vertical rhythm:** One source in `main.css`: `.single-post .post-content > * + * { margin-top: var(--content-section-gap); }` so any two adjacent block-level siblings get the same gap. The first block has no top margin (`.single-post .post-content > *:first-child { margin-top: 0; }`); the last has no bottom margin so the gap before `.post-footer` comes from `.post-content` padding.
+- **Block-level margins:** Headings, blockquote, lists, hr, tables, figures, `.post-content > div`, `.content-callout`, and `.highlight` use `margin-top: 0` and `margin-bottom: 0` (or equivalent) so they don’t double with the `* + *` rule. Hero/flow figures keep `margin-bottom: var(--space-xl)` for extra space below.
+- **Blog and project singles** use the same layout and the same CSS; no section-specific overrides. Spacing is token-driven so `/blog/` and `/projects/` single pages feel consistent on desktop.
+
 ---
 
 ## 3. Implementation checklist
 
-- [ ] Unify `.page-header` padding in one file (main.css) with vertical tokens only; container handles horizontal.
-- [ ] Unify `.feed-grid` gap and `.feed-card` padding (single source in main.css; premium-hero only overrides where needed).
-- [ ] Replace all raw spacing in §2.3 with tokens.
-- [ ] Consolidate `.icon-fab` to one block with tokens.
-- [ ] Set `--footer-inner-gap: var(--space-md)` (or keep sm) and align docs.
+- [x] Unify `.page-header` padding in one file (main.css) with vertical tokens only; container handles horizontal.
+- [x] Unify `.feed-grid` gap and `.feed-card` padding (single source in main.css; premium-hero only overrides where needed).
+- [x] Replace all raw spacing in §2.3 with tokens.
+- [x] Consolidate `.icon-fab` to one block with tokens.
+- [x] Set `--footer-inner-gap: var(--space-md)` (or keep sm) and align docs.
 - [ ] Replace raw border-radius and font-weight with `--radius-*` and `--fw-*` in extended CSS.
 - [ ] Fix `card-category` indentation in enterprise.css (use 2 spaces for consistency).
 

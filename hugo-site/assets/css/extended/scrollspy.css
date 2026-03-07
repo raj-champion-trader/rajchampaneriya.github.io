@@ -83,8 +83,8 @@
 
 /* Trigger row: align with header (reuses .scrollspy-inner padding) */
 .scrollspy-nav--header .scrollspy-trigger {
-  min-height: 2.5rem;
-  padding: 0.5rem 0;
+  min-height: var(--space-lg);
+  padding: var(--space-xs) 0;
 }
 
 .scrollspy-nav--header .scrollspy-inner {
@@ -106,22 +106,22 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.25rem 1rem;
-    padding: 0.25rem 0 0.5rem;
+    gap: var(--space-2xs) var(--space-sm);
+    padding: var(--space-2xs) 0 var(--space-xs);
     max-height: none;
     overflow-y: visible;
     border-top: 1px solid var(--color-border);
-    margin-top: 0.25rem;
-    padding-top: 0.5rem;
+    margin-top: var(--space-2xs);
+    padding-top: var(--space-xs);
   }
 
   .scrollspy-nav--header.is-open .scrollspy-list .scrollspy-link {
     width: auto;
-    padding: 0.35rem 0.5rem;
+    padding: var(--space-2xs) var(--space-xs);
   }
 
   .scrollspy-nav--header.is-open .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-    padding-left: 1rem;
+    padding-left: var(--space-sm);
   }
 }
 
@@ -233,9 +233,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 1rem;
+  gap: var(--space-2xs) var(--space-sm);
   list-style: none;
-  padding: 0.5rem 0;
+  padding: var(--space-xs) 0;
   margin: 0;
 }
 
@@ -245,7 +245,7 @@
 
 .scrollspy-list .scrollspy-link {
   display: inline-block;
-  padding: 0.35rem 0.5rem;
+  padding: var(--space-2xs) var(--space-xs);
   font-size: var(--text-sm);
   font-weight: var(--fw-medium);
   color: var(--color-text-muted);
@@ -273,7 +273,7 @@
 
 /* Nested (h3): slight indent on desktop */
 .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-  padding-left: 1rem;
+  padding-left: var(--space-sm);
   font-size: var(--text-xs);
   font-weight: var(--fw-medium);
 }
@@ -288,7 +288,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: var(--space-xs) 0;
   font-size: var(--text-sm);
   font-weight: var(--fw-semibold);
   color: var(--color-text-main);
@@ -297,8 +297,8 @@
   cursor: pointer;
   border-radius: var(--radius-xs);
   transition: background-color var(--transition-fast);
-  gap: 0.5rem;
-  min-height: 2.25rem;
+  gap: var(--space-xs);
+  min-height: var(--space-lg);
 }
 
 .scrollspy-trigger-label {
@@ -327,7 +327,7 @@
 @media screen and (max-width: 767px) {
   .scrollspy-trigger {
     display: flex;
-    padding: 0.4rem 0;
+    padding: var(--space-xs) 0;
   }
 
   .scrollspy-list {
@@ -335,7 +335,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 60vh;
     overflow-y: auto;
   }
@@ -347,17 +347,17 @@
   /* Header-embedded: clear separation between trigger and dropdown list */
   .scrollspy-nav--header.is-open .scrollspy-list {
     border-top: 1px solid var(--color-border);
-    padding-top: 0.5rem;
-    margin-top: 0.125rem;
+    padding-top: var(--space-xs);
+    margin-top: var(--space-2xs);
   }
 
   .scrollspy-list .scrollspy-link {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     width: 100%;
   }
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-    padding-left: 1rem;
+    padding-left: var(--space-sm);
   }
 }
 
@@ -374,7 +374,7 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 50vh;
     overflow-y: auto;
   }
@@ -386,8 +386,8 @@
   /* Header-embedded: clear separation between trigger and dropdown list */
   .scrollspy-nav--header.is-open .scrollspy-list {
     border-top: 1px solid var(--color-border);
-    padding-top: 0.5rem;
-    margin-top: 0.125rem;
+    padding-top: var(--space-xs);
+    margin-top: var(--space-2xs);
   }
 
   .scrollspy-inner {
@@ -413,7 +413,7 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 0 0 0.5rem;
+    padding: 0 0 var(--space-xs);
     max-height: 55vh;
     overflow-y: auto;
   }
@@ -423,12 +423,12 @@
   }
 
   .scrollspy-list .scrollspy-link {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
     width: 100%;
   }
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
-    padding-left: 1rem;
+    padding-left: var(--space-sm);
   }
 }
 

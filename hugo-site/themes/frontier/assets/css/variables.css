@@ -1,6 +1,8 @@
 /* Media query reference — use these literal values in @media (CSS vars not allowed there):
    sm: 480px   md: 768px   lg: 1024px   xl: 1280px
-   Mobile-first: min-width 768px, min-width 1024px. Mobile-only: max-width 767px, max-width 479px. */
+   Mobile-first: min-width 768px, min-width 1024px.
+   Mobile-only: max-width 767px, max-width 479px.
+   Tablet-and-below (e.g. bottom nav visible): max-width 1023px — use 1023px so 1024px is first desktop. */
 
 /* Semantic palette — single source of truth for hierarchy:
    Primary: --color-brand — CTAs, links, section and card headings (--color-heading).
@@ -275,6 +277,9 @@
   --trust-badges-max: 560px;
   --metric-item-max: 140px;
   --player-info-max: 120px;
+  --metric-icon-size: 28px;
+  --trust-badge-min-height: 28px;
+  --fab-lift: -1.5rem;
 
   /* Responsive typography — per breakpoint (use in @media) */
   --hero-name-mobile: clamp(1.25rem, 4vw + 1rem, 1.5rem);

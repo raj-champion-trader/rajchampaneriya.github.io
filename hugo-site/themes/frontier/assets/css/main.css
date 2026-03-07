@@ -508,6 +508,30 @@ main#swup {
     overflow-wrap: break-word;
 }
 
+/* Single-post vertical rhythm: one consistent gap between consecutive blocks;
+   first child has no top margin so the only gap above content is from .post-header + .post-content padding. */
+.single-post .post-content > *:first-child {
+    margin-top: 0;
+}
+
+.single-post .post-content > * + * {
+    margin-top: var(--content-section-gap);
+}
+
+.single-post .post-content > *:last-child {
+    margin-bottom: 0;
+}
+
+.single-post .post-content table {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.single-post .post-content .highlight {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* All content children must stay within bounds and wrap text (mobile/tablet/desktop) */
 .post-content > div,
 .post-content blockquote,
@@ -896,7 +920,7 @@ select:focus-visible {
 
   .feed-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 
   .feed-card {
@@ -999,7 +1023,7 @@ select:focus-visible {
 
 /* FAB Sparkle — single definition; tokenized size and lift */
 .nav-item.fab-trigger {
-    margin-top: -1.5rem;
+    margin-top: var(--fab-lift, -1.5rem);
 }
 
 .nav-item .icon {
@@ -1025,7 +1049,7 @@ select:focus-visible {
     box-shadow: var(--shadow-lg);
     border: none;
     cursor: pointer;
-    margin-top: -1.5rem;
+    margin-top: var(--fab-lift, -1.5rem);
 }
 
 #theme-toggle {

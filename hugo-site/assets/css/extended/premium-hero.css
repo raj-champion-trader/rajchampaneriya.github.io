@@ -389,8 +389,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: var(--metric-icon-size);
+    height: var(--metric-icon-size);
     border-radius: var(--radius-xs);
     background: transparent;
     color: var(--color-brand);
@@ -476,7 +476,7 @@
     transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    min-height: 28px;
+    min-height: var(--trust-badge-min-height);
 }
 
 .trust-badge svg {
@@ -717,7 +717,7 @@
 .post-content code:not(pre code) {
     background: hsla(var(--hue-brand), 30%, 50%, 0.08);
     color: var(--color-brand);
-    padding: 0.15em 0.4em;
+    padding: var(--space-2xs) var(--space-xs);
     border-radius: var(--radius-scrollbar);
     font-size: 0.88em;
     font-family: var(--font-mono);
@@ -789,8 +789,8 @@
 .highlight::after {
     content: '';
     position: absolute;
-    top: 0.5rem;
-    right: 0.75rem;
+    top: var(--space-xs);
+    right: var(--space-sm);
     font-size: 0.65rem;
     color: hsla(220, 20%, 94%, 0.3);
     font-family: var(--font-mono);
@@ -819,8 +819,8 @@ pre code.language-json {
     margin-top: var(--space-md);
 }
 
+/* Homepage latest feed: visual-only overrides; padding inherits from main.css .feed-card */
 .latest-feed .feed-card {
-    padding: var(--space-md);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
     border-bottom: none;
@@ -917,12 +917,12 @@ pre code.language-json {
     .hero-premium__name {
         font-size: var(--hero-name-mobile);
         line-height: 1.25;
-        margin-bottom: 0.15rem;
+        margin-bottom: var(--space-2xs);
     }
 
     .hero-premium__role-row {
         justify-content: center;
-        gap: 0.35rem;
+        gap: var(--space-2xs);
         margin-top: 0;
     }
 
@@ -932,8 +932,8 @@ pre code.language-json {
 
     .hero-premium__cert {
         font-size: 0.55rem;
-        padding: 0.2rem 0.4rem;
-        gap: 0.15rem;
+        padding: var(--space-2xs) var(--space-xs);
+        gap: var(--space-2xs);
     }
 
     .hero-premium__cert svg {
@@ -943,7 +943,7 @@ pre code.language-json {
 
     .hero-premium__headline {
         font-size: var(--hero-headline-mobile);
-        margin: 0.5rem 0 0;
+        margin: var(--space-xs) 0 0;
         line-height: 1.35;
         -webkit-line-clamp: 2;
         line-clamp: 2;
@@ -960,7 +960,7 @@ pre code.language-json {
         flex-direction: column;
         width: 100%;
         margin-top: var(--space-md);
-        gap: 0.5rem;
+        gap: var(--space-xs);
     }
 
     .hero-premium__actions .btn,
@@ -1004,7 +1004,7 @@ pre code.language-json {
     .hero-premium__trust {
         flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
+        gap: var(--space-xs);
         margin-top: var(--space-sm);
         padding-top: var(--space-sm);
         text-align: center;
@@ -1053,7 +1053,7 @@ pre code.language-json {
         width: 40px;
         height: 40px;
         font-size: 1.25rem;
-        margin-bottom: 0.35rem;
+        margin-bottom: var(--space-2xs);
     }
 
     .care-step__word {
