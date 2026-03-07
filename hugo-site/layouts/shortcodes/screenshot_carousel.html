@@ -26,10 +26,11 @@
     </div>
   </div>
   <div class="screenshot-carousel-controls">
-    <button type="button" class="screenshot-carousel-btn screenshot-carousel-pause" aria-label="Pause carousel" title="Pause">
+    <button type="button" class="screenshot-carousel-btn screenshot-carousel-pause" aria-label="Pause carousel" title="Pause" aria-pressed="false">
       <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
       <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
     </button>
+    <span class="screenshot-carousel-counter" aria-live="polite">1 / {{ len $paths }}</span>
     <span class="screenshot-carousel-dots">
       {{- range $i, $p := $paths -}}
         <button type="button" class="screenshot-carousel-dot {{ if eq $i 0 }}active{{ end }}" data-index="{{ $i }}" aria-label="Go to slide {{ add $i 1 }}"></button>
@@ -37,70 +38,3 @@
     </span>
   </div>
 </div>
-<script>
-(function(){
-  var id = '{{ $id }}';
-  function init() {
-    var root = document.getElementById(id);
-    if (!root) return;
-    var track = root.querySelector('.screenshot-carousel-track');
-    var slides = root.querySelectorAll('.screenshot-carousel-slide');
-    var dots = root.querySelectorAll('.screenshot-carousel-dot');
-    var pauseBtn = root.querySelector('.screenshot-carousel-pause');
-    var interval = parseInt(root.dataset.interval || '4', 10) * 1000;
-    var timer = null;
-    var current = 0;
-    var paused = false;
-
-    function goTo(idx) {
-      if (idx < 0) idx = slides.length - 1;
-      if (idx >= slides.length) idx = 0;
-      current = idx;
-      slides.forEach(function(s, i){ s.classList.toggle('active', i === current); s.setAttribute('aria-hidden', i !== current); });
-      dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
-    }
-
-    function next() {
-      if (slides.length <= 1) return;
-      goTo(current + 1);
-    }
-
-    function startTimer() {
-      if (timer) clearInterval(timer);
-      if (slides.length <= 1 || paused) return;
-      timer = setInterval(next, interval);
-    }
-
-    function stopTimer() {
-      if (timer) { clearInterval(timer); timer = null; }
-    }
-
-    function setPaused(p) {
-      paused = p;
-      pauseBtn.setAttribute('aria-label', paused ? 'Play carousel' : 'Pause carousel');
-      pauseBtn.querySelector('.icon-pause').hidden = paused;
-      pauseBtn.querySelector('.icon-play').hidden = !paused;
-      if (paused) stopTimer(); else startTimer();
-    }
-
-    pauseBtn.addEventListener('click', function(){ setPaused(!paused); });
-    dots.forEach(function(dot, i){
-      dot.addEventListener('click', function(){ goTo(i); if (!paused) startTimer(); });
-    });
-
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) startTimer();
-        else stopTimer();
-      });
-    }, { threshold: 0.25 });
-    io.observe(root);
-    startTimer();
-  }
-  if (typeof requestIdleCallback !== 'undefined') {
-    requestIdleCallback(init, { timeout: 500 });
-  } else {
-    setTimeout(init, 0);
-  }
-})();
-</script>

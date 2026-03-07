@@ -325,13 +325,20 @@
   outline-offset: 2px;
 }
 
+/* Paused state — visually distinct so play/pause state is obvious in all form factors */
+.screenshot-carousel-btn[aria-pressed="true"] {
+  background: var(--color-brand-glow);
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
 .screenshot-carousel-dots {
   display: flex;
   gap: var(--space-xs);
   align-items: center;
 }
 
-/* Touch target ≥44px for accessibility (dot visual 10px, padding expands hit area) */
+/* Inactive dots: subtle fill so they read as indicators; active dot is clearly distinct */
 .screenshot-carousel-dot {
   width: 10px;
   height: 10px;
@@ -340,27 +347,31 @@
   margin: -17px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
-  background: transparent;
+  background: var(--color-border);
+  opacity: 0.4;
   cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
   box-sizing: content-box;
 }
 
 .screenshot-carousel-dot:hover {
+  opacity: 0.7;
   background: var(--color-border);
 }
 
 .screenshot-carousel-dot.active {
   background: var(--color-brand);
   border-color: var(--color-brand);
-  transform: scale(1.15);
+  opacity: 1;
+  transform: scale(1.35);
 }
 
-/* Mobile: only pause/play, hide dots for cleaner demo */
-@media screen and (max-width: 767px) {
-  .screenshot-carousel-dots {
-    display: none;
-  }
+/* Counter "1 / 5" — visible in all form factors for clear slide position */
+.screenshot-carousel-counter {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  min-width: 2.5em;
+  text-align: center;
 }
 
 /* -------------------------------------------------------------------------

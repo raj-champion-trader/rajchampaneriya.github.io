@@ -104,6 +104,95 @@ swup.hooks.on('page:view', () => {
   requestAnimationFrame(initScrollReveal);
 });
 
+// ------------------ Screenshot carousel — init on load and after Swup (inline scripts in replaced content do not run) ------------------
+function initScreenshotCarousels() {
+  const container = document.querySelector('#swup');
+  const root = container || document;
+  const carousels = root.querySelectorAll('.screenshot-carousel');
+  carousels.forEach((rootEl) => {
+    if (rootEl.dataset.carouselInitialized) return;
+    rootEl.dataset.carouselInitialized = '1';
+
+    const slides = rootEl.querySelectorAll('.screenshot-carousel-slide');
+    const dots = rootEl.querySelectorAll('.screenshot-carousel-dot');
+    const pauseBtn = rootEl.querySelector('.screenshot-carousel-pause');
+    if (!pauseBtn || !slides.length) return;
+
+    const intervalMs = parseInt(rootEl.dataset.interval || '4', 10) * 1000;
+    let timer = null;
+    let current = 0;
+    let paused = false;
+
+    function goTo(idx) {
+      if (idx < 0) idx = slides.length - 1;
+      if (idx >= slides.length) idx = 0;
+      current = idx;
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === current);
+        s.setAttribute('aria-hidden', i !== current);
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      const counter = rootEl.querySelector('.screenshot-carousel-counter');
+      if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    function next() {
+      if (slides.length <= 1) return;
+      goTo(current + 1);
+    }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      if (slides.length <= 1 || paused) return;
+      timer = setInterval(next, intervalMs);
+    }
+
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function setPaused(p) {
+      paused = p;
+      pauseBtn.setAttribute('aria-label', paused ? 'Play carousel' : 'Pause carousel');
+      pauseBtn.setAttribute('aria-pressed', paused);
+      const iconPause = pauseBtn.querySelector('.icon-pause');
+      const iconPlay = pauseBtn.querySelector('.icon-play');
+      if (iconPause) iconPause.hidden = paused;
+      if (iconPlay) iconPlay.hidden = !paused;
+      if (paused) stopTimer();
+      else startTimer();
+    }
+
+    pauseBtn.addEventListener('click', () => setPaused(!paused));
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i);
+        if (!paused) startTimer();
+      });
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) startTimer();
+          else stopTimer();
+        });
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(rootEl);
+    startTimer();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initScreenshotCarousels);
+swup.hooks.on('page:view', () => {
+  requestAnimationFrame(initScreenshotCarousels);
+});
+
 function initBlogTagFilter() {
   const feedGrid = document.querySelector('.feed-grid');
   if (!feedGrid) return;
