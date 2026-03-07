@@ -7,7 +7,8 @@
    Secondary: --color-text-main — body, primary labels.
    Tertiary: --color-text-muted — descriptions, secondary paragraphs.
    Meta: --color-text-meta — dates, labels, category pill text.
-   Surfaces: --color-bg (page), --color-surface (cards/panels); keep same hue family. */
+   Surfaces: --color-bg (page), --color-surface (cards/panels); keep same hue family.
+   Full guidance: docs/ui-architect-recommendations.md */
 :root {
   /* Brand Colors - "Executive Authority" Theme */
   --hue-brand: 215;
@@ -303,11 +304,11 @@
   --about-card-radius: var(--radius-card);
 
   /* About page — accent palette (process, impact, tech, capability).
-     Text/background pairs should meet WCAG AA (4.5:1 normal, 3:1 large). */
-  --about-accent-blue-bg: #eff6ff;
-  --about-accent-blue-border: #bfdbfe;
-  --about-accent-blue-text: #1e40af;
-  --about-accent-blue-number: #2563eb;
+     Blue derives from brand (single source of truth); others use consistent hue/saturation for light theme. */
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 65%, 38%, 0.28);
+  --about-accent-blue-text: var(--color-brand-dark);
+  --about-accent-blue-number: var(--color-brand);
   --about-accent-orange-bg: #fff7ed;
   --about-accent-orange-border: #fed7aa;
   --about-accent-orange-text: #9a3412;
@@ -323,11 +324,23 @@
   --about-accent-gray-bg: #f8fafc;
   --about-accent-gray-border: #e2e8f0;
   --about-accent-gray-text: #334155;
-  --about-accent-blue-pill-bg: rgba(219, 234, 254, 0.7);
+  --about-accent-blue-pill-bg: hsla(var(--hue-brand), 65%, 38%, 0.2);
   --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
   --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
   --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
   --about-accent-gray-pill-bg: rgba(241, 245, 249, 0.7);
+
+  /* Hero / landing — tokenized for premium-hero.css (theme-consistent) */
+  --hero-divider: hsla(220, 20%, 50%, 0.08);
+  --hero-metric-bg: hsla(220, 20%, 98%, 0.7);
+  --hero-metric-border: hsla(var(--hue-brand), 65%, 38%, 0.12);
+  --hero-trust-badge-bg: hsla(220, 20%, 98%, 0.6);
+  --hero-trust-badge-border: hsla(220, 30%, 12%, 0.18);
+  --care-step-bg: hsla(220, 20%, 99%, 0.5);
+  --care-step-border: hsla(220, 30%, 12%, 0.06);
+  --care-teaser-border: hsla(220, 25%, 15%, 0.1);
+  --care-teaser-shadow: 0 2px 6px hsla(220, 20%, 10%, 0.06), 0 12px 32px hsla(220, 20%, 10%, 0.1);
+  --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.6);
 }
 
 /* Dark Mode - Boardroom After Hours */
@@ -376,11 +389,11 @@
     --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
     --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
     --scrollbar-track: transparent;
-    /* About page accents — dark */
-    --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
-    --about-accent-blue-border: rgba(37, 99, 235, 0.3);
-    --about-accent-blue-text: #93c5fd;
-    --about-accent-blue-number: #2563eb;
+    /* About page accents — dark (blue from brand) */
+    --about-accent-blue-bg: var(--color-brand-glow);
+    --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.3);
+    --about-accent-blue-text: var(--color-brand);
+    --about-accent-blue-number: var(--color-brand);
     --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
     --about-accent-orange-border: rgba(234, 88, 12, 0.3);
     --about-accent-orange-text: #fdba74;
@@ -396,11 +409,23 @@
     --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
     --about-accent-gray-border: rgba(100, 116, 139, 0.25);
     --about-accent-gray-text: #cbd5e1;
-    --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
+    --about-accent-blue-pill-bg: var(--color-brand-glow);
     --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
     --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
     --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
     --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+
+    /* Hero tokens — dark */
+    --hero-divider: hsla(220, 20%, 50%, 0.08);
+    --hero-metric-bg: hsla(220, 20%, 14%, 0.6);
+    --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
+    --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
+    --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+    --care-step-bg: hsla(220, 20%, 11%, 0.5);
+    --care-step-border: hsla(220, 20%, 94%, 0.06);
+    --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+    --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
+    --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
   }
 }
 
@@ -442,10 +467,10 @@
   --scrollbar-thumb: hsla(220, 20%, 94%, 0.2);
   --scrollbar-track: transparent;
   /* About page accents — dark */
-  --about-accent-blue-bg: rgba(37, 99, 235, 0.1);
-  --about-accent-blue-border: rgba(37, 99, 235, 0.3);
-  --about-accent-blue-text: #93c5fd;
-  --about-accent-blue-number: #2563eb;
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 75%, 65%, 0.3);
+  --about-accent-blue-text: var(--color-brand);
+  --about-accent-blue-number: var(--color-brand);
   --about-accent-orange-bg: rgba(234, 88, 12, 0.1);
   --about-accent-orange-border: rgba(234, 88, 12, 0.3);
   --about-accent-orange-text: #fdba74;
@@ -461,11 +486,23 @@
   --about-accent-gray-bg: rgba(100, 116, 139, 0.08);
   --about-accent-gray-border: rgba(100, 116, 139, 0.25);
   --about-accent-gray-text: #cbd5e1;
-  --about-accent-blue-pill-bg: rgba(37, 99, 235, 0.15);
+  --about-accent-blue-pill-bg: var(--color-brand-glow);
   --about-accent-orange-pill-bg: rgba(234, 88, 12, 0.15);
   --about-accent-purple-pill-bg: rgba(147, 51, 234, 0.15);
   --about-accent-green-pill-bg: rgba(22, 163, 74, 0.15);
   --about-accent-gray-pill-bg: rgba(100, 116, 139, 0.15);
+
+  /* Hero tokens — dark */
+  --hero-divider: hsla(220, 20%, 50%, 0.08);
+  --hero-metric-bg: hsla(220, 20%, 14%, 0.6);
+  --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
+  --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
+  --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+  --care-step-bg: hsla(220, 20%, 11%, 0.5);
+  --care-step-border: hsla(220, 20%, 94%, 0.06);
+  --care-teaser-border: hsla(220, 20%, 94%, 0.1);
+  --care-teaser-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2);
+  --care-teaser-inset: inset 0 1px 0 hsla(220, 20%, 100%, 0.04);
 }
 
 [data-theme="light"] {
@@ -502,11 +539,11 @@
   --scrollbar-thumb-code: hsla(220, 20%, 60%, 0.5);
   --scrollbar-thumb-code-hover: hsla(220, 20%, 70%, 0.7);
 
-  /* About page accents — light */
-  --about-accent-blue-bg: #eff6ff;
-  --about-accent-blue-border: #bfdbfe;
-  --about-accent-blue-text: #1e40af;
-  --about-accent-blue-number: #2563eb;
+  /* About page accents — light (blue aligned with brand) */
+  --about-accent-blue-bg: var(--color-brand-glow);
+  --about-accent-blue-border: hsla(var(--hue-brand), 65%, 38%, 0.28);
+  --about-accent-blue-text: var(--color-brand-dark);
+  --about-accent-blue-number: var(--color-brand);
   --about-accent-orange-bg: #fff7ed;
   --about-accent-orange-border: #fed7aa;
   --about-accent-orange-text: #9a3412;
@@ -522,7 +559,7 @@
   --about-accent-gray-bg: #f8fafc;
   --about-accent-gray-border: #e2e8f0;
   --about-accent-gray-text: #334155;
-  --about-accent-blue-pill-bg: rgba(219, 234, 254, 0.7);
+  --about-accent-blue-pill-bg: hsla(var(--hue-brand), 65%, 38%, 0.2);
   --about-accent-orange-pill-bg: rgba(255, 237, 213, 0.7);
   --about-accent-purple-pill-bg: rgba(243, 232, 255, 0.7);
   --about-accent-green-pill-bg: rgba(220, 252, 231, 0.7);
