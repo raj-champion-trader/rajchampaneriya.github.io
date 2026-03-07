@@ -42,7 +42,7 @@ hugo new talks/YYYY-MM-DD-event-name.md
 
 ## 🔗 Links
 
-- **Website**: [rajchampaneriya.github.io](https://rajchampaneriya.github.io)
+- **Website**: [rajc.work](https://rajc.work/)
 - **GitHub**: [github.com/rajchampaneriya](https://github.com/rajchampaneriya)
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 
