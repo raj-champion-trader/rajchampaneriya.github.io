@@ -8,7 +8,7 @@
 
     <!-- Meta -->
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f5f6f8">
     {{ $themeInit := resources.Get "js/theme-init.js" }}
     {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).Permalink }}"></script>{{ end }}
 

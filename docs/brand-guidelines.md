@@ -27,12 +27,16 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 | `--color-brand-dim` | `hsl(215, 40%, 55%)` | Muted brand for secondary elements |
 | `--color-brand-dark` | `hsl(215, 65%, 32%)` | Darker brand for hover/active (buttons, links) |
 | `--color-brand-glow` | `hsla(215, 65%, 38%, 0.12)` | Brand glow/shadow |
-| `--color-bg` | `hsl(220, 20%, 97%)` | Page background — Cool Paper White |
-| `--color-surface` | `hsl(220, 20%, 99%)` | Card/surface — Near White |
+| `--color-bg` | `hsl(220, 20%, 98%)` | Page background — Cool Paper (harmonized with surface) |
+| `--color-surface` | `hsl(220, 20%, 100%)` | Card/surface — Near White |
 | `--color-surface-glass` | `hsla(220, 20%, 99%, 0.88)` | Glass panel |
 | `--color-surface-elevated` | `hsl(220, 20%, 95%)` | Raised panels, dropdowns |
 | `--color-text-main` | `hsl(220, 30%, 12%)` | Primary text — Near Black |
-| `--color-text-muted` | `hsl(220, 10%, 42%)` | Secondary text — Slate |
+| `--color-text-muted` | `hsl(220, 10%, 42%)` | Secondary text — Slate (descriptions, body secondary) |
+| `--color-text-meta` | `hsl(220, 10%, 52%)` | Meta — dates, labels, category pill text (tertiary hierarchy) |
+| `--color-heading` | `var(--color-brand)` | Section and card titles — single accent |
+| `--color-pill-bg` | `hsla(220, 20%, 94%, 0.9)` | Category/label pill background |
+| `--color-pill-border` | `hsla(220, 30%, 12%, 0.06)` | Category/label pill border |
 | `--color-border` | `hsla(220, 30%, 12%, 0.08)` | Borders |
 | `--color-on-brand` | `hsl(0, 0%, 100%)` | Text on brand background (buttons, tags, badges) |
 | `--color-accent-gold` | `hsl(42, 85%, 55%)` | Accent Gold — Premium highlight |
@@ -52,7 +56,10 @@ rajc.work is the digital advisory presence of an Enterprise Architect who serves
 | `--color-surface-glass` | `hsla(220, 20%, 11%, 0.85)` | Glass panel |
 | `--color-surface-elevated` | `hsl(220, 20%, 14%)` | Raised panels |
 | `--color-text-main` | `hsl(220, 20%, 94%)` | Light text |
-| `--color-text-muted` | `hsl(220, 12%, 65%)` | Muted light text |
+| `--color-text-muted` | `hsl(220, 12%, 65%)` | Muted light text (descriptions) |
+| `--color-text-meta` | `hsl(220, 12%, 72%)` | Meta — dates, labels (tertiary in dark) |
+| `--color-pill-bg` | `hsla(220, 20%, 18%, 0.5)` | Category/label pill background |
+| `--color-pill-border` | `hsla(220, 20%, 94%, 0.08)` | Category/label pill border |
 | `--color-border` | `hsla(220, 20%, 94%, 0.08)` | Borders |
 | `--color-on-brand` | `hsl(0, 0%, 100%)` | Text on brand background |
 | `--color-accent-gold` | `hsl(42, 80%, 60%)` | Warm Gold accent |
@@ -88,15 +95,18 @@ Lower alpha = more translucency; higher = more focus on overlay content.
 
 ### Text and link roles
 
-Use exactly two text roles for body and UI so colors stay consistent:
+Use the semantic hierarchy so colors stay consistent:
 
 | Role | Token | Use for |
 |------|--------|--------|
-| Primary text | `--color-text-main` | Headings, body copy, primary labels |
-| Secondary / muted | `--color-text-muted` | Meta (date, author), captions, hints, secondary labels |
-| Links and accents | `--color-brand` | Inline links, nav links, tags, CTAs |
-| Link hover | `--color-brand-dim` | Hover state for text links and footer/nav links |
-| Text on brand | `--color-on-brand` | Button text when background is brand (e.g. primary button, tag hover) |
+| **Primary (accent)** | `--color-brand` / `--color-heading` | Section and card titles, CTAs, inline links, nav links, tags |
+| **Secondary** | `--color-text-main` | Headings (when not using accent), body copy, primary labels |
+| **Tertiary** | `--color-text-muted` | Descriptions, secondary paragraphs, captions |
+| **Meta** | `--color-text-meta` | Dates, category labels, pill text, hints |
+| **Link hover** | `--color-brand-dim` | Hover state for text links and footer/nav links |
+| **Text on brand** | `--color-on-brand` | Button text when background is brand (e.g. primary button, tag hover) |
+
+**Surfaces:** `--color-bg` (page), `--color-surface` (cards/panels); keep same hue family for a cohesive feel.
 
 Do not use raw hex or `#fff` for “white on brand” — use `var(--color-on-brand)` so theme and future tweaks stay consistent.
 

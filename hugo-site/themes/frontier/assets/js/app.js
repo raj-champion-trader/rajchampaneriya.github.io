@@ -151,7 +151,7 @@ function setTheme(theme) {
     // Sync browser chrome color so mobile browser UI matches the site theme
     try {
       const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0c' : '#ffffff');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0c' : '#f5f6f8');
     } catch (e) { /* noop */ }
 
     if (themeIcon) {

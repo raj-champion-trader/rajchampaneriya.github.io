@@ -1,6 +1,13 @@
 /* Media query reference — use these literal values in @media (CSS vars not allowed there):
    sm: 480px   md: 768px   lg: 1024px   xl: 1280px
    Mobile-first: min-width 768px, min-width 1024px. Mobile-only: max-width 767px, max-width 479px. */
+
+/* Semantic palette — single source of truth for hierarchy:
+   Primary: --color-brand — CTAs, links, section and card headings (--color-heading).
+   Secondary: --color-text-main — body, primary labels.
+   Tertiary: --color-text-muted — descriptions, secondary paragraphs.
+   Meta: --color-text-meta — dates, labels, category pill text.
+   Surfaces: --color-bg (page), --color-surface (cards/panels); keep same hue family. */
 :root {
   /* Brand Colors - "Executive Authority" Theme */
   --hue-brand: 215;
@@ -18,9 +25,9 @@
   /* Slightly elevated surface (dropdowns, raised panels) */
   --color-surface-elevated: hsl(220, 20%, 95%);
 
-  --color-bg: hsl(220, 20%, 97%);
-  /* Cool Paper White */
-  --color-surface: hsl(220, 20%, 99%);
+  --color-bg: hsl(220, 20%, 98%);
+  /* Cool Paper — harmonized with surface */
+  --color-surface: hsl(220, 20%, 100%);
   /* Near White */
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
   /* Premium Glass */
@@ -29,6 +36,10 @@
   /* Near Black */
   --color-text-muted: hsl(220, 10%, 42%);
   /* Slate */
+  --color-text-meta: hsl(220, 10%, 52%);
+  /* Dates, labels, pill text — tertiary hierarchy */
+  --color-heading: var(--color-brand);
+  /* Section and card titles — single accent */
   --color-border: hsla(220, 30%, 12%, 0.08);
   --border: var(--color-border); /* alias for legacy/consistency */
 
@@ -41,6 +52,10 @@
   --filter-chip-border: var(--color-border);
   --filter-chip-bg-active: hsla(220, 65%, 38%, 0.15);
   --filter-chip-border-active: hsla(220, 65%, 38%, 0.25);
+
+  /* Category / label pills — theme-aware */
+  --color-pill-bg: hsla(220, 20%, 94%, 0.9);
+  --color-pill-border: hsla(220, 30%, 12%, 0.06);
 
   /* Accent Colors */
   --color-accent-gold: hsl(42, 85%, 55%);
@@ -337,6 +352,8 @@
     /* Clean White */
     --color-text-muted: hsl(220, 12%, 65%);
     /* Silver */
+    --color-text-meta: hsl(220, 12%, 72%);
+    /* Dates, labels — tertiary in dark */
     --color-border: hsla(220, 20%, 94%, 0.08);
     --border: var(--color-border);
 
@@ -347,6 +364,9 @@
     --filter-chip-border: var(--color-border);
     --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
     --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
+    --color-pill-bg: hsla(220, 20%, 18%, 0.5);
+    --color-pill-border: hsla(220, 20%, 94%, 0.08);
 
     --color-accent-gold: hsl(42, 80%, 60%);
     --code-bg: hsl(220, 20%, 10%);
@@ -398,6 +418,7 @@
 
   --color-text-main: hsl(220, 20%, 94%);
   --color-text-muted: hsl(220, 12%, 65%);
+  --color-text-meta: hsl(220, 12%, 72%);
   --color-border: hsla(220, 20%, 94%, 0.08);
 
   --color-callout-bg: hsla(220, 20%, 94%, 0.04);
@@ -407,6 +428,9 @@
   --filter-chip-border: var(--color-border);
   --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
   --filter-chip-border-active: hsla(215, 75%, 65%, 0.35);
+
+  --color-pill-bg: hsla(220, 20%, 18%, 0.5);
+  --color-pill-border: hsla(220, 20%, 94%, 0.08);
 
   --color-accent-gold: hsl(42, 80%, 60%);
   --code-bg: hsl(220, 20%, 10%);
@@ -451,12 +475,13 @@
   --color-brand-dark: hsl(215, 65%, 32%);
   --color-surface-elevated: hsl(220, 20%, 95%);
 
-  --color-bg: hsl(220, 20%, 97%);
-  --color-surface: hsl(220, 20%, 99%);
+  --color-bg: hsl(220, 20%, 98%);
+  --color-surface: hsl(220, 20%, 100%);
   --color-surface-glass: hsla(220, 20%, 99%, 0.88);
 
   --color-text-main: hsl(220, 30%, 12%);
   --color-text-muted: hsl(220, 10%, 42%);
+  --color-text-meta: hsl(220, 10%, 52%);
   --color-border: hsla(220, 30%, 12%, 0.08);
 
   --color-callout-bg: hsla(220, 20%, 50%, 0.04);
@@ -466,6 +491,9 @@
   --filter-chip-border: var(--color-border);
   --filter-chip-bg-active: hsla(215, 65%, 38%, 0.12);
   --filter-chip-border-active: hsla(215, 65%, 38%, 0.25);
+
+  --color-pill-bg: hsla(220, 20%, 94%, 0.9);
+  --color-pill-border: hsla(220, 30%, 12%, 0.06);
 
   --color-accent-gold: hsl(42, 85%, 55%);
   --code-bg: hsl(220, 18%, 13%);
