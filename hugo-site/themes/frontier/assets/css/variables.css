@@ -149,6 +149,7 @@
 
   /* Z-index scale — use these instead of magic numbers */
   --z-header: 50;
+  --header-height: 56px;
   --z-chat: 101;
   --z-nav: 1000;
   --z-player: 1001;

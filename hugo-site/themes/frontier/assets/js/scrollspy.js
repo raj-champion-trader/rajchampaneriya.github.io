@@ -1,15 +1,29 @@
 /**
  * Responsive scrollspy navigation for article pages.
+ * - When in header (.scrollspy-nav--header): no sentinel/stick; uses full header height for scroll offset.
  * - Extracts h2/h3 from .post-content, builds TOC
  * - Intersection Observer for active section
- * - Smooth scroll with offset for fixed header
- * - Desktop: horizontal nav; mobile/tablet: collapsible dropdown
- * - Keyboard and ARIA support
+ * - Smooth scroll with offset for sticky header
+ * - Collapsible dropdown; keyboard and ARIA support
  */
 
 const SCROLLSPY_OFFSET = 80; // px from top to consider "active"
-const HEADER_OFFSET = 56;
+const HEADER_OFFSET = 56; // fallback when header height not measurable
 const ROOT_MARGIN = `-${HEADER_OFFSET + 24}px 0px -60% 0px`;
+
+function getScrollspyOffset() {
+  const header = document.querySelector('.site-header');
+  if (!header) return HEADER_OFFSET;
+  return header.getBoundingClientRect().height;
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = getScrollspyOffset();
+  const top = el.getBoundingClientRect().top + window.scrollY - offset - 8;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
 
 function getContentContainer() {
   const main = document.querySelector('#swup');
@@ -40,17 +54,21 @@ function createNavItem({ id, text, level }) {
   return li;
 }
 
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET - 8;
-  window.scrollTo({ top, behavior: 'smooth' });
-}
-
 function initScrollspy() {
   const nav = document.getElementById('scrollspy-nav');
+  if (!nav) return;
+
+  /* Reset nav state so navigation never shows stale content (e.g. after Swup page change) */
+  nav.classList.remove('has-items', 'scrollspy-row-hidden');
+  const listEl = nav.querySelector('#scrollspy-list');
+  if (listEl) listEl.innerHTML = '';
+  const triggerEl = nav.querySelector('.scrollspy-trigger');
+  const triggerLabelEl = triggerEl ? triggerEl.querySelector('.scrollspy-trigger-label') : null;
+  if (triggerLabelEl) triggerLabelEl.textContent = 'Contents';
+  nav.setAttribute('hidden', '');
+
   const content = getContentContainer();
-  if (!nav || !content) return;
+  if (!content) return;
 
   const headings = buildHeadings(content);
   if (headings.length === 0) {
@@ -58,42 +76,92 @@ function initScrollspy() {
     return;
   }
 
+  /* Page title for trigger label (replaces "Contents") */
+  const singlePost = content.closest('.single-post');
+  const pageTitle = singlePost?.querySelector('.post-header h1, h1')?.textContent?.trim() ||
+    document.title.split('|')[0].trim() ||
+    'Contents';
+
   nav.removeAttribute('hidden');
   nav.classList.add('has-items');
+
+  const isInHeader = nav.classList.contains('scrollspy-nav--header');
+  if (isInHeader) {
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+      const updateHeaderHeightVar = () => {
+        const h = siteHeader.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--header-height-with-scrollspy', `${Math.ceil(h) + 8}px`);
+      };
+      updateHeaderHeightVar();
+      const ro = new ResizeObserver(updateHeaderHeightVar);
+      ro.observe(siteHeader);
+      nav._scrollspyResizeObserver = ro;
+    }
+    /* Smart auto-hide: hide scrollspy row when viewport is outside main content */
+    const contentArea = content.closest('.single-post') || content;
+    if (contentArea) {
+      const autoHideObserver = new IntersectionObserver(
+        (entries) => {
+          const e = entries[0];
+          if (!e) return;
+          if (e.isIntersecting) {
+            nav.classList.remove('scrollspy-row-hidden');
+          } else {
+            nav.classList.add('scrollspy-row-hidden');
+          }
+        },
+        { root: null, rootMargin: '0px', threshold: 0 }
+      );
+      autoHideObserver.observe(contentArea);
+      nav._scrollspyAutoHideObserver = autoHideObserver;
+      nav._scrollspyContentArea = contentArea;
+      /* Set initial state to avoid flash */
+      const rect = contentArea.getBoundingClientRect();
+      const viewHeight = window.innerHeight;
+      const inView = rect.top < viewHeight && rect.bottom > 0;
+      if (!inView) nav.classList.add('scrollspy-row-hidden');
+    }
+  }
 
   const list = nav.querySelector('#scrollspy-list');
   if (!list) return;
   list.innerHTML = '';
   list.setAttribute('role', 'list');
 
-  /* Sentinel: when it scrolls above the header line, fix the scrollspy to the top */
-  const sentinel = document.createElement('div');
-  sentinel.className = 'scrollspy-sentinel';
-  sentinel.setAttribute('aria-hidden', 'true');
-  nav.parentNode.insertBefore(sentinel, nav);
-
+  let sentinel = null;
   let spacer = null;
-  const stickObserver = new IntersectionObserver(
-    (entries) => {
-      const e = entries[0];
-      if (!e) return;
-      if (e.isIntersecting) {
-        nav.classList.remove('is-stuck');
-        if (spacer && spacer.parentNode) spacer.parentNode.removeChild(spacer);
-        spacer = null;
-      } else {
-        if (spacer) return;
-        const navHeight = nav.offsetHeight;
-        nav.classList.add('is-stuck');
-        spacer = document.createElement('div');
-        spacer.className = 'scrollspy-spacer';
-        spacer.style.height = `${navHeight}px`;
-        nav.parentNode.insertBefore(spacer, nav.nextSibling);
-      }
-    },
-    { root: null, rootMargin: `-${HEADER_OFFSET}px 0px 0px 0px`, threshold: 0 }
-  );
-  stickObserver.observe(sentinel);
+  let stickObserver = null;
+
+  if (!isInHeader) {
+    /* Sentinel: when it scrolls above the header line, fix the scrollspy to the top (standalone only) */
+    sentinel = document.createElement('div');
+    sentinel.className = 'scrollspy-sentinel';
+    sentinel.setAttribute('aria-hidden', 'true');
+    nav.parentNode.insertBefore(sentinel, nav);
+
+    stickObserver = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+        if (!e) return;
+        if (e.isIntersecting) {
+          nav.classList.remove('is-stuck');
+          if (spacer && spacer.parentNode) spacer.parentNode.removeChild(spacer);
+          spacer = null;
+        } else {
+          if (spacer) return;
+          const navHeight = nav.offsetHeight;
+          nav.classList.add('is-stuck');
+          spacer = document.createElement('div');
+          spacer.className = 'scrollspy-spacer';
+          spacer.style.height = `${navHeight}px`;
+          nav.parentNode.insertBefore(spacer, nav.nextSibling);
+        }
+      },
+      { root: null, rootMargin: `-${HEADER_OFFSET}px 0px 0px 0px`, threshold: 0 }
+    );
+    stickObserver.observe(sentinel);
+  }
 
   const trigger = nav.querySelector('.scrollspy-trigger');
   const fragment = document.createDocumentFragment();
@@ -105,6 +173,9 @@ function initScrollspy() {
   const triggerLabel = trigger ? trigger.querySelector('.scrollspy-trigger-label') : null;
   const headingById = new Map(headings.map((h) => [h.id, h]));
 
+  if (triggerLabel) triggerLabel.textContent = pageTitle;
+  if (trigger) trigger.setAttribute('aria-label', `Table of contents: ${pageTitle}`);
+
   function setActive(id) {
     links.forEach((a) => a.classList.remove('is-active'));
     const active = linkById.get(id);
@@ -113,14 +184,14 @@ function initScrollspy() {
       active.setAttribute('aria-current', 'location');
       if (triggerLabel) {
         const h = headingById.get(id);
-        triggerLabel.textContent = h ? h.text : 'Contents';
-        trigger.setAttribute('aria-label', h ? `Current: ${h.text}. Tap to open table of contents.` : 'Table of contents');
+        triggerLabel.textContent = h ? h.text : pageTitle;
+        trigger.setAttribute('aria-label', h ? `Current: ${h.text}. Tap to open table of contents.` : `Table of contents: ${pageTitle}`);
       }
     } else {
       links.forEach((a) => a.removeAttribute('aria-current'));
       if (triggerLabel) {
-        triggerLabel.textContent = 'Contents';
-        trigger.setAttribute('aria-label', 'Table of contents');
+        triggerLabel.textContent = pageTitle;
+        if (trigger) trigger.setAttribute('aria-label', `Table of contents: ${pageTitle}`);
       }
     }
   }
@@ -131,8 +202,8 @@ function initScrollspy() {
       a.removeAttribute('aria-current');
     });
     if (triggerLabel) {
-      triggerLabel.textContent = 'Contents';
-      if (trigger) trigger.setAttribute('aria-label', 'Table of contents');
+      triggerLabel.textContent = pageTitle;
+      if (trigger) trigger.setAttribute('aria-label', `Table of contents: ${pageTitle}`);
     }
   }
 
@@ -232,9 +303,19 @@ function initScrollspy() {
 
   nav._scrollspyCleanup = () => {
     observer.disconnect();
-    stickObserver.disconnect();
-    if (sentinel.parentNode) sentinel.parentNode.removeChild(sentinel);
+    if (stickObserver) stickObserver.disconnect();
+    if (sentinel && sentinel.parentNode) sentinel.parentNode.removeChild(sentinel);
     if (spacer && spacer.parentNode) spacer.parentNode.removeChild(spacer);
+    if (nav._scrollspyResizeObserver) {
+      const siteHeader = document.querySelector('.site-header');
+      if (siteHeader) nav._scrollspyResizeObserver.unobserve(siteHeader);
+      nav._scrollspyResizeObserver = null;
+    }
+    if (nav._scrollspyAutoHideObserver && nav._scrollspyContentArea) {
+      nav._scrollspyAutoHideObserver.unobserve(nav._scrollspyContentArea);
+      nav._scrollspyAutoHideObserver = null;
+      nav._scrollspyContentArea = null;
+    }
     window.removeEventListener('scroll', checkActiveOnScroll);
   };
 }

@@ -137,9 +137,12 @@ p {
 
 /* Header — moved from `hugo-site/assets/css/extended/header-fixes.css` (2.2: File Boundaries)
    Purpose: keep site title, theme toggle and header chrome consistent and theme-level.
+   Sticky so nav stays visible on scroll; --header-height for scroll offsets.
 */
 .site-header.glass-panel,
 .site-header {
+  position: sticky;
+  top: 0;
   border-radius: 0;
   border-top: none;
   border-left: none;
@@ -181,7 +184,7 @@ p {
   min-width: 0;
   margin: 0;
   flex-shrink: 1;
-  font-size: var(--text-lg);
+  font-size: clamp(0.9375rem, 1.05rem + 0.375vw, 1.25rem); /* rajc.work visible at all breakpoints */
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--color-text-main);
@@ -238,7 +241,11 @@ p {
     flex-wrap: wrap;
     gap: var(--space-2xs);
   }
-  .site-header .header-inner .logo { max-width: 100%; }
+  .site-header .header-inner .logo {
+    max-width: 100%;
+    flex-shrink: 0;
+    min-width: 6.5rem; /* keep "rajc·work" readable */
+  }
   .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: var(--space-2xs); }
 }
 
@@ -320,6 +327,22 @@ p {
 /* Safety guard: prevent header from creating page-level horizontal scroll.
    `clip` prevents overflow without creating a scroll context (no extra scrollbar). */
 .site-header, .site-header .container { overflow-x: clip; }
+
+/* Two-row header: main nav + optional scrollspy row */
+.site-header .header-rows {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+.site-header .header-rows .header-inner {
+  flex-shrink: 0;
+}
+
+/* Scroll anchor offset so content isn't hidden under sticky header */
+main#swup {
+  scroll-margin-top: var(--header-height, 56px);
+}
 
 /* =========================================
    Single Post & Project — shared layout
@@ -938,7 +961,9 @@ select:focus-visible {
     #menu li + li { margin-inline-start: var(--space-xs) !important; }
     .nav { max-width: 100%; overflow-x: hidden; }
     #menu a { font-size: var(--text-sm); }
-    .logo { margin: auto; justify-content: center; }
+    /* Scope to nav/menu context only — do not affect site header logo */
+    .nav .logo { margin: auto; justify-content: center; }
+    #menu .logo { margin: auto; justify-content: center; }
 }
 
 @media screen and (max-width: 480px) {

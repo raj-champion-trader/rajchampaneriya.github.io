@@ -63,17 +63,6 @@
         {{ end }}
     </header>
 
-    {{/* Scrollspy TOC: right above article body; populated by JS from .post-content h2/h3; hidden when empty */}}
-    <nav id="scrollspy-nav" class="scrollspy-nav" aria-label="Article contents" hidden>
-        <div class="scrollspy-inner">
-            <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
-                <span class="scrollspy-trigger-label">Contents</span>
-                <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
-        </div>
-    </nav>
-
     <div class="post-content surface-panel">
         {{ .Content }}
     </div>

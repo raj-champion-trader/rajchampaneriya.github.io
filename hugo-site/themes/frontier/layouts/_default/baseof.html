@@ -71,25 +71,36 @@
 
 <body class="app-layout">
 
-    <!-- Header / Top Bar -->
+    <!-- Header / Top Bar (sticky; scrollspy row when on article/about) -->
     <header class="site-header glass-panel">
-        <div class="container header-inner">
-            <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
-            <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
-            <nav class="desktop-top-nav" aria-label="Main">
-                <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
-                <a href="{{ "/blog/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "blog" }}active{{ end }}">Insights</a>
-                <a href="{{ "/projects/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "projects" }}active{{ end }}">Blueprints</a>
-                {{ range site.Params.socialIcons }}{{ if eq .name "github" }}
-                <a href="{{ .url }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-                {{ end }}{{ end }}
-                <button type="button" class="desktop-nav-link desktop-audio-trigger" aria-label="Listen" title="Listen">Listen</button>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">Share</a>
-                <a href="{{ "/about/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+        <div class="header-rows">
+            <div class="container header-inner">
+                <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
+                <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
+                <nav class="desktop-top-nav" aria-label="Main">
+                    <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
+                    <a href="{{ "/blog/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "blog" }}active{{ end }}">Insights</a>
+                    <a href="{{ "/projects/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "projects" }}active{{ end }}">Blueprints</a>
+                    {{ range site.Params.socialIcons }}{{ if eq .name "github" }}
+                    <a href="{{ .url }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    {{ end }}{{ end }}
+                    <button type="button" class="desktop-nav-link desktop-audio-trigger" aria-label="Listen" title="Listen">Listen</button>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="desktop-nav-link" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">Share</a>
+                    <a href="{{ "/about/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+                </nav>
+                <button id="theme-toggle" type="button" accesskey="t" title="Toggle theme (Alt+T)" aria-label="Toggle theme" class="theme-toggle-btn">
+                    <span class="theme-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+                </button>
+            </div>
+            <nav id="scrollspy-nav" class="scrollspy-nav scrollspy-nav--header" aria-label="Article contents" hidden>
+                <div class="scrollspy-inner">
+                    <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
+                        <span class="scrollspy-trigger-label">Contents</span>
+                        <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
+                </div>
             </nav>
-            <button id="theme-toggle" type="button" accesskey="t" title="Toggle theme (Alt+T)" aria-label="Toggle theme" class="theme-toggle-btn">
-                <span class="theme-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
-            </button>
         </div>
     </header>
 
