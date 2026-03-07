@@ -81,3 +81,28 @@
 | `assets/css/extended/enterprise.css` | Optional: tighten comment pointing to brand guidelines. |
 
 This gives you one canonical palette for light theme, token-driven hero and about sections, and a clear rule set for primary/secondary/tertiary so the experience feels cohesive and premium.
+
+---
+
+## 5. Radius and shape consistency
+
+Use the radius scale in `themes/frontier/assets/css/variables.css` so buttons, cards, bottom nav, music player, and all components share consistent corner radii. **New components must use design tokens only** — no literal `px` for border-radius except for circles (e.g. `50%` for avatars and icon buttons).
+
+### 5.1 Radius scale and semantic usage
+
+| Token | Value | Use for |
+|-------|--------|---------|
+| `--radius-2xs` | 3px | Diagram labels, tiny chips |
+| `--radius-xs` | 6px | Meta badges, progress tracks, small pills, list bullets |
+| `--radius-sm` | 8px | Buttons (non-pill), inputs, nav active state, tags (non-pill), small cards/chips |
+| `--radius-card` | 10px | About/impact/process cards, capability nodes |
+| `--radius-md` | 16px | Feed cards, main content panel, **fixed bars (bottom nav + player bar)**, TOC |
+| `--radius-lg` | 32px | Hero glass cards, large feature panels |
+| `--radius-pill` | 100px | Pill buttons, filter chips, tag pills, toggle handles |
+| `--radius-scrollbar` | 4px | Scrollbar thumb/track only |
+
+### 5.2 Rules
+
+- **Fixed glass panels:** Bottom nav and player bar must use the same radius (`--radius-md`) so they read as one control strip.
+- **Cards:** Feed/list cards use `--radius-md`; about/impact/process cards use `--radius-card`; hero glass cards use `--radius-lg`.
+- **Buttons:** Primary/pill buttons use `--radius-pill`; secondary/outline buttons use `--radius-sm`.

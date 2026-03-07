@@ -122,6 +122,12 @@
   /* Elevated hover (buttons, cards) — theme-aware via brand glow */
   --shadow-hover: 0 6px 20px var(--color-brand-glow), 0 2px 6px hsla(var(--hue-brand), 65%, 38%, 0.2);
   --blur-glass: blur(20px);
+  /* Radius scale — use tokens only; no literal px for corners (except 50% for circles).
+     Usage: --radius-2xs (diagram labels, tiny chips); --radius-xs (meta badges, progress tracks, small pills);
+     --radius-sm (buttons non-pill, inputs, nav active state, tags); --radius-card (about/impact/process cards);
+     --radius-md (feed cards, content panel, fixed bars: bottom nav + player bar, TOC);
+     --radius-lg (hero glass cards, large panels); --radius-pill (pill buttons, filter chips, tag pills, toggles);
+     --radius-scrollbar (scrollbar thumb/track only). Fixed glass panels (bottom nav, player bar) must use --radius-md. */
   --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 16px;
