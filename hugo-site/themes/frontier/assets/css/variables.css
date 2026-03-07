@@ -362,6 +362,14 @@
   --hero-metric-border: hsla(var(--hue-brand), 65%, 38%, 0.12);
   --hero-trust-badge-bg: hsla(220, 20%, 98%, 0.6);
   --hero-trust-badge-border: hsla(220, 30%, 12%, 0.18);
+  /* Hero buttons/tags — unified border, padding, hover lift */
+  --hero-btn-border-width: 2px;
+  --hero-btn-padding-y: var(--space-xs);
+  --hero-btn-padding-x: var(--space-md);
+  --hero-btn-tag-padding-y: var(--space-2xs);
+  --hero-btn-tag-padding-x: var(--space-xs);
+  --hero-btn-hover-lift: -2px;
+  --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 65%, 38%, 0.2);
   --care-step-bg: hsla(220, 20%, 99%, 0.5);
   --care-step-border: hsla(220, 30%, 12%, 0.06);
   --care-teaser-border: hsla(220, 25%, 15%, 0.1);
@@ -474,6 +482,7 @@
     --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
     --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
     --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+    --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
     --care-step-bg: hsla(220, 20%, 11%, 0.5);
     --care-step-border: hsla(220, 20%, 94%, 0.06);
     --care-teaser-border: hsla(220, 20%, 94%, 0.1);
@@ -554,6 +563,7 @@
   --hero-metric-border: hsla(var(--hue-brand), 75%, 65%, 0.14);
   --hero-trust-badge-bg: hsla(220, 20%, 14%, 0.6);
   --hero-trust-badge-border: hsla(220, 20%, 94%, 0.12);
+  --hero-trust-badge-highlight-border: hsla(var(--hue-brand), 75%, 65%, 0.2);
   --care-step-bg: hsla(220, 20%, 11%, 0.5);
   --care-step-border: hsla(220, 20%, 94%, 0.06);
   --care-teaser-border: hsla(220, 20%, 94%, 0.1);

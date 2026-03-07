@@ -283,7 +283,7 @@
     line-height: 1.5;
 }
 
-/* Action Buttons */
+/* Action Buttons — scoped to hero; use design tokens for consistency with trust badges */
 .hero-premium__actions {
     display: flex;
     align-items: center;
@@ -294,11 +294,11 @@
     z-index: 1;
 }
 
-.btn-outline {
+.hero-premium__actions .btn-outline {
     background: var(--color-surface);
-    border: 2px solid var(--color-brand);
+    border: var(--hero-btn-border-width) solid var(--color-brand);
     color: var(--color-brand);
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--hero-btn-padding-y) var(--hero-btn-padding-x);
     border-radius: var(--radius-pill);
     font-weight: var(--fw-semibold);
     font-size: var(--btn-font-desktop);
@@ -307,11 +307,11 @@
     -webkit-backdrop-filter: blur(8px);
 }
 
-.btn-outline:hover {
+.hero-premium__actions .btn-outline:hover {
     background: var(--color-brand);
     color: var(--color-on-brand);
     border-color: var(--color-brand);
-    transform: translateY(-2px);
+    transform: translateY(var(--hero-btn-hover-lift));
     box-shadow: var(--shadow-hover);
     opacity: 1;
 }
@@ -331,7 +331,7 @@
 }
 
 .hero-premium__actions .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(var(--hero-btn-hover-lift));
     box-shadow: var(--shadow-hover),
         inset 0 1px 0 hsla(220, 20%, 100%, 0.25);
     background: var(--color-brand-dark);
@@ -470,8 +470,8 @@
     font-weight: var(--fw-medium);
     color: var(--color-text-muted);
     background: var(--hero-trust-badge-bg);
-    border: 1px solid var(--hero-trust-badge-border);
-    padding: var(--space-2xs) var(--space-xs);
+    border: var(--hero-btn-border-width) solid var(--hero-trust-badge-border);
+    padding: var(--hero-btn-tag-padding-y) var(--hero-btn-tag-padding-x);
     border-radius: var(--radius-pill);
     transition: background var(--transition-medium), color var(--transition-medium), border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
     backdrop-filter: blur(6px);
@@ -491,7 +491,7 @@
     border-color: var(--color-brand);
     color: var(--color-brand);
     background: var(--color-brand-glow);
-    transform: translateY(-1px);
+    transform: translateY(var(--hero-btn-hover-lift));
     box-shadow: var(--shadow-hover);
 }
 
@@ -517,7 +517,7 @@
     font-weight: var(--fw-bold);
     color: var(--color-brand);
     background: var(--color-brand-glow);
-    border-color: hsla(var(--hue-brand), 65%, 38%, 0.2);
+    border-color: var(--hero-trust-badge-highlight-border);
 }
 
 .trust-badge--highlight svg {
@@ -532,7 +532,7 @@
 
 [data-theme="dark"] .trust-badge--highlight {
     background: var(--color-brand-glow);
-    border-color: hsla(var(--hue-brand), 75%, 65%, 0.2);
+    border-color: var(--hero-trust-badge-highlight-border);
 }
 
 [data-theme="dark"] .trust-badge--highlight:hover {
