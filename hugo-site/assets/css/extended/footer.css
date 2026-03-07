@@ -3,7 +3,7 @@
 .site-footer {
   background-color: var(--color-bg);
   color: var(--color-text-muted);
-  padding: var(--space-md) 0 var(--space-md);
+  padding: var(--space-sm) 0 var(--space-sm);
   margin-top: var(--footer-gap);
   border-top: 1px solid var(--color-border);
 }

@@ -114,7 +114,7 @@
   --content-paragraph-after: var(--space-md);
   --content-list-after: var(--space-md);
   --content-list-margin-top: var(--space-sm);
-  --footer-inner-gap: var(--space-sm);
+  --footer-inner-gap: var(--space-md);
 
   --shadow-sm: 0 2px 4px hsla(220, 20%, 10%, 0.05);
   --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08);
@@ -159,10 +159,10 @@
   --opacity-icon-muted: 0.7;
   --opacity-muted: 0.6;
 
-  /* Main content bottom spacing — reserve before footer (and for fixed bottom nav on mobile) */
-  --main-bottom-spacing: 8.75rem; /* ~140px — space for bottom nav + player + buffer on mobile */
+  /* Main content bottom spacing — reserve for fixed bottom nav + player on mobile only */
+  --main-bottom-spacing: 0;
   /* Gap above site footer — consistent separation from main content */
-  --footer-gap: var(--space-xl);
+  --footer-gap: var(--space-lg);
 
   /* Motion / Transition tokens (§3.3) */
   --transition-fast: 0.18s ease-out;
@@ -230,9 +230,6 @@
   --measure-mobile: 100%;
   --measure-tablet: 720px;
   --measure-desktop: var(--measure-lg);
-
-  /* Main content bottom spacing — reserve before footer (and for fixed bottom nav on mobile) */
-  --main-bottom-spacing: 8.75rem; /* ~140px — space for bottom nav + player + buffer on mobile */
 
   /* Content block (callout, blockquote, raw div) — responsive padding */
   --content-block-padding-mobile: var(--space-xs);
@@ -365,6 +362,13 @@
     --about-accent-green-text: #14532d;
     --about-accent-gray-bg: #f1f5f9;
     --about-accent-gray-text: #1e293b;
+  }
+}
+
+/* Reserve space below content for fixed bottom nav + player when nav is visible (≤1023px) */
+@media screen and (max-width: 1023px) {
+  :root {
+    --main-bottom-spacing: 5rem;
   }
 }
 

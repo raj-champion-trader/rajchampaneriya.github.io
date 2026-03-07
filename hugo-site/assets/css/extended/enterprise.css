@@ -413,10 +413,6 @@ a:hover{
    List Page (Blog & Projects)
    =================================== */
 
-.page-header {
-  padding: var(--space-md) 0 0;
-}
-
 .page-header h1 {
   font-size: var(--text-2xl);
   font-weight: var(--fw-extrabold);
@@ -427,6 +423,7 @@ a:hover{
   margin-bottom: var(--space-xs);
 }
 
+/* Vertical rhythm: use content tokens; horizontal padding comes from container */
 .page-content {
   color: var(--color-text-muted);
   font-size: var(--text-base);
@@ -476,10 +473,10 @@ a:hover{
 
 /* Unified with featured-project-tags: same pill style across theme */
 .card-category {
-    font-size: var(--text-xs);
-    font-weight: var(--fw-medium);
-    color: var(--color-text-meta);
-    background: var(--color-pill-bg);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-meta);
+  background: var(--color-pill-bg);
   border: 1px solid var(--color-pill-border);
   padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-sm);

@@ -88,8 +88,9 @@ p {
 }
 
 /* List pages (blog, projects) — page header */
+/* List pages (blog, projects) — page header: vertical padding from scale; horizontal from container */
 .page-header {
-    padding: var(--content-padding-mobile) 0;
+    padding: var(--space-sm) 0;
 }
 
 .page-header h1 {
@@ -106,7 +107,7 @@ p {
 
 @media screen and (min-width: 768px) {
     .page-header {
-        padding: var(--content-padding-tablet) 0;
+        padding: var(--space-md) 0;
     }
 
     .page-header h1 {
@@ -121,7 +122,7 @@ p {
 
 @media screen and (min-width: 1024px) {
     .page-header {
-        padding: var(--content-padding-desktop) 0;
+        padding: var(--space-lg) 0;
     }
 
     .page-header h1 {
@@ -232,13 +233,13 @@ p {
 }
 
 @media screen and (max-width: 480px) {
-  .site-header .header-inner {
+    .site-header .header-inner {
     justify-content: center;
     flex-wrap: wrap;
     gap: var(--space-2xs);
   }
   .site-header .header-inner .logo { max-width: 100%; }
-  .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: 6px; }
+  .site-header .header-inner #theme-toggle { margin-left: 0; margin-top: var(--space-2xs); }
 }
 
 /* Desktop-only top nav: show at 1024px, same links as bottom nav */
@@ -432,7 +433,7 @@ p {
 
 @media screen and (min-width: 1024px) {
     .single-post {
-        padding: var(--content-padding-desktop) 0;
+        padding: var(--content-padding-desktop) 0 var(--space-md) 0;
     }
 
     .single-post .post-header {
@@ -551,7 +552,7 @@ p {
 /* Post meta — moved from `hugo-site/assets/css/extended/post-meta.css` */
 .post-meta-social {
     display: inline-flex;
-    gap: 8px;
+    gap: var(--space-xs);
     align-items: center;
     margin-left: var(--space-2xs);
 }
@@ -742,11 +743,11 @@ select:focus-visible {
     margin-bottom: var(--space-sm);
 }
 
-/* Feed Cards */
+/* Feed Cards — single source for grid gap and card padding */
 .feed-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     margin-top: var(--space-md);
 }
 
@@ -810,7 +811,7 @@ select:focus-visible {
    Hero layout is fully handled by premium-hero.css; do not override here. */
 @media (min-width: 768px) {
   :root {
-    --footer-gap: var(--space-lg);
+    --footer-gap: var(--space-md);
   }
 
   .app-layout {
@@ -934,7 +935,7 @@ select:focus-visible {
     .menu-separator { display: none; }
     #menu { overflow-x: hidden; white-space: normal; flex-wrap: wrap; justify-content: center; padding: 0; margin: var(--space-xs) var(--gap); }
     #menu li { margin: var(--space-2xs) var(--space-xs) !important; }
-    #menu li + li { margin-inline-start: 8px !important; }
+    #menu li + li { margin-inline-start: var(--space-xs) !important; }
     .nav { max-width: 100%; overflow-x: hidden; }
     #menu a { font-size: var(--text-sm); }
     .logo { margin: auto; justify-content: center; }
@@ -945,10 +946,9 @@ select:focus-visible {
     #menu li { margin: var(--space-2xs) var(--space-xs) !important; }
 }
 
-/* FAB Sparkle */
+/* FAB Sparkle — single definition; tokenized size and lift */
 .nav-item.fab-trigger {
-    margin-top: -30px;
-    /* Float above */
+    margin-top: -1.5rem;
 }
 
 .nav-item .icon {
@@ -957,6 +957,24 @@ select:focus-visible {
 
 .nav-item.active .icon {
     opacity: 1;
+}
+
+.icon-fab {
+    font-size: var(--text-lg);
+    background: var(--color-brand);
+    color: var(--color-on-brand);
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    border: none;
+    cursor: pointer;
+    margin-top: -1.5rem;
 }
 
 #theme-toggle {
@@ -975,13 +993,6 @@ select:focus-visible {
 #theme-toggle:hover {
     color: var(--color-text-main);
     background: var(--color-brand-glow);
-}
-
-.icon-fab {
-    width: 56px;
-    height: 56px;
-    font-size: var(--text-xl);
-    box-shadow: 0 8px 16px var(--color-brand-glow);
 }
 
 /* Player Bar — styles moved to assets/css/extended/audio-player.css */
@@ -1076,24 +1087,6 @@ select:focus-visible {
     border: 1px solid var(--color-border);
     background: var(--color-bg);
     color: var(--color-text-main);
-}
-
-/* FAB Trigger style override if needed */
-.icon-fab {
-    font-size: var(--text-lg);
-    background: var(--color-brand);
-    color: var(--color-on-brand);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-lg);
-    border: none;
-    cursor: pointer;
-    margin-top: -24px;
-    /* Pop out effect */
 }
 
 /* Mermaid Detail Overlay */
@@ -1282,8 +1275,8 @@ select:focus-visible {
 @media (max-width: 375px) {
     .bottom-nav {
         width: 96%;
-        padding: 0 8px;
-        bottom: 12px;
+        padding: 0 var(--space-xs);
+        bottom: var(--space-sm);
     }
 }
 
@@ -1349,7 +1342,7 @@ code {
 .featured-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-xs);
 }
 
 .featured-project-tags span {

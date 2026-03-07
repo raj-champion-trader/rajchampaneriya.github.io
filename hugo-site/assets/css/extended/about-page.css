@@ -21,8 +21,8 @@
 }
 
 .post-header--about .post-header__about-photo img {
-  width: 120px;
-  height: 120px;
+  width: var(--about-photo-mobile);
+  height: var(--about-photo-mobile);
   border-radius: 50%;
   object-fit: cover;
   box-shadow: var(--shadow-sm);
