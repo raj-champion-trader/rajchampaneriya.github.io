@@ -24,6 +24,8 @@ body {
     transition: background-color var(--transition-slow), color var(--transition-slow);
     overflow-x: hidden;
     max-width: 100vw;
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
 }
 
 /* Typography — uses fluid scale from variables.css */
@@ -65,25 +67,60 @@ p {
     line-height: var(--leading-relaxed);
 }
 
-/* Layout Containers — responsive padding via design tokens */
+/* Layout Containers — responsive padding via design tokens; safe-area for notched devices.
+   Explicit 1.25rem fallback so left/right gutter is always visible if vars fail. */
 .container {
     width: 100%;
     max-width: var(--container-base);
     margin: 0 auto;
-    padding: 0 var(--content-padding-mobile);
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+    padding-right: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
+    padding-inline-start: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+    padding-inline-end: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
     overflow-x: clip;
     min-width: 0;
 }
 
+/* Main content: reinforce so padding applies in all form factors and both themes */
+main.container,
+main#swup.container {
+    padding-left: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+    padding-right: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
+    padding-inline-start: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+    padding-inline-end: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
+}
+
 @media screen and (min-width: 768px) {
     .container {
-        padding: 0 var(--content-padding-tablet);
+        padding-left: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+        padding-right: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
+        padding-inline-start: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
+    }
+    main.container,
+    main#swup.container {
+        padding-left: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+        padding-right: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
+        padding-inline-start: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
     }
 }
 
 @media screen and (min-width: 1024px) {
     .container {
-        padding: 0 var(--content-padding-desktop);
+        padding-left: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+        padding-right: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
+        padding-inline-start: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
+    }
+    main.container,
+    main#swup.container {
+        padding-left: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+        padding-right: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
+        padding-inline-start: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
     }
 }
 
@@ -105,9 +142,9 @@ p {
     font-size: var(--text-base);
 }
 
-/* List section intro: horizontal inset from container only (avoid double padding) */
-.page-header .page-content.surface-panel,
-.page-header .page-content {
+/* List section intro: surface-panel cards keep horizontal padding for internal breathing room.
+   Plain .page-content relies on container padding only. */
+.page-header .page-content:not(.surface-panel) {
     padding-left: 0;
     padding-right: 0;
 }
@@ -168,6 +205,7 @@ p {
   background: var(--color-surface-glass);
 }
 
+/* Header: same horizontal padding as main content on all form factors (light/dark) */
 .site-header .header-inner {
   display: flex !important;
   align-items: center !important;
@@ -176,7 +214,8 @@ p {
   column-gap: var(--space-xs);
   flex-wrap: nowrap; /* prefer single row */
   min-width: 0; /* allow children to shrink (prevents overflow) */
-  padding-inline: var(--space-xs);
+  padding-left: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+  padding-right: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
   box-sizing: border-box;
 }
 
@@ -302,11 +341,20 @@ p {
   color: var(--color-text-main);
 }
 
+@media screen and (min-width: 768px) {
+  .site-header .header-inner {
+    padding-left: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+    padding-right: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .site-header .header-inner {
     justify-content: space-between;
     flex-wrap: nowrap;
     gap: var(--space-sm);
+    padding-left: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+    padding-right: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
   }
   .site-header .header-inner .logo {
     max-width: none;
@@ -376,8 +424,11 @@ main#swup {
    Single Post & Project — shared layout
    ========================================= */
 
+/* Article pages: own left/right gutter so not fully dependent on main.container */
 .single-post {
-    padding: 0;
+    padding-block: 0;
+    padding-inline-start: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-left, 0));
+    padding-inline-end: max(1.25rem, var(--content-padding-mobile), env(safe-area-inset-right, 0));
     min-width: 0;
     max-width: 100%;
 }
@@ -439,7 +490,7 @@ main#swup {
 
 .single-post .post-content.surface-panel,
 .single-post .post-content {
-    padding: var(--content-padding-mobile) 0;
+    padding: var(--content-padding-mobile);
     font-size: var(--text-base);
 }
 
@@ -456,7 +507,9 @@ main#swup {
 
 @media screen and (min-width: 768px) {
     .single-post {
-        padding: var(--content-padding-tablet) 0;
+        padding-block: var(--content-padding-tablet);
+        padding-inline-start: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.5rem, var(--content-padding-tablet), env(safe-area-inset-right, 0));
     }
 
     .single-post .post-header h1 {
@@ -473,7 +526,7 @@ main#swup {
 
     .single-post .post-content.surface-panel,
     .single-post .post-content {
-        padding: var(--content-padding-tablet) 0;
+        padding: var(--content-padding-tablet);
     }
 
     .single-post .post-content h1 { font-size: var(--text-2xl); }
@@ -484,7 +537,9 @@ main#swup {
 
 @media screen and (min-width: 1024px) {
     .single-post {
-        padding: var(--content-padding-desktop) 0 var(--space-md) 0;
+        padding-block: var(--content-padding-desktop) var(--space-md);
+        padding-inline-start: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-left, 0));
+        padding-inline-end: max(1.75rem, var(--content-padding-desktop), env(safe-area-inset-right, 0));
     }
 
     .single-post .post-header {
@@ -497,7 +552,7 @@ main#swup {
 
     .single-post .post-content.surface-panel,
     .single-post .post-content {
-        padding: var(--content-padding-desktop) 0;
+        padding: var(--content-padding-desktop);
     }
 
     .single-post .post-content h1 { font-size: var(--text-3xl); }

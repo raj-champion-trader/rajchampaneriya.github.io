@@ -218,10 +218,10 @@
   --bp-lg: 1024px;
   --bp-xl: 1280px;
 
-  /* Content padding — responsive (blog post & project single) */
-  --content-padding-mobile: var(--space-sm);
+  /* Content padding — responsive (blog post & project single); increased for reader comfort */
+  --content-padding-mobile: var(--space-md);
   --content-padding-tablet: var(--space-md);
-  --content-padding-desktop: var(--space-md);
+  --content-padding-desktop: 1.75rem;
 
   /* Post/Project single — typography per breakpoint */
   --post-title-mobile: clamp(1.5rem, 5vw + 1rem, 2rem);
@@ -304,10 +304,10 @@
   --avatar-desktop: 130px;
   --avatar-wide: 140px;
 
-  /* Home container padding — responsive */
-  --home-padding-mobile: var(--space-sm);
-  --home-padding-tablet: var(--space-md);
-  --home-padding-desktop: var(--space-lg);
+  /* Home container padding — match content padding for consistent gutters on all form factors */
+  --home-padding-mobile: var(--content-padding-mobile);
+  --home-padding-tablet: var(--content-padding-tablet);
+  --home-padding-desktop: var(--content-padding-desktop);
 
   /* Code / diagram container background */
   --code-bg: hsl(220, 18%, 13%);

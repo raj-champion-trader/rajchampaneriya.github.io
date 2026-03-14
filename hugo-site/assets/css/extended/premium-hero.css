@@ -52,16 +52,19 @@
 /* Home page container: comfortable reading width and spacing
    Uses design tokens for consistent responsive padding.
    Subtle background so hero card and panels don’t look flat/white-washed. */
+/* Same left/right padding as main content; explicit fallback and safe-area for all form factors */
 .home-container {
     width: 100%;
     max-width: var(--container-home-sm);
     margin: 0 auto;
-    padding: 0 var(--home-padding-mobile);
+    padding-left: max(1.25rem, var(--home-padding-mobile), env(safe-area-inset-left, 0));
+    padding-right: max(1.25rem, var(--home-padding-mobile), env(safe-area-inset-right, 0));
 }
 
 @media screen and (min-width: 768px) {
     .home-container {
-        padding: 0 var(--home-padding-tablet);
+        padding-left: max(1.5rem, var(--home-padding-tablet), env(safe-area-inset-left, 0));
+        padding-right: max(1.5rem, var(--home-padding-tablet), env(safe-area-inset-right, 0));
     }
 }
 
@@ -69,7 +72,8 @@
     .home-container {
         /* Match list pages (blog, projects): use full container width on desktop */
         max-width: var(--container-wide);
-        padding: 0 var(--home-padding-desktop);
+        padding-left: max(1.75rem, var(--home-padding-desktop), env(safe-area-inset-left, 0));
+        padding-right: max(1.75rem, var(--home-padding-desktop), env(safe-area-inset-right, 0));
     }
 }
 

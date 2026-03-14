@@ -30,7 +30,8 @@
      About: tablet body text, title, and content padding
      ------------------------------------------------------------------------- */
   body.page-about .single-post {
-    padding: var(--content-padding-tablet) 0 var(--space-md) 0;
+    padding-top: var(--content-padding-tablet);
+    padding-bottom: var(--space-md);
   }
 
   body.page-about .single-post .post-header h1 {
@@ -72,7 +73,8 @@
      so intro panel, callouts, featured card, and feed cards share one alignment.
      ------------------------------------------------------------------------- */
   body.page-projects-list .page-header {
-    padding: var(--space-lg) 0;
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
   }
 
   body.page-projects-list .page-header h1 {
