@@ -90,14 +90,14 @@ Rail assets aren't a single thing — they're an ecosystem. The complexity comes
 
 | Asset Category | What It Includes | Why It's Complex |
 |---------------|------------------|------------------|
-| **Track infrastructure** | Rails, sleepers, ballast, formation | Degrades at different rates depending on axle load, speed, and climate |
-| **Signalling systems** | Interlockings, track circuits, [ETCS](https://www.era.europa.eu/domains/rail/etcs-european-train-control-system_en) | Legacy and modern systems coexist; failure means network shutdown |
-| **Overhead wiring** | Catenary, contact wire, masts | Electrified corridors require specialised high-voltage crews |
-| **Structures** | Bridges, tunnels, culverts | Long asset lives but catastrophic failure modes |
-| **Level crossings** | Boom gates, signals, road surfaces | Interface between rail and road — highest public risk point |
-| **Rolling stock** | Locomotives, wagons, passenger cars | Mobile assets maintained in depots on tight turnaround schedules |
+| **Track infrastructure** | [Rails](https://uic.org/rail-system/rail-system-overview), [sleepers](https://en.wikipedia.org/wiki/Railway_sleeper), ballast, [formation](https://en.wikipedia.org/wiki/Track_(rail_transport)#Track_formation) | Degrades at different rates depending on axle load, speed, and climate |
+| **Signalling systems** | [Interlockings](https://www.rssb.co.uk/standards-catalogue/CatalogueItem/GKRT0060-Iss-4), track circuits, [ETCS](https://www.era.europa.eu/domains/rail/etcs-european-train-control-system_en) | Legacy and modern systems coexist; failure means network shutdown |
+| **Overhead wiring** | [Catenary](https://en.wikipedia.org/wiki/Overhead_line), contact wire, masts | Electrified corridors require specialised high-voltage crews |
+| **Structures** | [Bridges, tunnels, culverts](https://arema.org/AREMA_MBRR/Store/MRE_TOC.aspx) | Long asset lives but catastrophic failure modes |
+| **Level crossings** | Boom gates, signals, road surfaces | Interface between rail and road — [highest public risk point](https://www.atsb.gov.au/avoidable-accidents/collisions-level-crossings) |
+| **Rolling stock** | [Locomotives, wagons, passenger cars](https://uic.org/rail-system/rail-system-overview) | Mobile assets maintained in depots on tight turnaround schedules |
 
-The real complexity is that these assets interact. A track geometry defect changes the dynamic load on a bridge. A signalling failure forces manual operation that delays possession windows for track maintenance. Everything is connected.
+For a system-level view of how these asset categories interact and are managed, see the [UIC guidelines on asset management in railway infrastructure](https://uic.org/IMG/pdf/2010_guidelines_for_the_application_of_asset_management.pdf) (PDF). The real complexity is that these assets interact. A track geometry defect changes the dynamic load on a bridge. A signalling failure forces manual operation that delays possession windows for track maintenance. Everything is connected.
 
 </div><div class="deep-dive-question scroll-reveal">
 
@@ -145,13 +145,13 @@ The tension is structural. Australia is simultaneously building new rail infrast
 
 Because Australia isn't Europe or Japan. The constraints are fundamentally different.
 
-**Distance:** Japan's Shinkansen network covers 3,000 km. Australia's freight network covers [36,000+ km](https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024), much of it through remote, arid terrain where the nearest maintenance depot may be hundreds of kilometres away.
+**Distance:** Japan's [Shinkansen network covers ~3,000 km](https://en.wikipedia.org/wiki/Shinkansen). Australia's freight network covers [36,000+ km](https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024), much of it through remote, arid terrain where the nearest maintenance depot may be hundreds of kilometres away.
 
-**Axle loads:** European passenger trains apply roughly 17 tonnes per axle. Australian heavy-haul trains in the Pilbara apply 40+ tonnes per axle — more than double. The track degradation rate is exponentially higher.
+**Axle loads:** European passenger trains apply [roughly 17 tonnes per axle](https://en.wikipedia.org/wiki/Axle_load). Australian heavy-haul trains in the Pilbara apply [40+ tonnes per axle](https://www.railjournal.com/in_depth/pilbaras-heavyweight-champion-flexes-its-muscles/) — more than double. The track degradation rate is exponentially higher.
 
-**Climate:** Australian rail operates across deserts (track buckling in 50°C heat), tropical monsoons (ballast washout), alpine conditions (frost heave), and coastal salt air (corrosion). No single European country faces that range.
+**Climate:** Australian rail operates across [deserts (track buckling in 50°C heat), tropical monsoons (ballast washout), alpine conditions (frost heave), and coastal salt air (corrosion)](https://theconversation.com/buckling-rails-and-lines-underwater-how-australias-ageing-train-networks-are-crumbling-as-the-climate-changes-263796). No single European country faces that range.
 
-**Mixed corridors:** Many Australian corridors carry both heavy freight and passenger services on the same track — a combination that creates competing maintenance demands and accelerated wear patterns that few overseas networks deal with at scale.
+**Mixed corridors:** Many Australian corridors carry both heavy freight and passenger services on the same track — a combination that creates competing maintenance demands and accelerated wear patterns that [few overseas networks deal with at scale](https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024).
 
 Australia needs maintenance models built for Australian conditions. That's not insularity — it's physics.
 
@@ -212,7 +212,11 @@ Understanding this landscape is foundational. Every subsequent post in this camp
 | Government | BITRE — *[Australian Infrastructure and Transport Statistics Yearbook 2024](https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024)* |
 | Government | Infrastructure Australia — *[Australian Infrastructure Plan 2024](https://www.infrastructureaustralia.gov.au)* |
 | Government | ATSB — *[Rail investigation reports](https://www.atsb.gov.au/rail-investigation-reports)* |
+| Government | ATSB — *[Collisions at level crossings](https://www.atsb.gov.au/avoidable-accidents/collisions-level-crossings)* |
+| Standards | UIC — *[Guidelines for asset management in railway infrastructure](https://uic.org/IMG/pdf/2010_guidelines_for_the_application_of_asset_management.pdf)* (PDF) |
+| Standards | RSSB — *[Interlocking Principles (GKRT0060)](https://www.rssb.co.uk/standards-catalogue/CatalogueItem/GKRT0060-Iss-4)* |
 | Project | ARTC — *[Inland Rail](https://www.artc.com.au/projects/)* |
+| Analysis | The Conversation — *[Buckling rails and lines underwater: Australia's ageing train networks and climate](https://theconversation.com/buckling-rails-and-lines-underwater-how-australias-ageing-train-networks-are-crumbling-as-the-climate-changes-263796)* |
 
 ---
 
