@@ -1,0 +1,43 @@
+/*
+  Table horizontal scroll — wrapper injected by render-table.html.
+  - Desktop: wide tables get a horizontal scrollbar.
+  - Small screens: content wraps first; scrollbar still appears when wrapping isn't enough.
+*/
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: var(--space-md) 0;
+}
+
+/* Override theme: table stays table layout so it can grow; wrapper handles scroll */
+.post-content .table-scroll-wrapper table,
+.page-content .table-scroll-wrapper table,
+.posts-toc .table-scroll-wrapper table {
+  display: table;
+  width: 100%;
+  min-width: max-content;
+  margin: 0;
+  overflow-x: visible;
+}
+
+/* Small screens: allow table to shrink and wrap content; scrollbar as fallback */
+@media (max-width: 768px) {
+  .post-content .table-scroll-wrapper table,
+  .page-content .table-scroll-wrapper table,
+  .posts-toc .table-scroll-wrapper table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .post-content .table-scroll-wrapper th,
+  .page-content .table-scroll-wrapper th,
+  .posts-toc .table-scroll-wrapper th,
+  .post-content .table-scroll-wrapper td,
+  .page-content .table-scroll-wrapper td,
+  .posts-toc .table-scroll-wrapper td {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
