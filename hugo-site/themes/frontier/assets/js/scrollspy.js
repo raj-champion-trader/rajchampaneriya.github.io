@@ -1,7 +1,7 @@
 /**
  * Responsive scrollspy navigation for article pages.
  * - When in header (.scrollspy-nav--header): no sentinel/stick; uses full header height for scroll offset.
- * - Extracts h2/h3 from .post-content, builds TOC
+ * - Extracts h2 from .post-content or .page-content, builds TOC (H2 only)
  * - Intersection Observer for active section
  * - Smooth scroll with offset for sticky header
  * - Collapsible dropdown; keyboard and ARIA support
@@ -27,22 +27,23 @@ function scrollToSection(id) {
 
 function getContentContainer() {
   const main = document.querySelector('#swup');
-  return main ? main.querySelector('.single-post .post-content') : document.querySelector('.single-post .post-content');
+  const singleContent = main ? main.querySelector('.single-post .post-content') : document.querySelector('.single-post .post-content');
+  if (singleContent) return singleContent;
+  return main ? main.querySelector('.page-header .page-content') || main.querySelector('.page-content') : document.querySelector('.page-header .page-content') || document.querySelector('.page-content');
 }
 
 function buildHeadings(content) {
-  const headings = content.querySelectorAll('h2[id], h3[id]');
+  const headings = content.querySelectorAll('h2[id]');
   return Array.from(headings).map((el) => ({
     id: el.id,
     text: el.textContent.replace(/\s*#\s*$/, '').trim(),
-    level: el.tagName.toLowerCase() === 'h2' ? 2 : 3,
     element: el,
   }));
 }
 
-function createNavItem({ id, text, level }) {
+function createNavItem({ id, text }) {
   const li = document.createElement('li');
-  li.className = 'scrollspy-item' + (level === 3 ? ' is-nested' : '');
+  li.className = 'scrollspy-item';
   li.setAttribute('role', 'listitem');
   const a = document.createElement('a');
   a.href = `#${encodeURIComponent(id)}`;
@@ -78,7 +79,9 @@ function initScrollspy() {
 
   /* Page title for trigger label (replaces "Contents") */
   const singlePost = content.closest('.single-post');
+  const pageHeader = content.closest('.page-header');
   const pageTitle = singlePost?.querySelector('.post-header h1, h1')?.textContent?.trim() ||
+    pageHeader?.querySelector('h1')?.textContent?.trim() ||
     document.title.split('|')[0].trim() ||
     'Contents';
 
@@ -99,7 +102,7 @@ function initScrollspy() {
       nav._scrollspyResizeObserver = ro;
     }
     /* Smart auto-hide: hide scrollspy row when viewport is outside main content */
-    const contentArea = content.closest('.single-post') || content;
+    const contentArea = content.closest('.single-post') || content.closest('.page-header') || content;
     if (contentArea) {
       const autoHideObserver = new IntersectionObserver(
         (entries) => {
@@ -242,7 +245,7 @@ function initScrollspy() {
     trigger.setAttribute('aria-expanded', 'false');
   }
 
-  document.querySelectorAll('.post-content.surface-panel h2[id], .post-content.surface-panel h3[id]').forEach((h) => {
+  document.querySelectorAll('.post-content.surface-panel h2[id], .page-content.surface-panel h2[id]').forEach((h) => {
     h.setAttribute('tabindex', '-1');
   });
 

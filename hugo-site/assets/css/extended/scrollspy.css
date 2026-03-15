@@ -449,7 +449,7 @@
 }
 
 .post-content.surface-panel h2[id],
-.post-content.surface-panel h3[id] {
+.page-content.surface-panel h2[id] {
   scroll-margin-top: var(--header-height-with-scrollspy, calc(var(--header-height, 56px) + 60px));
 }
 
