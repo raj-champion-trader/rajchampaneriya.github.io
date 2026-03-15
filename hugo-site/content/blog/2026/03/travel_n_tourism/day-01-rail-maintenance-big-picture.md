@@ -1,7 +1,7 @@
 ---
 title: "The Invisible Army — Understanding Australian Rail Maintenance"
 date: 2026-03-15
-draft: false
+draft: true
 slug: "day-01-rail-maintenance-big-picture"
 tags: ["rail-maintenance", "australian-rail", "infrastructure", "asset-management", "IBM"]
 categories: ["Industry Experience"]

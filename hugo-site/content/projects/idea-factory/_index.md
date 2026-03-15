@@ -2,26 +2,25 @@
 title: "The Idea Factory Blueprint: Method, Governance, Value, and Where to Find the Code"
 date: 2026-02-24
 draft: false
-slug: "idea-factory-blueprint-method-governance-value"
-categories:
-  - Architecture Strategy
-tags:
-  - idea-factory
-  - enterprise-architecture
-  - governance
-  - innovation
-  - dotnet-aspire
-  - platform-engineering
+slug: "idea-factory"
+tags: ["idea-factory", "enterprise-architecture", "governance", "innovation", "dotnet-aspire", "platform-engineering"]
+categories: ["Architecture Strategy"]
 description: "The second part of the Idea Factory series: the layered method, governance that enables rather than blocks, the business case, and the open blueprint—consolidated for a single weekend read."
 summary: "From method to evidence: how the Idea Factory's three layers work, why governance belongs inside the loop, what the innovation math looks like, and where to get the blueprint and code."
-audio: "/blog/2026/02/audio/idea-factory.wav"
+audio: "/projects/idea-factory/audio/idea-factory.wav"
 audioTitle: "Idea Factory Blueprint"
 githubRepo: "https://github.com/raj-champion-trader/insight-weaver"
+weight: 2
+ShowToc: true
 ---
 
 {{< tldr >}}
 What if governance didn't slow innovation—it *proved* it? Here: the three-layer method that gets architects from idea to evidence in **48 hours**, why compliance belongs inside the loop, the before/after math from our pilot, and where to grab the code. The full methodology is coming soon—this post consolidates Days 4–7 of the [LinkedIn series](https://www.linkedin.com/posts/rajchampaneriya_enterprisearchitecture-innovation-ideafactory-activity-7428814149134061568-AMK3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAkClyMBSGRUzjDGFxcbTDWSiATbVMVa6FE) for a single read.
 {{< /tldr >}}
+
+<figure class="project-hero">
+  <img src="{{< imgurl "projects/idea-factory/Idea-Factory-Blueprint.jpeg" >}}" alt="Idea Factory Blueprint — method, governance, value" />
+</figure>
 
 If you caught the first part of this series on [LinkedIn](https://www.linkedin.com/posts/rajchampaneriya_enterprisearchitecture-innovation-ideafactory-activity-7428814149134061568-AMK3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAkClyMBSGRUzjDGFxcbTDWSiATbVMVa6FE), you already know the setup: **innovation often doesn't fail—it waits.** Budget friction, approval cycles, and "write a business case first" kill momentum before proof of concept. The alternative we built is an **Idea Factory**: a local-first environment where architects run controlled experiments, produce real evidence, and only then ask for scale. Days 1–3 covered the problem, the blueprint, and a live demo. What follows is the rest of the story—method, governance, value, and the handshake—in one place for a weekend read.
 

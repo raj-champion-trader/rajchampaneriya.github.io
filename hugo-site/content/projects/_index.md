@@ -15,21 +15,20 @@ Real-world enterprise architecture blueprints & case studies by Raj Champaneriya
 
 ## Featured Project
 
-<a href="/projects/stock-market-simulator/" class="featured-project-card">
+<a href="/projects/idea-factory/" class="featured-project-card">
   <div class="featured-project-body">
-    <h3 class="featured-project-title">Stock Market Simulator</h3>
+    <h3 class="featured-project-title">Idea Factory Blueprint</h3>
     <p class="featured-project-desc">
-      The key to greatness lies in the details — a masterclass in real‑time architecture: quant models, sub‑100ms latency, and deliberate tradeoffs from Redis to SSE. Don't just watch the data flow; study the decisions that make it reliable.
+      From method to evidence in 48 hours: the three-layer approach (Experiment Execution → Evidence Collection → Decision Support), governance that enables rather than blocks, and the open blueprint with .NET Aspire and GitHub Copilot SDK. Innovation with prudence.
     </p>
-    <img src="{{< imgurl "images/project/stock-market-simulator/logical-architecture.svg" >}}" alt="Stock Market Simulator — logical architecture: Presentation, Application, Integration &amp; Data, Data Source" class="featured-project-img" />
+    <img src="{{< imgurl "projects/idea-factory/Idea-Factory-Blueprint.jpeg" >}}" alt="Idea Factory Blueprint — method, governance, value" class="featured-project-img" />
     <br/>
     <div class="featured-project-tags">
-      <span>.NET 10</span>
-      <span>Redis Streams</span>
-      <span>Real-time</span>
-      <span>Low-latency</span>
-      <span>Quant models</span>
-      <span>SSE</span>
+      <span>.NET Aspire</span>
+      <span>Governance</span>
+      <span>Innovation</span>
+      <span>Platform Engineering</span>
+      <span>Enterprise Architecture</span>
     </div>
   </div>
 </a>

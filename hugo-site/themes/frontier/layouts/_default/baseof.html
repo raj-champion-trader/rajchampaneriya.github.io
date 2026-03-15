@@ -45,6 +45,9 @@
     {{ else if and (eq .Section "projects") (eq .Params.slug "stock-market-simulator") }}
     <!-- Preload LCP image (hero diagram) on Stock Market Simulator project page -->
     <link rel="preload" as="image" href="{{ "images/project/stock-market-simulator/logical-architecture.svg" | relURL }}">
+    {{ else if and (eq .Section "projects") (eq .Params.slug "idea-factory") }}
+    <!-- Preload LCP image (hero) on Idea Factory project page -->
+    <link rel="preload" as="image" href="{{ "projects/idea-factory/Idea-Factory-Blueprint.jpeg" | relURL }}">
     {{ end }}
 
     <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
@@ -69,7 +72,7 @@
     {{ end }}
 </head>
 
-<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") .IsNode }} page-projects-list{{ end }}{{ if and (eq .Section "projects") .IsNode (eq .Params.slug "travel-and-transport") }} page-travel-and-transport{{ end }}">
+<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") (gt (len .Sections) 0) }} page-projects-list{{ end }}{{ if and (eq .Section "projects") (eq (len .Sections) 0) .Parent (eq .Parent.Section "projects") }} page-project-single{{ end }}{{ if eq .Params.slug "idea-factory" }} page-idea-factory{{ end }}{{ if and (eq .Section "projects") (gt (len .Sections) 0) (eq .Params.slug "travel-and-transport") }} page-travel-and-transport{{ end }}">
 
     <!-- Header / Top Bar (sticky; scrollspy row when on article/about) -->
     <header class="site-header glass-panel">

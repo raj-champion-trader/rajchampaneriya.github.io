@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ partial "page-data-meta.html" . }}
-{{/* --- Section page audio (e.g. projects _index.md) --- */}}
+{{/* --- Section page audio (e.g. projects _index.md or project single) --- */}}
 {{ $audioResource := false }}
 {{ $audioSrc := "" }}
 {{ $audioTitle := .Params.audioTitle | default .Title }}
@@ -12,20 +12,43 @@
 <div id="page-audio-data" data-src="{{ $audioSrc }}" data-title="{{ $audioTitle }}" hidden aria-hidden="true"></div>
 {{ end }}
 
+{{ $isProjectSingle := and (eq (len .Sections) 0) .Parent (eq .Parent.Section "projects") }}
+{{ if $isProjectSingle }}
+{{/* --- Project single page (e.g. idea-factory, stock-market-simulator): single-post layout --- */}}
+<article class="single-post project-single">
+    <header class="post-header scroll-reveal">
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            {{ with .Params.categories }}<span>•</span><span>{{ index . 0 }}</span>{{ end }}
+            {{ if $audioResource }}
+            <span>•</span>
+            <button type="button" class="btn-text listen-btn" onclick="playAudio('{{ $audioSrc }}', '{{ $audioTitle }}')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                Listen
+            </button>
+            {{ end }}
+            <span>•</span>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="btn-text" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">Share</a>
+        </div>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}<p class="post-description">{{ . }}</p>{{ end }}
+    </header>
+    <div class="post-content surface-panel">
+        {{ .Content }}
+    </div>
+    {{ with .Params.tags }}
+    <footer class="post-footer scroll-reveal">
+        <div class="tags">
+            {{ range . }}<a href="{{ "/projects/" | relLangURL }}?tag={{ . | urlize }}" class="tag">#{{ . }}</a>{{ end }}
+        </div>
+    </footer>
+    {{ end }}
+</article>
+{{ else }}
+{{/* --- Projects list (section index) --- */}}
 <section class="page-header">
     {{ if $audioResource }}
-    <!-- <div class="post-meta">
-        <button class="btn-text listen-btn" onclick="playAudio('{{ $audioSrc }}', '{{ $audioTitle }}')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                <path
-                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
-                </path>
-            </svg>
-            Listen
-        </button>
-    </div> -->
+    <!-- listen button commented out -->
     {{ end }}
     <h1>{{ .Title }}</h1>
     {{ with .Content }}
@@ -34,4 +57,30 @@
     </div>
     {{ end }}
 </section>
+
+{{ $sections := .Sections }}
+{{ if $sections }}
+<div class="feed-grid">
+    {{ range $idx, $page := $sections.ByDate.Reverse }}
+    <article class="feed-card surface-panel scroll-reveal scroll-reveal--delay-{{ add (mod $idx 6) 1 }}" {{ with $page.Params.tags }}data-tags="{{ delimit (apply . "urlize" ".") "," }}"{{ end }}>
+        <div class="card-content">
+            <div class="card-meta">
+                {{ with $page.Date }}
+                <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>
+                {{ end }}
+                {{ with $page.Params.categories }}
+                <span class="card-category">{{ index . 0 }}</span>
+                {{ end }}
+            </div>
+            <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+            <p>{{ $page.Summary | truncate 120 }}</p>
+            <div class="card-actions">
+                <a href="{{ $page.RelPermalink }}" class="read-more btn-text">Read Case Study →</a>
+            </div>
+        </div>
+    </article>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}
 {{ end }}
