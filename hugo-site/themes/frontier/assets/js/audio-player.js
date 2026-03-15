@@ -11,7 +11,7 @@
  *  - Distraction-free: player hides when not in use
  */
 
-console.log('Frontier Theme: Audio Player Module Loaded');
+
 
 // --- DOM references ---
 const playerBar = document.getElementById('audio-player-bar');

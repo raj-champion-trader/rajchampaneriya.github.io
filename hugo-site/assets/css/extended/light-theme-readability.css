@@ -1,52 +1,16 @@
 /* ==============================================
-   Post content block — theme-aware colors via design tokens.
-   Uses var(--color-surface), var(--color-text-main), var(--color-text-muted)
-   so [data-theme="dark"] and [data-theme="light"] both apply correctly.
+   Post content block — surface background for card-style content.
+   Token-based: adapts to light/dark automatically.
    ============================================== */
 
-/* Default + light: tokens resolve to light surface, dark text */
 .single-post .post-content.surface-panel,
 .single-post .post-content {
   background: var(--color-surface);
   color: var(--color-text-main);
 }
 
-.single-post .post-content h1,
-.single-post .post-content h2,
-.single-post .post-content h3,
-.single-post .post-content h4,
-.single-post .post-content h5,
-.single-post .post-content h6 {
-  color: var(--color-text-main);
-  -webkit-text-fill-color: var(--color-text-main);
-  background: none;
-}
-
 .single-post .post-content p,
 .single-post .post-content .post-description,
 .single-post .post-content li {
-  color: var(--color-text-muted);
-}
-
-/* Dark theme: same tokens, resolved by [data-theme="dark"] */
-[data-theme="dark"] .single-post .post-content.surface-panel,
-[data-theme="dark"] .single-post .post-content {
-  background: var(--color-surface);
-  color: var(--color-text-main);
-}
-
-[data-theme="dark"] .single-post .post-content h1,
-[data-theme="dark"] .single-post .post-content h2,
-[data-theme="dark"] .single-post .post-content h3,
-[data-theme="dark"] .single-post .post-content h4,
-[data-theme="dark"] .single-post .post-content h5,
-[data-theme="dark"] .single-post .post-content h6 {
-  color: var(--color-text-main);
-  -webkit-text-fill-color: var(--color-text-main);
-}
-
-[data-theme="dark"] .single-post .post-content p,
-[data-theme="dark"] .single-post .post-content .post-description,
-[data-theme="dark"] .single-post .post-content li {
   color: var(--color-text-muted);
 }

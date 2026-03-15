@@ -386,4 +386,4 @@ if (window.swup && window.swup.hooks) {
   window.swup.hooks.on('page:view', () => requestAnimationFrame(runScrollspy));
 }
 
-console.log('Frontier Theme: Swup & Interactivity Configuration Complete');
+

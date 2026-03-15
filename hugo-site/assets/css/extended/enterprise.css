@@ -39,9 +39,6 @@
 body {
   overflow-x: hidden;
   max-width: 100%;
-}
-
-body{
   font-family: var(--font-sans);
 }
 
@@ -237,11 +234,7 @@ a:hover{
   background: var(--color-surface);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-sm);
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
-}
-
-.post-content blockquote:hover {
-  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-medium);
 }
 
 /* Link styling in post content */
@@ -418,8 +411,6 @@ a:hover{
   font-weight: var(--fw-extrabold);
   letter-spacing: -0.03em;
   color: var(--color-text-main);
-  -webkit-text-fill-color: var(--color-text-main);
-  background: none;
   margin-bottom: var(--content-heading-after);
 }
 

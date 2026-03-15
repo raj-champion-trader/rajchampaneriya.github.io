@@ -1,4 +1,4 @@
-console.log('Frontier Theme: AI Chat Module Loaded');
+
 
 const API_ENDPOINT = 'https://api.rajc.work/ai/chat'; // Placeholder
 
@@ -64,9 +64,8 @@ function initAIChat() {
       triggerBtn.addEventListener('click', (e) => { e.preventDefault(); toggleChat(); });
       triggerBtn.dataset.aiChatBound = '1';
     }
-    console.log('AI Chat: Trigger button found');
   } else {
-    console.info('AI Chat: Trigger button not present on this page (optional)');
+    // Trigger button not present on this page (optional)
   }
 
   if (closeBtn && !closeBtn.dataset.aiChatBound) {

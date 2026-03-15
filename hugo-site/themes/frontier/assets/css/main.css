@@ -44,9 +44,7 @@ h6 {
 h1 {
     font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
-    background: linear-gradient(135deg, var(--color-text-main), var(--color-text-muted));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-text-main);
 }
 
 h2 {
@@ -318,6 +316,9 @@ main#swup.container {
 .desktop-top-nav .desktop-nav-link:hover {
   color: var(--color-text-main);
 }
+.desktop-top-nav .desktop-nav-link:active {
+  color: var(--color-brand-dim);
+}
 .desktop-top-nav .desktop-nav-link.active {
   color: var(--color-brand);
 }
@@ -479,8 +480,6 @@ main#swup {
 
 .single-post .post-header h1 {
     font-size: var(--post-title-mobile);
-    -webkit-text-fill-color: var(--color-text-main);
-    background: none;
 }
 
 .single-post .post-description {
@@ -816,8 +815,6 @@ select:focus-visible {
 .profile-info h1 {
     margin: 0;
     font-size: var(--text-2xl);
-    -webkit-text-fill-color: var(--color-text-main);
-    /* Reset gradient for name if needed */
 }
 
 .subtitle {
@@ -1160,7 +1157,7 @@ select:focus-visible {
 }
 
 .btn-icon:hover {
-    background: var(--color-brand-dim);
+    background: var(--color-brand-glow);
 }
 
 /* Chat Panel */
@@ -1288,6 +1285,19 @@ select:focus-visible {
     height: 40px;
     z-index: var(--z-overlay-content);
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.mermaid-close-btn:hover {
+    background: var(--color-brand);
+    color: var(--color-on-brand);
 }
 
 .mermaid {
@@ -1405,6 +1415,11 @@ select:focus-visible {
     background: var(--color-brand);
     color: var(--color-on-brand);
     transform: translateY(-2px);
+}
+
+.scroll-to-top:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
 }
 
 /* 2. Bottom nav: hide text labels on mobile to reduce clutter; icons only */

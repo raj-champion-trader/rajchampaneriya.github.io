@@ -65,7 +65,7 @@
 
 .player-title {
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-main);
   white-space: nowrap;
   overflow: hidden;
@@ -75,7 +75,7 @@
 
 .player-time {
   font-size: var(--text-2xs);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
@@ -133,7 +133,7 @@
 /* Speed button — text instead of icon */
 .player-speed-btn {
   font-size: var(--text-2xs) !important;
-  font-weight: 700 !important;
+  font-weight: var(--fw-bold) !important;
   font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
   min-width: var(--touch-target-min) !important;
   min-height: var(--touch-target-min) !important;
