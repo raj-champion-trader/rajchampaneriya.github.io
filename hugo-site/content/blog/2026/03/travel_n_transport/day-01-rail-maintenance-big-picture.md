@@ -41,7 +41,7 @@ Excellence, in this industry, is invisible.
 
 A few visuals for post.
 
-{{< screenshot_carousel images="images/blog/2026/03/travel_n_transport/day1/image1.png, images/blog/2026/03/travel_n_transport/day1/image2.png, images/blog/2026/03/travel_n_transport/day1/image3.png" interval="4" size="1920x1440" >}}
+{{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day1/image1.png, /blog/2026/03/travel_n_transport/assests/day1/image2.png, /blog/2026/03/travel_n_transport/assests/day1/image3.png" interval="4" size="1920x1440" >}}
 
 ---
 

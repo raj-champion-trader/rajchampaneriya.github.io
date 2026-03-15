@@ -8,7 +8,7 @@
     <div class="screenshot-carousel-track">
       {{- range $i, $p := $paths -}}
         {{- $path := trim $p " " -}}
-        {{- $res := resources.Get $path -}}
+        {{- $res := $.Page.Resources.GetMatch $path -}}
         {{- $slideNum := add $i 1 -}}
         <div class="screenshot-carousel-slide {{ if eq $i 0 }}active{{ end }}" data-index="{{ $i }}" aria-hidden="{{ ne $i 0 }}">
           {{- if $res -}}
