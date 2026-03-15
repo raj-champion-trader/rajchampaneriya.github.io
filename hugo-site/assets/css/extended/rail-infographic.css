@@ -1,0 +1,125 @@
+/* Rail maintenance infographic — theme-aware SVG variables and responsive wrapper */
+
+/* Light theme (default) */
+:root {
+  --rail-info-title: rgb(20, 20, 19);
+  --rail-info-section-label: rgb(20, 20, 19);
+  --rail-info-marker-stroke: rgb(95, 94, 90);
+
+  --rail-info-stat-bg: rgb(250, 236, 231);
+  --rail-info-stat-border: rgb(153, 60, 29);
+  --rail-info-stat-text: rgb(113, 43, 19);
+  --rail-info-stat-subtext: rgb(153, 60, 29);
+
+  --rail-info-amber-bg: rgb(250, 238, 218);
+  --rail-info-amber-border: rgb(133, 79, 11);
+  --rail-info-amber-text: rgb(99, 56, 6);
+  --rail-info-amber-subtext: rgb(133, 79, 11);
+
+  --rail-info-teal-bg: rgb(225, 245, 238);
+  --rail-info-teal-border: rgb(15, 110, 86);
+  --rail-info-teal-text: rgb(8, 80, 65);
+  --rail-info-teal-subtext: rgb(15, 110, 86);
+
+  --rail-info-purple-bg: rgb(238, 237, 254);
+  --rail-info-purple-border: rgb(83, 74, 183);
+  --rail-info-purple-text: rgb(60, 52, 137);
+  --rail-info-purple-subtext: rgb(83, 74, 183);
+
+  --rail-info-blue-bg: rgb(230, 241, 251);
+  --rail-info-blue-border: rgb(24, 95, 165);
+  --rail-info-blue-text: rgb(12, 68, 124);
+  --rail-info-blue-subtext: rgb(24, 95, 165);
+
+  --rail-info-footer-bg: rgb(241, 239, 232);
+  --rail-info-footer-border: rgb(95, 94, 90);
+  --rail-info-footer-text: rgb(95, 94, 90);
+}
+
+/* Dark theme — system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rail-info-title: hsl(220, 20%, 94%);
+    --rail-info-section-label: hsl(220, 20%, 94%);
+    --rail-info-marker-stroke: hsl(220, 12%, 65%);
+
+    --rail-info-stat-bg: hsla(20, 50%, 25%, 0.5);
+    --rail-info-stat-border: hsl(20, 55%, 55%);
+    --rail-info-stat-text: hsl(20, 45%, 75%);
+    --rail-info-stat-subtext: hsl(20, 50%, 65%);
+
+    --rail-info-amber-bg: hsla(40, 45%, 22%, 0.5);
+    --rail-info-amber-border: hsl(40, 50%, 55%);
+    --rail-info-amber-text: hsl(40, 45%, 78%);
+    --rail-info-amber-subtext: hsl(40, 50%, 65%);
+
+    --rail-info-teal-bg: hsla(165, 35%, 18%, 0.5);
+    --rail-info-teal-border: hsl(165, 45%, 45%);
+    --rail-info-teal-text: hsl(165, 40%, 75%);
+    --rail-info-teal-subtext: hsl(165, 45%, 55%);
+
+    --rail-info-purple-bg: hsla(245, 35%, 22%, 0.5);
+    --rail-info-purple-border: hsl(245, 45%, 55%);
+    --rail-info-purple-text: hsl(245, 40%, 78%);
+    --rail-info-purple-subtext: hsl(245, 45%, 65%);
+
+    --rail-info-blue-bg: hsla(210, 50%, 18%, 0.5);
+    --rail-info-blue-border: hsl(210, 60%, 50%);
+    --rail-info-blue-text: hsl(210, 55%, 78%);
+    --rail-info-blue-subtext: hsl(210, 60%, 60%);
+
+    --rail-info-footer-bg: hsla(220, 15%, 18%, 0.6);
+    --rail-info-footer-border: hsl(220, 12%, 50%);
+    --rail-info-footer-text: hsl(220, 12%, 65%);
+  }
+}
+
+/* Dark theme — explicit toggle */
+[data-theme="dark"] {
+  --rail-info-title: hsl(220, 20%, 94%);
+  --rail-info-section-label: hsl(220, 20%, 94%);
+  --rail-info-marker-stroke: hsl(220, 12%, 65%);
+
+  --rail-info-stat-bg: hsla(20, 50%, 25%, 0.5);
+  --rail-info-stat-border: hsl(20, 55%, 55%);
+  --rail-info-stat-text: hsl(20, 45%, 75%);
+  --rail-info-stat-subtext: hsl(20, 50%, 65%);
+
+  --rail-info-amber-bg: hsla(40, 45%, 22%, 0.5);
+  --rail-info-amber-border: hsl(40, 50%, 55%);
+  --rail-info-amber-text: hsl(40, 45%, 78%);
+  --rail-info-amber-subtext: hsl(40, 50%, 65%);
+
+  --rail-info-teal-bg: hsla(165, 35%, 18%, 0.5);
+  --rail-info-teal-border: hsl(165, 45%, 45%);
+  --rail-info-teal-text: hsl(165, 40%, 75%);
+  --rail-info-teal-subtext: hsl(165, 45%, 55%);
+
+  --rail-info-purple-bg: hsla(245, 35%, 22%, 0.5);
+  --rail-info-purple-border: hsl(245, 45%, 55%);
+  --rail-info-purple-text: hsl(245, 40%, 78%);
+  --rail-info-purple-subtext: hsl(245, 45%, 65%);
+
+  --rail-info-blue-bg: hsla(210, 50%, 18%, 0.5);
+  --rail-info-blue-border: hsl(210, 60%, 50%);
+  --rail-info-blue-text: hsl(210, 55%, 78%);
+  --rail-info-blue-subtext: hsl(210, 60%, 60%);
+
+  --rail-info-footer-bg: hsla(220, 15%, 18%, 0.6);
+  --rail-info-footer-border: hsl(220, 12%, 50%);
+  --rail-info-footer-text: hsl(220, 12%, 65%);
+}
+
+/* Responsive wrapper */
+.rail-infographic-wrapper {
+  max-width: 100%;
+  margin: var(--space-md) 0;
+  overflow: hidden;
+}
+
+.rail-infographic-wrapper svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}

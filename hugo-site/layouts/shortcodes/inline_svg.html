@@ -1,0 +1,14 @@
+{{- $path := .Get "path" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- if $path -}}
+  {{- $svgContent := readFile $path -}}
+  {{- if $svgContent -}}
+<div class="rail-infographic-wrapper{{ with $class }} {{ . }}{{ end }}">
+  {{ $svgContent | safeHTML }}
+</div>
+  {{- else -}}
+<!-- inline_svg: file not found: {{ $path }} -->
+  {{- end -}}
+{{- else -}}
+<!-- inline_svg: missing path parameter -->
+{{- end -}}

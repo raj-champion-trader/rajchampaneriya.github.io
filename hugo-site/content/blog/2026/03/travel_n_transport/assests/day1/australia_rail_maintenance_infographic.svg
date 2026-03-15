@@ -1,0 +1,99 @@
+<svg width="100%" height="auto" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="rail-infographic-title">
+<title id="rail-infographic-title">Australia's rail maintenance challenge: 31,000+ km of track, what it connects, what needs maintenance, and that it is mostly done at night.</title>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="var(--rail-info-marker-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="36" text-anchor="middle" fill="var(--rail-info-title)" style="font-size:18px;font-weight:500;font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif">Australia's rail maintenance challenge</text>
+
+<!-- Main stat: Network length -->
+<g fill="var(--rail-info-stat-text)" style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="40" y="70" width="600" height="80" rx="12" fill="var(--rail-info-stat-bg)" stroke="var(--rail-info-stat-border)" stroke-width="0.5"/>
+<text x="340" y="95" text-anchor="middle" fill="var(--rail-info-stat-text)" style="font-size:16px;font-weight:500">31,000+ kilometres of track</text>
+<text x="340" y="115" text-anchor="middle" fill="var(--rail-info-stat-subtext)" style="font-size:12px">Longer than the entire UK rail network</text>
+<text x="340" y="133" text-anchor="middle" fill="var(--rail-info-stat-subtext)" style="font-size:12px">Maintained to within millimetres across a continent</text>
+</g>
+
+<!-- What it connects - three columns -->
+<text x="40" y="180" fill="var(--rail-info-section-label)" style="font-size:15px;font-weight:500;font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif">What it connects</text>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="40" y="195" width="180" height="88" rx="8" fill="var(--rail-info-amber-bg)" stroke="var(--rail-info-amber-border)" stroke-width="0.5"/>
+<text x="130" y="220" text-anchor="middle" fill="var(--rail-info-amber-text)" style="font-size:14px;font-weight:500">Pilbara mines</text>
+<text x="130" y="240" text-anchor="middle" fill="var(--rail-info-amber-subtext)" style="font-size:12px">to Western Australian</text>
+<text x="130" y="256" text-anchor="middle" fill="var(--rail-info-amber-subtext)" style="font-size:12px">ports</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="250" y="195" width="180" height="88" rx="8" fill="var(--rail-info-teal-bg)" stroke="var(--rail-info-teal-border)" stroke-width="0.5"/>
+<text x="340" y="220" text-anchor="middle" fill="var(--rail-info-teal-text)" style="font-size:14px;font-weight:500">Grain silos</text>
+<text x="340" y="240" text-anchor="middle" fill="var(--rail-info-teal-subtext)" style="font-size:12px">in Darling Downs to</text>
+<text x="340" y="256" text-anchor="middle" fill="var(--rail-info-teal-subtext)" style="font-size:12px">Queensland terminals</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="460" y="195" width="180" height="88" rx="8" fill="var(--rail-info-purple-bg)" stroke="var(--rail-info-purple-border)" stroke-width="0.5"/>
+<text x="550" y="220" text-anchor="middle" fill="var(--rail-info-purple-text)" style="font-size:14px;font-weight:500">Sydney suburbs</text>
+<text x="550" y="240" text-anchor="middle" fill="var(--rail-info-purple-subtext)" style="font-size:12px">to CBD offices</text>
+</g>
+
+<!-- What needs maintenance - grid layout -->
+<text x="40" y="320" fill="var(--rail-info-section-label)" style="font-size:15px;font-weight:500;font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif">What needs continuous maintenance</text>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="40" y="335" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="112" y="354" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Track</text>
+<text x="112" y="372" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Inspect and replace</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="205" y="335" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="277" y="354" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Signalling</text>
+<text x="277" y="372" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Safety systems</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="370" y="335" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="442" y="354" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Rolling stock</text>
+<text x="442" y="372" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Trains and wagons</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="535" y="335" width="105" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="587" y="354" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Wiring</text>
+<text x="587" y="372" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Overhead</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="40" y="405" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="112" y="424" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Bridges</text>
+<text x="112" y="442" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Structural integrity</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="205" y="405" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="277" y="424" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Tunnels</text>
+<text x="277" y="442" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Drainage, lighting</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="370" y="405" width="145" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="442" y="424" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Level crossings</text>
+<text x="442" y="442" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Safety barriers</text>
+</g>
+
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="535" y="405" width="105" height="56" rx="8" fill="var(--rail-info-blue-bg)" stroke="var(--rail-info-blue-border)" stroke-width="0.5"/>
+<text x="587" y="424" text-anchor="middle" fill="var(--rail-info-blue-text)" style="font-size:14px;font-weight:500">Stations</text>
+<text x="587" y="442" text-anchor="middle" fill="var(--rail-info-blue-subtext)" style="font-size:12px">Facilities</text>
+</g>
+
+<!-- Bottom context -->
+<g style="font-family:&quot;Anthropic Sans&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;font-size:16px">
+<rect x="40" y="480" width="600" height="24" rx="6" fill="var(--rail-info-footer-bg)" stroke="var(--rail-info-footer-border)" stroke-width="0.5"/>
+<text x="340" y="497" text-anchor="middle" fill="var(--rail-info-footer-text)" style="font-size:12px">Mostly done at night when trains aren't running</text>
+</g>
+</svg>

@@ -55,6 +55,7 @@ Because Australia doesn't have a railway. It has a *continent-spanning logistics
 
 The network maintained to within millimetres across [more than 31,000 kilometres of track](https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024) — longer than the [entire UK rail network](https://www.orr.gov.uk/). It connects mines in the Pilbara to ports in Western Australia, grain silos in the Darling Downs to export terminals in Queensland, and commuters in Sydney's western suburbs to offices in the CBD. Maintaining this means inspecting, repairing, and replacing track, signalling, rolling stock, overhead wiring, bridges, tunnels, level crossings, and station facilities — continuously, often simultaneously, and mostly at night when the trains aren't running.
 
+{{< inline_svg path="content/blog/2026/03/travel_n_transport/assests/day1/australia_rail_maintenance_infographic.svg" class="rail-infographic" >}}
 
 </div><div class="deep-dive-question scroll-reveal">
 
