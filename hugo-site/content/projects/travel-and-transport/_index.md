@@ -69,7 +69,7 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 
 | # | Date | Title | Story Hook |
 |---|------|-------|------------|
-| 1 | Mar 16 | [The Invisible Army](/projects/travel-and-transport/day-01-rail-maintenance-big-picture/) | Australia's best maintenance workers are the ones you've never heard of — because excellence, in rail, is invisible. |
+| 1 | Mar 16 | [The Invisible Army](/blog/2026/03/travel_n_tourism/day-01-rail-maintenance-big-picture/) | Australia's best maintenance workers are the ones you've never heard of — because excellence, in rail, is invisible. |
 | 2 | Mar 17 | [Follow the Money](/projects/travel-and-transport/day-02-rail-industry-economics/) | The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion revenue engine. |
 | 3 | Mar 18 | [The Budget That Built a Continent](/projects/travel-and-transport/day-03-budgetary-cycles/) | You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs? |
 | 4 | Mar 19 | [What Gets Measured Gets Maintained](/projects/travel-and-transport/day-04-rail-maintenance-kpis/) | A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged. |
