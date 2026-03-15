@@ -33,13 +33,13 @@ This is rail maintenance. And the strange secret of the profession is that the b
 
 Excellence, in this industry, is invisible.
 
-Australia spends over $10 billion a year making sure you never have to think about it.
+Industry studies suggest Australia spends several billion dollars annually on rail maintenance, and maintenance will be the largest share of total rail work by the 2030s.
 
 ---
 
 ## Day 1 in pictures
 
-A few visuals from the LinkedIn post.
+A few visuals for post.
 
 {{< screenshot_carousel images="images/blog/2026/03/travel_n_tourism/day1/image1.png, images/blog/2026/03/travel_n_tourism/day1/image2.png, images/blog/2026/03/travel_n_tourism/day1/image3.png" interval="4" size="1920x1440" >}}
 
@@ -49,13 +49,12 @@ A few visuals from the LinkedIn post.
 
 <div class="deep-dive-question scroll-reveal">
 
-### Why is rail maintenance a $10B+ annual challenge for Australia?
+### Why is rail maintenance a several billion dollars annual challenge for Australia?
 
 Because Australia doesn't have a railway. It has a *continent-spanning logistics system* that happens to run on rails.
 
-The network covers over 36,000 km — longer than the entire UK rail network several times over. It connects mines in the Pilbara to ports in Western Australia, grain silos in the Darling Downs to export terminals in Queensland, and commuters in Sydney's western suburbs to offices in the CBD. Maintaining this means inspecting, repairing, and replacing track, signalling, rolling stock, overhead wiring, bridges, tunnels, level crossings, and station facilities — continuously, often simultaneously, and mostly at night when the trains aren't running.
+The network maintained to within millimetres across more than 31,000 kilometres of track — longer than the entire UK rail network. It connects mines in the Pilbara to ports in Western Australia, grain silos in the Darling Downs to export terminals in Queensland, and commuters in Sydney's western suburbs to offices in the CBD. Maintaining this means inspecting, repairing, and replacing track, signalling, rolling stock, overhead wiring, bridges, tunnels, level crossings, and station facilities — continuously, often simultaneously, and mostly at night when the trains aren't running.
 
-The annual price tag exceeds $10 billion. That's not a budget line — it's a permanent operating reality.
 
 </div><div class="deep-dive-question scroll-reveal">
 
@@ -65,7 +64,7 @@ Rail doesn't fail gracefully. It fails in cascades.
 
 A deferred rail grinding allows micro-cracks to propagate. Micro-cracks become rolling contact fatigue. Fatigue becomes a rail break. A rail break at speed becomes a derailment. A derailment on a mixed-use corridor becomes a safety investigation, a service suspension, a parliamentary inquiry, and a career-ending headline for whoever signed off on the maintenance deferral.
 
-In a country where the supply chain for iron ore, coal, and grain runs on rail, a single corridor shutdown doesn't just delay trains — it delays ships, affects commodity pricing, and ripples through export earnings. The 2019 derailment of an Aurizon train near Julia Creek spilled 200,000 litres of sulfuric acid and closed the Mount Isa line for days. The cost wasn't just the cleanup — it was the mines that couldn't ship.
+In a country where the supply chain for iron ore, coal, and grain runs on rail, a single corridor shutdown doesn't just delay trains — it delays ships, affects commodity pricing, and ripples through export earnings. After a sulphuric‑acid freight derailment near Julia Creek in 2015, the Mount Isa line was closed for several days, impacting mines that relied on the corridor to ship product. The cost wasn't just the cleanup — it was the mines that couldn't ship.
 
 </div><div class="deep-dive-question scroll-reveal">
 
@@ -132,7 +131,7 @@ The hierarchy is clear. Preventive is the baseline. Corrective is the cost of ge
 
 ### What proportion of Australia's $38.8B rail industry flows to maintenance, and is it enough?
 
-The Australian rail industry generated **$38.8 billion in revenue in 2024** (ARA, "Moving Australia" 2024). Maintenance represents approximately **25–30% of operational costs** across the sector — a figure that translates to the $10+ billion annual spend noted earlier.
+According to the Australasian Railway Association’s ‘The Value of Rail’ 2025 report, rail generated **$38.8 billion** for the Australian economy in 2024. Industry analyses indicate that maintenance accounts for a substantial share of rail operating expenditure, often in the order of a quarter or more, depending on network and asset mix — a figure that translates to the $10+ billion annual spend noted earlier.
 
 Is it enough? The answer depends on who you ask.
 
@@ -200,7 +199,7 @@ Understanding this landscape is foundational. Every subsequent post in this camp
 
 ## In the News
 
-ARTC's **$31 billion Inland Rail project** (Melbourne–Brisbane) reaches 50% construction completion in early 2026, with the Narrabri-to-North Star section operational. This creates a generational freight maintenance challenge: 1,700 km of new track entering the asset management lifecycle — all of it needing inspection regimes, degradation models, and maintenance contracts from day one.
+ARTC's **$31 billion Inland Rail project** (Melbourne–Brisbane) is progressing, with key sections such as Narrabri–North Star under construction and portions entering service. This creates a generational freight maintenance challenge: 1,700 km of new track entering the asset management lifecycle — all of it needing inspection regimes, degradation models, and maintenance contracts from day one.
 
 ---
 
