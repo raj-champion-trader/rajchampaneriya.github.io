@@ -90,12 +90,12 @@ Rail assets aren't a single thing — they're an ecosystem. The complexity comes
 
 | Asset Category | What It Includes | Why It's Complex |
 |---------------|------------------|------------------|
-| **Track infrastructure** | [Rails](https://uic.org/rail-system/rail-system-overview), [sleepers](https://en.wikipedia.org/wiki/Railway_sleeper), ballast, [formation](https://en.wikipedia.org/wiki/Track_(rail_transport)#Track_formation) | Degrades at different rates depending on axle load, speed, and climate |
+| **Track infrastructure** | [Rails](https://shop.uic.org/en/other-reports/14732-recommendations-for-management-of-rails.html), [sleepers](https://en.wikipedia.org/wiki/Railway_sleeper), ballast, [formation](https://en.wikipedia.org/wiki/Track_(rail_transport)#Track_formation) | Degrades at different rates depending on axle load, speed, and climate |
 | **Signalling systems** | [Interlockings](https://www.rssb.co.uk/standards-catalogue/CatalogueItem/GKRT0060-Iss-4), track circuits, [ETCS](https://www.era.europa.eu/domains/rail/etcs-european-train-control-system_en) | Legacy and modern systems coexist; failure means network shutdown |
 | **Overhead wiring** | [Catenary](https://en.wikipedia.org/wiki/Overhead_line), contact wire, masts | Electrified corridors require specialised high-voltage crews |
 | **Structures** | [Bridges, tunnels, culverts](https://arema.org/AREMA_MBRR/Store/MRE_TOC.aspx) | Long asset lives but catastrophic failure modes |
 | **Level crossings** | Boom gates, signals, road surfaces | Interface between rail and road — [highest public risk point](https://www.atsb.gov.au/avoidable-accidents/collisions-level-crossings) |
-| **Rolling stock** | [Locomotives, wagons, passenger cars](https://uic.org/rail-system/rail-system-overview) | Mobile assets maintained in depots on tight turnaround schedules |
+| **Rolling stock** | [Locomotives, wagons, passenger cars](https://uic.org/rail-system/rolling-stock/) | Mobile assets maintained in depots on tight turnaround schedules |
 
 For a system-level view of how these asset categories interact and are managed, see the [UIC guidelines on asset management in railway infrastructure](https://uic.org/IMG/pdf/2010_guidelines_for_the_application_of_asset_management.pdf) (PDF). The real complexity is that these assets interact. A track geometry defect changes the dynamic load on a bridge. A signalling failure forces manual operation that delays possession windows for track maintenance. Everything is connected.
 
