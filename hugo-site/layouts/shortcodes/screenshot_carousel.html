@@ -1,5 +1,6 @@
 {{- $imagesParam := .Get "images" -}}
 {{- $interval := .Get "interval" | default "4" -}}
+{{- $fitSize := .Get "size" | default "1200x900" -}}
 {{- $paths := split $imagesParam "," -}}
 {{- $id := printf "carousel-%d" (now.UnixNano) -}}
 <div class="screenshot-carousel" id="{{ $id }}" data-interval="{{ $interval }}" role="region" aria-label="Screenshot carousel">
@@ -11,7 +12,7 @@
         {{- $slideNum := add $i 1 -}}
         <div class="screenshot-carousel-slide {{ if eq $i 0 }}active{{ end }}" data-index="{{ $i }}" aria-hidden="{{ ne $i 0 }}">
           {{- if $res -}}
-            {{- $resized := $res.Fit "1200x900" -}}
+            {{- $resized := $res.Fit $fitSize -}}
             {{- $webp := $res.Resize (printf "%dx%d webp q85" $resized.Width $resized.Height) -}}
             <picture>
               <source type="image/webp" srcset="{{ $webp.RelPermalink }}">

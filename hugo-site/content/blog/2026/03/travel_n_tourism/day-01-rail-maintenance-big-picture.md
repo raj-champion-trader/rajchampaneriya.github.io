@@ -37,6 +37,14 @@ Australia spends over $10 billion a year making sure you never have to think abo
 
 ---
 
+## Day 1 in pictures
+
+A few visuals from the LinkedIn post.
+
+{{< screenshot_carousel images="images/blog/2026/03/travel_n_tourism/day1/image1.png, images/blog/2026/03/travel_n_tourism/day1/image2.png, images/blog/2026/03/travel_n_tourism/day1/image3.png" interval="4" size="1920x1440" >}}
+
+---
+
 ## The Deep Dive — 8 Questions
 
 <div class="deep-dive-question scroll-reveal">
@@ -205,16 +213,6 @@ ARTC's **$31 billion Inland Rail project** (Melbourne–Brisbane) reaches 50% co
 | Industry | Australasian Railway Association — *"Moving Australia: Annual Report 2024"* (ara.net.au) |
 | Government | BITRE — *"Australian Rail Industry Statistics Yearbook 2024"* (bitre.gov.au) |
 | Government | Infrastructure Australia — *"Australian Infrastructure Plan 2024"* (infrastructureaustralia.gov.au) |
-
----
-
-## Day 1 LinkedIn post (in pictures)
-
-A few pages from the LinkedIn post—view below or open the full PDF.
-
-{{< pdf_carousel src="/blog/2026/03/travel_n_tourism/assests/day1_linkedin_post.pdf" title="Day 1 — The Invisible Army" embed="true" >}}
-
-*Prefer the PDF?* [View or download it here](/blog/2026/03/travel_n_tourism/assests/day1_linkedin_post.pdf).
 
 ---
 
