@@ -635,8 +635,10 @@ main#swup {
     max-width: 100%;
 }
 
-/* Tables — proper borders, responsive horizontal scroll */
-.post-content table {
+/* Tables — theme tokens; shared by .post-content, .page-content, .posts-toc */
+.post-content table,
+.page-content table,
+.posts-toc table {
     width: 100%;
     border-collapse: collapse;
     margin: var(--space-md) 0;
@@ -646,36 +648,42 @@ main#swup {
     -webkit-overflow-scrolling: touch;
 }
 
-.post-content thead {
+.post-content thead,
+.page-content thead,
+.posts-toc thead {
     border-bottom: 2px solid var(--color-brand);
 }
 
-.post-content th {
-    background: var(--color-surface);
+.post-content th,
+.page-content th,
+.posts-toc th {
+    background: var(--table-header-bg);
     font-weight: var(--fw-bold);
     text-align: left;
-    color: var(--color-text-main);
-    padding: var(--space-xs) var(--space-sm);
+    color: var(--table-header-text);
+    padding: var(--table-cell-padding);
     white-space: nowrap;
 }
 
-.post-content td {
-    padding: var(--space-xs) var(--space-sm);
-    border-bottom: 1px solid var(--color-border);
+.post-content td,
+.page-content td,
+.posts-toc td {
+    padding: var(--table-cell-padding);
+    border-bottom: 1px solid var(--table-border);
     color: var(--color-text-muted);
     vertical-align: top;
 }
 
-.post-content tbody tr:hover {
-    background: var(--color-brand-glow);
+.post-content tbody tr:nth-child(even),
+.page-content tbody tr:nth-child(even),
+.posts-toc tbody tr:nth-child(even) {
+    background: var(--table-row-stripe);
 }
 
-[data-theme="dark"] .post-content th {
-    background: var(--color-callout-bg);
-}
-
-[data-theme="dark"] .post-content tbody tr:hover {
-    background: var(--color-brand-glow);
+.post-content tbody tr:hover,
+.page-content tbody tr:hover,
+.posts-toc tbody tr:hover {
+    background: var(--table-row-hover);
 }
 
 /* Post meta — moved from `hugo-site/assets/css/extended/post-meta.css` */

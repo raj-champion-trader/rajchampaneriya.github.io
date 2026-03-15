@@ -6,14 +6,16 @@ slug: "travel-and-transport"
 url: "/projects/travel-and-transport/"
 tags: ["rail", "travel-and-transport", "industry-campaign", "australian-rail", "asset-management", "IBM"]
 categories: ["Industry Refections"]
-summary: "A serialised 22-day campaign exploring the forces that shape Australian rail — from invisible maintenance crews to billion-dollar freight corridors — told through the lens of an enterprise architect learning an industry from the inside."
+summary: "A 22‑day deep dive into Australian rail — its economics, technology, safety culture and digital future. Each post stands alone, yet together they map an industry that moves 1.4 billion tonnes of freight and 800 million+ passengers a year while remaining largely invisible."
 weight: 1
 ShowToc: true
+audio: "/projects/travel-and-transport/audio/aus-rail-industry.wav"
+audioTitle: "Australian Rail Industry"
 ---
 
 <div class="content-callout">
 
-> **What this is:** A 22-day serialised deep dive into Australian rail — its economics, technology, safety culture, and digital future. Each post stands alone as a story, but together they build a complete picture of an industry that moves 1.4 billion tonnes of freight and 800+ million passengers every year, yet remains largely invisible to the public it serves.
+> **What this is:** A 22‑day deep dive into Australian rail — its economics, technology, safety culture and digital future. Each post stands alone, yet together they map an industry that moves 1.4 billion tonnes of freight and 800 million+ passengers a year while remaining largely invisible.
 
 </div>
 

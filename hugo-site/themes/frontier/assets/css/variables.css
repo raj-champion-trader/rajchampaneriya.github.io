@@ -52,6 +52,14 @@
   --color-callout-bg: hsla(220, 20%, 50%, 0.04);
   --color-callout-border: hsla(220, 30%, 12%, 0.12);
 
+  /* Table — theme-aware; used by .post-content, .page-content, .posts-toc */
+  --table-header-bg: var(--color-surface);
+  --table-header-text: var(--color-text-main);
+  --table-border: var(--color-border);
+  --table-cell-padding: var(--space-xs) var(--space-sm);
+  --table-row-hover: var(--color-brand-glow);
+  --table-row-stripe: var(--color-callout-bg);
+
   /* Filter chips (blog filter bar) — theme-aware */
   --filter-chip-bg: hsla(220, 20%, 99%, 0.6);
   --filter-chip-border: var(--color-border);
@@ -446,6 +454,9 @@
     --color-callout-bg: hsla(220, 20%, 94%, 0.04);
     --color-callout-border: hsla(220, 20%, 94%, 0.15);
 
+    --table-header-bg: var(--color-callout-bg);
+    --table-row-stripe: var(--color-callout-bg);
+
     --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
     --filter-chip-border: var(--color-border);
     --filter-chip-bg-active: hsla(215, 75%, 65%, 0.18);
@@ -527,6 +538,9 @@
 
   --color-callout-bg: hsla(220, 20%, 94%, 0.04);
   --color-callout-border: hsla(220, 20%, 94%, 0.15);
+
+  --table-header-bg: var(--color-callout-bg);
+  --table-row-stripe: var(--color-callout-bg);
 
   --filter-chip-bg: hsla(220, 20%, 11%, 0.6);
   --filter-chip-border: var(--color-border);

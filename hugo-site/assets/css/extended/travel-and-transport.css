@@ -1,65 +1,9 @@
 /*
   Travel-and-transport project index — scoped to body.page-travel-and-transport.
-  Tables, campaign arc cards, section spacing, how-to-read/methodology blocks, campaign meta.
+  Campaign arc cards, section spacing, how-to-read/methodology blocks, campaign meta.
+  Table styling comes from Frontier theme (.page-content table, .posts-toc table).
   Uses Frontier design tokens only. Breakpoints: 768px (md), 1024px (lg).
 */
-
-/* -------------------------------------------------------------------------
-   Tables — match .post-content table styling; apply to .page-content and .posts-toc
-   ------------------------------------------------------------------------- */
-body.page-travel-and-transport .page-content table,
-body.page-travel-and-transport .page-content .posts-toc table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-md) 0;
-  font-size: var(--text-sm);
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-body.page-travel-and-transport .page-content thead,
-body.page-travel-and-transport .page-content .posts-toc thead {
-  border-bottom: 2px solid var(--color-brand);
-}
-
-body.page-travel-and-transport .page-content th,
-body.page-travel-and-transport .page-content .posts-toc th {
-  background: var(--color-surface);
-  font-weight: var(--fw-bold);
-  text-align: left;
-  color: var(--color-text-main);
-  padding: var(--space-xs) var(--space-sm);
-  white-space: nowrap;
-}
-
-body.page-travel-and-transport .page-content td,
-body.page-travel-and-transport .page-content .posts-toc td {
-  padding: var(--space-xs) var(--space-sm);
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  vertical-align: top;
-}
-
-body.page-travel-and-transport .page-content tbody tr:nth-child(even),
-body.page-travel-and-transport .page-content .posts-toc tbody tr:nth-child(even) {
-  background: var(--color-callout-bg);
-}
-
-body.page-travel-and-transport .page-content tbody tr:hover,
-body.page-travel-and-transport .page-content .posts-toc tbody tr:hover {
-  background: var(--color-brand-glow);
-}
-
-[data-theme="dark"] body.page-travel-and-transport .page-content th,
-[data-theme="dark"] body.page-travel-and-transport .page-content .posts-toc th {
-  background: var(--color-callout-bg);
-}
-
-[data-theme="dark"] body.page-travel-and-transport .page-content tbody tr:nth-child(even),
-[data-theme="dark"] body.page-travel-and-transport .page-content .posts-toc tbody tr:nth-child(even) {
-  background: var(--color-callout-bg);
-}
 
 /* -------------------------------------------------------------------------
    Campaign arc — grid of week cards
