@@ -207,11 +207,10 @@ ARTC's **$31 billion Inland Rail project** (Melbourne–Brisbane) is progressing
 
 | Type | Source |
 |------|--------|
-| IBM | IBM Institute for Business Value — *"The Future of Asset-Intensive Industries: Rail Infrastructure"* (2024) |
-| IBM | IBM Maximo Application Suite — *Enterprise Asset Management for Rail* (ibm.com/products/maximo) |
-| Industry | Australasian Railway Association — *"Moving Australia: Annual Report 2024"* (ara.net.au) |
-| Government | BITRE — *"Australian Rail Industry Statistics Yearbook 2024"* (bitre.gov.au) |
-| Government | Infrastructure Australia — *"Australian Infrastructure Plan 2024"* (infrastructureaustralia.gov.au) |
+| IBM | IBM Maximo Application Suite — *[Enterprise Asset Management for Rail](https://www.ibm.com/products/maximo)* |
+| Industry | Australasian Railway Association — *[Moving Australia: Annual Report 2024](https://www.ara.net.au)* |
+| Government | BITRE — *[Australian Rail Industry Statistics Yearbook 2024](https://www.bitre.gov.au)* |
+| Government | Infrastructure Australia — *[Australian Infrastructure Plan 2024](https://www.infrastructureaustralia.gov.au)* |
 
 ---
 
