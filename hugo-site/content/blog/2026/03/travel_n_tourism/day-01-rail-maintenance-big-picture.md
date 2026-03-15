@@ -13,7 +13,7 @@ ShowToc: true
 
 <div class="content-callout">
 
-> **Day 1 of 22** · Week 1: Foundation · Story structure: *The Unexpected Discovery*
+> **Day 1 of 22**
 >
 > Australia's best maintenance workers are the ones you've never heard of — because excellence, in rail, is invisible. Today we pull back the curtain on a $10+ billion challenge that most people walk past every morning without a second thought.
 
