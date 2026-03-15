@@ -69,7 +69,7 @@
     {{ end }}
 </head>
 
-<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") .IsNode }} page-projects-list{{ end }}">
+<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") .IsNode }} page-projects-list{{ end }}{{ if and (eq .Section "projects") .IsNode (eq .Params.slug "travel-and-transport") }} page-travel-and-transport{{ end }}">
 
     <!-- Header / Top Bar (sticky; scrollspy row when on article/about) -->
     <header class="site-header glass-panel">

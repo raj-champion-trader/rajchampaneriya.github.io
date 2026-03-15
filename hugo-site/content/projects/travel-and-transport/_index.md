@@ -29,21 +29,39 @@ Every post uses the **Cornell Note methodology** (8 structured questions per top
 
 ## Campaign Arc
 
+<div class="campaign-arc">
+
+<div class="campaign-arc-week">
+
 ### Week 1 — Foundation: Australian Rail Maintenance
 
 The bedrock. Seven posts that establish the landscape: what rail maintenance actually is, how the money flows, what gets measured, and what makes Australia's challenges unique.
+
+</div>
+
+<div class="campaign-arc-week">
 
 ### Week 2 — Depth: Industry Segments & Cross-Cutting Themes
 
 Zooming in and out. Freight, safety, IBM's role, digital twins, workforce, and supply chains — each post deepens one dimension while connecting back to the foundation.
 
+</div>
+
+<div class="campaign-arc-week">
+
 ### Week 3 — Synthesis: Frontiers & Future
 
 The payoff. Data analytics, sustainability, cybersecurity, international comparisons, emerging tech, and the final campaign manifesto — where all 22 threads converge into a single point of view.
 
+</div>
+
+</div>
+
 ---
 
 ## The Posts
+
+<div class="posts-toc">
 
 ### Week 1 — Foundation
 
@@ -82,9 +100,13 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 | 21 | Apr 14 | [The Voices Shaping Australia's Rail Future](/projects/travel-and-transport/day-21-industry-leaders-social-proof/) | A childhood memory of a grandmother who worked on the railways connects to the leaders now steering a $38.8 billion industry through its biggest transformation in a century. |
 | 22 | Apr 18 | [The Manifesto](/projects/travel-and-transport/day-22-campaign-synthesis/) | Twenty-two days ago, Australian rail was an unfamiliar industry. Today, it's a conviction. This is what I believe — and what I'd stake my reputation on. |
 
+</div>
+
 ---
 
 ## How to Read This Series
+
+<div class="how-to-read">
 
 **If you're short on time:** Read Day 1 (the landscape), Day 14 (the midpoint synthesis), and Day 22 (the manifesto). Three posts that capture the full arc.
 
@@ -94,9 +116,13 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 
 **If you want the human story:** Days 7, 12, and 21 cover passengers, workforce, and the leaders shaping what comes next.
 
+</div>
+
 ---
 
 ## Methodology
+
+<div class="methodology-block">
 
 Each post follows the **Cornell Note** format: eight structured questions, comprehensive answers, a synthesis summary, review questions, vocabulary, and a macro-economic signal. The intellectual framework progresses through **Bloom's Taxonomy** — from foundational understanding in Week 1 through evaluation in Week 2 to original synthesis and creation in Week 3.
 
@@ -109,6 +135,12 @@ The communication style blends four influences:
 | **Stan Druckenmiller** | Macro perspective — policy, investment, and industry-level forces |
 | **Lorin W. Anderson** | Cognitive depth — content operating at Bloom's Levels 5–6 |
 
+</div>
+
 ---
 
+<div class="campaign-meta">
+
 *Campaign runs March 16 – April 18, 2026. New posts publish weekday mornings at 7:30 AM AEST, with Saturday editions at 9:00 AM AEST.*
+
+</div>
