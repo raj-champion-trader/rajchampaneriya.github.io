@@ -262,18 +262,19 @@ function initScrollspy() {
 
   const checkActiveOnScroll = scrollThrottle(() => {
     const vy = window.scrollY;
+    const offset = getScrollspyOffset() + 24; /* use actual header height so first section activates correctly on mobile */
     let current = null;
     let currentTop = -Infinity;
     headings.forEach((h) => {
       const rect = h.element.getBoundingClientRect();
       const top = rect.top + vy;
-      if (vy >= top - SCROLLSPY_OFFSET && top > currentTop) {
+      if (vy >= top - offset && top > currentTop) {
         currentTop = top;
         current = h.id;
       }
     });
     if (current) setActive(current);
-    else if (vy < 100) clearActive();
+    else if (vy < 100) setActive(headings[0].id); /* at top of page, highlight first section */
   }, 100);
 
   window.addEventListener('scroll', checkActiveOnScroll, { passive: true });

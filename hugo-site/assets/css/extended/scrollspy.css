@@ -55,9 +55,14 @@
 
 .scrollspy-nav--header.has-items {
   display: block;
-  max-height: 15rem; /* allow transition to 0 when hidden */
+  max-height: 15rem; /* collapsed: trigger row only; expanded by .is-open below */
   opacity: 1;
   transition: max-height var(--transition-medium), opacity var(--transition-medium), border-top-width var(--transition-fast);
+}
+
+/* When dropdown is open, let panel expand to fit content so background wraps full list */
+.scrollspy-nav--header.has-items.is-open {
+  max-height: 85vh;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -368,6 +373,12 @@
 
   .scrollspy-list .scrollspy-item.is-nested .scrollspy-link {
     padding-left: var(--space-sm);
+  }
+
+  /* Ensure active state is clearly visible when dropdown is open on mobile */
+  .scrollspy-list .scrollspy-link.is-active {
+    border-left: 3px solid var(--color-brand);
+    padding-left: calc(var(--space-xs) - 3px);
   }
 }
 
