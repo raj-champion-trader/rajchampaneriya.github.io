@@ -9,7 +9,7 @@ series: ["Australian Rail Deep Dive"]
 summary: "Australia's rail network stretches farther than London to New York and back — yet most Australians will never see the teams who maintain it. Day 1 of a 22-day deep dive into the industry that keeps a continent moving."
 weight: 1
 ShowToc: true
-audio: "/blog/2026/03/travel_n_tourism/assests/day1-audio.wav"
+audio: "/blog/2026/03/travel_n_transport/assests/day1-audio.wav"
 audioTitle: "The Invisible Army — Day 1"
 ---
 
@@ -41,7 +41,7 @@ Excellence, in this industry, is invisible.
 
 A few visuals for post.
 
-{{< screenshot_carousel images="images/blog/2026/03/travel_n_tourism/day1/image1.png, images/blog/2026/03/travel_n_tourism/day1/image2.png, images/blog/2026/03/travel_n_tourism/day1/image3.png" interval="4" size="1920x1440" >}}
+{{< screenshot_carousel images="images/blog/2026/03/travel_n_transport/day1/image1.png, images/blog/2026/03/travel_n_transport/day1/image2.png, images/blog/2026/03/travel_n_transport/day1/image3.png" interval="4" size="1920x1440" >}}
 
 ---
 
@@ -167,7 +167,7 @@ What makes Australia unique is the convergence of three forces: extreme geograph
 
 Understanding this landscape is foundational. Every subsequent post in this campaign connects back to how rail assets are kept safe, reliable, and efficient.
 
-![Rail maintenance cycle: Rail Assets (Track · Signals · Stock) → Maintenance Types (Preventive · Corrective · Predictive) → Outcomes (Safety · Reliability · Cost) with feedback to assets](/blog/2026/03/travel_n_tourism/assests/rail_maintenance_cycle.svg)
+![Rail maintenance cycle: Rail Assets (Track · Signals · Stock) → Maintenance Types (Preventive · Corrective · Predictive) → Outcomes (Safety · Reliability · Cost) with feedback to assets](/blog/2026/03/travel_n_transport/assests/rail_maintenance_cycle.svg)
 
 ---
 

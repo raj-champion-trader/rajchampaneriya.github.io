@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const path = require('path');
 const fs = require('fs');
 
-const BLOG_URL = '/blog/2026/03/travel_n_tourism/day-01-rail-maintenance-big-picture/';
+const BLOG_URL = '/blog/2026/03/travel_n_transport/day-01-rail-maintenance-big-picture/';
 const SCREENSHOTS_DIR = path.join(__dirname, 'screenshots', 'mobile');
 
 test.describe('Scrollspy mobile', () => {
