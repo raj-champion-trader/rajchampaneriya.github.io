@@ -3,7 +3,7 @@ title: "The Invisible Army — Understanding Australian Rail Maintenance"
 date: 2026-03-15
 draft: false
 slug: "day-01-rail-maintenance-big-picture"
-tags: ["rail-maintenance", "australian-rail", "infrastructure", "asset-management", "IBM"]
+tags: ["rail-maintenance", "australian-rail", "infrastructure", "asset-management"]
 categories: ["Industry Experience"]
 series: ["Australian Rail Deep Dive"]
 summary: "Australia's rail network stretches farther than London to New York and back — yet most Australians will never see the teams who maintain it. Day 1 of a 22-day deep dive into the industry that keeps a continent moving."
@@ -169,14 +169,6 @@ What makes Australia unique is the convergence of three forces: extreme geograph
 Understanding this landscape is foundational. Every subsequent post in this campaign connects back to how rail assets are kept safe, reliable, and efficient.
 
 ![Rail maintenance cycle: Rail Assets (Track · Signals · Stock) → Maintenance Types (Preventive · Corrective · Predictive) → Outcomes (Safety · Reliability · Cost) with feedback to assets](/blog/2026/03/travel_n_transport/assests/rail_maintenance_cycle.svg)
-
----
-
-## Review Questions
-
-1. **Evaluate:** Given Australia's unique combination of extreme distances, heavy haul freight, and urban passenger networks, which maintenance type should receive the highest investment priority — and why?
-2. **Evaluate:** How would you assess whether a rail maintenance organisation is effectively balancing safety outcomes against cost efficiency? What evidence would you examine?
-3. **Create:** If you were advising a new entrant to the Australian rail maintenance market, what three factors would you identify as the most critical competitive differentiators?
 
 ---
 
