@@ -28,7 +28,7 @@ But have you ever noticed the line item for rail?
 
 Not the headline-grabbing new project — the one with the ribbon-cutting photo opportunity. The other line. The one marked "sustaining capital" or "operational maintenance." The one that decides whether the bridge your train crosses every morning gets inspected this quarter, or whether the inspection gets deferred because there's no budget until July.
 
-Here's what's actually happening: a rail bridge lasts [100 years](https://www.artc.com.au/projects/inland-rail/). A government lasts [four](https://www.aec.gov.au/elections/). That mismatch — between the [lifetime of the asset](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) and the attention span of its funder — is the single most important tension in Australian rail. And it plays out in every budget cycle, in every state, every year.
+Here's what's actually happening: a rail bridge lasts [100 years](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan). A government lasts [four](https://www.aec.gov.au/elections/). That mismatch — between the [lifetime of the asset](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) and the attention span of its funder — is the single most important tension in Australian rail. And it plays out in every budget cycle, in every state, every year.
 
 The most important infrastructure investments are the ones no politician can claim credit for — because the benefits arrive decades after the funding decision.
 
@@ -72,7 +72,7 @@ State transport departments must make the economic case using [benefit-cost rati
 
 Because no single level of government will carry the full risk.
 
-[Inland Rail](https://www.inlandrail.artc.com.au/) — the 1,700 km freight corridor from Melbourne to Brisbane — was originally estimated at [$10 billion](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/InlandRail). Current estimates sit around [$31 billion](https://www.anao.gov.au/work/performance-audit/inland-rail) (and counting). The federal government funds the majority through [ARTC](https://www.artc.com.au/), but state governments must contribute land, planning approvals, and connecting infrastructure. Private sector involvement is structured through [alliance contracts](https://www.infrastructureaustralia.gov.au/publications/assessment-framework) and [PPP models](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/infrastructure-investment-project-delivery/public-private-partnerships).
+[Inland Rail](https://www.inlandrail.artc.com.au/) — the 1,700 km freight corridor from Melbourne to Brisbane — was originally estimated at [$10 billion](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/InlandRail). Current estimates sit around [$31 billion](https://www.anao.gov.au/work/performance-audit/inland-rail) (and counting). The federal government funds the majority through [ARTC](https://www.artc.com.au/), but state governments must contribute land, planning approvals, and connecting infrastructure. Private sector involvement is structured through [alliance contracts](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/infrastructure-investment-project-delivery) and [PPP models](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/infrastructure-investment-project-delivery/public-private-partnerships).
 
 The blended funding model reflects a hard truth: megaprojects of this scale exceed any single budget's risk appetite. By sharing cost and risk across federal, state, and private participants, the project becomes politically survivable across multiple election cycles.
 
@@ -121,7 +121,7 @@ This accounting distinction creates a perverse incentive: it's easier to get $50
 
 Australia's [federal system](https://www.aph.gov.au/About_Parliament/House_of_Representatives/Powers_practice_and_procedure/00_-_Infosheets/Infosheet_13_-_The_Constitution) means rail investment is split across national and state jurisdictions with different priorities, standards, and timelines. The [National Rail Action Plan](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail), backed by [$1.3 billion in the 2025–26 federal budget](https://budget.gov.au/content/factsheets/infrastructure.htm), attempts to create coherence.
 
-The Plan prioritises four areas: freight corridor upgrades, regional passenger connectivity, [interoperability standards](https://www.onrsr.com.au/), and workforce development. It represents the first serious attempt to align state and federal rail spending toward shared outcomes rather than competing project lists.
+The Plan prioritises four areas: freight corridor upgrades, regional passenger connectivity, [interoperability standards](https://rissb.com.au/), and workforce development. It represents the first serious attempt to align state and federal rail spending toward shared outcomes rather than competing project lists.
 
 Whether it succeeds depends on sustained political commitment — which brings us back to the 4-year cycle problem.
 
@@ -133,7 +133,7 @@ Whether it succeeds depends on sustained political commitment — which brings u
 
 Inland Rail was [first proposed in 2008](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/InlandRail). It received [federal funding commitment in 2017](https://www.artc.com.au/projects/inland-rail/). The first operational section opened in 2025. Full completion is expected in the [early 2030s](https://www.inlandrail.artc.com.au/where-we-go/) — if current timelines hold.
 
-That's a 25-year journey from proposal to completion. No single government, no single minister, no single parliamentary term can claim ownership. The project has survived three changes of federal government, two prime ministers, and [four infrastructure ministers](https://www.infrastructure.gov.au/).
+That's a 25-year journey from proposal to completion. No single government, no single minister, no single parliamentary term can claim ownership. The project has survived three changes of federal government, two prime ministers, and four infrastructure ministers.
 
 This is the fundamental challenge of long-duration infrastructure: the politicians who commit the funding will not be in office when the benefits arrive. The only projects that survive this gauntlet are those with [bipartisan support](https://www.infrastructurepartnerships.org.au/) — making cross-party infrastructure commitments the most durable demand signals in rail.
 
