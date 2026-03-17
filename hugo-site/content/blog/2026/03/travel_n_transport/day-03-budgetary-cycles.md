@@ -9,6 +9,7 @@ series: ["Australian Rail Deep Dive"]
 summary: "A rail bridge lasts 100 years, a government lasts four. Day 3 uncovers the strange budget cycle that decides whether your morning train runs — and why the most important infrastructure investments are the ones no politician can claim credit for."
 weight: 3
 ShowToc: true
+audio: "/blog/2026/03/travel_n_transport/assests/day3-audio.wav"
 ---
 
 <div class="content-callout">
@@ -172,5 +173,5 @@ For technology partners, this means understanding not just what rail operators n
 
 ---
 
-**Tomorrow:** [What Gets Measured Gets Maintained](/projects/travel-and-transport/day-04-rail-maintenance-kpis/) · *A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged.*
+**Tomorrow:** What Gets Measured Gets Maintained · *A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged.*
 
