@@ -34,6 +34,14 @@ The most important infrastructure investments are the ones no politician can cla
 
 ---
 
+## Day 3 in pictures
+
+A few visuals for post.
+
+{{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day3/image1.png, /blog/2026/03/travel_n_transport/assests/day3/image2.png, /blog/2026/03/travel_n_transport/assests/day3/image3.png" interval="4" size="1920x1440" >}}
+
+---
+
 ## The Deep Dive — 8 Questions
 
 <div class="deep-dive-question scroll-reveal">
@@ -174,4 +182,3 @@ For technology partners, this means understanding not just what rail operators n
 ---
 
 **Tomorrow:** What Gets Measured Gets Maintained · *A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged.*
-
