@@ -28,7 +28,7 @@ But have you ever noticed the line item for rail?
 
 Not the headline-grabbing new project — the one with the ribbon-cutting photo opportunity. The other line. The one marked "sustaining capital" or "operational maintenance." The one that decides whether the bridge your train crosses every morning gets inspected this quarter, or whether the inspection gets deferred because there's no budget until July.
 
-Here's what's actually happening: a rail bridge lasts 100 years. A government lasts four. That mismatch — between the lifetime of the asset and the attention span of its funder — is the single most important tension in Australian rail. And it plays out in every budget cycle, in every state, every year.
+Here's what's actually happening: a rail bridge lasts [100 years](https://www.artc.com.au/projects/inland-rail/). A government lasts [four](https://www.aec.gov.au/elections/). That mismatch — between the [lifetime of the asset](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) and the attention span of its funder — is the single most important tension in Australian rail. And it plays out in every budget cycle, in every state, every year.
 
 The most important infrastructure investments are the ones no politician can claim credit for — because the benefits arrive decades after the funding decision.
 
@@ -52,7 +52,7 @@ Because politicians are rational actors in an irrational system.
 
 A rail bridge built in 2026 will serve traffic until 2126. But the politician who funds it will face re-election in 2030. The benefits — a bridge that doesn't collapse, freight that moves efficiently, commuters who arrive safely — are invisible. Nobody writes a thank-you letter for a bridge that works. But a new hospital wing has a plaque with a name on it.
 
-This creates a structural bias toward new build (visible, ribbon-cuttable) and away from maintenance (invisible, unglamorous). The result: Australia has periods of enthusiastic capital investment followed by quiet decades of deferred maintenance, building up a maintenance liability that eventually becomes its own crisis.
+This creates a structural bias toward new build (visible, ribbon-cuttable) and away from maintenance (invisible, unglamorous). The result: Australia has periods of enthusiastic capital investment followed by quiet decades of [deferred maintenance](https://grattan.edu.au/report/the-rise-of-megaprojects/), building up a [maintenance liability](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) that eventually becomes its own crisis.
 
 </div>
 
@@ -62,7 +62,7 @@ This creates a structural bias toward new build (visible, ribbon-cuttable) and a
 
 Every dollar in a state budget is contested. Health, education, policing, and transport all compete for the same pool. Rail typically loses this competition on emotional grounds — a hospital wait list is a human story; a track geometry deficiency is a spreadsheet number.
 
-State transport departments must make the economic case using benefit-cost ratios (BCRs). A rail project with a BCR of 1.5 delivers $1.50 of economic benefit for every $1.00 spent. But a hospital upgrade with a BCR of 2.0 gets funded first. Rail projects often have BCRs that look modest until you count indirect benefits — land value uplift, emissions reduction, congestion relief — which are real but harder to quantify and easier to discount.
+State transport departments must make the economic case using [benefit-cost ratios (BCRs)](https://www.infrastructureaustralia.gov.au/publications/assessment-framework). A rail project with a BCR of 1.5 delivers $1.50 of economic benefit for every $1.00 spent. But a hospital upgrade with a BCR of 2.0 gets funded first. Rail projects often have BCRs that look modest until you count indirect benefits — [land value uplift](https://www.sgs.com.au/publications/the-value-of-rail), emissions reduction, [congestion relief](https://www.bitre.gov.au/publications/2024/avoidable-costs-of-congestion) — which are real but harder to quantify and easier to discount.
 
 </div>
 
@@ -72,7 +72,7 @@ State transport departments must make the economic case using benefit-cost ratio
 
 Because no single level of government will carry the full risk.
 
-Inland Rail — the 1,700 km freight corridor from Melbourne to Brisbane — was originally estimated at $10 billion. Current estimates sit around $31 billion (and counting). The federal government funds the majority through ARTC, but state governments must contribute land, planning approvals, and connecting infrastructure. Private sector involvement is structured through alliance contracts and PPP models.
+[Inland Rail](https://www.inlandrail.artc.com.au/) — the 1,700 km freight corridor from Melbourne to Brisbane — was originally estimated at [$10 billion](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/InlandRail). Current estimates sit around [$31 billion](https://www.anao.gov.au/work/performance-audit/inland-rail) (and counting). The federal government funds the majority through [ARTC](https://www.artc.com.au/), but state governments must contribute land, planning approvals, and connecting infrastructure. Private sector involvement is structured through [alliance contracts](https://www.infrastructureaustralia.gov.au/publications/assessment-framework) and [PPP models](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/infrastructure-investment-project-delivery/public-private-partnerships).
 
 The blended funding model reflects a hard truth: megaprojects of this scale exceed any single budget's risk appetite. By sharing cost and risk across federal, state, and private participants, the project becomes politically survivable across multiple election cycles.
 
@@ -82,9 +82,9 @@ The blended funding model reflects a hard truth: megaprojects of this scale exce
 
 ### How does Infrastructure Australia's priority list determine which rail projects receive funding?
 
-Infrastructure Australia maintains a priority list — a ranked assessment of nationally significant projects based on economic appraisal, strategic alignment, and delivery readiness. Projects move through stages: Problem Identification → Initiative → Project. Only projects at the "Project" stage with a completed business case get recommended for funding.
+[Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) maintains a [priority list](https://www.infrastructureaustralia.gov.au/infrastructure-priority-list) — a ranked assessment of nationally significant projects based on economic appraisal, strategic alignment, and delivery readiness. Projects move through stages: Problem Identification → Initiative → Project. Only projects at the "Project" stage with a completed [business case](https://www.infrastructureaustralia.gov.au/publications/assessment-framework) get recommended for funding.
 
-For rail, this means years of planning before a single dollar flows. The Sydney–Newcastle faster rail project, for example, spent four years in the assessment pipeline before receiving corridor preservation funding. The priority list is the gatekeeper — and understanding where a project sits on it reveals more about its funding timeline than any political announcement.
+For rail, this means years of planning before a single dollar flows. The [Sydney–Newcastle faster rail](https://www.transport.nsw.gov.au/projects/current-projects/fast-rail) project, for example, spent four years in the assessment pipeline before receiving corridor preservation funding. The priority list is the gatekeeper — and understanding where a project sits on it reveals more about its funding timeline than any political announcement.
 
 </div>
 
@@ -104,9 +104,9 @@ The smart operators plan 18 months ahead of election cycles, positioning proposa
 
 ### Why is the capital vs operating budget distinction critical for understanding rail maintenance economics?
 
-In government accounting, *capital expenditure* (capex) and *operating expenditure* (opex) come from different budget pools with different approval processes.
+In [government accounting](https://www.finance.gov.au/government/resource-management/budget-framework), *capital expenditure* (capex) and *operating expenditure* (opex) come from different budget pools with different approval processes.
 
-- **Capex** funds new assets: new track, new signalling, new rolling stock. It requires a business case, often multi-year approval, and capital budget allocation.
+- **Capex** funds new assets: new track, new signalling, new [rolling stock](https://www.transport.nsw.gov.au/projects/current-projects/more-trains-more-services). It requires a business case, often multi-year approval, and capital budget allocation.
 - **Opex** funds day-to-day operations: maintenance crews, inspection programs, spare parts, energy. It's approved annually and is the first target when budgets are tight.
 
 Rail maintenance lives in opex. When budgets are squeezed, maintenance budgets get cut before capital projects — because deferring a rail grinding program is invisible, while cancelling a construction project makes headlines.
@@ -119,9 +119,9 @@ This accounting distinction creates a perverse incentive: it's easier to get $50
 
 ### How does the National Rail Action Plan align fragmented state and federal rail investment priorities?
 
-Australia's federal system means rail investment is split across national and state jurisdictions with different priorities, standards, and timelines. The National Rail Action Plan, backed by $1.3 billion in the 2025–26 federal budget, attempts to create coherence.
+Australia's [federal system](https://www.aph.gov.au/About_Parliament/House_of_Representatives/Powers_practice_and_procedure/00_-_Infosheets/Infosheet_13_-_The_Constitution) means rail investment is split across national and state jurisdictions with different priorities, standards, and timelines. The [National Rail Action Plan](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail), backed by [$1.3 billion in the 2025–26 federal budget](https://budget.gov.au/content/factsheets/infrastructure.htm), attempts to create coherence.
 
-The Plan prioritises four areas: freight corridor upgrades, regional passenger connectivity, interoperability standards, and workforce development. It represents the first serious attempt to align state and federal rail spending toward shared outcomes rather than competing project lists.
+The Plan prioritises four areas: freight corridor upgrades, regional passenger connectivity, [interoperability standards](https://www.onrsr.com.au/), and workforce development. It represents the first serious attempt to align state and federal rail spending toward shared outcomes rather than competing project lists.
 
 Whether it succeeds depends on sustained political commitment — which brings us back to the 4-year cycle problem.
 
@@ -131,11 +131,11 @@ Whether it succeeds depends on sustained political commitment — which brings u
 
 ### Why do 10-20 year project timelines demand political commitment that no single government can guarantee?
 
-Inland Rail was first proposed in 2008. It received federal funding commitment in 2017. The first operational section opened in 2025. Full completion is expected in the early 2030s — if current timelines hold.
+Inland Rail was [first proposed in 2008](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Rural_and_Regional_Affairs_and_Transport/InlandRail). It received [federal funding commitment in 2017](https://www.artc.com.au/projects/inland-rail/). The first operational section opened in 2025. Full completion is expected in the [early 2030s](https://www.inlandrail.artc.com.au/where-we-go/) — if current timelines hold.
 
-That's a 25-year journey from proposal to completion. No single government, no single minister, no single parliamentary term can claim ownership. The project has survived three changes of federal government, two prime ministers, and four infrastructure ministers.
+That's a 25-year journey from proposal to completion. No single government, no single minister, no single parliamentary term can claim ownership. The project has survived three changes of federal government, two prime ministers, and [four infrastructure ministers](https://www.infrastructure.gov.au/).
 
-This is the fundamental challenge of long-duration infrastructure: the politicians who commit the funding will not be in office when the benefits arrive. The only projects that survive this gauntlet are those with bipartisan support — making cross-party infrastructure commitments the most durable demand signals in rail.
+This is the fundamental challenge of long-duration infrastructure: the politicians who commit the funding will not be in office when the benefits arrive. The only projects that survive this gauntlet are those with [bipartisan support](https://www.infrastructurepartnerships.org.au/) — making cross-party infrastructure commitments the most durable demand signals in rail.
 
 </div>
 
@@ -143,9 +143,9 @@ This is the fundamental challenge of long-duration infrastructure: the politicia
 
 ## Synthesis
 
-Australian rail budgeting operates across three intersecting cycles: federal budgets (annual, shaped by national priorities), state budgets (annual, competing with health and education), and infrastructure project lifecycles (10–20+ years from planning to completion). The fundamental tension is that rail assets last 50–100 years but are funded on 1–4 year political cycles, creating a structural mismatch between investment horizons and decision-making horizons.
+Australian rail budgeting operates across three intersecting cycles: [federal budgets](https://budget.gov.au) (annual, shaped by national priorities), [state budgets](https://www.treasury.nsw.gov.au/budget-financial-management/state-budget) (annual, competing with health and education), and infrastructure project lifecycles (10–20+ years from planning to completion). The fundamental tension is that rail assets last 50–100 years but are funded on [1–4 year political cycles](https://www.aec.gov.au/elections/), creating a structural mismatch between investment horizons and decision-making horizons.
 
-For technology partners, this means understanding not just what rail operators need, but *when* budget cycles create procurement windows. Timing a proposal to align with capital budget allocation can be the difference between a sale and a shelf.
+For technology partners, this means understanding not just what rail operators need, but *when* budget cycles create [procurement windows](https://www.tenders.gov.au/). Timing a proposal to align with capital budget allocation can be the difference between a sale and a shelf.
 
 ---
 
@@ -153,15 +153,15 @@ For technology partners, this means understanding not just what rail operators n
 
 | Term | Definition |
 |------|-----------|
-| **Benefit-cost ratio (BCR)** | Ratio of a project's total benefits to total costs; projects with BCR above 1.0 are considered economically justified |
-| **Capital expenditure (capex)** | Spending on new assets or major upgrades with multi-year benefits |
-| **National Rail Action Plan** | The Australian Government's framework for coordinating rail investment priorities across states and territories |
+| **[Benefit-cost ratio (BCR)](https://www.infrastructureaustralia.gov.au/publications/assessment-framework)** | Ratio of a project's total benefits to total costs; projects with BCR above 1.0 are considered economically justified |
+| **Capital expenditure (capex)** | Spending on new assets or major upgrades with multi-year benefits; see [Australian Government budgeting framework](https://www.finance.gov.au/government/resource-management/budget-framework) |
+| **[National Rail Action Plan](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail)** | The Australian Government's framework for coordinating rail investment priorities across states and territories |
 
 ---
 
 ## Macro Signal
 
-> **Druckenmiller Macro:** The macro pattern in Australian rail budgets is the **"election infrastructure cycle"** — spending commitments peak in pre-election budgets, creating procurement surges followed by implementation delays. Smart operators and technology partners plan 18 months ahead of election cycles, positioning proposals when political willingness to commit funds is highest. The structural bet: bipartisan infrastructure commitments (like HSRA and Inland Rail) provide more durable demand signals than single-party announcements.
+> **Druckenmiller Macro:** The macro pattern in Australian rail budgets is the **"election infrastructure cycle"** — spending commitments peak in pre-election budgets, creating procurement surges followed by implementation delays. Smart operators and technology partners plan 18 months ahead of [election cycles](https://www.aec.gov.au/Elections/future_dates.htm), positioning proposals when political willingness to commit funds is highest. The structural bet: bipartisan infrastructure commitments (like [HSRA](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail/high-speed-rail) and [Inland Rail](https://www.inlandrail.artc.com.au/)) provide more durable demand signals than single-party announcements.
 
 ---
 
