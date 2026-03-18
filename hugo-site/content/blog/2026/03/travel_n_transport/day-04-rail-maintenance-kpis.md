@@ -1,6 +1,6 @@
 ---
 title: "What Gets Measured Gets Maintained — KPIs in Rail Maintenance"
-date: 2026-03-19T07:30:00+11:00
+date: 2026-03-18
 draft: false
 slug: "day-04-rail-maintenance-kpis"
 tags: ["rail-kpis", "performance-metrics", "asset-management", "rail-engineering", "rail-economics", "australian-rail",  "infrastructure" ]
@@ -14,7 +14,7 @@ audio: "/blog/2026/03/travel_n_transport/assests/day4-audio.wav"
 
 <div class="content-callout">
 
-> **Day 4 of [Australian Rail Series](https://rajc.work/projects/travel-and-transport/)
+> **Day 4 of [Australian Rail Series](https://rajc.work/projects/travel-and-transport/)**
 >
 > The childhood game of counting wagons turns out to be an instinct shared by an entire industry — one that measures a continent-spanning network in fractions of millimetres.
 
@@ -28,7 +28,7 @@ That was a child's game. Today, the people who run Australia's rail networks pla
 
 The surprising parallel isn't the counting. It's the instinct behind it: the deep human need to measure what matters. In rail, that instinct has been turned into a science. And the KPIs that emerge from that science don't just describe the network — they *govern* it.
 
-An industry built on massive scale — 36,000 kilometres, 1.4 billion tonnes of freight — is managed through the smallest measurements imaginable.
+An industry built on massive scale — [36,000 kilometres, 1.4 billion tonnes of freight](https://www.bitre.gov.au/statistics/rail) — is managed through the smallest measurements imaginable.
 
 ---
 
@@ -58,7 +58,7 @@ Rail KPIs form a system. The five that matter most — availability, on-time run
 
 ### Why does a 99% availability target still allow hundreds of hours of annual track downtime?
 
-Because 1% of 8,760 hours in a year is 87.6 hours. For a busy corridor like the Hunter Valley coal chain, 87 hours of downtime means millions of dollars in deferred freight revenue.
+Because 1% of 8,760 hours in a year is 87.6 hours. For a busy corridor like the [Hunter Valley Coal Network](https://www.artc.com.au/managing-our-network/hunter-valley/), 87 hours of downtime means millions of dollars in deferred freight revenue.
 
 Availability targets sound impressive at 99%+, but the margin matters enormously. The difference between 99.0% and 99.5% availability on a major corridor is roughly 44 hours per year — enough to complete (or miss) dozens of maintenance tasks. Operators that close the gap between 99.0% and 99.5% gain a structural advantage through better possession planning and faster maintenance execution.
 
@@ -70,7 +70,7 @@ Availability targets sound impressive at 99%+, but the margin matters enormously
 
 A single track defect causing a 10-minute delay at 7:15 AM on a busy suburban line doesn't just delay one train. It delays every train behind it. By 8:30 AM, the cascading effect has touched dozens of services. By midday, the network may still be recovering.
 
-This cascade explains why passenger rail KPIs focus on "on-time running" across the entire network, not individual services. Sydney Trains targets 92%+ OTR — meaning no more than 8 in 100 services arrive late. When OTR drops below 90%, the political and media pressure intensifies immediately.
+This cascade explains why passenger rail KPIs focus on "on-time running" across the entire network, not individual services. [Sydney Trains](https://www.transport.nsw.gov.au/news-and-media/reports) targets [92%+ OTR](https://www.transport.nsw.gov.au/news-and-media/reports/customer-satisfaction-and-service-performance) — meaning no more than 8 in 100 services arrive late. When OTR drops below 90%, the political and media pressure intensifies immediately.
 
 </div>
 
@@ -80,7 +80,7 @@ This cascade explains why passenger rail KPIs focus on "on-time running" across 
 
 If a maintenance worker reports a near-miss and gets punished for it, they'll never report one again. Nor will anyone who hears about it.
 
-Australia's rail safety framework operates on a "just culture" principle: distinguishing between genuine errors (which are treated as learning opportunities) and deliberate violations (which are treated as disciplinary matters). The result is dramatically higher near-miss reporting rates compared to punitive systems.
+Australia's rail safety framework operates on a ["just culture" principle](https://www.onrsr.com.au/information-and-research/safety-management): distinguishing between genuine errors (which are treated as learning opportunities) and deliberate violations (which are treated as disciplinary matters). The result is dramatically higher near-miss reporting rates compared to punitive systems.
 
 Higher reporting means more data. More data means better risk models. Better risk models mean interventions *before* incidents occur — the definition of leading indicators.
 
@@ -94,7 +94,7 @@ Preventive maintenance says: "Grind the rail every 40 million gross tonnes, rega
 
 Predictive maintenance says: "Here's the wear rate for this specific curve, at this specific axle load, in this specific climate. Based on the trend, optimal grinding is in 17 days."
 
-The difference is 0.1mm of insight. Rail wear measurement technology — laser-based measurement trains that scan rail profiles at speed — generates continuous, millimetre-resolution data on wear patterns. This data transforms grinding from a calendar activity into a precision intervention. The savings are substantial: extending grinding intervals by even 10% across a 5,000 km network saves millions annually.
+The difference is 0.1mm of insight. Rail wear measurement technology — [laser-based measurement trains](https://www.plassertheurer.com/en/machines-systems/measuring.html) that scan rail profiles at speed — generates continuous, millimetre-resolution data on wear patterns. This data transforms grinding from a calendar activity into a precision intervention. The savings are substantial: extending grinding intervals by even 10% across a 5,000 km network saves millions annually.
 
 </div>
 
@@ -114,13 +114,13 @@ When cost-per-km and availability move in the same direction — both rising or 
 
 ### Q7: How do Australian rail benchmarks compare to UIC international standards?
 
-The International Union of Railways (UIC) publishes global benchmarking data that allows cross-country comparison. Australian rail performs competitively:
+The [International Union of Railways (UIC)](https://uic.org/support-activities/statistics/) publishes global benchmarking data that allows cross-country comparison. Australian rail performs competitively:
 
 | Metric | Australia | UIC Average | Top Performer |
 |--------|-----------|-------------|---------------|
-| Freight productivity (NTK per track-km) | High | Medium | Australia (Pilbara) |
-| Urban OTR | 92–94% | 90–95% | Japan (99%+) |
-| Safety (derailments per M train-km) | Low | Medium | Japan, Switzerland |
+| Freight productivity (NTK per track-km) | High | Medium | [Australia (Pilbara)](https://ara.net.au/our-work/freight/) |
+| Urban OTR | 92–94% | 90–95% | [Japan (99%+)](https://www.mlit.go.jp/en/statistics/index.html) |
+| Safety (derailments per M train-km) | Low | Medium | [Japan](https://www.mlit.go.jp/en/statistics/index.html), [Switzerland](https://www.bav.admin.ch/bav/en/home/modes-of-transport/rail/safety.html) |
 | Maintenance cost per track-km | Medium-High | Medium | Japan, Netherlands |
 
 Australia's freight productivity is world-leading (driven by Pilbara heavy haul), while urban passenger performance is solid but below Japan and Switzerland. Maintenance costs are higher than European averages, partly reflecting Australia's greater distances and harsher climate.
@@ -167,7 +167,7 @@ The transition from lagging indicators (what already happened) to leading indica
 
 ## In the News
 
-Transport for NSW reports **Sydney Trains On-Time Running hits 94.2% in Q4 2025** — the highest quarterly result in five years — attributed to predictive maintenance investments in signalling and track geometry monitoring.
+[Transport for NSW](https://www.transport.nsw.gov.au/news-and-media/reports) reports **Sydney Trains On-Time Running hits 94.2% in Q4 2025** — the highest quarterly result in five years — attributed to predictive maintenance investments in signalling and track geometry monitoring.
 
 ---
 
@@ -175,9 +175,9 @@ Transport for NSW reports **Sydney Trains On-Time Running hits 94.2% in Q4 2025*
 
 | Type | Source |
 |------|--------|
-| Industry | ONRSR — *"Annual Rail Safety Report 2023-24"* (onrsr.com.au) |
-| Industry | ARTC — *"Network Performance Reports"* (artc.com.au) |
-| International | UIC — *"Railway Statistics Synopsis 2024"* (uic.org) |
+| Industry | [ONRSR — *"Annual Rail Safety Report 2023-24"*](https://www.onrsr.com.au/information-and-research/annual-rail-safety-report) |
+| Industry | [ARTC — *"Network Performance Reports"*](https://www.artc.com.au/about/annual-reports/) |
+| International | [UIC — *"Railway Statistics Synopsis 2024"*](https://uic.org/support-activities/statistics/) |
 
 ---
 
