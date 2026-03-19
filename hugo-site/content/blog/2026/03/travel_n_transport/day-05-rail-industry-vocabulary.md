@@ -26,7 +26,7 @@ You've heard the phrase "points failure causing delays" a hundred times. On the 
 
 But have you ever noticed what "points" actually are?
 
-Not a score. Not an argument. A physical piece of track infrastructure — tapered rails that slide laterally to divert a train from one route to another. When they fail, the train can't switch tracks. When the train can't switch tracks, nothing behind it can move. A single set of points, in the wrong location at the wrong time, can paralyse an entire suburban network.
+Not a score. Not an argument. A physical piece of track infrastructure — [tapered rails that slide laterally](https://en.wikipedia.org/wiki/Railroad_switch) to divert a train from one route to another. When they fail, the train can't switch tracks. When the train can't switch tracks, nothing behind it can move. A single set of points, in the wrong location at the wrong time, can paralyse an entire suburban network.
 
 Here's the deeper discovery: rail vocabulary isn't trivia. It's a lens. Each term encodes a decision, a constraint, a whole engineering philosophy. Master eight terms and you unlock the logic of an entire industry.
 
@@ -62,7 +62,7 @@ A poorly planned possession — wrong equipment, weather delays, coordination fa
 
 *Rolling stock* is every vehicle that runs on railway tracks: locomotives, passenger carriages, freight wagons, and maintenance vehicles. The diversity is staggering.
 
-In the Pilbara, Rio Tinto operates 28,000-tonne ore trains with 240+ wagons behind GE locomotives. In Sydney, double-deck Waratah electric multiple units (EMUs) carry commuters in climate-controlled comfort. In regional Australia, diesel railcars serve communities hundreds of kilometres apart.
+In the Pilbara, [Rio Tinto operates 28,000-tonne ore trains](https://www.riotinto.com/en/operations/australia/pilbara) with 240+ wagons behind GE locomotives. In Sydney, [double-deck Waratah electric multiple units (EMUs)](https://en.wikipedia.org/wiki/Sydney_Trains_A_set) carry commuters in climate-controlled comfort. In regional Australia, diesel railcars serve communities hundreds of kilometres apart.
 
 Each type has different maintenance demands: EMUs need electrical system maintenance (traction motors, pantographs, power electronics); freight wagons need structural inspections (couplers, bogies, wagons bodies under extreme axle loads); diesel locomotives need engine overhauls on defined hour cycles.
 
@@ -74,7 +74,7 @@ A maintenance organisation serving mixed rolling stock must operate what is esse
 
 ### Why does ballast condition determine both ride quality and track safety simultaneously?
 
-*Ballast* — the crushed stone bed beneath railway sleepers — looks like a pile of rocks. It is precisely engineered infrastructure.
+[*Ballast*](https://en.wikipedia.org/wiki/Track_ballast) — the crushed stone bed beneath railway sleepers — looks like a pile of rocks. It is precisely engineered infrastructure.
 
 Ballast performs three critical functions: draining water away from the track formation (wet ballast causes track instability), distributing train loads evenly across the formation (uneven load causes settlement), and enabling geometric adjustment (tamping machines compact ballast to correct track alignment).
 
@@ -92,9 +92,9 @@ The result: a rough ride for passengers, speed restrictions for safety, and even
 
 Australia chose three numbers.
 
-In the 1850s, each colony independently selected its gauge: New South Wales chose standard gauge (1,435mm), Victoria and South Australia chose broad gauge (1,600mm), and Queensland chose narrow gauge (1,067mm). They didn't coordinate because they were separate colonies with no obligation to do so.
+In the 1850s, each colony independently selected its gauge: New South Wales chose [standard gauge (1,435mm)](https://en.wikipedia.org/wiki/Standard-gauge_railway), Victoria and South Australia chose [broad gauge (1,600mm)](https://en.wikipedia.org/wiki/Broad_gauge), and Queensland chose [narrow gauge (1,067mm)](https://en.wikipedia.org/wiki/Narrow-gauge_railway). They didn't coordinate because they were separate colonies with no obligation to do so.
 
-The result, 170 years later, is a network where freight trains crossing state borders sometimes need to be **unloaded, transferred to differently-gauged wagons, and reloaded** — a process called transshipment. The interstate standard gauge network (managed by ARTC) has resolved the worst of this for long-haul freight, but significant portions of state networks still operate on legacy gauges.
+The result, 170 years later, is a network where freight trains crossing state borders sometimes need to be **unloaded, transferred to differently-gauged wagons, and reloaded** — a process called [transshipment](https://en.wikipedia.org/wiki/Transshipment). The interstate standard gauge network (managed by [ARTC](https://www.artc.com.au)) has resolved the worst of this for long-haul freight, but significant portions of state networks still operate on legacy gauges.
 
 The cost: billions in reduced efficiency, duplicated infrastructure, and lost interoperability. A vocabulary choice made before the telephone was invented is still shaping infrastructure investment today.
 
@@ -104,7 +104,7 @@ The cost: billions in reduced efficiency, duplicated infrastructure, and lost in
 
 ### Why is the material transition from timber to concrete sleepers a multi-decade infrastructure shift?
 
-*Sleepers* (called "ties" in North America) are the transverse supports beneath the rails that maintain gauge, distribute loads, and hold the track in position.
+[*Sleepers*](https://en.wikipedia.org/wiki/Railroad_tie) (called "ties" in North America) are the transverse supports beneath the rails that maintain gauge, distribute loads, and hold the track in position.
 
 Australia is in the middle of a generational transition from timber sleepers to concrete. Timber sleepers are lighter, absorb vibration well, and are easy to work with — but they rot, are attacked by termites in northern climates, and have a lifespan of 15–25 years. Concrete sleepers are heavier, more durable (50+ year lifespan), and better suited to heavy axle loads — but they're more expensive, harder to handle, and transmit more vibration to ballast.
 
@@ -116,7 +116,7 @@ The transition isn't a one-year project. Australia has hundreds of millions of s
 
 ### Why do millimetre-tolerance OHW failures cause disproportionate network disruption?
 
-*Overhead wiring* (OHW), also called catenary, provides electrical power to trains via a pantograph mounted on the roof. The contact wire must maintain precise height and alignment — within millimetres — so the pantograph can collect current smoothly at speed.
+[*Overhead wiring*](https://en.wikipedia.org/wiki/Overhead_line) (OHW), also called catenary, provides electrical power to trains via a [pantograph](https://en.wikipedia.org/wiki/Pantograph_(transport)) mounted on the roof. The contact wire must maintain precise height and alignment — within millimetres — so the pantograph can collect current smoothly at speed.
 
 When OHW fails — a dewirement, a catenary break, a pantograph snag — the consequences are immediate and severe. The affected section loses power. Every electric train on that section stops. Unlike a track defect (which can sometimes be passed at reduced speed), an OHW failure is absolute: no power, no movement.
 
@@ -128,11 +128,11 @@ Repairing OHW requires specialist high-voltage crews, elevated work platforms, a
 
 ### How does intermodal freight combine rail efficiency with road flexibility for last-mile delivery?
 
-*Intermodal* freight uses standardised containers that transfer between road and rail without the goods inside being touched. A container is loaded at a warehouse, trucked to an intermodal terminal, lifted onto a rail wagon, moved 800 km by train, lifted off at the destination terminal, and trucked to the customer.
+[*Intermodal*](https://en.wikipedia.org/wiki/Intermodal_freight_transport) freight uses standardised containers that transfer between road and rail without the goods inside being touched. A container is loaded at a warehouse, trucked to an intermodal terminal, lifted onto a rail wagon, moved 800 km by train, lifted off at the destination terminal, and trucked to the customer.
 
 The economics are elegant: rail provides the cheap, efficient line-haul over long distances; road provides the flexible first-mile and last-mile delivery. The break-even distance — where intermodal rail becomes cheaper than road-only — is typically 500–800 km in Australia, depending on commodity and volume.
 
-Inland Rail is designed to be an intermodal game-changer: double-stacked container trains running the Melbourne–Brisbane corridor in under 24 hours, shifting millions of truck movements off the Hume and Pacific Highways.
+[Inland Rail](https://inlandrail.artc.com.au) is designed to be an intermodal game-changer: double-stacked container trains running the Melbourne–Brisbane corridor in under 24 hours, shifting millions of truck movements off the Hume and Pacific Highways.
 
 </div>
 
@@ -144,7 +144,7 @@ A *siding* (or passing loop) is a section of track parallel to the main line whe
 
 Without sidings, a single-track corridor can run only one train at a time: the second train must wait at the origin until the first reaches the destination. With strategically placed sidings, two trains can pass midway, effectively doubling capacity.
 
-The spacing, length, and location of sidings on a corridor determine its theoretical maximum throughput. ARTC's capacity modelling for Inland Rail depends critically on siding placement — each additional siding on the corridor adds measurable freight paths per day.
+The spacing, length, and location of sidings on a corridor determine its theoretical maximum throughput. [ARTC's](https://www.artc.com.au) capacity modelling for [Inland Rail](https://inlandrail.artc.com.au) depends critically on siding placement — each additional siding on the corridor adds measurable freight paths per day.
 
 </div>
 
@@ -172,13 +172,13 @@ Australia's multi-gauge legacy is the most powerful illustration: a seemingly si
 
 ## Macro Signal
 
-> **Druckenmiller Macro:** The macro trend embedded in rail vocabulary is **standardisation**. Australia's multi-gauge legacy was a failure of coordination; today, the push for national standards (ARISO Codes of Practice, ONRSR harmonisation, standard gauge Inland Rail) represents a generational correction. Every standardisation initiative — from signal systems to data formats to procurement standards — reduces friction, lowers costs, and increases the addressable market for technology solutions.
+> **Druckenmiller Macro:** The macro trend embedded in rail vocabulary is **standardisation**. Australia's multi-gauge legacy was a failure of coordination; today, the push for national standards ([RISSB](https://www.rissb.com.au) Codes of Practice, [ONRSR](https://www.onrsr.com.au) harmonisation, standard gauge [Inland Rail](https://inlandrail.artc.com.au)) represents a generational correction. Every standardisation initiative — from signal systems to data formats to procurement standards — reduces friction, lowers costs, and increases the addressable market for technology solutions.
 
 ---
 
 ## In the News
 
-The Australasian Railway Association (ARA) releases an **updated National Rail Glossary** in February 2026, standardising 450+ industry terms across jurisdictions — a critical step toward harmonising technical language fragmented since the colonial era.
+The [Australasian Railway Association (ARA)](https://www.ara.net.au) releases an **updated National Rail Glossary** in February 2026, standardising 450+ industry terms across jurisdictions — a critical step toward harmonising technical language fragmented since the colonial era.
 
 ---
 
@@ -186,10 +186,10 @@ The Australasian Railway Association (ARA) releases an **updated National Rail G
 
 | Type | Source |
 |------|--------|
-| IBM | IBM Maximo — *"Asset Taxonomy and Standardisation for Rail"* (ibm.com/products/maximo) |
-| Industry | Australasian Railway Association — *"National Rail Glossary & Standards Guide"* (ara.net.au) |
-| Standards | ARISO — *"Rail Industry Codes of Practice"* (ariso.com.au) |
-| Government | BITRE — *"History of Rail Gauge in Australia"* (bitre.gov.au) |
+| IBM | [IBM Maximo](https://www.ibm.com/products/maximo) — *"Asset Taxonomy and Standardisation for Rail"* |
+| Industry | [Australasian Railway Association](https://www.ara.net.au) — *"National Rail Glossary & Standards Guide"* |
+| Standards | [RISSB](https://www.rissb.com.au) — *"Rail Industry Codes of Practice"* |
+| Government | [BITRE](https://www.bitre.gov.au) — *"History of Rail Gauge in Australia"* |
 
 ---
 
