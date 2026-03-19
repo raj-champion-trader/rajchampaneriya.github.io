@@ -9,11 +9,12 @@ series: ["Australian Rail Deep Dive"]
 summary: "You've heard 'points failure' on a delay announcement a hundred times — but have you ever noticed what it actually means? Day 5 reveals how eight essential rail terms unlock an entire industry's logic."
 weight: 5
 ShowToc: true
+audio: "/blog/2026/03/travel_n_transport/assests/day5-audio.wav"
 ---
 
 <div class="content-callout">
 
-> **Day 5 of 22** · Week 1: Foundation · Story structure: *The Unexpected Discovery*
+> **Day 5 of [Australian Rail Series](https://rajc.work/projects/travel-and-transport/)**
 >
 > You've heard "points failure" announced over the PA at your train station a hundred times. But have you ever noticed what it actually means — and why a vocabulary choice made in the 1850s still costs Australia billions today?
 
@@ -33,9 +34,19 @@ And one of those terms — *gauge* — reveals a 170-year-old mistake that Austr
 
 ---
 
+## Day 5 in pictures
+
+A few visuals for post.
+
+{{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day5/image1.png, /blog/2026/03/travel_n_transport/assests/day5/image2.png, /blog/2026/03/travel_n_transport/assests/day5/image3.png" interval="4" size="1920x1440" >}}
+
+---
+
 ## The Deep Dive — 8 Questions
 
-### Q1: Why does a poorly planned possession waste more money than the maintenance work itself?
+<div class="deep-dive-question scroll-reveal">
+
+### Why does a poorly planned possession waste more money than the maintenance work itself?
 
 A *possession* is a scheduled period when a section of track is taken out of service for maintenance. It sounds simple. It isn't.
 
@@ -43,7 +54,11 @@ A typical urban possession involves: shutting down power to overhead wiring, est
 
 A poorly planned possession — wrong equipment, weather delays, coordination failures between contractors — can waste the entire window. The track gets closed, passengers get bussed, revenue is lost, and the maintenance work doesn't get done. The possession must then be rescheduled, wasting another window later. The cost of the failed possession often exceeds the cost of the work it was meant to accomplish.
 
-### Q2: How does the diversity of rolling stock shape maintenance strategy?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How does the diversity of rolling stock shape maintenance strategy?
 
 *Rolling stock* is every vehicle that runs on railway tracks: locomotives, passenger carriages, freight wagons, and maintenance vehicles. The diversity is staggering.
 
@@ -53,7 +68,11 @@ Each type has different maintenance demands: EMUs need electrical system mainten
 
 A maintenance organisation serving mixed rolling stock must operate what is essentially multiple parallel maintenance systems — different skills, different spare parts, different inspection protocols.
 
-### Q3: Why does ballast condition determine both ride quality and track safety simultaneously?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why does ballast condition determine both ride quality and track safety simultaneously?
 
 *Ballast* — the crushed stone bed beneath railway sleepers — looks like a pile of rocks. It is precisely engineered infrastructure.
 
@@ -63,7 +82,11 @@ When ballast degrades — through fouling (fine material filling the voids), mec
 
 The result: a rough ride for passengers, speed restrictions for safety, and eventually a track closure for ballast rehabilitation. A $30-per-tonne material quite literally holds the entire network together.
 
-### Q4: How does Australia's multi-gauge legacy from the 1850s still cost the industry billions today?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How does Australia's multi-gauge legacy from the 1850s still cost the industry billions today?
 
 *Gauge* — the distance between the inner faces of the two running rails — seems like a simple specification. Choose a number and stick with it.
 
@@ -75,7 +98,11 @@ The result, 170 years later, is a network where freight trains crossing state bo
 
 The cost: billions in reduced efficiency, duplicated infrastructure, and lost interoperability. A vocabulary choice made before the telephone was invented is still shaping infrastructure investment today.
 
-### Q5: Why is the material transition from timber to concrete sleepers a multi-decade infrastructure shift?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why is the material transition from timber to concrete sleepers a multi-decade infrastructure shift?
 
 *Sleepers* (called "ties" in North America) are the transverse supports beneath the rails that maintain gauge, distribute loads, and hold the track in position.
 
@@ -83,7 +110,11 @@ Australia is in the middle of a generational transition from timber sleepers to 
 
 The transition isn't a one-year project. Australia has hundreds of millions of sleepers in service. Replacing them at natural lifecycle exchange rates means the transition will take 30–40 years. Every year, billions of dollars flow into sleeper replacement programs that most of the public will never see.
 
-### Q6: Why do millimetre-tolerance OHW failures cause disproportionate network disruption?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why do millimetre-tolerance OHW failures cause disproportionate network disruption?
 
 *Overhead wiring* (OHW), also called catenary, provides electrical power to trains via a pantograph mounted on the roof. The contact wire must maintain precise height and alignment — within millimetres — so the pantograph can collect current smoothly at speed.
 
@@ -91,7 +122,11 @@ When OHW fails — a dewirement, a catenary break, a pantograph snag — the con
 
 Repairing OHW requires specialist high-voltage crews, elevated work platforms, and isolation of the power supply — a process that typically takes 2–6 hours. During that time, the entire affected corridor is shut down. One span of contact wire, one loose fitting, and thousands of commuters are stranded.
 
-### Q7: How does intermodal freight combine rail efficiency with road flexibility for last-mile delivery?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How does intermodal freight combine rail efficiency with road flexibility for last-mile delivery?
 
 *Intermodal* freight uses standardised containers that transfer between road and rail without the goods inside being touched. A container is loaded at a warehouse, trucked to an intermodal terminal, lifted onto a rail wagon, moved 800 km by train, lifted off at the destination terminal, and trucked to the customer.
 
@@ -99,13 +134,19 @@ The economics are elegant: rail provides the cheap, efficient line-haul over lon
 
 Inland Rail is designed to be an intermodal game-changer: double-stacked container trains running the Melbourne–Brisbane corridor in under 24 hours, shifting millions of truck movements off the Hume and Pacific Highways.
 
-### Q8: How do strategically placed sidings multiply the capacity of single-track corridors?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How do strategically placed sidings multiply the capacity of single-track corridors?
 
 A *siding* (or passing loop) is a section of track parallel to the main line where a train can wait while another passes. On single-track corridors — which represent most of regional Australia — sidings are the only capacity mechanism available.
 
 Without sidings, a single-track corridor can run only one train at a time: the second train must wait at the origin until the first reaches the destination. With strategically placed sidings, two trains can pass midway, effectively doubling capacity.
 
 The spacing, length, and location of sidings on a corridor determine its theoretical maximum throughput. ARTC's capacity modelling for Inland Rail depends critically on siding placement — each additional siding on the corridor adds measurable freight paths per day.
+
+</div>
 
 ---
 
@@ -116,14 +157,6 @@ Rail vocabulary isn't passive knowledge — it's a systems-thinking tool. These 
 A possession is planned to maintain ballast beneath sleepers that support rails at a specific gauge, while overhead wiring powers the rolling stock that uses sidings to manage traffic flow across intermodal corridors. Understand how these terms connect, and vocabulary transforms from trivia into operational insight.
 
 Australia's multi-gauge legacy is the most powerful illustration: a seemingly simple vocabulary choice made 170 years ago still shapes infrastructure investment, operational efficiency, and national freight strategy today.
-
----
-
-## Review Questions
-
-1. **Evaluate:** Which of the eight vocabulary terms, if its underlying infrastructure failed simultaneously across a state network, would cause the most severe and long-lasting disruption — and why?
-2. **Evaluate:** How would you assess whether Australia's gauge standardisation efforts over the past 50 years have been cost-effective relative to the ongoing costs of multi-gauge operation?
-3. **Create:** Design a visual glossary that a new rail employee could use in their first week to understand how these eight terms interconnect as a system.
 
 ---
 
@@ -153,7 +186,6 @@ The Australasian Railway Association (ARA) releases an **updated National Rail G
 
 | Type | Source |
 |------|--------|
-| IBM | IBM Institute for Business Value — *"Digital Standards and Interoperability in Transportation"* (2024) |
 | IBM | IBM Maximo — *"Asset Taxonomy and Standardisation for Rail"* (ibm.com/products/maximo) |
 | Industry | Australasian Railway Association — *"National Rail Glossary & Standards Guide"* (ara.net.au) |
 | Standards | ARISO — *"Rail Industry Codes of Practice"* (ariso.com.au) |
@@ -161,4 +193,4 @@ The Australasian Railway Association (ARA) releases an **updated National Rail G
 
 ---
 
-**Tomorrow:** [The Bullet Train Mirage](/projects/travel-and-transport/day-06-highspeed-rail-australia/) · *You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years?*
+**Tomorrow:** The Bullet Train Mirage · *You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years?*
