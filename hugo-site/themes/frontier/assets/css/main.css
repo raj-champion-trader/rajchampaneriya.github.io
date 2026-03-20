@@ -217,9 +217,19 @@ main#swup.container {
   box-sizing: border-box;
 }
 
+.site-header .header-inner .logo-icon {
+  width: clamp(24px, 1.5rem + 0.25vw, 32px);
+  height: clamp(24px, 1.5rem + 0.25vw, 32px);
+  flex-shrink: 0;
+  margin-right: var(--space-2xs, 0.25rem);
+  border-radius: 6px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
 .site-header .header-inner .logo {
   display: inline-flex !important;
-  align-items: baseline;
+  align-items: center;
   gap: 0;
   white-space: nowrap;
   overflow: hidden;
