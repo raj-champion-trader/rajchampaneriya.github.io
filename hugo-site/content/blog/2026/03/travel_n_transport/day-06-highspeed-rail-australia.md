@@ -9,6 +9,7 @@ series: ["Australian Rail Deep Dive"]
 summary: "China built 40,000 kilometres of high-speed rail in 15 years. Australia has been studying a single corridor for 40 years. Day 6 pulls apart the strange, repeating cycle of HSR promises — and asks what's actually different this time."
 weight: 6
 ShowToc: true
+audio: "/blog/2026/03/travel_n_transport/assests/day6-audio.wav"
 ---
 
 <div class="content-callout">
