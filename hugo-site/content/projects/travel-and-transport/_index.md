@@ -142,8 +142,22 @@ The communication style blends four influences:
 
 ---
 
+## Acknowledgments & Disclaimer
+
+<div class="content-callout">
+
+> The analytical framework and communication style of this series draw inspiration from the published works, interviews, and public writings of **Earl Nightingale**, **Peter Lynch**, **Stan Druckenmiller**, and **Lorin W. Anderson**. Their ideas on clarity, micro-analysis, macro perspective, and cognitive depth have shaped how I think about industry research — and I reference them here with gratitude, not affiliation.
+>
+> All opinions, interpretations, and conclusions in this series are entirely my own. No individual mentioned here has endorsed, reviewed, or contributed to this content. Any errors in applying their frameworks are mine alone.
+>
+> Views expressed do not represent IBM, any client, or any organisation referenced in this series.
+
+</div>
+
+---
+
 <div class="campaign-meta">
 
-*Campaign runs March 16 – April 18, 2026. New posts publish weekday mornings at 7:30 AM AEST, with Saturday editions at 9:00 AM AEST.*
+*Campaign runs March 16 – April 18, 2026. New posts publish weekday mornings at 7:30 AM AEST.*
 
 </div>
