@@ -5,6 +5,7 @@ draft: false
 slug: "day-04-rail-maintenance-kpis"
 tags: ["rail-kpis", "performance-metrics", "asset-management", "rail-engineering", "rail-economics", "australian-rail",  "infrastructure" ]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged — in fractions of millimetres. Day 4 explores the KPIs that govern a massive industry through the smallest measurements."
 weight: 4

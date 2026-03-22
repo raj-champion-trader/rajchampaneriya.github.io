@@ -5,6 +5,7 @@ draft: false
 slug: "day-05-rail-industry-vocabulary"
 tags: ["rail-vocabulary", "rail-engineering", "industry-knowledge", "professional-development", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "You've heard 'points failure' on a delay announcement a hundred times — but have you ever noticed what it actually means? Day 5 reveals how eight essential rail terms unlock an entire industry's logic."
 weight: 5

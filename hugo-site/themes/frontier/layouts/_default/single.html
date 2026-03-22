@@ -63,6 +63,12 @@
         {{ end }}
     </header>
 
+    {{ if .Params.disclaimer }}
+    <div class="post-disclaimer">
+        <em>Personal opinion. Does not represent IBM or any client.</em>
+    </div>
+    {{ end }}
+
     <div class="post-content surface-panel">
         {{ .Content }}
     </div>

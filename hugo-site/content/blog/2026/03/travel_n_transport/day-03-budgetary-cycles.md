@@ -5,6 +5,7 @@ draft: false
 slug: "day-03-budgetary-cycles"
 tags: ["rail-funding", "infrastructure-budget", "australian-policy", "public-investment", "rail-economics", "australian-rail",  "infrastructure",  "asset-management" ]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "A rail bridge lasts 100 years, a government lasts four. Day 3 uncovers the strange budget cycle that decides whether your morning train runs — and why the most important infrastructure investments are the ones no politician can claim credit for."
 weight: 3

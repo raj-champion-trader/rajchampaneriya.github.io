@@ -9,6 +9,7 @@ categories: ["Industry Refections"]
 summary: "A 22‑day deep dive into Australian rail — its economics, technology, safety culture and digital future. Each post stands alone, yet together they map an industry that moves 1.4 billion tonnes of freight and 800 million+ passengers a year while remaining largely invisible."
 weight: 1
 ShowToc: true
+disclaimer: true
 audio: "/projects/travel-and-transport/audio/aus-rail-industry.wav"
 audioTitle: "Australian Rail Industry"
 ---

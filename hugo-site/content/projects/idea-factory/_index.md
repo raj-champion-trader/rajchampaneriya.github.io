@@ -11,6 +11,7 @@ audio: "/projects/idea-factory/audio/idea-factory.wav"
 audioTitle: "Idea Factory Blueprint"
 githubRepo: "https://github.com/raj-champion-trader/insight-weaver"
 weight: 2
+disclaimer: true
 ShowToc: true
 ---
 

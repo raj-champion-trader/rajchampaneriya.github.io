@@ -5,6 +5,7 @@ summary: "System design stories — real architectures, strategic decisions, pro
 description: "Architecture blueprints, system design case studies, and reference implementations built from real-world enterprise engagements by Raj Champaneriya."
 audio: "/audio/projects.wav"
 audioTitle: "Architecture Blueprints"
+disclaimer: true
 ---
 
 <div class="content-callout">

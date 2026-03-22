@@ -14,6 +14,7 @@ cover:
 githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
 weight: 1
 ShowToc: true
+disclaimer: true
 audioTitle: "Stock Market Simulator"
 ---
 

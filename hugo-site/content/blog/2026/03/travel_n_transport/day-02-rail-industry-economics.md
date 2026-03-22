@@ -5,6 +5,7 @@ draft: false
 slug: "day-02-rail-industry-economics"
 tags: ["rail-economics", "australian-rail", "freight-revenue",  "infrastructure",  "asset-management" ]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion economic contribution. Day 2 explores how Australia's unique above-rail/below-rail split created an entirely different competitive landscape."
 weight: 2

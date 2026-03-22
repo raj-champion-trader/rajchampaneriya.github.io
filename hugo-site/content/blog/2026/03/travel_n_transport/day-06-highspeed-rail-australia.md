@@ -5,6 +5,7 @@ draft: false
 slug: "day-06-highspeed-rail-australia"
 tags: ["high-speed-rail", "infrastructure-australia", "transport-innovation", "future-rail", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "China built 40,000 kilometres of high-speed rail in 15 years. Australia has been studying a single corridor for 40 years. Day 6 pulls apart the strange, repeating cycle of HSR promises — and asks what's actually different this time."
 weight: 6

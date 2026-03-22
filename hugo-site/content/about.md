@@ -7,6 +7,8 @@ audio: "/audio/about-me.wav"
 audioTitle: "About Me"
 ---
 
+> **Disclaimer:** I work at IBM Consulting. All views, opinions, and content on this site are entirely my own and do not represent IBM, its clients, or its affiliates. Nothing here reflects IBM's positions, strategies, or methodologies.
+
 ## The CARE Architecture Method
 
 Every high-stakes transformation I lead follows a proven framework:
@@ -174,4 +176,4 @@ Whether you're navigating a high-stakes modernization or evaluating cloud strate
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
 
-*All opinions expressed on this site are my own.*
+*I work at IBM Consulting. All views, opinions, and content on this site are entirely my own and do not represent IBM, its clients, or its affiliates.*

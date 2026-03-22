@@ -12,6 +12,8 @@ audioTitle: "Insights"
 Read what worked, what failed, and what I'd do differently.
 {{< /tldr >}}
 
+*All posts reflect my personal analysis and perspective. Client details are anonymised or omitted. Views do not represent IBM.*
+
 **Browse by theme:**
 
 - **Architecture Strategy** — Patterns, trade-offs, and decision frameworks for scalable systems.
