@@ -108,3 +108,17 @@ The source code is MIT-licensed. Fork it. Adapt it. Build your own Idea Factory.
 4. **The stack is boring on purpose.** .NET Aspire, Carbon, GitHub Copilot SDK, standard hardware—innovation velocity comes from process and method, not from exotic tech.
 
 If you need help adapting this architecture for your enterprise context, let's talk.
+
+---
+
+## Acknowledgments & Disclaimer
+
+<div class="content-callout">
+
+> The architectural thinking in this project draws inspiration from the published works, talks, and writings of enterprise architecture practitioners and thought leaders across the industry. Their ideas on governance, layered design, and innovation methodology have shaped how I approach experimentation at scale — and I reference them here with gratitude, not affiliation.
+>
+> All opinions, design decisions, and conclusions in this series are entirely my own. No individual or organisation mentioned has endorsed, reviewed, or contributed to this content. Any errors in interpretation or application are mine alone.
+>
+> References to **IBM**, **GitHub**, **.NET Aspire**, and other technologies or products are for descriptive and educational purposes only. Views expressed do not represent IBM, any client, or any organisation referenced in this project.
+
+</div>

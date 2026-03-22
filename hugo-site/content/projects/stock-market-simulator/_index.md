@@ -129,4 +129,18 @@ The Stock Market Simulator shows how a **focused set of architecture decisions**
 
 ---
 
+## Acknowledgments & Disclaimer
+
+<div class="content-callout">
+
+> The quantitative models in this project (Geometric Brownian Motion, GARCH) and the broader approach to market simulation draw inspiration from the published research, books, and writings of quantitative finance practitioners and academics. Their contributions to stochastic modelling and financial engineering have shaped how I approach real-time system design — and I reference them here with gratitude, not affiliation.
+>
+> All opinions, architectural decisions, and conclusions are entirely my own. No individual or organisation mentioned has endorsed, reviewed, or contributed to this project. Any errors in applying financial models or interpreting market behaviour are mine alone.
+>
+> **This project is a technical architecture demonstration, not financial advice.** Simulated symbols (NIFTY50, BANKNIFTY, RELIANCE, TCS) are used for illustrative purposes only and do not represent real market data or trading recommendations. Views expressed do not represent IBM, any client, or any organisation referenced in this project.
+
+</div>
+
+---
+
 *Last Updated: February 2026*
