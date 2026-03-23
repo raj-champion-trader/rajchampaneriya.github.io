@@ -75,8 +75,8 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 | 3 | Mar 18 | [The Budget That Built a Continent](/blog/2026/03/travel_n_transport/day-03-budgetary-cycles/) | You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs? |
 | 4 | Mar 19 | [What Gets Measured Gets Maintained](/blog/2026/03/travel_n_transport/day-04-rail-maintenance-kpis/) | A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged. |
 | 5 | Mar 20 | [Speaking Rail](/blog/2026/03/travel_n_transport/day-05-rail-industry-vocabulary/) | You've heard "points failure" on a delay announcement a hundred times — but have you ever noticed what it actually means? |
-| 6 | Mar 21 | [The Bullet Train Mirage](/projects/travel-and-transport/day-06-highspeed-rail-australia/) | You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years? |
-| 7 | Mar 23 | [Eight Hundred Million Journeys](/projects/travel-and-transport/day-07-passenger-rail-deep-dive/) | The memory of your first solo train ride connects to a system carrying 800+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. |
+| 6 | Mar 21 | [The Bullet Train Mirage](/blog/2026/03/travel_n_transport/day-06-highspeed-rail-australia/) | You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years? |
+| 7 | Mar 23 | [Four Hundred Million Journeys](/blog/2026/03/travel_n_transport/day-07-passenger-rail-deep-dive/) | The memory of your first solo train ride connects to a system carrying 800+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. |
 
 ### Week 2 — Depth
 

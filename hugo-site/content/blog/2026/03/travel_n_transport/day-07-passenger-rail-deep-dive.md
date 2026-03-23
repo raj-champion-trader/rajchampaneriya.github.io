@@ -1,5 +1,5 @@
 ---
-title: "Eight Hundred Million Journeys — Passenger Rail Deep Dive"
+title: "Four Hundred Million Journeys — Passenger Rail Deep Dive"
 date: 2026-03-23T07:30:00+11:00
 draft: false
 slug: "day-07-passenger-rail-deep-dive"
@@ -27,7 +27,7 @@ When I was twelve, I took a train alone for the first time. I remember the platf
 
 That was one journey. One twelve-year-old. One morning.
 
-Today, Australian passenger rail carries [**over 400 million passengers every year**](https://www.bitre.gov.au/publications/ongoing/urban_public_transport). [Sydney Trains](https://www.transport.nsw.gov.au/data-and-research) alone moves more people in a single morning peak than the entire population of Canberra. [Melbourne's tram network is the largest on Earth](https://en.wikipedia.org/wiki/Melbourne_tram_network) — bigger than any city in Europe, the continent that invented trams.
+Today, Australian passenger rail carries [**over 400 million passengers every year**](https://www.bitre.gov.au/). [Sydney Trains](https://www.transport.nsw.gov.au/data-and-research) alone moves more people in a single morning peak than the entire population of Canberra. [Melbourne's tram network is the largest on Earth](https://en.wikipedia.org/wiki/Melbourne_tram_network) — bigger than any city in Europe, the continent that invented trams.
 
 But here's what hasn't changed: the paradox. Despite world-class scale, most Australian passenger rail systems are barely profitable. [Farebox revenue covers only 30–50% of operating costs](https://www.ara.net.au/publications/). Every journey is subsidised by taxpayers who may never ride a train.
 
@@ -52,10 +52,10 @@ Australian passenger rail isn't one thing. It's four:
 
 | Segment | Examples | Key Characteristic |
 |---------|---------|-------------------|
-| **Heavy suburban** | [Sydney Trains](https://www.transport.nsw.gov.au/system/sydney-trains), [Metro Melbourne](https://www.metrotrains.com.au/) | High-frequency, electrified, double-deck or high-capacity |
+| **Heavy suburban** | [Sydney Trains](https://transportnsw.info/travel-info/ways-to-get-around/train), [Metro Melbourne](https://www.metrotrains.com.au/) | High-frequency, electrified, double-deck or high-capacity |
 | **Metro / automated** | [Sydney Metro](https://www.sydneymetro.info/) | Driverless, platform screen doors, newest technology |
 | **Light rail / tram** | [Melbourne trams](https://www.yarratrams.com.au/), [Sydney Light Rail](https://transportnsw.info/travel-info/ways-to-get-around/light-rail) | Street-running, mixed traffic, frequent stops |
-| **Regional / intercity** | [NSW TrainLink](https://transportnsw.info/travel-info/ways-to-get-around/regional-trains-and-coaches), [V/Line](https://www.vline.com.au/) | Long-distance, diesel or electrified, lower frequency |
+| **Regional / intercity** | [NSW TrainLink](https://transportnsw.info/regional-travel), [V/Line](https://www.vline.com.au/) | Long-distance, diesel or electrified, lower frequency |
 
 Each segment demands different maintenance: heavy suburban needs intensive track and signalling maintenance (wear from high-frequency services); metro needs specialised automation systems support; trams need embedded track maintenance in operating roadways; regional needs diesel locomotive overhauls and long-line infrastructure upkeep.
 
@@ -117,7 +117,7 @@ Each transforms a different dimension. Automation changes operations. Predictive
 
 ### How has post-COVID patronage recovery reshaped the business case for urban rail investment?
 
-COVID-19 [collapsed passenger rail patronage to 10–20% of pre-pandemic levels](https://www.bitre.gov.au/publications/ongoing/urban_public_transport). By 2026, recovery varies: Sydney has reached [approximately 85–90% of pre-COVID patronage](https://www.transport.nsw.gov.au/data-and-research); Melbourne is at 80–85%.
+COVID-19 [collapsed passenger rail patronage to 10–20% of pre-pandemic levels](https://www.bitre.gov.au/). By 2026, recovery varies: Sydney has reached [approximately 85–90% of pre-COVID patronage](https://www.transport.nsw.gov.au/data-and-research); Melbourne is at 80–85%.
 
 The missing 10–20% is mostly peak-hour commuters working from home 1–2 days per week. This structural shift changes the business case: networks designed for five-day peak demand now face three-to-four-day peaks. Revenue falls. Operating costs remain largely fixed.
 
@@ -131,7 +131,7 @@ The policy response is evolving: off-peak fare incentives, leisure travel market
 
 When Australian states tender passenger rail franchises, international operators bring something domestic companies can't: experience running complex rail networks in other countries.
 
-[MTR Corporation](https://www.mtr.com.hk/en/corporate/overview/profile_index.html) (Hong Kong) operates Melbourne's metropolitan rail franchise. Its experience running one of the world's most efficient metro systems — [99.9% reliability](https://www.mtr.com.hk/en/corporate/sustainability/rail_serv.html) — provides benchmarks, management systems, and operational culture that lift local performance. [JR East](https://www.jreast.co.jp/e/) (Japan) has been involved in advisory roles for Australian rail projects, sharing [Shinkansen maintenance practices](https://en.wikipedia.org/wiki/Shinkansen#Technology) and operational discipline.
+[MTR Corporation](https://www.mtr.com.hk/en/corporate/overview/profile_index.html) (Hong Kong) operates Melbourne's metropolitan rail franchise. Its experience running one of the world's most efficient metro systems — [99.9% reliability](https://www.mtr.com.hk/en/corporate/sustainability/operating_responsibly.html) — provides benchmarks, management systems, and operational culture that lift local performance. [JR East](https://www.jreast.co.jp/e/) (Japan) has been involved in advisory roles for Australian rail projects, sharing [Shinkansen maintenance practices](https://en.wikipedia.org/wiki/Shinkansen#Technology) and operational discipline.
 
 The value isn't just technical transfer. International operators bring different safety cultures, different approaches to workforce management, and different expectations about what "world-class" looks like — raising the bar for the entire Australian industry.
 
@@ -179,7 +179,7 @@ The technology transformation underway — automation, predictive maintenance, c
 
 ## In the News
 
-**[Sydney Metro City & Southwest](https://www.sydneymetro.info/citysouthwest)** opens to passengers in late 2025, delivering Australia's first fully automated driverless metro railway and setting a new operational benchmark for passenger rail capacity and reliability across Australasian networks.
+**[Sydney Metro City & Southwest](https://www.sydneymetro.info/citysouthwest/project-overview)** opens to passengers in late 2025, delivering Australia's first fully automated driverless metro railway and setting a new operational benchmark for passenger rail capacity and reliability across Australasian networks.
 
 ---
 
