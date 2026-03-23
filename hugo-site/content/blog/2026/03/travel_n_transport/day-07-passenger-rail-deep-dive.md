@@ -3,7 +3,7 @@ title: "Four Hundred Million Journeys — Passenger Rail Deep Dive"
 date: 2026-03-23T07:30:00+11:00
 draft: false
 slug: "day-07-passenger-rail-deep-dive"
-tags: ["passenger-rail", "urban-mobility", "public-transport", "rail-industry", "IBM"]
+tags: ["passenger-rail", "urban-mobility", "public-transport", "rail-industry", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]
 categories: ["Point of View"]
 disclaimer: true
 series: ["Australian Rail Deep Dive"]
