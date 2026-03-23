@@ -7,7 +7,7 @@ tags: ["passenger-rail", "urban-mobility", "public-transport", "rail-industry", 
 categories: ["Point of View"]
 disclaimer: true
 series: ["Australian Rail Deep Dive"]
-summary: "The memory of your first solo train ride connects to a system carrying 800+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. Day 7 dives into the economics and paradoxes of passenger rail."
+summary: "The memory of your first solo train ride connects to a system carrying 400+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. Day 7 dives into the economics and paradoxes of passenger rail."
 weight: 7
 ShowToc: true
 audio: "/blog/2026/03/travel_n_transport/assests/day7-audio.wav"
@@ -27,7 +27,7 @@ When I was twelve, I took a train alone for the first time. I remember the platf
 
 That was one journey. One twelve-year-old. One morning.
 
-Today, Australian passenger rail carries **over 800 million passengers every year**. Sydney Trains alone moves more people in a single morning peak than the entire population of Canberra. Melbourne's tram network is the largest on Earth — bigger than any city in Europe, the continent that invented trams.
+Today, Australian passenger rail carries **over 400 million passengers every year**. Sydney Trains alone moves more people in a single morning peak than the entire population of Canberra. Melbourne's tram network is the largest on Earth — bigger than any city in Europe, the continent that invented trams.
 
 But here's what hasn't changed: the paradox. Despite world-class scale, most Australian passenger rail systems are barely profitable. Farebox revenue covers only 30–50% of operating costs. Every journey is subsidised by taxpayers who may never ride a train.
 
