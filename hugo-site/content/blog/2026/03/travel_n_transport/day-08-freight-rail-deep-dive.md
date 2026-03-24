@@ -3,8 +3,9 @@ title: "The Heaviest Trains on Earth — Freight Rail Deep Dive"
 date: 2026-03-25T07:30:00+11:00
 draft: false
 slug: "day-08-freight-rail-deep-dive"
-tags: ["freight-rail", "logistics-australia", "supply-chain", "rail-freight""rail-industry", "asset-management", "rail-economics", "australian-rail",  "infrastructure"]
+tags: ["freight-rail", "logistics-australia", "supply-chain", "rail-freight", "rail-industry", "asset-management", "rail-economics", "australian-rail",  "infrastructure"]
 categories: ["Industry Experience"]
+disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier? And that the most advanced railway on Earth isn't in Japan — it's in an Australian desert most people will never visit."
 weight: 8
@@ -14,7 +15,7 @@ audio: "/blog/2026/03/travel_n_transport/assests/day8-audio.wav"
 
 <div class="content-callout">
 
-> **Day 8 of 22** · Week 2: Depth · Story structure: *The Unexpected Discovery*
+> **Day 8 of [Australian Rail Series](https://rajc.work/projects/travel-and-transport/)**
 >
 > You've seen iron ore trains in photos a hundred times. But have you ever noticed that each one pulls 28,000 tonnes — twice the weight of the Eiffel Tower — and that the world's most technologically advanced railway runs without a driver in a desert most Australians will never visit?
 
@@ -34,9 +35,19 @@ Here's the revelation that changes how you see Australian freight rail: this isn
 
 ---
 
+## Day 8 in pictures
+
+A few visuals for post.
+
+{{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day8/image1.png, /blog/2026/03/travel_n_transport/assests/day8/image2.png, /blog/2026/03/travel_n_transport/assests/day8/image3.png" interval="4" size="1920x1440" >}}
+
+---
+
 ## The Deep Dive — 8 Questions
 
-### Q1: How do bulk, intermodal, general, and specialised freight create four distinct rail business models?
+<div class="deep-dive-question scroll-reveal">
+
+### How do bulk, intermodal, general, and specialised freight create four distinct rail business models?
 
 Australian freight rail isn't one market. It's four, each with different economics:
 
@@ -49,7 +60,11 @@ Australian freight rail isn't one market. It's four, each with different economi
 
 Bulk mineral freight generates more than 70% of Australian freight rail revenue but uses less than 30% of the network. Intermodal freight is growing fastest but faces relentless competition from road. General freight is declining as trucks capture more short-haul volumes. Specialised freight is small but profitable.
 
-### Q2: Why do Pilbara iron ore railways represent some of the world's most profitable freight operations?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why do Pilbara iron ore railways represent some of the world's most profitable freight operations?
 
 Three factors combine to make Pilbara railways extraordinarily profitable:
 
@@ -61,7 +76,11 @@ Three factors combine to make Pilbara railways extraordinarily profitable:
 
 Rio Tinto's rail division isn't a cost centre that executives tolerate — it's a profit driver that board members celebrate.
 
-### Q3: Why is intermodal freight growing rapidly despite rail's traditional dominance in bulk commodities?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why is intermodal freight growing rapidly despite rail's traditional dominance in bulk commodities?
 
 Because Australia's consumer economy is growing faster than its mining economy, and consumer goods move in containers, not bulk wagons.
 
@@ -69,7 +88,11 @@ The e-commerce boom, population growth in capital cities, and increasing import 
 
 Double-stacked container trains on Inland Rail will move the equivalent of 110 trucks in a single service, reducing east coast freight costs and shifting cargo from congested highways to rail. The growth opportunity is real — but rail must compete on reliability and transit time, not just cost.
 
-### Q4: How does Aurizon's dominance as Australia's largest freight operator shape competitive dynamics?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How does Aurizon's dominance as Australia's largest freight operator shape competitive dynamics?
 
 Aurizon carries more than half of Australia's rail freight by volume. Its dominance in Queensland coal haulage — backed by long-term contracts with mining giants — provides a revenue base that smaller competitors can't match.
 
@@ -77,7 +100,11 @@ This scale creates both advantages and obligations. Aurizon can invest in fleet 
 
 For technology vendors, Aurizon is both the largest customer and the benchmark. A solution that works for Aurizon's fleet of 700+ locomotives and 16,000+ wagons demonstrates scale credibility that opens doors across the industry.
 
-### Q5: At what distance and volume does rail freight become cheaper than road, and why?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### At what distance and volume does rail freight become cheaper than road, and why?
 
 The break-even point depends on commodity, density, and corridor:
 
@@ -91,7 +118,11 @@ The break-even point depends on commodity, density, and corridor:
 
 Below 300 km, truck is almost always cheaper — the cost of terminal handling (lifting containers on and off rail wagons) exceeds the line-haul savings. Above 800 km, rail is almost always cheaper — the fuel and labour savings compound with distance. Between 300–800 km is the competitive battleground.
 
-### Q6: How will the Inland Rail project reshape the Melbourne-Brisbane freight corridor?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### How will the Inland Rail project reshape the Melbourne-Brisbane freight corridor?
 
 Inland Rail is the single largest rail infrastructure project in Australian history: 1,700 km of new and upgraded track creating a direct freight corridor from Melbourne to Brisbane via inland NSW.
 
@@ -99,7 +130,11 @@ The economic case: Melbourne–Brisbane is Australia's busiest domestic freight 
 
 The first operational sections (Parkes–Narromine, Narrabri–North Star) are already demonstrating the capacity gains: 1,800-metre trains carrying double-stacked containers at higher speeds than the existing network permits.
 
-### Q7: Which freight corridor is most vulnerable to commodity market disruption, and why?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Which freight corridor is most vulnerable to commodity market disruption, and why?
 
 The Hunter Valley coal chain.
 
@@ -109,13 +144,19 @@ The vulnerability: global coal demand is facing structural decline as energy tra
 
 For rail operators, the question isn't whether coal volumes will decline — it's when, how fast, and whether intermodal or other freight can replace the lost tonnes.
 
-### Q8: Why has Rio Tinto's autonomous Pilbara railway become a template for the future of freight rail globally?
+</div>
+
+<div class="deep-dive-question scroll-reveal">
+
+### Why has Rio Tinto's autonomous Pilbara railway become a template for the future of freight rail globally?
 
 **AutoHaul** — Rio Tinto's autonomous train system — has hauled over 5 billion gross tonne-kilometres without a driver. GoA 4 (fully unattended) operations run 24/7). Trains are remotely monitored from a control centre in Perth, 1,500 km away.
 
 The system works because the Pilbara environment is ideal for autonomy: dedicated track (no public crossings), controlled access, limited variable factors, and constant volume. The technology — GPS positioning, radar obstacle detection, automated braking — is proven through years of operation.
 
 The global lesson: when the operational environment is controlled and the volume justifies the investment, autonomous rail is not experimental — it's commercial. Metros are adopting GoA 4 worldwide. Mainline freight will follow as communication systems (5G, ETCS Level 3) mature.
+
+</div>
 
 ---
 
@@ -153,7 +194,7 @@ The industry's economics are directly tied to global commodity markets. Precisio
 
 ## In the News
 
-ARTC confirms the first **Inland Rail freight services on the Parkes-to-Narromine section** achieve 1,800-metre double-stacked container trains, demonstrating the capacity gains that will reshape east coast freight logistics when the full Melbourne–Brisbane corridor completes.
+**[Inland Rail Project — Parkes to Narromine](https://www.inlandrail.artc.com.au/)** delivers Australia's first operational inland freight corridor section, demonstrating the double-stacked container capacity and faster transit times that underpin the Melbourne–Brisbane freight corridor transformation.
 
 ---
 
@@ -161,12 +202,15 @@ ARTC confirms the first **Inland Rail freight services on the Parkes-to-Narromin
 
 | Type | Source |
 |------|--------|
-| IBM | IBM Institute for Business Value — *"AI and Automation in Freight Rail Operations"* (2024) |
-| IBM | IBM watsonx — *"Demand Forecasting and Operations Optimisation for Freight"* (ibm.com/watsonx) |
-| Industry | Aurizon — *"2024 Annual Report: Operational Performance"* (aurizon.com.au) |
-| Industry | Rio Tinto — *"AutoHaul: The World's Largest Autonomous Heavy-Haul Railway"* (riotinto.com) |
-| Industry | Australasian Railway Association — *"Freight on Rail: Economic and Environmental Benefits"* (ara.net.au) |
+| Industry | [Australasian Railway Association](https://www.ara.net.au/) — *"Freight Rail in Australia: State of the Industry 2024"* |
+| Operator | [Aurizon](https://www.aurizon.com.au/) — *Annual Report & Investor Presentations* |
+| Operator | [Rio Tinto Iron Ore](https://www.riotinto.com/en/operations/australia/pilbara) — *AutoHaul Autonomous Rail Operations* |
+| Government | [ARTC Inland Rail](https://www.inlandrail.artc.com.au/) — *Inland Rail Program Business Case* |
+| Government | [BITRE](https://www.bitre.gov.au/) — *"Australian Freight Transport Statistics 2024"* |
+| Industry | [ACCC](https://www.accc.gov.au/) — *Container Stevedoring Monitoring Report* |
+| Operator | [Fortescue](https://www.fortescue.com/) — *Pilbara Rail Operations Data* |
+| IBM | [IBM Maximo](https://www.ibm.com/products/maximo) — *"Fleet and Rolling Stock Management Solutions"* |
 
 ---
 
-**Next:** [The Safety Paradox](/projects/travel-and-transport/day-09-rail-safety-regulatory/) · *Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives.*
+**Next:** The Safety Paradox · *Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives.*
