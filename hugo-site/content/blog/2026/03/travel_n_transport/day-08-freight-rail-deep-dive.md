@@ -168,14 +168,6 @@ The industry's economics are directly tied to global commodity markets. Precisio
 
 ---
 
-## Review Questions
-
-1. **Evaluate:** Given the Hunter Valley's exposure to coal demand decline, what diversification strategy would you recommend for the corridor's rail infrastructure?
-2. **Evaluate:** How would you assess whether autonomous freight operations (Pilbara model) are transferable to shared public/freight corridors — and what are the key barriers?
-3. **Create:** Design a competitive positioning strategy for intermodal rail freight versus road on the Melbourne–Brisbane corridor post-Inland Rail completion.
-
----
-
 ## Vocabulary Spotlight
 
 | Term | Definition |
