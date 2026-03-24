@@ -1,6 +1,6 @@
 ---
 title: "The Bullet Train Mirage — High-Speed Rail in Australia"
-date: 2026-03-20T08:00:00+11:00
+date: 2026-03-20
 draft: false
 slug: "day-06-highspeed-rail-australia"
 tags: ["high-speed-rail", "infrastructure-australia", "transport-innovation", "future-rail", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]

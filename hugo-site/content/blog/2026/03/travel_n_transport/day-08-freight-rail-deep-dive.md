@@ -1,6 +1,6 @@
 ---
 title: "The Heaviest Trains on Earth — Freight Rail Deep Dive"
-date: 2026-03-25T07:30:00+11:00
+date: 2026-03-24
 draft: false
 slug: "day-08-freight-rail-deep-dive"
 tags: ["freight-rail", "logistics-australia", "supply-chain", "rail-freight", "rail-industry", "asset-management", "rail-economics", "australian-rail",  "infrastructure"]

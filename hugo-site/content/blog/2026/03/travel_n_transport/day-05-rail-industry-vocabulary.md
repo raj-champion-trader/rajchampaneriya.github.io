@@ -1,6 +1,6 @@
 ---
 title: "Speaking Rail — Australian Rail Industry Vocabulary"
-date: 2026-03-20T07:30:00+11:00
+date: 2026-03-19
 draft: false
 slug: "day-05-rail-industry-vocabulary"
 tags: ["rail-vocabulary", "rail-engineering", "industry-knowledge", "professional-development", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]
