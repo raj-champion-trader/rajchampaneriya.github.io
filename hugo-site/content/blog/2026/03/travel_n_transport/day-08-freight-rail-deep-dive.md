@@ -27,9 +27,9 @@ You've seen the photo a hundred times. A rust-red train, impossibly long, stretc
 
 But have you ever noticed the numbers?
 
-Each of those trains carries **28,000 tonnes** of iron ore. That's twice the weight of the Eiffel Tower. Each train stretches over [2.5 kilometres long](https://www.riotinto.com/en/operations/australia/pilbara) — you could park one on the Sydney Harbour Bridge and it would overhang both ends. And in [Rio Tinto's Pilbara operations](https://www.riotinto.com/en/operations/australia/pilbara), these trains run **without a driver** using [AutoHaul](https://www.riotinto.com/en/news/stories/autonomous-trains), the world's first fully autonomous heavy-haul rail system.
+Each of those trains carries **28,000 tonnes** of iron ore. That's twice the weight of the Eiffel Tower. Each train stretches over [2.5 kilometres long](https://www.riotinto.com/en/operations/australia/pilbara) — you could park one on the Sydney Harbour Bridge and it would overhang both ends. And in [Rio Tinto's Pilbara operations](https://www.riotinto.com/en/operations/australia/pilbara), these trains run **without a driver** using [AutoHaul](https://www.riotinto.com/en/operations/australia/pilbara), the world's first fully autonomous heavy-haul rail system.
 
-The world's most technologically advanced railway isn't the [Shinkansen](https://global.jr-central.co.jp/en/company/about/). It isn't the [TGV](https://www.sncf.com/en/trains/tgv). It's in a West Australian desert that most Australians will never visit — hauling iron ore 24 hours a day, 365 days a year, autonomously.
+The world's most technologically advanced railway isn't the [Shinkansen](https://global.jr-central.co.jp/en/company/about_shinkansen/). It isn't the [TGV](https://www.sncf.com/en/trains/tgv). It's in a West Australian desert that most Australians will never visit — hauling iron ore 24 hours a day, 365 days a year, autonomously.
 
 Here's the revelation that changes how you see Australian freight rail: this isn't a transport industry with some technology bolted on. It's a technology industry that happens to move rocks.
 
@@ -84,9 +84,9 @@ Three factors combine to make Pilbara railways extraordinarily profitable:
 
 Because Australia's consumer economy is growing faster than its mining economy, and consumer goods move in containers, not bulk wagons.
 
-The e-commerce boom, population growth in capital cities, and increasing import volumes through east coast ports all drive container freight demand. Rail can move containers more cheaply than trucks over distances above 500–800 km — and [Inland Rail](https://www.inlandrail.artc.com.au/) is designed to make this advantage structural.
+The e-commerce boom, population growth in capital cities, and increasing import volumes through east coast ports all drive container freight demand. Rail can move containers more cheaply than trucks over distances above 500–800 km — and [Inland Rail](https://inlandrail.com.au/) is designed to make this advantage structural.
 
-Double-stacked container trains on Inland Rail will move the [equivalent of 110 trucks](https://www.inlandrail.artc.com.au/what-is-inland-rail/) in a single service, reducing east coast freight costs and shifting cargo from congested highways to rail. The growth opportunity is real — but rail must compete on reliability and transit time, not just cost.
+Double-stacked container trains on Inland Rail will move the [equivalent of 110 trucks](https://inlandrail.com.au/what-is-inland-rail/) in a single service, reducing east coast freight costs and shifting cargo from congested highways to rail. The growth opportunity is real — but rail must compete on reliability and transit time, not just cost.
 
 </div>
 
@@ -124,11 +124,11 @@ Below 300 km, truck is almost always cheaper — the cost of terminal handling (
 
 ### How will the Inland Rail project reshape the Melbourne-Brisbane freight corridor?
 
-[Inland Rail](https://www.inlandrail.artc.com.au/) is the single largest rail infrastructure project in Australian history: [1,700 km of new and upgraded track](https://www.inlandrail.artc.com.au/what-is-inland-rail/) creating a direct freight corridor from Melbourne to Brisbane via inland NSW.
+[Inland Rail](https://inlandrail.com.au/) is the single largest rail infrastructure project in Australian history: [1,600 km of new and upgraded track](https://inlandrail.com.au/what-is-inland-rail/) creating a direct freight corridor from Melbourne to Brisbane via inland NSW.
 
-The economic case: Melbourne–Brisbane is Australia's busiest domestic freight corridor, currently served by a coastal route with speed restrictions, steep gradients, and shared passenger/freight operations. Inland Rail bypasses these constraints, enabling double-stacked container trains to complete the journey in [under 24 hours](https://www.inlandrail.artc.com.au/what-is-inland-rail/) — faster and cheaper than the existing rail route and competitive with road on transit time.
+The economic case: Melbourne–Brisbane is Australia's busiest domestic freight corridor, currently served by a coastal route with speed restrictions, steep gradients, and shared passenger/freight operations. Inland Rail bypasses these constraints, enabling double-stacked container trains to complete the journey in [under 24 hours](https://inlandrail.com.au/what-is-inland-rail/) — faster and cheaper than the existing rail route and competitive with road on transit time.
 
-The first operational sections ([Parkes–Narromine](https://www.inlandrail.artc.com.au/where-we-go/parkes-to-narromine/), [Narrabri–North Star](https://www.inlandrail.artc.com.au/where-we-go/narrabri-to-north-star/)) are already demonstrating the capacity gains: 1,800-metre trains carrying double-stacked containers at higher speeds than the existing network permits.
+The first operational sections ([Parkes–Narromine](https://inlandrail.com.au/where-we-go/projects/parkes-to-narromine/), [Narrabri–North Star](https://inlandrail.com.au/where-we-go/projects/narrabri-to-north-star/)) are already demonstrating the capacity gains: 1,800-metre trains carrying double-stacked containers at higher speeds than the existing network permits.
 
 </div>
 
@@ -138,9 +138,9 @@ The first operational sections ([Parkes–Narromine](https://www.inlandrail.artc
 
 The [Hunter Valley coal chain](https://www.hvccc.com.au/).
 
-This corridor — from coal mines in the Upper Hunter to the [Port of Newcastle](https://www.portofnewcastle.com.au/) — is one of the world's largest coal export supply chains. It moves approximately [150 million tonnes of coal annually](https://www.portofnewcastle.com.au/the-port/trade-information/) through a coordinated system of mines, rail, and port infrastructure.
+This corridor — from coal mines in the Upper Hunter to the [Port of Newcastle](https://pon.com.au/) — is one of the world's largest coal export supply chains. It moves approximately [150 million tonnes of coal annually](https://pon.com.au/trade-and-business/trade-overview-reports/) through a coordinated system of mines, rail, and port infrastructure.
 
-The vulnerability: global coal demand is facing structural decline as energy transition accelerates. China's renewable buildout, India's domestic coal expansion, and European coal abandonment are all reducing demand for Australian thermal coal. Metallurgical coal for steelmaking remains strong, but the [diversification of the Hunter Valley economy](https://www.nsw.gov.au/departments-and-agencies/regional-nsw/programs-and-projects/future-of-the-hunter) away from coal dependence is already underway.
+The vulnerability: global coal demand is facing structural decline as energy transition accelerates. China's renewable buildout, India's domestic coal expansion, and European coal abandonment are all reducing demand for Australian thermal coal. Metallurgical coal for steelmaking remains strong, but the [diversification of the Hunter Valley economy](https://pon.com.au/landside/major-projects/) away from coal dependence is already underway.
 
 For rail operators, the question isn't whether coal volumes will decline — it's when, how fast, and whether intermodal or other freight can replace the lost tonnes.
 
@@ -150,11 +150,11 @@ For rail operators, the question isn't whether coal volumes will decline — it'
 
 ### Why has Rio Tinto's autonomous Pilbara railway become a template for the future of freight rail globally?
 
-**[AutoHaul](https://www.riotinto.com/en/news/stories/autonomous-trains)** — Rio Tinto's autonomous train system — has hauled over [5 billion gross tonne-kilometres](https://www.riotinto.com/en/operations/australia/pilbara) without a driver. [GoA 4](https://www.uitp.org/publications/world-report-on-metro-automation/) (fully unattended) operations run 24/7). Trains are remotely monitored from a [control centre in Perth](https://www.riotinto.com/en/news/stories/autonomous-trains), 1,500 km away.
+**[AutoHaul](https://www.riotinto.com/en/operations/australia/pilbara)** — Rio Tinto's autonomous train system — has hauled over [5 billion gross tonne-kilometres](https://www.riotinto.com/en/operations/australia/pilbara) without a driver. [GoA 4](https://www.uitp.org/publications/world-report-on-metro-automation/) (fully unattended) operations run 24/7). Trains are remotely monitored from a [control centre in Perth](https://www.riotinto.com/en/operations/australia/pilbara), 1,500 km away.
 
 The system works because the Pilbara environment is ideal for autonomy: dedicated track (no public crossings), controlled access, limited variable factors, and constant volume. The technology — GPS positioning, radar obstacle detection, automated braking — is proven through years of operation.
 
-The global lesson: when the operational environment is controlled and the volume justifies the investment, autonomous rail is not experimental — it's commercial. Metros are adopting GoA 4 worldwide. Mainline freight will follow as communication systems (5G, [ETCS Level 3](https://www.era.europa.eu/domains/infrastructure/european-train-control-system-etcs_en)) mature.
+The global lesson: when the operational environment is controlled and the volume justifies the investment, autonomous rail is not experimental — it's commercial. Metros are adopting GoA 4 worldwide. Mainline freight will follow as communication systems (5G, [ETCS Level 3](https://www.era.europa.eu/)) mature.
 
 </div>
 
@@ -174,7 +174,7 @@ The industry's economics are directly tied to global commodity markets. [Precisi
 |------|-----------|
 | **[Precision Scheduled Railroading (PSR)](https://www.railwayage.com/freight/class-i/precision-scheduled-railroading-explained/)** | An operational philosophy focused on asset utilisation, schedule adherence, and running longer, fewer trains |
 | **[Gross Tonne Kilometres (GTK)](https://www.bitre.gov.au/publications/2024/australian-infrastructure-and-transport-statistics-yearbook-2024)** | Total train weight multiplied by distance; the standard measure of track wear and network utilisation |
-| **[Intermodal terminal](https://www.inlandrail.artc.com.au/what-is-inland-rail/)** | A facility where standardised freight containers transfer between rail and road transport |
+| **[Intermodal terminal](https://www.ara.net.au/)** | A facility where standardised freight containers transfer between rail and road transport |
 
 ---
 
@@ -186,7 +186,7 @@ The industry's economics are directly tied to global commodity markets. [Precisi
 
 ## In the News
 
-**[Inland Rail Project — Parkes to Narromine](https://www.inlandrail.artc.com.au/)** delivers Australia's first operational inland freight corridor section, demonstrating the double-stacked container capacity and faster transit times that underpin the Melbourne–Brisbane freight corridor transformation.
+**[Inland Rail Project — Parkes to Narromine](https://inlandrail.com.au/where-we-go/projects/parkes-to-narromine/)** delivers Australia's first operational inland freight corridor section, demonstrating the double-stacked container capacity and faster transit times that underpin the Melbourne–Brisbane freight corridor transformation.
 
 ---
 
@@ -197,7 +197,7 @@ The industry's economics are directly tied to global commodity markets. [Precisi
 | Industry | [Australasian Railway Association](https://www.ara.net.au/) — *"Freight Rail in Australia: State of the Industry 2024"* |
 | Operator | [Aurizon](https://www.aurizon.com.au/) — *Annual Report & Investor Presentations* |
 | Operator | [Rio Tinto Iron Ore](https://www.riotinto.com/en/operations/australia/pilbara) — *AutoHaul Autonomous Rail Operations* |
-| Government | [ARTC Inland Rail](https://www.inlandrail.artc.com.au/) — *Inland Rail Program Business Case* |
+| Government | [ARTC Inland Rail](https://inlandrail.com.au/) — *Inland Rail Program Business Case* |
 | Government | [BITRE](https://www.bitre.gov.au/) — *"Australian Freight Transport Statistics 2024"* |
 | Industry | [ACCC](https://www.accc.gov.au/) — *Container Stevedoring Monitoring Report* |
 | Operator | [Fortescue](https://www.fortescue.com/) — *Pilbara Rail Operations Data* |
