@@ -4,7 +4,7 @@ date: 2026-03-23T07:30:00+11:00
 draft: false
 slug: "day-07-passenger-rail-deep-dive"
 tags: ["passenger-rail", "urban-mobility", "public-transport", "rail-industry", "asset-management", "rail-economics", "australian-rail",  "infrastructure" ]
-categories: ["Point of View"]
+categories: ["Industry Experience"]
 disclaimer: true
 series: ["Australian Rail Deep Dive"]
 summary: "The memory of your first solo train ride connects to a system carrying 400+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. Day 7 dives into the economics and paradoxes of passenger rail."
