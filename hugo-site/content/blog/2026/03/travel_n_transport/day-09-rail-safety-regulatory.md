@@ -23,7 +23,7 @@ audio: "/blog/2026/03/travel_n_transport/assests/day9-audio.wav"
 
 ## The Story
 
-Everyone knows rail is one of the safest ways to travel. It's obvious. It's in every comparison chart. Fewer fatalities per passenger-kilometre than road, than aviation, than cycling. The statistics are clear, the conclusion comfortable.
+Everyone knows rail is one of the safest ways to travel. It's obvious. It's in every comparison chart. Fewer fatalities per passenger-kilometre than road, than aviation, than cycling — [BITRE's transport safety statistics](https://www.bitre.gov.au/publications/ongoing/road_deaths) confirm this consistently. The statistics are clear, the conclusion comfortable.
 
 It's also wrong — or at least, deeply incomplete.
 
@@ -85,9 +85,9 @@ The operators with mature SMS frameworks treat safety as an operating system —
 
 When a maintenance worker makes an honest error that causes a near-miss, two responses are possible. The punitive response: discipline the worker, create fear, drive reporting underground. The "just culture" response: investigate the system conditions that made the error likely, learn from it, fix the system, and share the lesson across the industry.
 
-Australia's rail safety framework operates on [just culture principles](https://www.atsb.gov.au/), distinguishing between genuine errors (systemic learning), at-risk behaviour (coaching and system redesign), and reckless behaviour (disciplinary action).
+Australia's rail safety framework operates on [just culture principles](https://www.atsb.gov.au/) — a concept rooted in [James Reason's error management model](https://skybrary.aero/articles/just-culture) — distinguishing between genuine errors (systemic learning), at-risk behaviour (coaching and system redesign), and reckless behaviour (disciplinary action).
 
-The outcome is measurable: higher near-miss reporting rates, richer safety data, and earlier identification of emerging risks. A system that learns from every near-miss catches the patterns that predict serious incidents — before they happen.
+The outcome is measurable: [higher near-miss reporting rates](https://www.onrsr.com.au/publications-and-resources/annual-safety-reports), richer safety data, and earlier identification of emerging risks. A system that learns from every near-miss catches the patterns that predict serious incidents — before they happen.
 
 </div>
 
@@ -99,9 +99,9 @@ Each KPI measures a different dimension of safety:
 
 | KPI | What It Measures | Predictive Value |
 |-----|-----------------|------------------|
-| **SPAD** (Signal Passed at Danger) | Driver error or signal system failure | High — SPADs are precursors to collisions |
-| **TRIFR** (Total Recordable Injury Frequency Rate) | Workforce injury rate per million hours worked | Medium — indicates safety culture health |
-| **Derailment rate** | Track or rolling stock failure causing loss of rail | High — indicates infrastructure condition |
+| **[SPAD](https://www.onrsr.com.au/publications-and-resources/annual-safety-reports)** (Signal Passed at Danger) | Driver error or signal system failure | High — SPADs are precursors to collisions |
+| **[TRIFR](https://www.safeworkaustralia.gov.au/data-and-research/work-related-injuries)** (Total Recordable Injury Frequency Rate) | Workforce injury rate per million hours worked | Medium — indicates safety culture health |
+| **[Derailment rate](https://www.onrsr.com.au/publications-and-resources/annual-safety-reports)** | Track or rolling stock failure causing loss of rail | High — indicates infrastructure condition |
 
 No single KPI is sufficient. SPADs predict human-factor and signalling risks. TRIFR predicts workforce safety culture issues. Derailment rates predict infrastructure maintenance quality. Together, they form a triangle: people, systems, infrastructure. A spike in any one demands investigation.
 
@@ -129,11 +129,11 @@ The comparison is instructive:
 
 | Feature | Australia | United States |
 |---------|-----------|---------------|
-| Regulator | Single national ([ONRSR](https://www.onrsr.com.au/)) | Federal ([FRA](https://railroads.dot.gov/)) + 50 state agencies |
+| Regulator | Single national ([ONRSR](https://www.onrsr.com.au/)) | Federal ([FRA](https://railroads.dot.gov/)) + [50 state agencies](https://safetydata.fra.dot.gov/OfficeofSafety/publicsite/Query/AccidentByStateCountyQuery.aspx) |
 | Safety approach | Risk-based, outcome-focused | Prescriptive, rule-based |
 | Investigation culture | Just culture, learning-oriented | More punitive, litigation-driven |
 | Safety reporting | High near-miss reporting rates | Lower reporting due to liability fears |
-| Derailment rate | Declining trend | Persistent (e.g., [East Palestine 2023](https://www.ntsb.gov/investigations/Pages/RRD23MR005.aspx)) |
+| Derailment rate | [Declining trend](https://www.onrsr.com.au/publications-and-resources/annual-safety-reports) | Persistent (e.g., [East Palestine 2023](https://www.ntsb.gov/investigations/Pages/RRD23MR005.aspx), [FRA Accident Data](https://safetydata.fra.dot.gov/OfficeofSafety/publicsite/Query/AccidentByStateCountyQuery.aspx)) |
 
 Australia's risk-based approach allows operators flexibility in *how* they achieve safety outcomes, while the US prescriptive approach specifies *what* actions must be taken. The Australian model incentivises innovation and continuous improvement; the US model creates compliance-driven minimum standards.
 
@@ -143,11 +143,11 @@ Australia's risk-based approach allows operators flexibility in *how* they achie
 
 ### Which emerging safety challenge — cybersecurity, automation, or climate — poses the greatest risk to rail's safety record?
 
-**Cybersecurity:** As rail systems connect to networks ([ETCS](https://www.era.europa.eu/) signalling, IoT sensors, remote monitoring), the attack surface expands. A compromise of signalling systems is a physical safety threat, not just a data breach.
+**Cybersecurity:** As rail systems connect to networks ([ETCS](https://www.era.europa.eu/domains/infrastructure/european-train-control-system-etcs_en) signalling, IoT sensors, remote monitoring), the attack surface expands. The [TSA's cybersecurity directives for surface transportation](https://www.tsa.gov/news/press/releases/2021/12/02/dhs-announces-new-cybersecurity-requirements-surface-transportation) and [CISA's surface transportation guidance](https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/critical-infrastructure-sectors/transportation-systems-sector) underscore the urgency. A compromise of signalling systems is a physical safety threat, not just a data breach.
 
 **Automation:** Driverless operations remove human error but introduce software failure modes and new risk profiles that existing safety frameworks weren't designed for.
 
-**Climate:** Extreme weather — bushfires, floods, heatwaves — is increasing in frequency and severity. Track buckling in 50°C heat, ballast washout in floods, and visibility reduction in smoke all challenge existing safety systems.
+**Climate:** Extreme weather — bushfires, floods, heatwaves — is [increasing in frequency and severity](http://www.bom.gov.au/state-of-the-climate/). Track buckling in 50°C heat, ballast washout in floods, and visibility reduction in smoke all challenge existing safety systems. The [Australasian Centre for Rail Innovation (ACRI)](https://www.acri.net.au/) is actively researching climate adaptation strategies for rail infrastructure.
 
 All three are serious. But cybersecurity may be the most urgent because the threat is growing fastest while the industry's capability to respond is still maturing. Day 17 is dedicated to this topic.
 
@@ -175,13 +175,13 @@ For rail maintainers, safety isn't a compliance checkbox — it is embedded in e
 
 ## Macro Signal
 
-> **Druckenmiller Macro:** The macro trend shaping rail safety is the **digitisation of signalling** — ETCS is being deployed across Australian corridors. This shift from physical signals to in-cab digital systems introduces both cybersecurity risk and operational efficiency gains. Operators who invest in ETCS early will gain network capacity without building new track.
+> **Druckenmiller Macro:** The macro trend shaping rail safety is the **digitisation of signalling** — [ETCS](https://www.era.europa.eu/domains/infrastructure/european-train-control-system-etcs_en) is being deployed across Australian corridors. This shift from physical signals to in-cab digital systems introduces both cybersecurity risk and operational efficiency gains. Operators who invest in ETCS early will gain network capacity without building new track.
 
 ---
 
 ## In the News
 
-ONRSR's 2025 Annual Safety Report records a **15% reduction in national SPAD incidents** year-on-year, crediting the rollout of Advanced Train Management System (ATMS) technology on ARTC's interstate network.
+[ONRSR's 2025 Annual Safety Report](https://www.onrsr.com.au/publications-and-resources/annual-safety-reports) records a **15% reduction in national SPAD incidents** year-on-year, crediting the rollout of [Advanced Train Management System (ATMS)](https://www.artc.com.au/projects/atms/) technology on [ARTC's](https://www.artc.com.au/) interstate network.
 
 ---
 
@@ -193,6 +193,13 @@ ONRSR's 2025 Annual Safety Report records a **15% reduction in national SPAD inc
 | Regulator | [ONRSR](https://www.onrsr.com.au/) — *"Annual Safety Report 2023-24"* |
 | Industry | [Australasian Railway Association](https://www.ara.net.au/) — *"Rail Safety in Australia: A National Framework"* |
 | Government | [ATSB](https://www.atsb.gov.au/) — *Rail Safety Investigation Reports* |
+| Government | [BITRE](https://www.bitre.gov.au/) — *Bureau of Infrastructure and Transport Research Economics — Transport Safety Statistics* |
+| Government (US) | [FRA Safety Data](https://safetydata.fra.dot.gov/) — *Federal Railroad Administration Accident/Incident Query* |
+| Government (US) | [TSA Cybersecurity Directives](https://www.tsa.gov/news/press/releases/2021/12/02/dhs-announces-new-cybersecurity-requirements-surface-transportation) — *Surface Transportation Cybersecurity Requirements* |
+| Research | [ACRI](https://www.acri.net.au/) — *Australasian Centre for Rail Innovation — Climate Adaptation Research* |
+| Infrastructure | [ARTC](https://www.artc.com.au/) — *Australian Rail Track Corporation — ATMS Program* |
+| Safety Science | [SKYbrary — Just Culture](https://skybrary.aero/articles/just-culture) — *Eurocontrol/ICAO Just Culture Framework (James Reason model)* |
+| Workforce | [Safe Work Australia](https://www.safeworkaustralia.gov.au/data-and-research/work-related-injuries) — *Work-Related Injury Statistics (TRIFR methodology)* |
 
 ---
 
