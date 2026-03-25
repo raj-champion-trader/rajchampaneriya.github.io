@@ -82,8 +82,8 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 
 | # | Date | Title | Story Hook |
 |---|------|-------|------------|
-| 8 | Mar 25 | [The Heaviest Trains on Earth](/projects/travel-and-transport/day-08-freight-rail-deep-dive/) | You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier? |
-| 9 | Mar 26 | [The Safety Paradox](/projects/travel-and-transport/day-09-rail-safety-regulatory/) | Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives. |
+| 8 | Mar 25 | [The Heaviest Trains on Earth](/blog/2026/03/travel_n_transport/day-08-freight-rail-deep-dive/) | You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier? |
+| 9 | Mar 26 | [The Safety Paradox](/blog/2026/03/travel_n_transport/day-09-rail-safety-regulatory/) | Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives. |
 | 10 | Mar 27 | [The Machine That Sees the Future](/projects/travel-and-transport/day-10-ibm-solutions-rail/) | Everyone knows enterprise software is about efficiency. But what if, in rail, it's actually about predicting which asset will fail before the failure happens? |
 | 11 | Mar 28 | [The Digital Ghost of Every Rail Asset](/projects/travel-and-transport/day-11-digital-twin-predictive/) | Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about? |
 | 12 | Mar 30 | [The Workforce That Time Forgot](/projects/travel-and-transport/day-12-rail-workforce-skills/) | The memory of watching a signal technician work connects to a looming crisis: an entire generation of rail knowledge is about to retire, and nobody's recorded what they know. |
