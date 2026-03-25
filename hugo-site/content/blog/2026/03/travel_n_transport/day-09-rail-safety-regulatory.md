@@ -1,6 +1,6 @@
 ---
 title: "The Safety Paradox — Rail Safety & the Regulatory Landscape"
-date: 2026-03-26
+date: 2026-03-25
 draft: false
 slug: "day-09-rail-safety-regulatory"
 tags: ["rail-safety", "ONRSR", "australian-rail", "safety-culture", "risk-management", "freight-rail", "logistics-australia", "supply-chain", "rail-freight", "rail-industry", "asset-management", "rail-economics", "infrastructure"]
@@ -160,14 +160,6 @@ All three are serious. But cybersecurity may be the most urgent because the thre
 Australia's rail safety framework, anchored by ONRSR and the Rail Safety National Law, represents one of the most effective harmonised regulatory systems globally. The shift from fragmented state-based regulation to a single national framework has reduced complexity and improved safety outcomes.
 
 For rail maintainers, safety isn't a compliance checkbox — it is embedded in every possession plan, every track inspection, and every work procedure. The framework's strength lies in its "just culture" principle: learning from incidents rather than assigning blame, driving continuous improvement across the industry.
-
----
-
-## Review Questions
-
-1. **Evaluate:** Is Australia's risk-based safety approach sustainable as rail systems become more complex (automation, cybersecurity, climate), or will the framework need fundamental redesign?
-2. **Evaluate:** How would you assess whether ONRSR's increasing compliance actions represent improved regulatory effectiveness or deteriorating industry safety performance?
-3. **Create:** Design a safety reporting system that maximises near-miss reporting while maintaining accountability for genuine negligence.
 
 ---
 
