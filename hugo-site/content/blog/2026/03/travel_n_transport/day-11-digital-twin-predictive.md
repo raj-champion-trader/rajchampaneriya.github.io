@@ -29,7 +29,7 @@ But what if the opposite is true?
 
 What if digital twins — virtual replicas of physical infrastructure, continuously updated with real-time sensor data — are actually the *least* controversial, *most* practical technology investment a rail maintainer can make? Not because they're flashy, but because they answer a brutally simple question: *What is the actual condition of this asset right now, and when will it need attention?*
 
-The irony of the digital twin "buzzword" is that the concept is ancient — [NASA used physical twin systems during the Apollo programme](https://www.nasa.gov/history/alsj/a13/a13.simulators.html), and the modern digital twin was [formalised by Dr. Michael Grieves at the University of Michigan in 2002](https://www.mdpi.com/2504-4990/1/1/10). Rail engineers have *always* kept mental models of their track — the soft spot near the bridge abutment, the curve that wears faster in summer, the culvert that floods in heavy rain. A digital twin doesn't replace that knowledge. It scales it. It makes the tribal knowledge of a retiring track inspector available to every planner, manager, and engineer on the network.
+The irony of the digital twin "buzzword" is that the concept is ancient — [NASA used physical twin systems during the Apollo programme](https://www.nasa.gov/history/alsj/a13/a13.simulators.html), and the modern digital twin was [formalised by Dr. Michael Grieves at the University of Michigan in 2002](https://digitaltwin1.org/articles/2-2) (retrospective account published via [MDPI](https://www.mdpi.com/2504-4990/1/1/10)). Rail engineers have *always* kept mental models of their track — the soft spot near the bridge abutment, the curve that wears faster in summer, the culvert that floods in heavy rain. A digital twin doesn't replace that knowledge. It scales it. It makes the tribal knowledge of a retiring track inspector available to every planner, manager, and engineer on the network.
 
 The real story isn't whether digital twins work. It's whether the organisations deploying them can change their decision-making culture fast enough to use what the twins are telling them.
 
@@ -100,7 +100,7 @@ Australian operators like [ARTC](https://www.artc.com.au/) run measurement train
 
 ### Why can AI models predict rail fatigue cracks 3–4 weeks before human inspectors detect them?
 
-AI models — particularly [machine learning algorithms](https://en.wikipedia.org/wiki/Machine_learning) — identify patterns in asset degradation that humans cannot perceive. Research published in the [*International Journal of Fatigue*](https://www.sciencedirect.com/journal/international-journal-of-fatigue) and by the [Transportation Technology Center, Inc. (TTCI)](https://www.aar.com/research/) confirms that an AI model can learn that a specific combination of traffic loading + temperature cycles + track age predicts rail fatigue cracks with **90% accuracy, 3–4 weeks in advance**.
+AI models — particularly [machine learning algorithms](https://en.wikipedia.org/wiki/Machine_learning) — identify patterns in asset degradation that humans cannot perceive. Research published in the [*International Journal of Fatigue*](https://www.sciencedirect.com/journal/international-journal-of-fatigue) and by [MxV Rail (formerly TTCI)](https://www.mxvrail.com/) confirms that an AI model can learn that a specific combination of traffic loading + temperature cycles + track age predicts rail fatigue cracks with **90% accuracy, 3–4 weeks in advance**.
 
 Human inspectors are excellent at identifying visible defects. They are poor at predicting invisible ones. The AI doesn't replace the inspector — it directs them to the right location at the right time.
 
@@ -126,7 +126,7 @@ All three are early-stage relative to their potential. The technology works. The
 
 ### How does a 20% efficiency gain yield $100M annual savings for an operator spending $500M/year on maintenance?
 
-Industry benchmarks from [IBM's Institute for Business Value](https://www.ibm.com/thought-leadership/institute-business-value), [McKinsey](https://www.mckinsey.com/capabilities/operations/our-insights), and [Deloitte's predictive maintenance analysis](https://www2.deloitte.com/us/en/pages/manufacturing/articles/digital-twin-technology-smart-factory.html) estimate:
+Industry benchmarks from [IBM's Institute for Business Value](https://www.ibm.com/thought-leadership/institute-business-value), [McKinsey](https://www.mckinsey.com/capabilities/operations/our-insights), and [Deloitte's digital twin and smart factory analysis](https://www2.deloitte.com/us/en/pages/manufacturing/articles/digital-twin-technology-smart-factory.html) estimate:
 
 | Metric | Improvement Range |
 |--------|-------------------|
@@ -148,7 +148,7 @@ The barriers to digital twin adoption in rail are only partly technical:
 - **Data quality** — legacy systems don't talk to each other; decades of inspection records exist in incompatible formats (a challenge [ISO 55000](https://www.iso.org/standard/55088.html) asset management standards directly address)
 - **Skills gaps** — rail engineers need data literacy, data scientists need rail domain knowledge, and professionals who bridge both are rare ([World Economic Forum](https://www.weforum.org/publications/the-future-of-jobs-report-2025/) identifies this as a top workforce gap)
 - **Upfront investment** — sensor deployment, platform licensing, system integration
-- **Cybersecurity** — connecting [operational technology (OT)](https://www.cisa.gov/topics/industrial-control-systems) to networks creates new [attack surfaces](https://www.nist.gov/cyberframework) that must comply with frameworks like [NIST CSF](https://www.nist.gov/cyberframework)
+- **Cybersecurity** — connecting [operational technology (OT)](https://www.cisa.gov/topics/industrial-control-systems) to networks creates new attack surfaces that must be managed with frameworks like [NIST CSF](https://www.nist.gov/cyberframework)
 - **Cultural resistance** — "we've always done it this way" is the hardest barrier
 
 Technology problems have technology solutions. Culture problems require leadership, patience, and demonstrated wins that convert sceptics into advocates.
@@ -214,7 +214,7 @@ The real challenge is organisational: integrating data from disparate sources, b
 | Standards | [ISO 55000](https://www.iso.org/standard/55088.html) — *"Asset Management — Overview, Principles and Terminology"* |
 | Framework | [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) — *"Framework for Improving Critical Infrastructure Cybersecurity"* |
 | Research | [Gartner](https://www.gartner.com/en/articles/what-is-a-digital-twin) — *"What Is a Digital Twin?"* |
-| Academic | [Dr. Michael Grieves](https://www.mdpi.com/2504-4990/1/1/10) — *"Digital Twin: Manufacturing Excellence through Virtual Factory Replication"* (2002, MDPI) |
+| Academic | [Dr. Michael Grieves](https://digitaltwin1.org/articles/2-2) — *"Digital Twin: Manufacturing Excellence through Virtual Factory Replication"* (2002; retrospective via [MDPI, 2017](https://www.mdpi.com/2504-4990/1/1/10)) |
 
 ---
 
