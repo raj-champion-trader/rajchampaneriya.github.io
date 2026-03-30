@@ -23,11 +23,11 @@ audio: "/blog/2026/03/travel_n_transport/assests/day12-audio.wav"
 
 ## The Story
 
-There's a photograph in an Australian Railway Historical Society archive — a group of track workers in the 1960s, leaning on their shovels, squinting into the sun. They look tired and proud. Their sons would follow them onto the track. Their grandsons would not.
+There's a photograph in an [Australian Railway Historical Society](https://www.arhsnsw.com.au/) archive — a group of track workers in the 1960s, leaning on their shovels, squinting into the sun. They look tired and proud. Their sons would follow them onto the track. Their grandsons would not.
 
 Somewhere between that photograph and today, the rail industry stopped being a career destination. Mining paid more. Construction was more visible. Technology was more exciting. Rail became the industry that *everyone used* but *nobody aspired to join*.
 
-And now, with $100 billion in transport infrastructure committed over the next decade, Australia needs 70,000+ rail workers who grew up never once hearing an adult say, "You should consider a career in rail."
+And now, with [$100 billion in transport infrastructure](https://www.infrastructureaustralia.gov.au/infrastructure-pipeline) committed over the next decade, Australia needs 70,000+ rail workers who grew up never once hearing an adult say, "You should consider a career in rail."
 
 The echo from that 1960s photograph is faint but unmistakable: the industry that built the nation's backbone is struggling to build its own workforce. The tools have changed — from shovels to sensors, from paper to platforms — but the fundamental challenge remains the same: convincing talented people that rail is worth their career.
 
@@ -47,9 +47,9 @@ A few visuals for post.
 
 ### Why does a projected shortfall of 70,000+ workers represent Australian rail's top non-safety risk?
 
-The rail industry employs approximately 100,000 people directly across operations, maintenance, engineering, and administration. The projected shortfall of 70,000+ workers over the next decade is driven by three converging forces:
+The rail industry employs [approximately 100,000 people directly](https://www.ara.net.au/workforce/) across operations, maintenance, engineering, and administration. The projected shortfall of 70,000+ workers over the next decade is driven by three converging forces:
 
-1. **Mass retirements** — average workforce age is 45+, with a generation of experienced rail professionals approaching exit
+1. **Mass retirements** — [average workforce age is 45+](https://www.ara.net.au/workforce/), with a generation of experienced rail professionals approaching exit
 2. **Infrastructure expansion** — [Inland Rail](https://www.artc.com.au/inland-rail/), [Sydney Metro](https://www.sydneymetro.info/), [Cross River Rail](https://www.crossriverrail.qld.gov.au/), [Melbourne Metro Tunnel](https://metrotunnel.vic.gov.au/), and [Perth METRONET](https://www.metronet.wa.gov.au/) are all demanding workers simultaneously
 3. **Competition** — mining and construction compete aggressively for the same skilled trades
 
@@ -99,7 +99,7 @@ The gap: these pathways are excellent at producing traditionally competent rail 
 The workforce is shifting along four simultaneous axes:
 
 - **Age** — average age 45+, mass retirements looming across all skill categories
-- **Gender** — historically male-dominated (85%), active programs like [ARA's Women in Rail](https://www.ara.net.au/women-in-rail/) aim for 20% female representation by 2030
+- **Gender** — [historically male-dominated (85%)](https://www.ara.net.au/women-in-rail/), active programs like [ARA's Women in Rail](https://www.ara.net.au/women-in-rail/) aim for [20% female representation by 2030](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail/national-rail-action-plan)
 - **Digital literacy** — moving from manual/paper-based operations to data-driven decisions
 - **Career expectations** — younger workers expect flexible work, career progression, and purpose-driven employment
 
@@ -147,10 +147,10 @@ Every automated task creates a higher-skilled monitoring, analysis, or exception
 
 Current initiatives include:
 - [ARA's Women in Rail](https://www.ara.net.au/women-in-rail/) program
-- National Rail Skills Hub
-- State-funded training subsidies (fee-free TAFE for rail trades in some states)
+- [National Rail Skills Hub](https://www.ara.net.au/skills-hub/)
+- State-funded training subsidies ([fee-free TAFE](https://www.dewr.gov.au/skills-and-training/fee-free-tafe) for rail trades in some states)
 - Cadetship and graduate programs at operators like [ARTC](https://www.artc.com.au/) and [Aurizon](https://www.aurizon.com.au/)
-- [National Rail Action Plan](https://www.infrastructure.gov.au/) workforce pillar
+- [National Rail Action Plan](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/rail/national-rail-action-plan) workforce pillar
 
 Despite these efforts, the gap widens because **demand is growing faster than supply**. Every new rail project creates hundreds of positions. Every retiree takes decades of institutional knowledge. Every competing industry (mining, construction, defence) runs its own talent attraction campaigns.
 
@@ -165,7 +165,7 @@ The solution isn't any single program — it's a systemic approach that treats r
 Technology partners have a dual role:
 
 1. **Productivity multiplication** — [Maximo Mobile](https://www.ibm.com/products/maximo/mobile-eam), AI-assisted decision-making, and [remote monitoring](https://www.ibm.com/products/maximo/remote-monitoring) enable fewer workers to manage more assets effectively
-2. **Skills development** — IBM's Industry Academy and [SkillsBuild](https://skillsbuild.org/) platform could serve as rail digital skills resources, creating certification pathways that bridge technology and domain expertise
+2. **Skills development** — [IBM's Industry Academy](https://www.ibm.com/training/) and [SkillsBuild](https://skillsbuild.org/) platform could serve as rail digital skills resources, creating certification pathways that bridge technology and domain expertise
 
 The most powerful impact: technology that makes existing workers more productive *and* helps them develop new skills simultaneously. A maintenance planner who uses [Maximo](https://www.ibm.com/products/maximo) daily doesn't just work more efficiently — they develop data literacy through daily practice.
 
@@ -193,13 +193,13 @@ For rail maintainers, two things are true: experienced professionals who can bri
 
 ## Macro Signal
 
-> **Druckenmiller Lens:** The macro force shaping rail workforce economics is **infrastructure spending**. Australia has committed over $100 billion in transport infrastructure across federal and state budgets for the next decade. This creates a demand surge for rail-skilled workers that far exceeds training pipeline capacity. The macro bet: companies that solve the skills gap — through automation, training, or international recruitment — will capture disproportionate value from the infrastructure boom.
+> **Druckenmiller Lens:** The macro force shaping rail workforce economics is **infrastructure spending**. Australia has committed over [$100 billion in transport infrastructure](https://budget.gov.au/content/factsheets/download/factsheet-infrastructure.pdf) across federal and state budgets for the next decade. This creates a demand surge for rail-skilled workers that far exceeds training pipeline capacity. The macro bet: companies that solve the skills gap — through automation, training, or international recruitment — will capture disproportionate value from the infrastructure boom.
 
 ---
 
 ## In the News
 
-**The ARA's 2026 Workforce Development Report** warns Australia's rail industry faces a 70,000-worker shortfall by 2030, prompting a $200M federal Skills and Training Package targeting women, Indigenous Australians, and career changers for rail-specific vocational pathways.
+**[The ARA's 2026 Workforce Development Report](https://www.ara.net.au/workforce/)** warns Australia's rail industry faces a 70,000-worker shortfall by 2030, prompting a [$200M federal Skills and Training Package](https://www.dewr.gov.au/skills-and-training) targeting women, Indigenous Australians, and career changers for rail-specific vocational pathways.
 
 ---
 
