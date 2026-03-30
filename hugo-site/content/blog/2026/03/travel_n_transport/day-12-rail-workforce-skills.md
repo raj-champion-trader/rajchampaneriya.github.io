@@ -10,6 +10,7 @@ series: ["Australian Rail Deep Dive"]
 summary: "Remember when rail was the career your grandfather's generation aspired to? Somewhere between then and now, rail lost its workforce narrative. Day 12 explores the 70,000-worker shortfall threatening Australia's rail future."
 weight: 12
 ShowToc: true
+audio: "/blog/2026/03/travel_n_transport/assests/day12-audio.wav"
 ---
 
 <div class="content-callout">
