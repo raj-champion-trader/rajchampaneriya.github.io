@@ -58,7 +58,7 @@ The rail supply chain spans five tiers:
 | **Spare parts distribution** | Warehousing, inventory management, logistics |
 | **End-of-life recycling** | Steel reclamation, sleeper disposal, asbestos management |
 
-Australia imports most signalling and rolling stock technology from Europe and Asia, while locally sourcing heavy materials like ballast and sleepers. This creates a structural vulnerability: technology-intensive components have long lead times and [single-source dependencies](https://en.wikipedia.org/wiki/Single_source_(computing)). A factory fire in a European signalling plant can ripple through Australian maintenance schedules months later — a pattern documented in [BITRE's freight supply chain research](https://www.bitre.gov.au/publications/2023/australian-infrastructure-and-transport-statistics-yearbook-2023).
+Australia imports most signalling and rolling stock technology from Europe and Asia, while locally sourcing heavy materials like ballast and sleepers. This creates a structural vulnerability: technology-intensive components have long lead times and [single-source dependencies](https://en.wikipedia.org/wiki/Sole_source). A factory fire in a European signalling plant can ripple through Australian maintenance schedules months later — a pattern documented in [BITRE's Australian Infrastructure and Transport Statistics Yearbook 2023](https://www.bitre.gov.au/publications/2023/australian-infrastructure-and-transport-statistics-yearbook-2023).
 
 </div>
 
@@ -86,10 +86,10 @@ Major rail contracts use several models:
 |-------|-------------|----------|
 | **Design-Build (DB)** | Contractor assumes design and construction risk | Standard projects |
 | **Design-Build-Maintain (DBM)** | Extends contractor responsibility through operations | PPP-style projects |
-| **[Public-Private Partnership (PPP)](https://www.infrastructureaustralia.gov.au/)** | Shared long-term risk and reward | Major infrastructure |
+| **[Public-Private Partnership (PPP)](https://en.wikipedia.org/wiki/Public%E2%80%93private_partnership)** | Shared long-term risk and reward | Major infrastructure |
 | **[Alliance contracting](https://www.infrastructure.gov.au/infrastructure-transport-vehicles/infrastructure/national-alliance-contracting-guidelines)** | Client, contractor, and designer share risk and reward jointly | Complex, uncertain scope |
 
-Alliance models are increasingly popular in Australian rail — [Sydney Metro](https://www.sydneymetro.info/) and [Cross River Rail](https://www.crossriverrail.qld.gov.au/) use alliance contracting for major packages. The rationale: for projects with uncertain scope and high complexity, shared risk produces better outcomes than [fixed-price contracts](https://en.wikipedia.org/wiki/Fixed-price_contract) that incentivise claims and variations. Contract values range from $50M to $5B+ for mega-projects, as catalogued in [Infrastructure Australia's Infrastructure Pipeline](https://www.infrastructureaustralia.gov.au/publications/infrastructure-market-capacity-report-2023).
+Alliance models are increasingly popular in Australian rail — [Sydney Metro](https://www.sydneymetro.info/) and [Cross River Rail](https://www.crossriverrail.qld.gov.au/) use alliance contracting for major packages. The rationale: for projects with uncertain scope and high complexity, shared risk produces better outcomes than [fixed-price contracts](https://en.wikipedia.org/wiki/Fixed-price_contract) that incentivise claims and variations. Contract values range from $50M to $5B+ for mega-projects, as catalogued in [Infrastructure Australia's Market Capacity Report 2023](https://www.infrastructureaustralia.gov.au/publications/infrastructure-market-capacity-report-2023).
 
 </div>
 
@@ -118,7 +118,7 @@ COVID exposed critical vulnerabilities:
 - Border restrictions prevented international engineers from commissioning new systems
 - [Just-in-time](https://en.wikipedia.org/wiki/Just-in-time_manufacturing) inventory strategies left operators without critical spare parts
 
-The permanent changes: [strategic stockpiling](https://en.wikipedia.org/wiki/Strategic_reserve) of critical spares, [dual-sourcing](https://en.wikipedia.org/wiki/Dual_sourcing) policies for essential components, increased local manufacturing investment, and stronger [supplier relationship management](https://en.wikipedia.org/wiki/Supplier_relationship_management). The lesson was expensive but decisive: resilience costs money, but fragility costs more.
+The permanent changes: [strategic stockpiling](https://en.wikipedia.org/wiki/Safety_stock) of critical spares, [dual-sourcing](https://en.wikipedia.org/wiki/Dual_sourcing) policies for essential components, increased local manufacturing investment, and stronger [supplier relationship management](https://en.wikipedia.org/wiki/Supplier_relationship_management). The lesson was expensive but decisive: resilience costs money, but fragility costs more.
 
 </div>
 
@@ -157,11 +157,11 @@ The Australian Government's [Climate Active](https://www.climateactive.org.au/) 
 
 Digital procurement platforms enable:
 
-- **[E-tendering](https://en.wikipedia.org/wiki/E-procurement)** for transparency and audit trails
+- **[E-tendering](https://en.wikipedia.org/wiki/E-procurement#e-Tendering)** for transparency and audit trails
 - **Supplier performance dashboards** correlating delivery times, quality, and cost across the supply base — a practice advocated by [CIPS](https://www.cips.org/) procurement standards
 - **Real-time inventory visibility** across multiple depots
 - **[Predictive demand planning](https://www.ibm.com/topics/demand-forecasting)** using AI to forecast consumption patterns
-- **[Blockchain-based traceability](https://www.ibm.com/topics/blockchain-for-supply-chain)** for critical safety components — ensuring every brake pad, signalling relay, and rail segment can be traced to its manufacturer, batch, and [material composition](https://en.wikipedia.org/wiki/Material_traceability)
+- **[Blockchain-based traceability](https://www.ibm.com/topics/blockchain-for-supply-chain)** for critical safety components — ensuring every brake pad, signalling relay, and rail segment can be traced to its manufacturer, batch, and [material traceability](https://en.wikipedia.org/wiki/Traceability)
 
 [IBM Sterling Supply Chain Intelligence Suite](https://www.ibm.com/products/supply-chain-intelligence-suite) helps operators optimise procurement timing, quantities, and supplier selection using data-driven insights rather than historical purchasing habits.
 
