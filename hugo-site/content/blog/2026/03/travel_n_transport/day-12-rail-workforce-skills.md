@@ -1,6 +1,6 @@
 ---
 title: "The Workforce That Time Forgot — Rail Skills & Training in Australia"
-date: 2026-03-30T07:30:00+11:00
+date: 2026-03-30
 draft: false
 slug: "day-12-rail-workforce-skills"
 tags: ["workforce-development", "skills-gap", "rail-training", "digital-skills", "future-of-work","risk-management", "freight-rail", "logistics-australia", "supply-chain", "rail-freight", "rail-industry", "rail-economics", "infrastructure"]

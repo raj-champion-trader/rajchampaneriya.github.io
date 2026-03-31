@@ -87,7 +87,7 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 | 10 | Mar 27 | [The Machine That Sees the Future](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/) | Everyone knows enterprise software is about efficiency. But what if, in rail, it's actually about predicting which asset will fail before the failure happens? |
 | 11 | Mar 28 | [The Digital Ghost of Every Rail Asset](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/) | Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about? |
 | 12 | Mar 30 | [The Workforce That Time Forgot](/blog/2026/03/travel_n_transport/day-12-rail-workforce-skills/) | The memory of watching a signal technician work connects to a looming crisis: an entire generation of rail knowledge is about to retire, and nobody's recorded what they know. |
-| 13 | Mar 31 | [The Supply Chain You Never See](/projects/travel-and-transport/day-13-supply-chain-procurement/) | Everyone knows supply chains were disrupted by COVID. But what if Australia's rail procurement was fragile long before the pandemic — and still is? |
+| 13 | Mar 31 | [The Supply Chain You Never See](/blog/2026/03/travel_n_transport/day-13-supply-chain-procurement/) | Everyone knows supply chains were disrupted by COVID. But what if Australia's rail procurement was fragile long before the pandemic — and still is? |
 | 14 | Apr 4 | [The Midpoint Reckoning](/projects/travel-and-transport/day-14-week2-synthesis/) | Everyone knows synthesis means summarising. But what if the patterns emerging from two weeks of deep research tell a story no single post could? |
 
 ### Week 3 — Synthesis & Frontiers
