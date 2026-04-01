@@ -39,8 +39,7 @@ This is the midpoint reckoning: the moment we step back and see the [system](htt
 
 A few visuals for the post.
 
-<!-- TODO: Add images to /blog/2026/03/travel_n_transport/assests/day14/ and uncomment below -->
-<!-- {{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day14/image1.png, /blog/2026/03/travel_n_transport/assests/day14/image2.png, /blog/2026/03/travel_n_transport/assests/day14/image3.png" interval="4" size="1920x1440" >}} -->
+{{< screenshot_carousel images="/blog/2026/03/travel_n_transport/assests/day14/image1.png, /blog/2026/03/travel_n_transport/assests/day14/image2.png, /blog/2026/03/travel_n_transport/assests/day14/image3.png" interval="4" size="1920x1440" >}}
 
 ---
 
