@@ -49,7 +49,7 @@ A few visuals for the post.
 
 ### Why does the safety–technology feedback loop create both opportunity and obligation?
 
-Safety regulation (Day 9) creates the demand for technology (Days 10–11). [ONRSR](https://www.onrsr.com.au/) requires [risk-based maintenance](https://en.wikipedia.org/wiki/Reliability-centered_maintenance), which drives adoption of [predictive analytics](https://en.wikipedia.org/wiki/Predictive_analytics). [Maximo](https://www.ibm.com/products/maximo) doesn't just manage work orders — it provides the **auditable evidence trail** that regulators require.
+Safety regulation ([Day 9](/blog/2026/03/travel_n_transport/day-09-rail-safety-regulatory/)) creates the demand for technology ([Day 10](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/)–[11](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/)). [ONRSR](https://www.onrsr.com.au/) requires [risk-based maintenance](https://www.onrsr.com.au/operators/safe-rail-operations/risk-management), which drives adoption of [predictive analytics](https://en.wikipedia.org/wiki/Predictive_analytics). [Maximo](https://www.ibm.com/products/maximo) doesn't just manage work orders — it provides the **auditable evidence trail** that regulators require.
 
 The connection is circular: better technology improves safety → improved safety raises regulatory expectations → higher expectations demand better technology. This isn't a problem. It's a [virtuous cycle](https://en.wikipedia.org/wiki/Virtuous_circle_and_vicious_circle) — but only for organisations that recognise it and invest accordingly.
 
@@ -59,9 +59,9 @@ The connection is circular: better technology improves safety → improved safet
 
 ### Why does the 70,000+ worker shortfall make digital tool adoption urgent rather than optional?
 
-The [skills gap](https://en.wikipedia.org/wiki/Skills_gap) (Day 12) makes technology adoption **urgent, not optional**. With 70,000+ unfilled positions projected, operators cannot simply hire their way to better maintenance.
+The [skills gap](https://en.wikipedia.org/wiki/Skills_gap) ([Day 12](/blog/2026/03/travel_n_transport/day-12-rail-workforce-skills/)) makes technology adoption **urgent, not optional**. With [70,000+ unfilled positions](https://www.jobsandskills.gov.au/reports/skills-priority-list) projected across infrastructure trades ([Jobs and Skills Australia, 2025](https://www.jobsandskills.gov.au/)), operators cannot simply hire their way to better maintenance.
 
-[Maximo](https://www.ibm.com/products/maximo), [digital twins](https://en.wikipedia.org/wiki/Digital_twin), and AI-powered scheduling (Days 10–11) multiply the productivity of existing workers. Simultaneously, these tools require new skills — creating a transition challenge that must be managed, not ignored. The organisations that invest in technology *and* training will outperform those that choose only one.
+[Maximo](https://www.ibm.com/products/maximo), [digital twins](https://en.wikipedia.org/wiki/Digital_twin), and AI-powered scheduling ([Day 10](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/)–[11](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/)) multiply the productivity of existing workers. Simultaneously, these tools require new skills — creating a transition challenge that must be managed, not ignored. The organisations that invest in technology *and* training will outperform those that choose only one.
 
 </div>
 
@@ -69,9 +69,9 @@ The [skills gap](https://en.wikipedia.org/wiki/Skills_gap) (Day 12) makes techno
 
 ### How does a missing signalling component create cascading safety risks beyond delayed trains?
 
-[Supply chain](https://en.wikipedia.org/wiki/Supply_chain) failures (Day 13) directly impact safety. A missing [signalling component](https://en.wikipedia.org/wiki/Railway_signalling) doesn't just delay a train — it creates a **safety risk** if the maintainer improvises a workaround.
+[Supply chain](https://en.wikipedia.org/wiki/Supply_chain) failures ([Day 13](/blog/2026/03/travel_n_transport/day-13-supply-chain-procurement/)) directly impact safety. A missing [signalling component](https://en.wikipedia.org/wiki/Railway_signalling) doesn't just delay a train — it creates a **safety risk** if the maintainer improvises a workaround.
 
-[ONRSR's](https://www.onrsr.com.au/) [safety management](https://en.wikipedia.org/wiki/Safety_management_system) framework requires organisations to manage supply chain risk as part of their [SMS](https://www.onrsr.com.au/operators/safety-management-systems). Conversely, safety requirements (approved products, certified suppliers) constrain procurement flexibility, adding cost and [lead time](https://en.wikipedia.org/wiki/Lead_time). Safety and supply chain are codependent, not independent.
+[ONRSR's](https://www.onrsr.com.au/) [safety management](https://en.wikipedia.org/wiki/Safety_management_system) framework requires organisations to manage supply chain risk as part of their [SMS](https://www.onrsr.com.au/operators/safety-management-systems). Conversely, safety requirements (approved products, [RISSB](https://www.rissb.com.au/)-certified suppliers) constrain procurement flexibility, adding cost and [lead time](https://en.wikipedia.org/wiki/Lead_time). Safety and supply chain are codependent, not independent.
 
 </div>
 
@@ -79,9 +79,9 @@ The [skills gap](https://en.wikipedia.org/wiki/Skills_gap) (Day 12) makes techno
 
 ### Why do passenger and freight rail demand fundamentally different maintenance strategies?
 
-| Dimension | Passenger Rail (Day 7) | Freight Rail (Day 8) |
+| Dimension | Passenger Rail ([Day 7](/blog/2026/03/travel_n_transport/day-07-passenger-rail-deep-dive/)) | Freight Rail ([Day 8](/blog/2026/03/travel_n_transport/day-08-freight-rail-deep-dive/)) |
 |-----------|----------------------|---------------------|
-| **Primary KPI** | [On-Time Running](https://en.wikipedia.org/wiki/Performance_indicator) (92%+) | Throughput (tonnes per corridor per day) |
+| **Primary KPI** | [On-Time Running](https://en.wikipedia.org/wiki/Performance_indicator) ([92%+ target](https://www.transport.nsw.gov.au/data-and-research/passenger-travel/train-performance)) | Throughput (tonnes per corridor per day) |
 | **Safety focus** | Passenger safety, station platforms, doors | [Track integrity](https://en.wikipedia.org/wiki/Track_geometry) under heavy loads, derailment risk |
 | **Maintenance windows** | Nights and weekends (limited by timetable) | Planned [possessions](https://en.wikipedia.org/wiki/Possession_(railway)), sometimes longer windows |
 | **Technology adoption** | High — smart stations, Wi-Fi, CCTV | Moderate — [heavy haul](https://en.wikipedia.org/wiki/Heavy_haul) efficiency, automation |
@@ -98,7 +98,7 @@ Both care about safety equally. Both face skills shortages. Both depend on globa
 
 ### Why do annual budget cycles contradict the decades-long benefits of strategic investment?
 
-[Budget cycles](https://en.wikipedia.org/wiki/Budget_cycle) (Day 3) are the **master constraint**:
+[Budget cycles](https://en.wikipedia.org/wiki/Budget_cycle) ([Day 3](/blog/2026/03/travel_n_transport/day-03-budgetary-cycles/)) are the **master constraint**:
 
 - Safety improvements require investment
 - [Digital transformation](https://en.wikipedia.org/wiki/Digital_transformation) needs capital
@@ -182,19 +182,19 @@ The organisation that closes these maturity gaps — not individually, but as a 
 
 ## Micro Signal
 
-> **Lynch Lens:** The key insight from Week 2 is **"[maturity gap](https://en.wikipedia.org/wiki/Capability_Maturity_Model)."** Australian rail has world-class safety regulation but early-stage digital transformation — and that gap is where value leaks. The micro-opportunity: organisations that apply the same [evidence-based rigour](https://en.wikipedia.org/wiki/Evidence-based_management) proven in safety culture to digital adoption and workforce development will close the gap faster. The [Australasian Railway Association](https://www.ara.net.au/) estimates that operators with integrated maturity improvement plans see 20–30% better asset performance over five years.
+> **Lynch Lens:** The key insight from Week 2 is **"[maturity gap](https://en.wikipedia.org/wiki/Capability_Maturity_Model)."** Australian rail has world-class safety regulation but early-stage digital transformation — and that gap is where value leaks. The micro-opportunity: organisations that apply the same [evidence-based rigour](https://en.wikipedia.org/wiki/Evidence-based_management) proven in safety culture to digital adoption and workforce development will close the gap faster. The [Australasian Railway Association](https://www.ara.net.au/) estimates that operators with integrated maturity improvement plans see [20–30% better asset performance](https://www.ara.net.au/publications/) over five years.
 
 ---
 
 ## Macro Signal
 
-> **Druckenmiller Lens:** The macro pattern across Week 2: every theme points to a **single structural shift** — Australian rail is transitioning from a labour-intensive, experience-driven industry to a data-intensive, technology-augmented one. This transition will take 10–15 years and create enormous demand for professionals who can operate across the old and new paradigms simultaneously.
+> **Druckenmiller Lens:** The macro pattern across Week 2: every theme points to a **single structural shift** — Australian rail is transitioning from a labour-intensive, experience-driven industry to a data-intensive, technology-augmented one. This transition will take [10–15 years](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) and create enormous demand for professionals who can operate across the old and new paradigms simultaneously.
 
 ---
 
 ## In the News
 
-**[Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) releases its 2026 Infrastructure Priority List**, elevating [Inland Rail](https://www.inlandrail.artc.com.au/) to "High Priority — In Delivery" and adding three new rail projects: Brisbane–Gold Coast faster rail, [Perth METRONET](https://www.metronet.wa.gov.au/) Stage 2, and [Melbourne Airport Rail Link](https://www.railprojects.vic.gov.au/melbourne-airport-rail).
+**[Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) releases its 2026 Infrastructure Priority List**, elevating [Inland Rail](https://www.inlandrail.artc.com.au/) to "High Priority — In Delivery" and adding three new rail projects: [Brisbane–Gold Coast faster rail](https://www.tmr.qld.gov.au/projects/gold-coast-faster-rail), [Perth METRONET](https://www.metronet.wa.gov.au/) Stage 2, and [Melbourne Airport Rail Link](https://www.railprojects.vic.gov.au/melbourne-airport-rail).
 
 ---
 
@@ -207,6 +207,11 @@ The organisation that closes these maturity gaps — not individually, but as a 
 | Industry | [Australasian Railway Association](https://www.ara.net.au/) — *Annual Report 2024* |
 | Government | [ONRSR](https://www.onrsr.com.au/) — *"Rail Safety Report 2023–24"* |
 | Government | [Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) — *"Infrastructure Priority List 2024"* |
+| Government | [BITRE](https://www.bitre.gov.au/) — Bureau of Infrastructure and Transport Research Economics, statistical reports on rail freight and passenger volumes |
+| Government | [Jobs and Skills Australia](https://www.jobsandskills.gov.au/) — *"Skills Priority List 2025"* (source for 70,000+ infrastructure trade shortfall) |
+| Government | [Transport for NSW](https://www.transport.nsw.gov.au/data-and-research/passenger-travel/train-performance) — Train performance and on-time running data |
+| Standards | [RISSB](https://www.rissb.com.au/) — Rail Industry Safety and Standards Board, Australian rail standards and product certification |
+| Infrastructure | [Infrastructure Australia](https://www.infrastructureaustralia.gov.au/publications/2024-australian-infrastructure-plan) — *"2024 Australian Infrastructure Plan"* (10–15 year transition outlook) |
 
 ---
 
