@@ -70,38 +70,38 @@ The payoff. Data analytics, sustainability, cybersecurity, international compari
 
 | # | Date | Title | Story Hook |
 |---|------|-------|------------|
-| 1 | Mar 16 | [The Invisible Army](/blog/2026/03/travel_n_transport/day-01-rail-maintenance-big-picture/) | Australia's best maintenance workers are the ones you've never heard of — because excellence, in rail, is invisible. |
-| 2 | Mar 17 | [Follow the Money](/blog/2026/03/travel_n_transport/day-02-rail-industry-economics/) | The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion revenue engine. |
-| 3 | Mar 18 | [The Budget That Built a Continent](/blog/2026/03/travel_n_transport/day-03-budgetary-cycles/) | You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs? |
-| 4 | Mar 19 | [What Gets Measured Gets Maintained](/blog/2026/03/travel_n_transport/day-04-rail-maintenance-kpis/) | A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged. |
-| 5 | Mar 20 | [Speaking Rail](/blog/2026/03/travel_n_transport/day-05-rail-industry-vocabulary/) | You've heard "points failure" on a delay announcement a hundred times — but have you ever noticed what it actually means? |
-| 6 | Mar 21 | [The Bullet Train Mirage](/blog/2026/03/travel_n_transport/day-06-highspeed-rail-australia/) | You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years? |
+| 1 | Mar 15 | [The Invisible Army](/blog/2026/03/travel_n_transport/day-01-rail-maintenance-big-picture/) | Australia's best maintenance workers are the ones you've never heard of — because excellence, in rail, is invisible. |
+| 2 | Mar 16 | [Follow the Money](/blog/2026/03/travel_n_transport/day-02-rail-industry-economics/) | The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion revenue engine. |
+| 3 | Mar 17 | [The Budget That Built a Continent](/blog/2026/03/travel_n_transport/day-03-budgetary-cycles/) | You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs? |
+| 4 | Mar 18 | [What Gets Measured Gets Maintained](/blog/2026/03/travel_n_transport/day-04-rail-maintenance-kpis/) | A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged. |
+| 5 | Mar 19 | [Speaking Rail](/blog/2026/03/travel_n_transport/day-05-rail-industry-vocabulary/) | You've heard "points failure" on a delay announcement a hundred times — but have you ever noticed what it actually means? |
+| 6 | Mar 20 | [The Bullet Train Mirage](/blog/2026/03/travel_n_transport/day-06-highspeed-rail-australia/) | You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years? |
 | 7 | Mar 23 | [Four Hundred Million Journeys](/blog/2026/03/travel_n_transport/day-07-passenger-rail-deep-dive/) | The memory of your first solo train ride connects to a system carrying 800+ million passengers a year — and the engineering that makes every one of those journeys unremarkable. |
 
 ### Week 2 — Depth
 
 | # | Date | Title | Story Hook |
 |---|------|-------|------------|
-| 8 | Mar 25 | [The Heaviest Trains on Earth](/blog/2026/03/travel_n_transport/day-08-freight-rail-deep-dive/) | You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier? |
-| 9 | Mar 26 | [The Safety Paradox](/blog/2026/03/travel_n_transport/day-09-rail-safety-regulatory/) | Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives. |
-| 10 | Mar 27 | [The Machine That Sees the Future](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/) | Everyone knows enterprise software is about efficiency. But what if, in rail, it's actually about predicting which asset will fail before the failure happens? |
-| 11 | Mar 28 | [The Digital Ghost of Every Rail Asset](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/) | Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about? |
+| 8 | Mar 24 | [The Heaviest Trains on Earth](/blog/2026/03/travel_n_transport/day-08-freight-rail-deep-dive/) | You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier? |
+| 9 | Mar 25 | [The Safety Paradox](/blog/2026/03/travel_n_transport/day-09-rail-safety-regulatory/) | Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives. |
+| 10 | Mar 26 | [The Machine That Sees the Future](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/) | Everyone knows enterprise software is about efficiency. But what if, in rail, it's actually about predicting which asset will fail before the failure happens? |
+| 11 | Mar 27 | [The Digital Ghost of Every Rail Asset](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/) | Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about? |
 | 12 | Mar 30 | [The Workforce That Time Forgot](/blog/2026/03/travel_n_transport/day-12-rail-workforce-skills/) | The memory of watching a signal technician work connects to a looming crisis: an entire generation of rail knowledge is about to retire, and nobody's recorded what they know. |
 | 13 | Mar 31 | [The Supply Chain You Never See](/blog/2026/03/travel_n_transport/day-13-supply-chain-procurement/) | Everyone knows supply chains were disrupted by COVID. But what if Australia's rail procurement was fragile long before the pandemic — and still is? |
-| 14 | Apr 4 | [The Midpoint Reckoning](/blog/2026/03/travel_n_transport/day-14-week2-synthesis/) | Everyone knows synthesis means summarising. But what if the patterns emerging from two weeks of deep research tell a story no single post could? |
+| 14 | Apr 1 | [The Midpoint Reckoning](/blog/2026/03/travel_n_transport/day-14-week2-synthesis/) | Everyone knows synthesis means summarising. But what if the patterns emerging from two weeks of deep research tell a story no single post could? |
 
 ### Week 3 — Synthesis & Frontiers
 
 | # | Date | Title | Story Hook |
 |---|------|-------|------------|
-| 15 | Apr 7 | [The Data Goldmine Under the Tracks](/projects/travel-and-transport/day-15-data-analytics-rail/) | Everyone knows data is valuable. But what if Australian rail is sitting on decades of maintenance data it's barely learned to read? |
-| 16 | Apr 8 | [The Green Locomotive Paradox](/projects/travel-and-transport/day-16-sustainability-decarbonization/) | The childhood image of a diesel engine belching smoke connects to a paradox: rail is already the greenest land transport, yet it's under more pressure to decarbonise than any other mode. |
-| 17 | Apr 9 | [The Hack That Stops a Nation](/projects/travel-and-transport/day-17-cybersecurity-rail/) | Everyone knows critical infrastructure is a cyber target. But what if the real vulnerability isn't the IT network — it's the operational technology running the signals? |
-| 18 | Apr 10 | [A Tale of Four Railways](/projects/travel-and-transport/day-18-international-rail-comparisons/) | You've seen the Shinkansen in photos a hundred times — but have you ever noticed what Japan's rail actually does differently from Australia's at the maintenance level? |
-| 19 | Apr 11 | [The Railway That Drives Itself](/projects/travel-and-transport/day-19-emerging-trends-innovation/) | Everyone knows autonomous vehicles are coming. But what if the world's largest autonomous heavy-haul railway has been running in the Pilbara since 2018 — and most people missed it? |
-| 20 | Apr 13 | [When IBM Met the Iron Road](/projects/travel-and-transport/day-20-ibm-global-rail/) | Everyone knows IBM does enterprise tech. But what if its deepest rail expertise isn't in software — it's in understanding the physics of track degradation? |
-| 21 | Apr 14 | [The Voices Shaping Australia's Rail Future](/projects/travel-and-transport/day-21-industry-leaders-social-proof/) | A childhood memory of a grandmother who worked on the railways connects to the leaders now steering a $38.8 billion industry through its biggest transformation in a century. |
-| 22 | Apr 18 | [The Manifesto](/projects/travel-and-transport/day-22-campaign-synthesis/) | Twenty-two days ago, Australian rail was an unfamiliar industry. Today, it's a conviction. This is what I believe — and what I'd stake my reputation on. |
+| 15 | Apr 2 | [The Data Goldmine Under the Tracks](//blog/2026/03/travel_n_transport/day-15-data-analytics-rail/) | Everyone knows data is valuable. But what if Australian rail is sitting on decades of maintenance data it's barely learned to read? |
+| 16 | Apr 3 | [The Green Locomotive Paradox](/projects/travel-and-transport/day-16-sustainability-decarbonization/) | The childhood image of a diesel engine belching smoke connects to a paradox: rail is already the greenest land transport, yet it's under more pressure to decarbonise than any other mode. |
+| 17 | Apr 4 | [The Hack That Stops a Nation](/projects/travel-and-transport/day-17-cybersecurity-rail/) | Everyone knows critical infrastructure is a cyber target. But what if the real vulnerability isn't the IT network — it's the operational technology running the signals? |
+| 18 | Apr 5 | [A Tale of Four Railways](/projects/travel-and-transport/day-18-international-rail-comparisons/) | You've seen the Shinkansen in photos a hundred times — but have you ever noticed what Japan's rail actually does differently from Australia's at the maintenance level? |
+| 19 | Apr 6 | [The Railway That Drives Itself](/projects/travel-and-transport/day-19-emerging-trends-innovation/) | Everyone knows autonomous vehicles are coming. But what if the world's largest autonomous heavy-haul railway has been running in the Pilbara since 2018 — and most people missed it? |
+| 20 | Apr 7 | [When IBM Met the Iron Road](/projects/travel-and-transport/day-20-ibm-global-rail/) | Everyone knows IBM does enterprise tech. But what if its deepest rail expertise isn't in software — it's in understanding the physics of track degradation? |
+| 21 | Apr 8 | [The Voices Shaping Australia's Rail Future](/projects/travel-and-transport/day-21-industry-leaders-social-proof/) | A childhood memory of a grandmother who worked on the railways connects to the leaders now steering a $38.8 billion industry through its biggest transformation in a century. |
+| 22 | Apr 9 | [The Manifesto](/projects/travel-and-transport/day-22-campaign-synthesis/) | Twenty-two days ago, Australian rail was an unfamiliar industry. Today, it's a conviction. This is what I believe — and what I'd stake my reputation on. |
 
 </div>
 

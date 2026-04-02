@@ -1,6 +1,6 @@
 ---
 title: "The Midpoint Reckoning — Week 2 Synthesis"
-date: 2026-04-04T09:00:00+11:00
+date: 2026-04-01
 draft: false
 slug: "day-14-week2-synthesis"
 tags: ["systems-thinking", "synthesis", "rail-integration", "passenger-vs-freight", "maturity-model","risk-management", "freight-rail", "logistics-australia", "rail-freight", "rail-industry", "rail-economics", "infrastructure"]
