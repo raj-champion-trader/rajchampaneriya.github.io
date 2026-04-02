@@ -216,12 +216,6 @@ Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Info
 
 ---
 
-## In the News
-
-**[ARTC](https://www.artc.com.au/) partners with [IBM](https://www.ibm.com/) to deploy an AI-powered [track geometry](https://en.wikipedia.org/wiki/Track_geometry) analytics platform** across the [interstate network](https://en.wikipedia.org/wiki/Rail_transport_in_Australia) in 2026, integrating data from 6,000+ [IoT](https://en.wikipedia.org/wiki/Internet_of_things) sensors, [rail grinding](https://en.wikipedia.org/wiki/Rail_grinding) records, and [Bureau of Meteorology](https://www.bom.gov.au/) weather feeds to predict track defects 30 days in advance. *(Source: ARTC [Annual Report](https://www.artc.com.au/) and IBM [Newsroom](https://newsroom.ibm.com/))*
-
----
-
 ## Sources
 
 | Type | Source |
