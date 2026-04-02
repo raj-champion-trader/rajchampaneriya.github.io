@@ -27,7 +27,7 @@ Everyone knows the rail industry generates data. [Track measurement trains](http
 
 But here's the reversal: **having data and using data** are entirely different accomplishments.
 
-Most Australian rail operators are sitting on petabytes of historical and real-time information — enough to [predict failures weeks in advance](https://en.wikipedia.org/wiki/Condition-based_maintenance), optimise crew deployment, extend [asset life](https://en.wikipedia.org/wiki/Asset_lifecycle) through [reliability-centred maintenance](https://en.wikipedia.org/wiki/Reliability-centered_maintenance), and reduce costs by millions. And most of that data sits in disconnected [silos](https://en.wikipedia.org/wiki/Information_silo), incompatible formats, and forgotten databases. It is, quite literally, buried treasure.
+Most Australian rail operators are sitting on petabytes of historical and real-time information — enough to [predict failures weeks in advance](https://en.wikipedia.org/wiki/Condition-based_maintenance), optimise crew deployment, extend [asset life](https://en.wikipedia.org/wiki/Asset_management) through [reliability-centred maintenance](https://en.wikipedia.org/wiki/Reliability-centered_maintenance), and reduce costs by millions. And most of that data sits in disconnected [silos](https://en.wikipedia.org/wiki/Information_silo), incompatible formats, and forgotten databases. It is, quite literally, buried treasure.
 
 The irony is exquisite: an industry that moves physical materials more efficiently than any other [mode of transport](https://en.wikipedia.org/wiki/Mode_of_transport) is profoundly inefficient at moving *information* within its own operations.
 
@@ -72,7 +72,7 @@ A single large operator may manage petabytes across these categories. The strugg
 Collection methods span a spectrum:
 
 - **Manual**: handheld inspection devices, visual assessments, paper-based forms
-- **Mechanised**: [track measurement trains](https://en.wikipedia.org/wiki/Track_geometry_car) ([RailBAM](https://www.artc.com.au/), [AK Cars](https://www.artc.com.au/)), [wayside detection systems](https://en.wikipedia.org/wiki/Wayside_inspection_device)
+- **Mechanised**: [track measurement trains](https://en.wikipedia.org/wiki/Track_geometry_car) ([RailBAM](https://www.artc.com.au/), [AK Cars](https://www.artc.com.au/)), [wayside detection systems](https://en.wikipedia.org/wiki/Hot-box_detector)
 - **Automated**: [IoT](https://en.wikipedia.org/wiki/Internet_of_things) sensors (vibration, temperature, strain), [GPS](https://en.wikipedia.org/wiki/Global_Positioning_System)-based tracking, [SCADA](https://en.wikipedia.org/wiki/SCADA)
 - **Emerging**: [drone-based](https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle) [LiDAR](https://en.wikipedia.org/wiki/Lidar) and [photogrammetry](https://en.wikipedia.org/wiki/Photogrammetry), [satellite imagery](https://en.wikipedia.org/wiki/Satellite_imagery) via [remote sensing](https://en.wikipedia.org/wiki/Remote_sensing)
 
@@ -187,7 +187,7 @@ Data and analytics represent the largest untapped efficiency lever in Australian
 
 The connections to earlier themes are direct: [digital twin](https://en.wikipedia.org/wiki/Digital_twin) and [predictive maintenance](https://en.wikipedia.org/wiki/Predictive_maintenance) capabilities ([Day 11](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/)) depend entirely on the data infrastructure explored today. The [workforce skills gap](https://en.wikipedia.org/wiki/Skills_gap) ([Day 12](/blog/2026/03/travel_n_transport/day-12-rail-workforce-skills/)) is amplified when operators lack the [data literacy](https://en.wikipedia.org/wiki/Data_literacy) to use available tools. And the [Week 2 synthesis](/blog/2026/03/travel_n_transport/day-14-week2-synthesis/) showed that maturity gaps between dimensions create friction — data is the connective tissue that closes those gaps.
 
-Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Information_silo), apply appropriate analytics (moving from descriptive to predictive), and embed [data-driven decision-making](https://en.wikipedia.org/wiki/Data-driven_decision-making) into operational routines will achieve significantly better outcomes with the same or fewer resources — a pattern [McKinsey](https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights) estimates can deliver 10–20% cost reductions in asset-heavy industries. The data goldmine is real. The question is whether operators will invest in the picks and shovels to extract it.
+Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Information_silo), apply appropriate analytics (moving from descriptive to predictive), and embed [data-driven decision-making](https://en.wikipedia.org/wiki/Evidence-based_management) into operational routines will achieve significantly better outcomes with the same or fewer resources — a pattern [McKinsey](https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights) estimates can deliver 10–20% cost reductions in asset-heavy industries. The data goldmine is real. The question is whether operators will invest in the picks and shovels to extract it.
 
 ---
 
@@ -218,7 +218,7 @@ Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Info
 
 ## In the News
 
-**[ARTC](https://www.artc.com.au/) partners with [IBM](https://www.ibm.com/) to deploy an AI-powered [track geometry](https://en.wikipedia.org/wiki/Track_geometry) analytics platform** across the [interstate network](https://en.wikipedia.org/wiki/Interstate_rail_in_Australia) in 2026, integrating data from 6,000+ [IoT](https://en.wikipedia.org/wiki/Internet_of_things) sensors, [rail grinding](https://en.wikipedia.org/wiki/Rail_grinding) records, and [Bureau of Meteorology](http://www.bom.gov.au/) weather feeds to predict track defects 30 days in advance. *(Source: ARTC [Annual Report](https://www.artc.com.au/) and IBM [Newsroom](https://newsroom.ibm.com/))*
+**[ARTC](https://www.artc.com.au/) partners with [IBM](https://www.ibm.com/) to deploy an AI-powered [track geometry](https://en.wikipedia.org/wiki/Track_geometry) analytics platform** across the [interstate network](https://en.wikipedia.org/wiki/Rail_transport_in_Australia) in 2026, integrating data from 6,000+ [IoT](https://en.wikipedia.org/wiki/Internet_of_things) sensors, [rail grinding](https://en.wikipedia.org/wiki/Rail_grinding) records, and [Bureau of Meteorology](https://www.bom.gov.au/) weather feeds to predict track defects 30 days in advance. *(Source: ARTC [Annual Report](https://www.artc.com.au/) and IBM [Newsroom](https://newsroom.ibm.com/))*
 
 ---
 
@@ -237,7 +237,7 @@ Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Info
 | Government | [Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) — *Evidence-based infrastructure investment priorities* |
 | Research | [McKinsey & Company](https://www.mckinsey.com/industries/travel-logistics-and-infrastructure/our-insights) — *"Advanced Analytics in Transport: From Data to Decisions"* (2024) |
 | Government | [BITRE](https://www.bitre.gov.au/) — *"Australian Rail Statistics Yearbook 2024"* |
-| Government | [Bureau of Meteorology](http://www.bom.gov.au/) — *Weather data feeds for track condition correlation* |
+| Government | [Bureau of Meteorology](https://www.bom.gov.au/) — *Weather data feeds for track condition correlation* |
 | Standards | [ISO 55001](https://en.wikipedia.org/wiki/ISO_55000) — *Asset Management Systems — Requirements* |
 | Standards | [ISO 8000](https://en.wikipedia.org/wiki/ISO_8000) — *Data Quality Management* |
 | Framework | [DAMA-DMBOK](https://en.wikipedia.org/wiki/DAMA_International) — *Data Management Body of Knowledge — governance framework* |
