@@ -51,7 +51,7 @@ A few visuals for the post.
 
 The numbers are compelling:
 - **Freight:** Rail produces 75% fewer [emissions](https://en.wikipedia.org/wiki/Greenhouse_gas_emissions) per [tonne-km](https://en.wikipedia.org/wiki/Tonne-kilometre) than road ([IEA Transport Data](https://www.iea.org/energy-system/transport/rail))
-- **Passengers:** [Electric rail](https://en.wikipedia.org/wiki/Electric_multiple_unit) produces 60–80% fewer emissions per [passenger-km](https://en.wikipedia.org/wiki/Passenger_kilometres) than cars ([IEA Future of Rail](https://www.iea.org/reports/the-future-of-rail))
+- **Passengers:** [Electric rail](https://en.wikipedia.org/wiki/Electric_multiple_unit) produces 60–80% fewer emissions per [passenger-km](https://en.wikipedia.org/wiki/Passenger-kilometre) than cars ([IEA Future of Rail](https://www.iea.org/reports/the-future-of-rail))
 - **Scale:** One freight train replaces ~110 [B-double](https://en.wikipedia.org/wiki/Road_train#B-double) trucks ([Australasian Railway Association](https://ara.net.au/policy/freight-on-rail/))
 
 But the advantage is *structural*, not *automatic*. Moving freight from road to rail requires investment in [rail infrastructure](https://en.wikipedia.org/wiki/Rail_transport) (corridors, terminals, [rolling stock](https://en.wikipedia.org/wiki/Rolling_stock)), policy incentives ([road pricing](https://en.wikipedia.org/wiki/Road_pricing), [modal shift](https://en.wikipedia.org/wiki/Modal_shift) subsidies), and connectivity ([first/last mile](https://en.wikipedia.org/wiki/Last_mile_(transportation)) logistics from rail terminal to customer). Without government commitment to modal shift, rail's inherent efficiency remains an underexploited asset — a point reinforced by the [Productivity Commission's inquiry into National Transport Regulatory Reform](https://www.pc.gov.au/inquiries/completed/transport).
@@ -135,10 +135,10 @@ Major operators publish annual [sustainability reports](https://en.wikipedia.org
 | **[TCFD](https://en.wikipedia.org/wiki/Task_Force_on_Climate-related_Financial_Disclosures)** (Task Force on Climate-Related Financial Disclosures) | Climate risk and governance |
 | **[UN SDGs](https://en.wikipedia.org/wiki/Sustainable_Development_Goals)** | Alignment with global development goals |
 
-Key metrics are categorised by the [GHG Protocol](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol):
-- **[Scope 1](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol#Scope_1:_Direct_emissions)** — direct emissions (locomotive fuel)
-- **[Scope 2](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol#Scope_2:_Indirect_emissions)** — indirect emissions (purchased electricity)
-- **[Scope 3](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol#Scope_3:_Other_indirect_emissions)** — supply chain emissions
+Key metrics are categorised by the [GHG Protocol](https://en.wikipedia.org/wiki/GHG_Protocol):
+- **[Scope 1](https://en.wikipedia.org/wiki/GHG_Protocol)** — direct emissions (locomotive fuel)
+- **[Scope 2](https://en.wikipedia.org/wiki/GHG_Protocol)** — indirect emissions (purchased electricity)
+- **[Scope 3](https://en.wikipedia.org/wiki/GHG_Protocol)** — supply chain emissions
 
 [Aurizon](https://en.wikipedia.org/wiki/Aurizon)'s [2024 sustainability report](https://www.aurizon.com.au/sustainability) targets **50% Scope 1+2 emissions reduction by 2030** — ambitious for a diesel-heavy freight operator, and a signal that even the most carbon-intensive rail operations are committing to measurable [decarbonisation](https://en.wikipedia.org/wiki/Decarbonisation).
 
@@ -194,11 +194,11 @@ The green locomotive paradox persists: rail has always been the cleanest option,
 | Term | Definition |
 |------|-----------|
 | **[Modal shift](https://en.wikipedia.org/wiki/Modal_shift)** | The transfer of freight or passengers from one [transport mode](https://en.wikipedia.org/wiki/Mode_of_transport) to another (e.g., road to rail), typically to reduce emissions, congestion, or cost |
-| **[Scope 1/2/3 emissions](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol)** | [GHG Protocol](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol) categories: Scope 1 (direct from owned assets), Scope 2 (from purchased electricity), Scope 3 (from [supply chain](https://en.wikipedia.org/wiki/Supply_chain) and customers) |
+| **[Scope 1/2/3 emissions](https://en.wikipedia.org/wiki/GHG_Protocol)** | [GHG Protocol](https://en.wikipedia.org/wiki/GHG_Protocol) categories: Scope 1 (direct from owned assets), Scope 2 (from purchased electricity), Scope 3 (from [supply chain](https://en.wikipedia.org/wiki/Supply_chain) and customers) |
 | **[Regenerative braking](https://en.wikipedia.org/wiki/Regenerative_braking)** | Technology recovering [kinetic energy](https://en.wikipedia.org/wiki/Kinetic_energy) during braking and feeding it back to the electrical network or [battery storage](https://en.wikipedia.org/wiki/Battery_storage_power_station) |
 | **[Green hydrogen](https://en.wikipedia.org/wiki/Green_hydrogen)** | Hydrogen produced via [electrolysis](https://en.wikipedia.org/wiki/Electrolysis_of_water) powered by [renewable energy](https://en.wikipedia.org/wiki/Renewable_energy), producing zero carbon emissions in production |
 | **[Embodied carbon](https://en.wikipedia.org/wiki/Embodied_carbon)** | The total [greenhouse gas emissions](https://en.wikipedia.org/wiki/Greenhouse_gas_emissions) generated during the manufacture, transport, and installation of materials (e.g., concrete sleepers, steel rails) |
-| **[IS rating](https://en.wikipedia.org/wiki/Infrastructure_sustainability)** | Infrastructure Sustainability rating — an Australian framework for assessing and certifying sustainability performance of infrastructure projects |
+| **[IS rating](https://www.iscouncil.org/)** | Infrastructure Sustainability rating — an Australian framework for assessing and certifying sustainability performance of infrastructure projects |
 
 ---
 
@@ -232,7 +232,7 @@ The green locomotive paradox persists: rail has always been the cleanest option,
 | Industry | [Infrastructure Sustainability Council](https://www.iscouncil.org/) — *"IS Rating Scheme for Rail Projects"* |
 | Government | [BITRE](https://www.bitre.gov.au/) — *"Australian Freight Statistics Yearbook 2024"* |
 | Government | [Infrastructure Australia](https://www.infrastructureaustralia.gov.au/) — *"Sustainability Criteria for Major Projects"* |
-| Standards | [GHG Protocol](https://en.wikipedia.org/wiki/Greenhouse_Gas_Protocol) — *"Corporate Standard for Scope 1/2/3 Emissions Accounting"* |
+| Standards | [GHG Protocol](https://en.wikipedia.org/wiki/GHG_Protocol) — *"Corporate Standard for Scope 1/2/3 Emissions Accounting"* |
 | Standards | [GRI](https://en.wikipedia.org/wiki/Global_Reporting_Initiative) — *"Global Reporting Initiative Standards for Sustainability Disclosure"* |
 
 ---
