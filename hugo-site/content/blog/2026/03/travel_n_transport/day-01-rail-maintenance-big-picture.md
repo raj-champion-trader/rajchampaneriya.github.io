@@ -214,4 +214,4 @@ Understanding this landscape is foundational. Every subsequent post in this camp
 
 ---
 
-**Tomorrow:** [Follow the Money — How the Australian Rail Industry Makes Money](/projects/travel-and-transport/day-02-rail-industry-economics/) · *The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion revenue engine.*
+**Tomorrow:** [Follow the Money — How the Australian Rail Industry Makes Money](/blog/2026/03/travel_n_transport/day-02-rail-industry-economics/) · *The childhood sound of a freight train at night turns out to be the heartbeat of a $38.8 billion revenue engine.*

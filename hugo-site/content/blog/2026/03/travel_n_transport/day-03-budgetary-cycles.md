@@ -182,4 +182,4 @@ For technology partners, this means understanding not just what rail operators n
 
 ---
 
-**Tomorrow:** What Gets Measured Gets Maintained · *A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged.*
+**Tomorrow:** [What Gets Measured Gets Maintained](/blog/2026/03/travel_n_transport/day-04-rail-maintenance-kpis/) · *A childhood memory of counting wagons becomes the key to understanding how entire networks are scored and judged.*
