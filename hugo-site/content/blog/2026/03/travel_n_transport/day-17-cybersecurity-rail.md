@@ -27,7 +27,7 @@ Everyone knows [cybersecurity](https://en.wikipedia.org/wiki/Computer_security) 
 
 But what if the standard framing is dangerously inadequate for rail?
 
-In most industries, a cybersecurity breach means data is stolen, services are interrupted, or money is lost. In rail, a [cyberattack](https://en.wikipedia.org/wiki/Cyberattack) on [signalling systems](https://en.wikipedia.org/wiki/Railway_signalling) could cause collisions. An attack on [train management systems](https://en.wikipedia.org/wiki/Communications-based_train_control) could halt entire [freight networks](https://en.wikipedia.org/wiki/Freight_rail_transport), disrupting national [supply chains](https://en.wikipedia.org/wiki/Supply_chain). An attack on [operational technology](https://en.wikipedia.org/wiki/Operational_technology) doesn't just create a headline — it creates physical danger.
+In most industries, a cybersecurity breach means data is stolen, services are interrupted, or money is lost. In rail, a [cyberattack](https://en.wikipedia.org/wiki/Cyberattack) on [signalling systems](https://en.wikipedia.org/wiki/Railway_signalling) could cause collisions. An attack on [train management systems](https://en.wikipedia.org/wiki/European_Train_Control_System) could halt entire [freight networks](https://en.wikipedia.org/wiki/Freight_rail_transport), disrupting national [supply chains](https://en.wikipedia.org/wiki/Supply_chain). An attack on [operational technology](https://en.wikipedia.org/wiki/Operational_technology) doesn't just create a headline — it creates physical danger.
 
 This is the reversal: rail cybersecurity isn't an [IT](https://en.wikipedia.org/wiki/Information_technology) problem that happens to involve trains. It's a **safety problem** that happens to involve computers. And the rapid [digitisation](https://en.wikipedia.org/wiki/Digitization) that's making rail smarter — [IoT](https://en.wikipedia.org/wiki/Internet_of_things) sensors, [cloud analytics](https://en.wikipedia.org/wiki/Cloud_computing), digital signalling, [remote monitoring](https://en.wikipedia.org/wiki/Remote_monitoring) — is simultaneously making it more vulnerable.
 
@@ -52,7 +52,7 @@ A few visuals for the post.
 Rail systems are **[critical national infrastructure](https://en.wikipedia.org/wiki/Critical_infrastructure)**. The convergence of two historically separate domains creates the risk:
 
 - **[IT](https://en.wikipedia.org/wiki/Information_technology) (Information Technology)** — manages business systems: email, [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning), financial systems, [Maximo](https://www.ibm.com/products/maximo)
-- **[OT](https://en.wikipedia.org/wiki/Operational_technology) (Operational Technology)** — controls physical processes: [signalling](https://en.wikipedia.org/wiki/Railway_signalling), [train management](https://en.wikipedia.org/wiki/Communications-based_train_control), [SCADA](https://en.wikipedia.org/wiki/SCADA), track monitoring sensors
+- **[OT](https://en.wikipedia.org/wiki/Operational_technology) (Operational Technology)** — controls physical processes: [signalling](https://en.wikipedia.org/wiki/Railway_signalling), [train management](https://en.wikipedia.org/wiki/European_Train_Control_System), [SCADA](https://en.wikipedia.org/wiki/SCADA), track monitoring sensors
 
 Historically, OT was **[air-gapped](https://en.wikipedia.org/wiki/Air_gap_(networking))** — physically disconnected from any network. A hacker couldn't reach a signalling system because there was no digital path to it.
 
@@ -90,7 +90,7 @@ Key threats to rail [cybersecurity](https://en.wikipedia.org/wiki/Computer_secur
 - **[Insider threats](https://en.wikipedia.org/wiki/Insider_threat)** — disgruntled employees with system access
 - **[Denial-of-service](https://en.wikipedia.org/wiki/Denial-of-service_attack)** — overwhelming passenger information and ticketing systems
 
-The Danish attack was revelatory: the attackers didn't target DSB directly. They targeted a **subcontractor** — a pattern the [ENISA Railway Cybersecurity report](https://www.enisa.europa.eu/publications/railway-cybersecurity) identifies as a growing risk across European rail. The lesson: rail cybersecurity extends beyond the operator's network to every vendor, supplier, and partner in the digital ecosystem. The [Australian Cyber Security Centre](https://www.cyber.gov.au/) (ACSC) classifies rail as a "system of national significance" requiring enhanced security measures, and the [CISA TSA Security Directives](https://www.tsa.gov/sd-and-ea) for surface transportation operators mandate similar supply chain controls in the US.
+The Danish attack was revelatory: the attackers didn't target DSB directly. They targeted a **subcontractor** — a pattern the [ENISA Railway Cybersecurity report](https://www.enisa.europa.eu/publications/railway-cybersecurity) identifies as a growing risk across European rail. The lesson: rail cybersecurity extends beyond the operator's network to every vendor, supplier, and partner in the digital ecosystem. The [Australian Cyber Security Centre](https://www.cyber.gov.au/) (ACSC) classifies rail as a "system of national significance" requiring enhanced security measures, and the [CISA TSA Security Directives](https://www.tsa.gov/for-industry/surface-transportation) for surface transportation operators mandate similar supply chain controls in the US.
 
 </div>
 
@@ -122,7 +122,7 @@ Best-practice cybersecurity for rail follows a layered framework:
 | **[Asset inventory](https://en.wikipedia.org/wiki/IT_asset_management)** | Know every connected device and its software version |
 | **[Continuous monitoring](https://en.wikipedia.org/wiki/Continuous_monitoring)** | Detect anomalous behaviour on OT networks in real-time |
 | **[Patch management](https://en.wikipedia.org/wiki/Patch_(computing))** | Update systems without disrupting live operations |
-| **[Incident response](https://en.wikipedia.org/wiki/Incident_management) planning** | Rehearse response to cyber events before they happen |
+| **[Incident response](https://en.wikipedia.org/wiki/Computer_security_incident_management) planning** | Rehearse response to cyber events before they happen |
 | **[Supply chain security](https://en.wikipedia.org/wiki/Supply_chain_attack)** | Vet vendor access and software integrity |
 
 This mirrors the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF 2.0) adapted for OT environments, and aligns with the [IEC 62443](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) series — the international standard for industrial automation and control system security. [Network segmentation](https://en.wikipedia.org/wiki/Network_segmentation), often implemented using the [Purdue Model](https://en.wikipedia.org/wiki/Purdue_Enterprise_Reference_Architecture) for industrial control systems, is foundational because without it, every other layer is compromised: a single breach propagates across the entire network.
@@ -239,7 +239,7 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 | Standards | [NIST Post-Quantum Cryptography](https://www.nist.gov/pqcrypto) — *"Post-Quantum Cryptography Standardization"* |
 | Research | [ENISA](https://www.enisa.europa.eu/publications/railway-cybersecurity) — *"Railway Cybersecurity: Good Practices for the Railway Sector"* |
 | Research | [Dragos ICS/OT Year in Review](https://www.dragos.com/year-in-review/) — *"OT Cybersecurity Threat Landscape and Asset Visibility"* |
-| Regulation | [CISA / TSA Security Directives](https://www.tsa.gov/sd-and-ea) — *"Surface Transportation Cybersecurity Requirements"* (US reference) |
+| Regulation | [CISA / TSA Security Directives](https://www.tsa.gov/for-industry/surface-transportation) — *"Surface Transportation Cybersecurity Requirements"* (US reference) |
 | Incident | [SecurityWeek — Danish Rail Cyberattack](https://www.securityweek.com/cyberattack-causes-trains-stop-denmark/) — *"Cyberattack Causes Trains to Stop in Denmark"* (2022) |
 
 ---
