@@ -203,5 +203,4 @@ Understanding these revenue dynamics is essential for any technology partner pos
 
 ---
 
-**Tomorrow:** The Budget That Built a Continent
- · *You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs?*
+**Tomorrow:** [The Budget That Built a Continent](/blog/2026/03/travel_n_transport/day-03-budgetary-cycles/) · *You've checked your bank balance a thousand times — but have you ever noticed the budget cycle that decides whether your morning train runs?*
