@@ -244,4 +244,4 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 
 ---
 
-**Next:** [A Tale of Four Railways](/projects/travel-and-transport/day-18-international-rail-comparisons/) · *A familiar question — "how does Australia compare?" — leads to an unexpected discovery: no single country has it figured out.*
+**Next:** A Tale of Four Railways · *A familiar question — "how does Australia compare?" — leads to an unexpected discovery: no single country has it figured out.*
