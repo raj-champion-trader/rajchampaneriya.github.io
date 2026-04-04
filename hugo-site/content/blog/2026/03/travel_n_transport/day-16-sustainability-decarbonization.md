@@ -237,4 +237,4 @@ The green locomotive paradox persists: rail has always been the cleanest option,
 
 ---
 
-**Next:** The Hack That Stops a Nation · *Everyone knows cybersecurity is important. But what if, in rail, a breach doesn't just steal data — it stops trains?*
+**Next:** [The Hack That Stops a Nation](/blog/2026/03/travel_n_transport/day-17-cybersecurity-rail/) · *Everyone knows cybersecurity is important. But what if, in rail, a breach doesn't just steal data — it stops trains?*

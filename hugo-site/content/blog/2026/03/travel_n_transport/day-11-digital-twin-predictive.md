@@ -218,4 +218,4 @@ The real challenge is organisational: integrating data from disparate sources, b
 
 ---
 
-**Next:** The Workforce That Time Forgot · *Remember when rail was the career your grandfather's generation aspired to? What happened — and why is it suddenly the career your generation needs to rediscover?*
+**Next:** [The Workforce That Time Forgot](/blog/2026/03/travel_n_transport/day-12-rail-workforce-skills/) · *Remember when rail was the career your grandfather's generation aspired to? What happened — and why is it suddenly the career your generation needs to rediscover?*

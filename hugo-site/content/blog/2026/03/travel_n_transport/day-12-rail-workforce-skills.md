@@ -215,4 +215,4 @@ For rail maintainers, two things are true: experienced professionals who can bri
 
 ---
 
-**Next:** The Supply Chain You Never See · *Everyone knows rail is about trains and tracks. But what if the hidden supply chain — the one you never see — determines whether the visible network runs at all?*
+**Next:** [The Supply Chain You Never See](/blog/2026/03/travel_n_transport/day-13-supply-chain-procurement/) · *Everyone knows rail is about trains and tracks. But what if the hidden supply chain — the one you never see — determines whether the visible network runs at all?*

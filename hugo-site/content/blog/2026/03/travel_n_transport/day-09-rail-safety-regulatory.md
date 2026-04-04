@@ -203,4 +203,4 @@ For rail maintainers, safety isn't a compliance checkbox — it is embedded in e
 
 ---
 
-**Next:** The Machine That Sees the Future · *Everyone knows enterprise software is about efficiency. But what if, in rail, it's about predicting which asset will fail before the failure happens?*
+**Next:** [The Machine That Sees the Future](/blog/2026/03/travel_n_transport/day-10-ibm-solutions-rail/) · *Everyone knows enterprise software is about efficiency. But what if, in rail, it's about predicting which asset will fail before the failure happens?*

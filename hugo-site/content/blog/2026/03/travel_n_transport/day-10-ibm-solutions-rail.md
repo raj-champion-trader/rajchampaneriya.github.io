@@ -190,4 +190,4 @@ For rail maintainers, the practical value is simple: better data leads to better
 
 ---
 
-**Next:** [The Digital Ghost of Every Rail Asset](/projects/travel-and-transport/day-11-digital-twin-predictive/) · *Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about?*
+**Next:** [The Digital Ghost of Every Rail Asset](/blog/2026/03/travel_n_transport/day-11-digital-twin-predictive/) · *Everyone knows digital twins are a buzzword. But what if, in rail maintenance, they're the most practical technology nobody's arguing about?*

@@ -215,4 +215,4 @@ The operators who manage these tensions best will be those who invest in visibil
 
 ---
 
-**Next:** The Midpoint Reckoning — Week 2 Synthesis · *Halfway through. Time to step back and ask: do these threads connect — or are they just topics?*
+**Next:** [The Midpoint Reckoning — Week 2 Synthesis](/blog/2026/03/travel_n_transport/day-14-week2-synthesis/) · *Halfway through. Time to step back and ask: do these threads connect — or are they just topics?*

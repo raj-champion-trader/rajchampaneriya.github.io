@@ -205,4 +205,4 @@ The industry's economics are directly tied to global commodity markets. [Precisi
 
 ---
 
-**Next:** The Safety Paradox · *Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives.*
+**Next:** [The Safety Paradox](/blog/2026/03/travel_n_transport/day-09-rail-safety-regulatory/) · *Everyone knows rail is one of the safest transport modes. It's obvious. It's logical. It's also hiding a regulatory complexity that would stun most executives.*

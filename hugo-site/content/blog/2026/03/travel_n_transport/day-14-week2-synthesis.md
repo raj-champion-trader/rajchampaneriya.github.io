@@ -215,4 +215,4 @@ The organisation that closes these maturity gaps — not individually, but as a 
 
 ---
 
-**Next:** The Data Goldmine Under the Tracks · *Everyone knows rail generates data. But what if most operators are sitting on petabytes of insight they've never once analysed?*
+**Next:** [The Data Goldmine Under the Tracks](/blog/2026/03/travel_n_transport/day-15-data-analytics-rail/) · *Everyone knows rail generates data. But what if most operators are sitting on petabytes of insight they've never once analysed?*

@@ -238,4 +238,4 @@ Organisations that connect their [data silos](https://en.wikipedia.org/wiki/Info
 
 ---
 
-**Next:** The Green Locomotive Paradox · *Remember when trains were the dirtiest thing in the landscape? Here's the paradox: they were always the cleanest way to move freight — and almost nobody knew.*
+**Next:** [The Green Locomotive Paradox](/blog/2026/03/travel_n_transport/day-16-sustainability-decarbonization/) · *Remember when trains were the dirtiest thing in the landscape? Here's the paradox: they were always the cleanest way to move freight — and almost nobody knew.*
