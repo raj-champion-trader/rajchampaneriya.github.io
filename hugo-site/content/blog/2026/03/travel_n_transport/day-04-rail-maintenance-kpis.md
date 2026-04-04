@@ -182,4 +182,4 @@ The transition from lagging indicators (what already happened) to leading indica
 
 ---
 
-**Tomorrow:** Speaking Rail · *You've heard "points failure" on a delay announcement a hundred times — but have you ever noticed what it actually means?*
+**Tomorrow:** [Speaking Rail](/blog/2026/03/travel_n_transport/day-05-rail-industry-vocabulary/) · *You've heard "points failure" on a delay announcement a hundred times — but have you ever noticed what it actually means?*

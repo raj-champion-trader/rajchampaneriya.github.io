@@ -198,4 +198,4 @@ The technology transformation underway — automation, predictive maintenance, c
 
 ---
 
-**Next:** The Heaviest Trains on Earth · *You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier?*
+**Next:** [The Heaviest Trains on Earth](/blog/2026/03/travel_n_transport/day-08-freight-rail-deep-dive/) · *You've seen iron ore trains in photos — but have you ever noticed they're pulling loads heavier than an aircraft carrier?*

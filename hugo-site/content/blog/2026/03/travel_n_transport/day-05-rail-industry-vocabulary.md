@@ -194,4 +194,4 @@ The [Australasian Railway Association (ARA)](https://www.ara.net.au) releases an
 
 ---
 
-**Tomorrow:** The Bullet Train Mirage · *You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years?*
+**Tomorrow:** [The Bullet Train Mirage](/blog/2026/03/travel_n_transport/day-06-highspeed-rail-australia/) · *You've seen the headlines about Australian high-speed rail your entire life — but have you ever noticed the same promise being recycled for 40 years?*

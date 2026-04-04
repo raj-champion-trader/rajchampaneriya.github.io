@@ -197,4 +197,4 @@ The HSRA confirms **Sydney–Newcastle as the priority first stage** of Australi
 
 ---
 
-**Next:** Eight Hundred Million Journeys · *The memory of your first solo train ride connects to a system carrying 800+ million passengers a year.*
+**Next:** [Eight Hundred Million Journeys](/blog/2026/03/travel_n_transport/day-07-passenger-rail-deep-dive/) · *The memory of your first solo train ride connects to a system carrying 800+ million passengers a year.*

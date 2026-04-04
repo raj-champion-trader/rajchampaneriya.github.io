@@ -84,13 +84,13 @@ Each connection was built for operational benefit. Each also created an [attack 
 
 Key threats to rail [cybersecurity](https://en.wikipedia.org/wiki/Computer_security):
 
-- **[Ransomware](https://en.wikipedia.org/wiki/Ransomware)** — encrypting operational systems to extort payment. In 2022, a [ransomware attack](https://en.wikipedia.org/wiki/Ransomware) on Danish rail operator [DSB](https://en.wikipedia.org/wiki/DSB_(railway_company))'s subcontractor Supeo forced trains to stop because drivers couldn't access their safety-critical app.
+- **[Ransomware](https://en.wikipedia.org/wiki/Ransomware)** — encrypting operational systems to extort payment. In 2022, a [ransomware attack on Danish rail operator DSB's subcontractor Supeo](https://www.securityweek.com/cyberattack-causes-trains-stop-denmark/) forced trains to stop because drivers couldn't access their safety-critical app.
 - **[State-sponsored attacks](https://en.wikipedia.org/wiki/Cyberwarfare)** — targeting [critical infrastructure](https://en.wikipedia.org/wiki/Critical_infrastructure) for geopolitical objectives
 - **[Supply chain compromises](https://en.wikipedia.org/wiki/Supply_chain_attack)** — [malware](https://en.wikipedia.org/wiki/Malware) embedded in third-party software updates
 - **[Insider threats](https://en.wikipedia.org/wiki/Insider_threat)** — disgruntled employees with system access
 - **[Denial-of-service](https://en.wikipedia.org/wiki/Denial-of-service_attack)** — overwhelming passenger information and ticketing systems
 
-The Danish attack was revelatory: the attackers didn't target [DSB](https://en.wikipedia.org/wiki/DSB_(railway_company)) directly. They targeted a **subcontractor**. The lesson: rail cybersecurity extends beyond the operator's network to every vendor, supplier, and partner in the digital ecosystem. The [Australian Cyber Security Centre](https://www.cyber.gov.au/) (ACSC) classifies rail as a "system of national significance" requiring enhanced security measures.
+The Danish attack was revelatory: the attackers didn't target DSB directly. They targeted a **subcontractor** — a pattern the [ENISA Railway Cybersecurity report](https://www.enisa.europa.eu/publications/railway-cybersecurity) identifies as a growing risk across European rail. The lesson: rail cybersecurity extends beyond the operator's network to every vendor, supplier, and partner in the digital ecosystem. The [Australian Cyber Security Centre](https://www.cyber.gov.au/) (ACSC) classifies rail as a "system of national significance" requiring enhanced security measures, and the [CISA TSA Security Directives](https://www.tsa.gov/sd-and-ea) for surface transportation operators mandate similar supply chain controls in the US.
 
 </div>
 
@@ -125,7 +125,7 @@ Best-practice cybersecurity for rail follows a layered framework:
 | **[Incident response](https://en.wikipedia.org/wiki/Incident_management) planning** | Rehearse response to cyber events before they happen |
 | **[Supply chain security](https://en.wikipedia.org/wiki/Supply_chain_attack)** | Vet vendor access and software integrity |
 
-This mirrors the [NIST Cybersecurity Framework](https://en.wikipedia.org/wiki/NIST_Cybersecurity_Framework) adapted for OT environments. [Network segmentation](https://en.wikipedia.org/wiki/Network_segmentation) is foundational because without it, every other layer is compromised: a single breach propagates across the entire network.
+This mirrors the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF 2.0) adapted for OT environments, and aligns with the [IEC 62443](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) series — the international standard for industrial automation and control system security. [Network segmentation](https://en.wikipedia.org/wiki/Network_segmentation), often implemented using the [Purdue Model](https://en.wikipedia.org/wiki/Purdue_Enterprise_Reference_Architecture) for industrial control systems, is foundational because without it, every other layer is compromised: a single breach propagates across the entire network.
 
 </div>
 
@@ -171,7 +171,7 @@ Emerging challenges that today's defences may not withstand:
 
 1. **[ETCS](https://en.wikipedia.org/wiki/European_Train_Control_System) deployment** creates a software-defined signalling [attack surface](https://en.wikipedia.org/wiki/Attack_surface) replacing hardwired safety
 2. **[Autonomous train operations](https://en.wikipedia.org/wiki/Automatic_train_operation)** require impenetrable control system integrity
-3. **[Quantum computing](https://en.wikipedia.org/wiki/Quantum_computing)** threatens current [encryption](https://en.wikipedia.org/wiki/Encryption) standards that protect rail communications
+3. **[Quantum computing](https://en.wikipedia.org/wiki/Quantum_computing)** threatens current [encryption](https://en.wikipedia.org/wiki/Encryption) standards that protect rail communications — [NIST's Post-Quantum Cryptography standardisation](https://www.nist.gov/pqcrypto) is racing to provide replacements
 4. **[AI-powered attacks](https://en.wikipedia.org/wiki/Artificial_intelligence_in_cybersecurity)** become more sophisticated, faster, and harder to detect
 5. **Regulatory requirements** continue tightening under [SOCI Act](https://en.wikipedia.org/wiki/Security_of_Critical_Infrastructure_Act_2018) amendments
 
@@ -200,13 +200,15 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 | **[Network segmentation](https://en.wikipedia.org/wiki/Network_segmentation)** | Dividing a network into isolated zones so a breach in one cannot spread to others, critical for protecting train control systems |
 | **[Air gap](https://en.wikipedia.org/wiki/Air_gap_(networking))** | A physical isolation between a secure network and unsecured networks (including the internet), historically used to protect [OT](https://en.wikipedia.org/wiki/Operational_technology) systems from [cyberattacks](https://en.wikipedia.org/wiki/Cyberattack) |
 | **[Ransomware](https://en.wikipedia.org/wiki/Ransomware)** | [Malware](https://en.wikipedia.org/wiki/Malware) that encrypts systems and demands payment for decryption, particularly dangerous when targeting safety-critical [rail operations](https://en.wikipedia.org/wiki/Rail_transport) |
-| **[NIST Cybersecurity Framework](https://en.wikipedia.org/wiki/NIST_Cybersecurity_Framework)** | A set of guidelines developed by the [National Institute of Standards and Technology](https://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology) for managing and reducing [cybersecurity risk](https://en.wikipedia.org/wiki/Cyber_risk_quantification), widely adopted for [critical infrastructure](https://en.wikipedia.org/wiki/Critical_infrastructure) protection |
+| **[NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)** | A set of guidelines developed by the [National Institute of Standards and Technology](https://www.nist.gov/) for managing and reducing [cybersecurity risk](https://en.wikipedia.org/wiki/Cyber_risk_quantification), widely adopted for [critical infrastructure](https://en.wikipedia.org/wiki/Critical_infrastructure) protection |
+| **[IEC 62443](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards)** | International standard series for industrial automation and control system (IACS) security, defining security levels and zones applicable to rail [OT](https://en.wikipedia.org/wiki/Operational_technology) environments |
+| **[Purdue Model](https://en.wikipedia.org/wiki/Purdue_Enterprise_Reference_Architecture)** | A reference architecture for industrial control systems that defines hierarchical network zones (Levels 0–5), used to design [network segmentation](https://en.wikipedia.org/wiki/Network_segmentation) strategies that isolate safety-critical rail OT from enterprise IT |
 
 ---
 
 ## Micro Signal
 
-> **Lynch Lens:** The key micro-metric is **"OT asset visibility"** — what percentage of [operational technology](https://en.wikipedia.org/wiki/Operational_technology) devices on a rail network are inventoried, monitored, and patched? Industry research suggests most rail operators can account for less than 60% of their connected OT assets. You can't secure what you can't see. The companies that solve OT [asset visibility](https://en.wikipedia.org/wiki/IT_asset_management) will own the rail cybersecurity market.
+> **Lynch Lens:** The key micro-metric is **"OT asset visibility"** — what percentage of [operational technology](https://en.wikipedia.org/wiki/Operational_technology) devices on a rail network are inventoried, monitored, and patched? The [Dragos ICS/OT Cybersecurity Year in Review](https://www.dragos.com/year-in-review/) consistently finds that most industrial operators — including rail — can account for less than 60% of their connected OT assets. You can't secure what you can't see. The companies that solve OT [asset visibility](https://en.wikipedia.org/wiki/IT_asset_management) will own the rail cybersecurity market.
 
 ---
 
@@ -218,7 +220,7 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 
 ## In the News
 
-**The [Australian Signals Directorate](https://en.wikipedia.org/wiki/Australian_Signals_Directorate) (ASD) releases new [Essential Eight](https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight) compliance guidelines** for rail operators in early 2026, mandating [patch management](https://en.wikipedia.org/wiki/Patch_(computing)) and [multi-factor authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) for all train control and [signalling systems](https://en.wikipedia.org/wiki/Railway_signalling) within 12 months.
+**The [Australian Signals Directorate](https://www.cyber.gov.au/about-us) (ASD) releases new [Essential Eight Maturity Model](https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight/essential-eight-maturity-model) compliance guidelines** for rail operators in early 2026, mandating [patch management](https://en.wikipedia.org/wiki/Patch_(computing)) and [multi-factor authentication](https://en.wikipedia.org/wiki/Multi-factor_authentication) for all train control and [signalling systems](https://en.wikipedia.org/wiki/Railway_signalling) within 12 months. This follows the ASD's [Annual Cyber Threat Report](https://www.cyber.gov.au/about-us/reports-and-statistics/annual-cyber-threat-report) which identified critical infrastructure as facing escalating nation-state targeting.
 
 ---
 
@@ -232,8 +234,13 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 | Government | [Australian Cyber Security Centre](https://www.cyber.gov.au/) — *"Critical Infrastructure Cyber Security Assessment"* |
 | Government | [Security of Critical Infrastructure Act 2018](https://www.legislation.gov.au/Details/C2022C00160) — Legislation text |
 | Industry | [ONRSR](https://www.onrsr.com.au/) — *"Cyber Security in Rail Safety Management"* |
-| Standards | [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) — *"Framework for Improving Critical Infrastructure Cybersecurity"* |
-| Research | [ENISA](https://www.enisa.europa.eu/) — *"Railway Cybersecurity: Good Practices for the Railway Sector"* |
+| Standards | [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) — *"Framework for Improving Critical Infrastructure Cybersecurity"* (CSF 2.0) |
+| Standards | [IEC 62443](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) — *"Industrial Automation and Control Systems Security"* (ISA/IEC) |
+| Standards | [NIST Post-Quantum Cryptography](https://www.nist.gov/pqcrypto) — *"Post-Quantum Cryptography Standardization"* |
+| Research | [ENISA](https://www.enisa.europa.eu/publications/railway-cybersecurity) — *"Railway Cybersecurity: Good Practices for the Railway Sector"* |
+| Research | [Dragos ICS/OT Year in Review](https://www.dragos.com/year-in-review/) — *"OT Cybersecurity Threat Landscape and Asset Visibility"* |
+| Regulation | [CISA / TSA Security Directives](https://www.tsa.gov/sd-and-ea) — *"Surface Transportation Cybersecurity Requirements"* (US reference) |
+| Incident | [SecurityWeek — Danish Rail Cyberattack](https://www.securityweek.com/cyberattack-causes-trains-stop-denmark/) — *"Cyberattack Causes Trains to Stop in Denmark"* (2022) |
 
 ---
 
