@@ -1,6 +1,6 @@
 ---
 title: "The Hack That Stops a Nation — Cybersecurity in Rail Operations"
-date: 2026-04-09T07:30:00+11:00
+date: 2026-04-04
 draft: false
 slug: "day-17-cybersecurity-rail"
 tags: ["cybersecurity", "OT-security", "SOCI-Act", "critical-infrastructure", "IBM-security", "rail-signalling", "rail-freight", "rail-industry", "rail-economics", "infrastructure"]
@@ -244,4 +244,4 @@ The uncomfortable truth: the same [digital transformation](https://en.wikipedia.
 
 ---
 
-**Next:** A Tale of Four Railways · *A familiar question — "how does Australia compare?" — leads to an unexpected discovery: no single country has it figured out.*
+**Next:** [A Tale of Four Railways](/blog/2026/03/travel_n_transport/day-18-international-rail-comparisons/) · *A familiar question — "how does Australia compare?" — leads to an unexpected discovery: no single country has it figured out.*

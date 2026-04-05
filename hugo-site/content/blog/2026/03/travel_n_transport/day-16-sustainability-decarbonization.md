@@ -1,6 +1,6 @@
 ---
 title: "The Green Locomotive Paradox — Sustainability & Decarbonization in Rail"
-date: 2026-04-08T07:30:00+11:00
+date: 2026-04-03
 draft: false
 slug: "day-16-sustainability-decarbonization"
 tags: ["sustainability", "decarbonization", "modal-shift", "hydrogen", "electrification", "green-transport", "rail-technology", "risk-management", "freight-rail", "logistics-australia", "rail-freight", "rail-industry", "rail-economics", "infrastructure"]
