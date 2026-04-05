@@ -251,4 +251,4 @@ The most transferable lesson across all models: **sustained investment in mainte
 
 ---
 
-**Next:** [The Railway That Drives Itself](/blog/2026/03/travel_n_transport/day-19-autonomous-trains/) · *Everyone knows autonomous trains are coming. But what if they're already here — and the biggest innovation isn't the technology, but the business model it enables?*
+**Next:** The Railway That Drives Itself · *Everyone knows autonomous trains are coming. But what if they're already here — and the biggest innovation isn't the technology, but the business model it enables?*
