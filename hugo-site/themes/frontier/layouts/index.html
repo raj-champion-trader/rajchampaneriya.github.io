@@ -43,51 +43,6 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <!-- <div class="hero-premium__actions">
-                {{ range .Site.Params.profileMode.buttons }}
-                <a href="{{ .url }}" class="btn btn-outline">
-                    {{ if eq .name "Architecture Blueprints" }}
-                    <svg class="icon-minimal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
-                    {{ else if eq .name "Strategic Insights" }}
-                    <svg class="icon-minimal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    {{ end }}
-                    {{ .name }}
-                </a>
-                {{ end }}
-                {{ range .Site.Params.socialIcons }}
-                {{ if eq .name "linkedin" }}
-                <a href="{{ .url }}" class="btn btn-outline" target="_blank" rel="noopener">
-                    <svg class="icon-minimal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    LinkedIn
-                </a>
-                {{ end }}
-                {{ end }}
-            </div> -->
-
-            <!-- Impact Metrics Strip -->
-            <div class="hero-premium__metrics">
-                {{ range .Site.Params.premium.metrics }}
-                <div class="hero-metric">
-                    {{ with .icon }}
-                    <span class="hero-metric__icon" aria-hidden="true">
-                        {{ if eq . "dollar" }}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        {{ else if eq . "uptime" }}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        {{ else if eq . "promotion" }}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        {{ else if eq . "cost" }}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
-                        {{ end }}
-                    </span>
-                    {{ end }}
-                    <span class="hero-metric__value">{{ .value }}</span>
-                    <span class="hero-metric__label">{{ .label }}</span>
-                </div>
-                {{ end }}
-            </div>
-
             <!-- Trusted Across (industries only — no vendor/employer branding) -->
             <div class="hero-premium__trust">
                 <span class="trust-label">Experience across</span>
@@ -115,34 +70,54 @@
         </div>
     </section>
 
-    <!-- CARE Method Teaser -->
-    <section class="care-teaser surface-panel scroll-reveal">
-        <h2 class="care-teaser__title">The CARE Architecture Method</h2>
-        <p class="care-teaser__subtitle">A proven framework for high-stakes enterprise transformations</p>
-        <div class="care-teaser__grid">
-            <div class="care-step care-step--clarity scroll-reveal scroll-reveal--delay-1">
-                <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">C</span></span>
-                <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-                <span class="care-step__word">Clarity</span>
-                <span class="care-step__desc">Decompose ambiguity into actionable decisions</span>
+    <!-- Impact Metrics — stark typographic block, no card wrappers -->
+    <section class="impact-metrics scroll-reveal">
+        <div class="impact-metrics__grid">
+            {{ range .Site.Params.premium.metrics }}
+            <div class="impact-metric">
+                <span class="impact-metric__value">{{ .value }}</span>
+                <span class="impact-metric__label">{{ .label }}</span>
             </div>
-            <div class="care-step care-step--alignment scroll-reveal scroll-reveal--delay-2">
-                <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">A</span></span>
-                <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-                <span class="care-step__word">Alignment</span>
-                <span class="care-step__desc">Map technical direction to business outcomes</span>
+            {{ end }}
+        </div>
+    </section>
+
+    <!-- CARE Method Teaser — open layout, no card wrapper -->
+    <section class="care-teaser scroll-reveal">
+        <div class="care-teaser__layout">
+            <div class="care-teaser__heading">
+                <h2 class="care-teaser__title">The CARE Architecture Method</h2>
+                <p class="care-teaser__subtitle">A proven framework for high-stakes enterprise transformations</p>
             </div>
-            <div class="care-step care-step--reality scroll-reveal scroll-reveal--delay-3">
-                <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">R</span></span>
-                <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-                <span class="care-step__word">Reality</span>
-                <span class="care-step__desc">Validate through prototypes & decision frameworks</span>
-            </div>
-            <div class="care-step care-step--execution scroll-reveal scroll-reveal--delay-4">
-                <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">E</span></span>
-                <span class="care-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-                <span class="care-step__word">Execution</span>
-                <span class="care-step__desc">Deliver with zero critical defects</span>
+            <div class="care-teaser__steps">
+                <div class="care-step care-step--clarity scroll-reveal scroll-reveal--delay-1">
+                    <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">C</span></span>
+                    <div class="care-step__text">
+                        <span class="care-step__word">Clarity</span>
+                        <span class="care-step__desc">Decompose ambiguity into actionable decisions</span>
+                    </div>
+                </div>
+                <div class="care-step care-step--alignment scroll-reveal scroll-reveal--delay-2">
+                    <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">A</span></span>
+                    <div class="care-step__text">
+                        <span class="care-step__word">Alignment</span>
+                        <span class="care-step__desc">Map technical direction to business outcomes</span>
+                    </div>
+                </div>
+                <div class="care-step care-step--reality scroll-reveal scroll-reveal--delay-3">
+                    <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">R</span></span>
+                    <div class="care-step__text">
+                        <span class="care-step__word">Reality</span>
+                        <span class="care-step__desc">Validate through prototypes &amp; decision frameworks</span>
+                    </div>
+                </div>
+                <div class="care-step care-step--execution scroll-reveal scroll-reveal--delay-4">
+                    <span class="care-step__letter-wrap" aria-hidden="true"><span class="care-step__letter">E</span></span>
+                    <div class="care-step__text">
+                        <span class="care-step__word">Execution</span>
+                        <span class="care-step__desc">Deliver with zero critical defects</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

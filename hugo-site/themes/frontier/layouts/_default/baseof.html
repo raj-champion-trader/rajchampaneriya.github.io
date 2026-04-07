@@ -15,8 +15,9 @@
     <!-- Prevent local network access prompts on iOS -->
     <meta http-equiv="Permissions-Policy" content="local-network=()">
 
-    <!-- Self-hosted fonts (Inter, JetBrains Mono) — preload LCP font -->
-    <link rel="preload" href="{{ "fonts/inter-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <!-- Self-hosted fonts (Playfair Display, Outfit, JetBrains Mono) — preload LCP fonts -->
+    <link rel="preload" href="{{ "fonts/playfair-display-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/outfit-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
     <!-- Preconnect for Mermaid CDN (only on pages that contain Mermaid diagrams) -->
     {{ $hasMermaid := and .IsPage (or (in .Content "language-mermaid") (in .Content "```mermaid")) }}
