@@ -1,6 +1,10 @@
-{{- $inter := "fonts/inter-latin-wght-normal.woff2" | relURL -}}
+{{- $playfair := "fonts/playfair-display-latin-wght-normal.woff2" | relURL -}}
+{{- $playfairItalic := "fonts/playfair-display-latin-wght-italic.woff2" | relURL -}}
+{{- $outfit := "fonts/outfit-latin-wght-normal.woff2" | relURL -}}
 {{- $jb400 := "fonts/jetbrains-mono-latin-400-normal.woff2" | relURL -}}
 {{- $jb700 := "fonts/jetbrains-mono-latin-700-normal.woff2" | relURL -}}
-@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('{{ $inter }}') format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 900;font-display:swap;src:url('{{ $playfair }}') format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 900;font-display:swap;src:url('{{ $playfairItalic }}') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url('{{ $outfit }}') format('woff2');}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('{{ $jb400 }}') format('woff2');}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('{{ $jb700 }}') format('woff2');}

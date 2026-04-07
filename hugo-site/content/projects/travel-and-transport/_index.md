@@ -26,37 +26,27 @@ Australia's rail network stretches farther than the distance from London to New 
 
 This campaign documents the journey of learning that industry — systematically, publicly, and with the intellectual honesty to ask hard questions and publish the answers.
 
-Every post uses the **Cornell Note methodology** (8 structured questions per topic) and operates at **Bloom's Taxonomy Levels 5–6** (Evaluate and Create). The storytelling draws on three distinct narrative structures — *The Unexpected Discovery*, *The Childhood Echo*, and *The What-If Reversal* — to keep each post fresh and readable. The analytical framework combines **Peter Lynch's micro-analysis** (what makes individual rail businesses tick) with **Stan Druckenmiller's macro perspective** (the policy and investment forces shaping the sector).
-
 ---
 
 ## Campaign Arc
 
 <div class="campaign-arc">
 
-<div class="campaign-arc-week">
-
 ### Week 1 — Foundation: Australian Rail Maintenance
 
 The bedrock. Seven posts that establish the landscape: what rail maintenance actually is, how the money flows, what gets measured, and what makes Australia's challenges unique.
 
-</div>
-
-<div class="campaign-arc-week">
+<br/>
 
 ### Week 2 — Depth: Industry Segments & Cross-Cutting Themes
 
 Zooming in and out. Freight, safety, IBM's role, digital twins, workforce, and supply chains — each post deepens one dimension while connecting back to the foundation.
 
-</div>
-
-<div class="campaign-arc-week">
+<br/>
 
 ### Week 3 — Synthesis: Frontiers & Future
 
 The payoff. Data analytics, sustainability, cybersecurity, international comparisons, emerging tech, and the final campaign manifesto — where all 22 threads converge into a single point of view.
-
-</div>
 
 </div>
 

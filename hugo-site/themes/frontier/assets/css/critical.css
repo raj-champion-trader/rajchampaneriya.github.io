@@ -1,6 +1,7 @@
 /* Critical above-the-fold CSS — inlined for LCP; full CSS loads async. */
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
   --color-brand: hsl(215, 65%, 38%);
   --color-brand-glow: hsla(215, 65%, 38%, 0.12);
   --color-bg: hsl(220, 14%, 96%);
