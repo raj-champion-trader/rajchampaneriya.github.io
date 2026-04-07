@@ -26,8 +26,6 @@ Australia's rail network stretches farther than the distance from London to New 
 
 This campaign documents the journey of learning that industry — systematically, publicly, and with the intellectual honesty to ask hard questions and publish the answers.
 
-Every post uses the **Cornell Note methodology** (8 structured questions per topic) and operates at **Bloom's Taxonomy Levels 5–6** (Evaluate and Create). The storytelling draws on three distinct narrative structures — *The Unexpected Discovery*, *The Childhood Echo*, and *The What-If Reversal* — to keep each post fresh and readable. The analytical framework combines **Peter Lynch's micro-analysis** (what makes individual rail businesses tick) with **Stan Druckenmiller's macro perspective** (the policy and investment forces shaping the sector).
-
 ---
 
 ## Campaign Arc
