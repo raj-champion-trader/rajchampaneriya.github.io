@@ -7,8 +7,6 @@ audio: "/audio/about-me.wav"
 audioTitle: "About Me"
 ---
 
-> **Disclaimer:** I work at IBM Consulting. All views, opinions, and content on this site are entirely my own and do not represent IBM, its clients, or its affiliates. Nothing here reflects IBM's positions, strategies, or methodologies.
-
 ## The CARE Architecture Method
 
 Every high-stakes transformation I lead follows a proven framework:
@@ -38,8 +36,6 @@ Every high-stakes transformation I lead follows a proven framework:
     <div class="process-step__desc">Zero critical defects, on-time delivery</div>
   </div>
 </div>
-
----
 
 ## What I Deliver
 
@@ -81,8 +77,6 @@ Every high-stakes transformation I lead follows a proven framework:
   </div>
 </div>
 
----
-
 ## Impact at Scale
 
 <div class="impact-grid scroll-reveal">
@@ -119,8 +113,6 @@ Selected outcomes:
 - **10,000+ monthly AI queries** — Conversational BI platform reducing reporting from 48 hours to near real-time
 - **99.95% uptime SLA** — API platforms handling 50,000+ daily transactions for $5B+ premium processing
 - **85% mentee promotion rate** — 15+ architects and engineers mentored to senior roles within 18 months
-
----
 
 ## Technical Depth
 
@@ -167,7 +159,7 @@ Selected outcomes:
   </div>
 </div>
 
----
+<div class="about-cta scroll-reveal">
 
 ## Let's Discuss Your Architecture
 
@@ -176,4 +168,10 @@ Whether you're navigating a high-stakes modernization or evaluating cloud strate
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 - **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
 
+</div>
+
+<aside class="about-disclaimer">
+
 *I work at IBM Consulting. All views, opinions, and content on this site are entirely my own and do not represent IBM, its clients, or its affiliates.*
+
+</aside>
