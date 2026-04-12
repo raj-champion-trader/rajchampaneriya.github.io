@@ -1,9 +1,9 @@
 /* ============================================
-   About page — match single-post layout; header with photo only
+   About page — editorial layout; no card wrapper
    ============================================ */
 
-/* About uses .single-post, .post-navigation-top, .post-header, .post-content.surface-panel
-   like blog/project singles. Only addition: profile photo in header. */
+/* About uses .single-post, .post-header, .post-content (no surface-panel).
+   Only addition: profile photo in header. */
 
 .post-header--about .post-header__about-inner {
   display: flex;
@@ -638,20 +638,28 @@
 }
 
 /* ============================================
-   Disclaimer — De-emphasized footer note
+   Disclaimer — De-emphasized footer note (quieter treatment)
    ============================================ */
 
 .about-disclaimer {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-md);
+  border-top: none;
   font-size: var(--text-xs);
   color: var(--color-text-meta);
   line-height: var(--leading-relaxed);
+  opacity: 0.65;
 }
 
 .about-disclaimer em {
-  font-style: normal;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.about-disclaimer p {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-meta);
 }
 
 /* ============================================
@@ -660,4 +668,103 @@
 
 .page-about .post-content hr {
   display: none;
+}
+
+/* ============================================
+   EDITORIAL CLEAN — About Page Desktop Overhaul
+   Strip card wrapping, neutralize accents, premium whitespace.
+   ============================================ */
+
+/* 1. Strip the card wrapper — content breathes on the page bg directly.
+      Remove background, border, radius, shadow from post-content. */
+.page-about .single-post .post-content {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 2. Neutralize the page background for About —
+      match content area for a seamless editorial feel (no floating card illusion). */
+body.page-about {
+  background-color: var(--color-surface);
+}
+
+/* 3. Typography rhythm — generous whitespace between sections.
+      premium editorial = slow, paced reading experience. */
+.page-about .post-content > * + * {
+  margin-top: var(--space-lg);
+}
+
+.page-about .post-content h2 {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
+}
+
+.page-about .post-content h3 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+/* First h2 after content start — no excessive top gap */
+.page-about .post-content > h2:first-child {
+  margin-top: 0;
+}
+
+/* 4. Blockquotes — neutral, understated. No brand-colored left border. */
+.page-about .post-content blockquote {
+  border-left: 2px solid var(--color-border);
+  background: transparent;
+  padding: var(--space-xs) var(--space-md);
+  color: var(--color-text-muted);
+  font-style: italic;
+  border-radius: 0;
+}
+
+/* 5. List bullets — neutral instead of brand blue */
+.page-about .post-content ul li::before {
+  background-color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.page-about .post-content ol li::before {
+  color: var(--color-text-muted);
+}
+
+/* 6. CTA section — keep brand accent only here (interactive) */
+.page-about .about-cta {
+  border-top: 1px solid var(--color-border);
+}
+
+/* 7. Capability tree root — neutral underline instead of brand */
+.page-about .capability-root {
+  border-bottom-color: var(--color-border);
+}
+
+/* 8. Impact grid borders — use neutral, not brand */
+.page-about .impact-grid {
+  border-color: var(--color-border);
+}
+
+/* ============================================
+   About Desktop > 1024px — editorial spacing refinements
+   ============================================ */
+
+@media screen and (min-width: 1024px) {
+  .page-about .post-content > * + * {
+    margin-top: var(--space-xl);
+  }
+
+  .page-about .post-content h2 {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-about .post-content h3 {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
 }

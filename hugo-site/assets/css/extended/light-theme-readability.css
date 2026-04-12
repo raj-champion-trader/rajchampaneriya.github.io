@@ -9,6 +9,11 @@
   color: var(--color-text-main);
 }
 
+/* About page: editorial clean — no card background */
+.page-about .single-post .post-content {
+  background: transparent;
+}
+
 .single-post .post-content p,
 .single-post .post-content .post-description,
 .single-post .post-content li {
