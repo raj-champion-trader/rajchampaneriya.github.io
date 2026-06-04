@@ -15,6 +15,7 @@
                 {{ if $profile }}
                 {{ $profileWebP := $profile.Fill (printf "%dx%d webp q82" (mul $w 2) (mul $h 2)) }}
                 {{ $profileJpg := $profile.Fill (printf "%dx%d q85" (mul $w 2) (mul $h 2)) }}
+                <a href="/about/" class="hero-premium__avatar-link">
                 <picture>
                     <source type="image/webp" srcset="{{ $profileWebP.RelPermalink }}">
                     <img src="{{ $profileJpg.RelPermalink }}"
@@ -36,6 +37,7 @@
                      decoding="async"
                      class="hero-premium__avatar">
                 {{ end }}
+                </a>
                 <div class="hero-premium__info">
                     <h1 class="hero-premium__name">{{ .Site.Params.profileMode.title }}</h1>
                     <p class="hero-premium__headline">{{ .Site.Params.premium.headline }}</p>

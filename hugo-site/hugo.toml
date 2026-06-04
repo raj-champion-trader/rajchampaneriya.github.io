@@ -70,14 +70,15 @@ enableRobotsTXT = true
     methodology = "The CARE Architecture Method"
     methodologyParts = ["Clarity", "Alignment", "Reality", "Execution"]
     industries = ["Healthcare", "Property Insurance", "Media & Entertainment", "Logistics"]
-    [[params.premium.metrics]]
-      value = "$8M+"
-      label = "Zero-Downtime Modernization"
-      icon = "dollar"
+
     [[params.premium.metrics]]
       value = "99.95%"
       label = "Uptime SLA"
       icon = "uptime"
+    [[params.premium.metrics]]
+      value = "$8M+"
+      label = "Zero-Downtime Modernization"
+      icon = "dollar"
     [[params.premium.metrics]]
       value = "40%"
       label = "Cost Reduction"
