@@ -998,6 +998,7 @@ pre code.language-json {
 
     .hero-premium__info {
         width: 100%;
+        text-align: center;
     }
 
     .hero-premium__name {
@@ -1091,13 +1092,13 @@ pre code.language-json {
         flex-direction: column;
         align-items: center;
         gap: var(--space-xs);
-        margin-top: var(--space-sm);
-        padding-top: var(--space-sm);
+        margin-top: 0;
+        padding: var(--space-sm) 0;
         text-align: center;
     }
 
     .hero-premium__trust .trust-badges .trust-badge:not(.trust-badge--highlight) {
-        display: none;
+        display: inline-flex;
     }
 
     .trust-partners {
@@ -1114,19 +1115,64 @@ pre code.language-json {
         font-size: var(--text-xl);
     }
 
+    .care-teaser__steps {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .care-step {
+        gap: var(--space-sm);
+        padding: var(--space-sm) 0;
+    }
+
     .care-step__letter-wrap {
         width: 40px;
         height: 40px;
         font-size: 1.25rem;
     }
 
+    .care-step__word {
+        font-size: var(--text-base);
+    }
+
+    .care-step__desc {
+        font-size: var(--text-xs);
+        line-height: var(--leading-snug);
+    }
+
     .impact-metrics__grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-sm);
     }
 
+    .trust-badges--symmetric {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-premium__trust {
+        align-items: center;
+        text-align: center;
+    }
+
+    .trust-label {
+        text-align: center;
+    }
+
+    .trust-badge {
+        font-size: var(--text-3xs, 0.625rem);
+        padding: var(--space-2xs) var(--space-xs);
+    }
+
     .impact-metric__value {
         font-size: var(--text-2xl);
+    }
+
+    .impact-metric__label {
+        white-space: normal;
+        font-size: var(--text-2xs);
+        letter-spacing: 0.03em;
     }
 
     .hero-premium__card::before {
