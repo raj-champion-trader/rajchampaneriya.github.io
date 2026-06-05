@@ -83,6 +83,11 @@ enableRobotsTXT = true
       value = "40%"
       label = "Cost Reduction"
       icon = "cost"
+    [[params.premium.metrics]]
+      value = "10K+"
+      label = "AI Queries / Month"
+      icon = "cost"
+
 
   # Social links
   [[params.socialIcons]]
