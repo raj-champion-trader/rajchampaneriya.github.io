@@ -1,56 +1,42 @@
-# Architecture & Engineering Journal
+# rajc.work — Enterprise Architecture & Thought Leadership
 
-Enterprise Architect for High-Stakes Transformations — Enterprise Architecture That Protects Careers and Accelerates Transformations
+Enterprise Architect for High-Stakes Transformations — Architecture That Protects Careers and Accelerates Transformations
 
-Professional knowledge system for thought leadership, architecture maturity, and sustainable content creation.
+Hugo site deployed to GitHub Pages. Built with the Frontier theme.
 
-## 📝 Content Pillars
-
-1. **Architecture Patterns on Azure** - Reference architectures, trade-offs, decision frameworks
-2. **Delivery Wisdom** - Project patterns, what works and what breaks
-3. **Continuous Learning** - Book reviews, whitepaper summaries, technical insights
-
-## 🚀 Quick Start
-
-### Setup Hugo Site Locally
+## Quick Start
 
 ```bash
 # Install Hugo (macOS)
 brew install hugo
 
-# Navigate to hugo-site directory
-cd hugo-site
+# Dev server
+cd hugo-site && hugo server -D
 
-# Start local server
-hugo server -D --port 5555
-
-# View at http://localhost:5555
+# Production build
+cd hugo-site && hugo --gc --minify
 ```
 
-### Create New Content
+## Content Structure
 
-```bash
-# New blog post
-hugo new blog/YYYY-MM-DD-post-title.md
+- **Blog**: `hugo-site/content/blog/YYYY/MM/slug.md`
+- **Projects**: `hugo-site/content/projects/slug.md`
+- **Categories**: Point of View, Architecture Work, Technical Concepts, Technology, Experience, Industry Experience
 
-# New project
-hugo new projects/project-name.md
+## Stack
 
-# New talk
-hugo new talks/YYYY-MM-DD-event-name.md
-```
+- **Hugo** 0.154.5 with Dart Sass
+- **Frontier** theme (git submodule)
+- **Deploy**: GitHub Actions → `experiment/mobile-native` branch → GitHub Pages
+- **Config**: `hugo-site/hugo.toml`
+- **Custom CSS**: `hugo-site/assets/css/extended/`
 
-## 🔗 Links
+## Links
 
 - **Website**: [rajc.work](https://rajc.work/)
 - **GitHub**: [github.com/rajchampaneriya](https://github.com/rajchampaneriya)
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
 
-## 📜 License
+## License
 
 Content is © Raj Champaneriya. All opinions expressed are my own.
-
-## 🎯 Goals
-
-- Build visible track record of architectural thinking
-- Create sustainable knowledge system
