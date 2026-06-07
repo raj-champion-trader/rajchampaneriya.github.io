@@ -70,6 +70,8 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./hugo-site/public
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
   # Deployment job
   deploy:
@@ -82,3 +84,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
