@@ -27,45 +27,49 @@
   }
 
   /* -------------------------------------------------------------------------
-     About: tablet body text, title, and content padding
+     About: desktop-grade typography — premium editorial sizing
+     Content width constrained to measure-lg (880px) for readability.
      ------------------------------------------------------------------------- */
   body.page-about .single-post {
-    padding-top: var(--content-padding-tablet);
+    padding-top: var(--content-padding-desktop);
     padding-bottom: var(--space-md);
   }
 
   body.page-about .single-post .post-header h1 {
-    font-size: var(--post-title-tablet);
+    font-size: var(--post-title-desktop);
   }
 
-  body.page-about .single-post .post-content.surface-panel,
+  body.page-about .single-post .post-description {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-sm);
+  }
+
   body.page-about .single-post .post-content {
-    font-size: var(--content-body-tablet);
-    padding: var(--content-padding-tablet);
-  }
-
-  body.page-about .single-post .post-content h1 {
-    font-size: var(--text-2xl);
+    font-size: var(--content-body-desktop);
+    padding: var(--content-padding-desktop);
+    max-width: var(--measure-lg);
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   body.page-about .single-post .post-content h2 {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    border-bottom-width: 1px;
   }
 
   body.page-about .single-post .post-content h3 {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
   }
 
   body.page-about .single-post .post-content h4 {
-    font-size: var(--text-base);
-  }
-
-  body.page-about .single-post .post-content > div {
-    padding: var(--content-block-padding-tablet);
-  }
-
-  body.page-about .post-content .content-callout {
-    padding: var(--content-block-padding-tablet);
+    font-size: var(--text-lg);
   }
 
   /* -------------------------------------------------------------------------
