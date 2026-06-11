@@ -1,0 +1,288 @@
+/* Search icon button in header — matches theme-toggle-btn style */
+.search-toggle-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--color-text-main, var(--primary));
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    border-radius: 8px;
+}
+
+.search-toggle-btn:hover {
+    opacity: 1;
+    background: var(--color-surface, rgba(255,255,255,0.1));
+}
+
+/* Search overlay */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+.search-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.search-overlay-content {
+    position: relative;
+    max-width: 640px;
+    width: 90%;
+    margin: 10vh auto 0;
+    max-height: 70vh;
+    background: var(--theme);
+    border: 1px solid var(--tertiary);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.search-overlay-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--tertiary);
+    gap: 8px;
+}
+
+.search-overlay-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--entry);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.search-overlay-icon {
+    flex-shrink: 0;
+    opacity: 0.5;
+    color: var(--primary);
+}
+
+#search-overlay-input {
+    flex: 1;
+    border: none;
+    background: none;
+    color: var(--primary);
+    font-size: 16px;
+    outline: none;
+    font-family: inherit;
+}
+
+#search-overlay-input::placeholder {
+    color: var(--secondary);
+    opacity: 0.6;
+}
+
+.search-overlay-kbd {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 2px 6px;
+    border: 1px solid var(--tertiary);
+    border-radius: 4px;
+    color: var(--secondary);
+    font-family: monospace;
+    opacity: 0.5;
+}
+
+.search-overlay-close {
+    flex-shrink: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--secondary);
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.search-overlay-close:hover {
+    opacity: 1;
+}
+
+/* Results list */
+.search-overlay-results {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    overflow-y: auto;
+    max-height: calc(70vh - 60px);
+    scrollbar-width: thin;
+}
+
+.search-overlay-result-item {
+    margin: 2px 0;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+}
+
+.search-overlay-result-item:hover {
+    background: var(--entry);
+}
+
+.search-overlay-result-item a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.search-overlay-result-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.search-overlay-result-snippet {
+    font-size: 13px;
+    color: var(--secondary);
+    margin: 0;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Highlight mark */
+mark.search-highlight {
+    background: rgba(255, 200, 50, 0.35);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+.dark mark.search-highlight {
+    background: rgba(100, 180, 255, 0.3);
+}
+
+/* Empty state */
+.search-overlay-empty {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--secondary);
+    opacity: 0.6;
+    font-size: 14px;
+}
+
+/* Page-level highlight (after clicking a search result) */
+mark.search-highlight--page {
+    background: rgba(255, 200, 50, 0.35);
+    color: inherit;
+    border-radius: 2px;
+    padding: 1px 3px;
+    transition: background 0.3s ease;
+}
+
+.dark mark.search-highlight--page {
+    background: rgba(100, 180, 255, 0.3);
+}
+
+/* Focus pulse on first match after scroll */
+mark.search-highlight--focus {
+    animation: highlight-pulse 0.6s ease 3;
+}
+
+@keyframes highlight-pulse {
+    0%, 100% { background: rgba(255, 200, 50, 0.35); }
+    50% { background: rgba(255, 180, 0, 0.7); }
+}
+
+.dark mark.search-highlight--focus {
+    animation: highlight-pulse-dark 0.6s ease 3;
+}
+
+@keyframes highlight-pulse-dark {
+    0%, 100% { background: rgba(100, 180, 255, 0.3); }
+    50% { background: rgba(80, 150, 255, 0.7); }
+}
+
+/* "Clear highlights" bar */
+.search-highlight-bar {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--color-text-main, #333);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+    animation: highlight-bar-in 0.3s ease;
+}
+
+.search-highlight-bar strong {
+    color: var(--color-brand, #0066cc);
+}
+
+.search-highlight-bar-close {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--color-text-muted, #666);
+    transition: all 0.15s ease;
+}
+
+.search-highlight-bar-close:hover {
+    background: var(--color-brand, #0066cc);
+    color: #fff;
+    border-color: var(--color-brand, #0066cc);
+}
+
+@keyframes highlight-bar-in {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .search-overlay-content {
+        width: 95%;
+        margin-top: 5vh;
+        max-height: 80vh;
+    }
+
+    .search-overlay-kbd {
+        display: none;
+    }
+
+    #search-overlay-input {
+        font-size: 16px; /* prevent iOS zoom */
+    }
+
+    .search-highlight-bar {
+        bottom: 70px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

@@ -48,3 +48,7 @@
     </div>
   </div>
 </footer>
+
+{{- /* Search overlay JS */}}
+{{- $searchOverlay := resources.Get "js/search-overlay.js" | minify | fingerprint }}
+<script src="{{ $searchOverlay.RelPermalink }}" defer></script>
