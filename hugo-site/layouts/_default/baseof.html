@@ -290,6 +290,12 @@
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 
+    <!-- Mobile table scroll hint: adds "→ scroll" label to wide scrollable containers -->
+    <script>
+    function addScrollHints(){if(window.innerWidth>768)return;document.querySelectorAll('.post-content .deep-dive-question,.post-content .content-callout').forEach(function(el){if(el.scrollWidth<=el.clientWidth+2)return;if(el.querySelector('.table-scroll-hint'))return;var hint=document.createElement('div');hint.className='table-scroll-hint';hint.textContent='→ swipe to see more';el.appendChild(hint);el.addEventListener('scroll',function(){if(el.scrollLeft>30)hint.style.opacity='0';else hint.style.opacity='1';},{passive:true});});}
+    document.addEventListener('DOMContentLoaded',addScrollHints);
+    </script>
+
     <!-- Mermaid v11 - Lazy loaded only when page has diagrams -->
     <script type="module">
       const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>{const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});});};

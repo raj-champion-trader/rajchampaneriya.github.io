@@ -1,7 +1,8 @@
 /*
   Table horizontal scroll — wrapper injected by render-table.html.
   - Desktop: wide tables get a horizontal scrollbar.
-  - Small screens: content wraps first; scrollbar still appears when wrapping isn't enough.
+  - Small screens: wide tables scroll horizontally; narrow tables wrap.
+  - Mobile: gradient shadow shows scroll direction (native scrollbar hidden on iOS/Android).
 */
 
 .table-scroll-wrapper {
@@ -21,8 +22,31 @@
   overflow-x: visible;
 }
 
-/* Small screens: allow table to shrink and wrap content; scrollbar as fallback */
+/* Desktop scrollbar styling — WebKit */
+.post-content .table-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.post-content .table-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 3px;
+}
+
+.post-content .table-scroll-wrapper::-webkit-scrollbar-track {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+/* Desktop scrollbar — Firefox */
+.post-content .table-scroll-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-muted) var(--color-border);
+}
+
+/* Small screens */
 @media (max-width: 768px) {
+
+  /* === Narrow tables: wrap content to fit screen === */
   .post-content .table-scroll-wrapper table,
   .page-content .table-scroll-wrapper table,
   .posts-toc .table-scroll-wrapper table {
@@ -39,5 +63,66 @@
     white-space: normal;
     word-break: break-word;
     overflow-wrap: break-word;
+  }
+
+  /* === Wide tables (deep-dive, callouts): horizontal scroll === */
+  .post-content .deep-dive-question,
+  .post-content .content-callout {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+
+  /* Let table-scroll-wrapper expand so parent scrolls */
+  .post-content .deep-dive-question .table-scroll-wrapper,
+  .post-content .content-callout .table-scroll-wrapper {
+    overflow-x: visible;
+    min-width: max-content;
+  }
+
+  /* Wide table: auto layout */
+  .post-content .deep-dive-question .table-scroll-wrapper table,
+  .post-content .content-callout .table-scroll-wrapper table {
+    table-layout: auto;
+    min-width: max-content;
+    width: auto;
+  }
+
+  .post-content .deep-dive-question .table-scroll-wrapper th,
+  .post-content .deep-dive-question .table-scroll-wrapper td,
+  .post-content .content-callout .table-scroll-wrapper th,
+  .post-content .content-callout .table-scroll-wrapper td {
+    white-space: nowrap;
+    word-break: normal;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  /*
+    Mobile scroll indicator: inline element at bottom of scrollable area.
+    Uses a gradient bar + "→ scroll" text to indicate more content.
+    Added via JS below — CSS-only approach using box-shadow on wrapper.
+  */
+
+  /* Gradient shadow on right edge = content continues */
+  .post-content .deep-dive-question,
+  .post-content .content-callout {
+    box-shadow: inset -12px 0 8px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  [data-theme="dark"] .post-content .deep-dive-question,
+  [data-theme="dark"] .post-content .content-callout {
+    box-shadow: inset -12px 0 8px -8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* "→ swipe to see more" label at bottom of scrollable table */
+  .table-scroll-hint {
+    text-align: right;
+    font-size: 0.7rem;
+    color: var(--color-brand);
+    padding: 2px 8px 0 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 }
