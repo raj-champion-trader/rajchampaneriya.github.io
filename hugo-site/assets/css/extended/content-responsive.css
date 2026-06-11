@@ -6,6 +6,82 @@
 */
 
 /* -------------------------------------------------------------------------
+   MOBILE: Reduce excessive left/right whitespace on small screens.
+   Default container (1.5rem) + content (1.5rem) = 3rem each side (~48px).
+   Override to 0.75rem container + 0.75rem content = 1.5rem each side (~24px).
+   ------------------------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+  /* Container gutter — tighter on mobile */
+  .container,
+  main.container,
+  main#swup.container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-inline-start: 0.5rem;
+    padding-inline-end: 0.5rem;
+  }
+
+  /* Article wrapper — remove its own inline padding layer */
+  .single-post {
+    padding-left: 0;
+    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+
+  /* Article body — minimal horizontal padding */
+  .single-post .post-content.surface-panel,
+  .single-post .post-content,
+  .post-content.glass-panel {
+    padding: 0.5rem;
+  }
+
+  /* List/page content panels */
+  .page-content.surface-panel,
+  .page-content {
+    padding: 0.5rem;
+  }
+
+  /* Content blocks (callouts, raw divs) — keep minimal */
+  .post-content > div {
+    padding: 0.5rem;
+  }
+
+  /* Content callout */
+  .post-content .content-callout,
+  .page-content .content-callout {
+    padding: 0.5rem;
+  }
+}
+
+/* Extra-small screens (<400px) — minimal */
+@media screen and (max-width: 399px) {
+  .container,
+  main.container,
+  main#swup.container {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-inline-start: 0.25rem;
+    padding-inline-end: 0.25rem;
+  }
+
+  .single-post {
+    padding-left: 0;
+    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+
+  .single-post .post-content.surface-panel,
+  .single-post .post-content,
+  .post-content.glass-panel,
+  .page-content.surface-panel,
+  .page-content {
+    padding: 0.25rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
    Post content body — typography scale by breakpoint (tokens)
    ------------------------------------------------------------------------- */
 .single-post .post-content.surface-panel,

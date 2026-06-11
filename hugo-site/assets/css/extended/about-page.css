@@ -35,6 +35,11 @@
     align-items: center;
     text-align: center;
   }
+
+  /* Left-align description paragraph on mobile for readability */
+  .post-header--about .post-description {
+    text-align: left;
+  }
 }
 
 /* ============================================
