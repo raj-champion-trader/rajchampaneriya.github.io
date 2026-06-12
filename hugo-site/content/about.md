@@ -2,7 +2,7 @@
 title: "About Me"
 layout: "about"
 description: "Enterprise Architect & Strategic Technology Leader specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
-summary: "Enterprise Architect with 13+ years across Fortune 500. Expert in de-risk multi-million dollar modernizations, deliver 99.95% uptime SLAs, and mentor teams to ship without career-damaging failures. He CARE for Clarity → Alignment → Reality → Execution."
+summary: "Enterprise Architect with 13+ years of experience across Fortune 500 transformations. I specialize in de-risking multi-million-dollar modernization initiatives, delivering 99.95% uptime SLAs, and mentoring teams to ship successfully without career-damaging failures. I CARE about Clarity → Alignment → Reality → Execution."
 audio: "/audio/about-me.wav"
 audioTitle: "About Me"
 ---

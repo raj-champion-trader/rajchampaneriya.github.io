@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default " en-us" }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- Meta -->
+    <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
+    <meta name="theme-color" content="#f5f6f8">
+    {{ $themeInit := resources.Get "js/theme-init.js" }}
+    {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).Permalink }}"></script>{{ end }}
+
+    <!-- Prevent local network access prompts on iOS -->
+    <meta http-equiv="Permissions-Policy" content="local-network=()">
+
+    <!-- Self-hosted fonts (Playfair Display, Outfit, JetBrains Mono) — preload LCP fonts -->
+    <link rel="preload" href="{{ "fonts/playfair-display-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/outfit-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+    <!-- Preconnect for Mermaid CDN (only on pages that contain Mermaid diagrams) -->
+    {{ $hasMermaid := and .IsPage (or (in .Content "language-mermaid") (in .Content "```mermaid")) }}
+    {{ if $hasMermaid }}<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>{{ end }}
+
+    {{ if .IsHome }}
+    <!-- Preload LCP image (hero avatar) on homepage only — 280x280 matches picture source (2× avatar-wide 140) -->
+    {{ $profile := resources.Get "images/profile.jpg" }}
+    {{ if $profile }}
+    {{ $profileWebP := $profile.Fill "280x280 webp q82" }}
+    <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
+    {{ else }}
+    <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
+    {{ end }}
+    <!-- Preload hero card background image (reduces contention with LCP) -->
+    <link rel="preload" as="image" href="{{ "images/home-page.jpeg" | relURL }}">
+    {{ else if eq .Layout "about" }}
+    <!-- Preload LCP image (about header photo) on about page only -->
+    {{ $profile := resources.Get "images/profile.jpg" }}
+    {{ if $profile }}
+    {{ $profileWebP := $profile.Fill "240x240 webp q82" }}
+    <link rel="preload" as="image" href="{{ $profileWebP.RelPermalink }}" type="image/webp">
+    {{ else }}
+    <link rel="preload" as="image" href="{{ (.Site.Params.profileMode.imageUrl | default "images/profile.jpg") | absURL }}">
+    {{ end }}
+    {{ else if and (eq .Section "projects") (eq .Params.slug "stock-market-simulator") }}
+    <!-- Preload LCP image (hero diagram) on Stock Market Simulator project page -->
+    <link rel="preload" as="image" href="{{ "images/project/stock-market-simulator/logical-architecture.svg" | relURL }}">
+    {{ else if and (eq .Section "projects") (eq .Params.slug "idea-factory") }}
+    <!-- Preload LCP image (hero) on Idea Factory project page -->
+    <link rel="preload" as="image" href="{{ "projects/idea-factory/Idea-Factory-Blueprint.jpeg" | relURL }}">
+    {{ end }}
+
+    <!-- Critical above-the-fold CSS (inlined for LCP; avoids render-blocking) -->
+    {{ $critical := resources.Get "css/critical.css" | minify }}
+    <style>{{ $critical.Content | safeCSS }}</style>
+    <!-- Self-hosted font-face (inline so relURL respects baseURL) -->
+    <style>{{ partial "font-face-css.html" . | safeCSS }}</style>
+
+    <!-- Full CSS loaded async (non-render-blocking) — variables + main -->
+    {{ $vars := resources.Get "css/variables.css" }}
+    {{ $main := resources.Get "css/main.css" }}
+    {{ $style := slice $vars $main | resources.Concat "css/style.css" | minify | fingerprint }}
+    <link rel="preload" href="{{ $style.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $style.RelPermalink }}"></noscript>
+
+    <!-- Extended CSS (site-level overrides) — async -->
+    {{ $extended := (resources.Match "css/extended/*.css") }}
+    {{ if $extended }}
+    {{ $extendedCSS := $extended | resources.Concat "css/extended-all.css" | minify | fingerprint }}
+    <link rel="preload" href="{{ $extendedCSS.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $extendedCSS.RelPermalink }}"></noscript>
+    {{ end }}
+</head>
+
+<body class="app-layout{{ if .IsHome }} page-home{{ end }}{{ if eq .Layout "about" }} page-about{{ end }}{{ if and (eq .Section "projects") (gt (len .Sections) 0) }} page-projects-list{{ end }}{{ if and (eq .Section "projects") (eq (len .Sections) 0) .Parent (eq .Parent.Section "projects") }} page-project-single{{ end }}{{ if eq .Params.slug "idea-factory" }} page-idea-factory{{ end }}{{ if and (eq .Section "projects") (gt (len .Sections) 0) (eq .Params.slug "travel-and-transport") }} page-travel-and-transport{{ end }}">
+
+    <!-- Header / Top Bar (sticky; scrollspy row when on article/about) -->
+    <header class="site-header glass-panel">
+        <div class="header-rows">
+            <div class="container header-inner">
+                <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><img src="{{ "images/logo.png" | absURL }}" alt="" class="logo-icon" width="32" height="32" /><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
+                <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
+                <nav class="desktop-top-nav" aria-label="Main">
+                    <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
+                    <a href="{{ "/blog/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "blog" }}active{{ end }}">Insights</a>
+                    <a href="{{ "/projects/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "projects" }}active{{ end }}">Blueprints</a>
+                    <a href="{{ "/about/" | absLangURL }}" class="desktop-nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+                    <span class="desktop-nav-sep" aria-hidden="true"></span>
+                    <button type="button" class="desktop-nav-link desktop-nav-link--icon desktop-audio-trigger" aria-label="Listen" title="Listen">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </button>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="desktop-nav-link desktop-nav-link--icon" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    {{ range site.Params.socialIcons }}{{ if eq .name "github" }}
+                    <a href="{{ .url }}" class="desktop-nav-link desktop-nav-link--icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    {{ end }}{{ end }}
+                </nav>
+                <button id="theme-toggle" type="button" accesskey="t" title="Toggle theme (Alt+T)" aria-label="Toggle theme" class="theme-toggle-btn">
+                    <span class="theme-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+                </button>
+                <button id="search-toggle" type="button" accesskey="/" title="Search site (Ctrl+K)" aria-label="Search" class="search-toggle-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <nav id="scrollspy-nav" class="scrollspy-nav scrollspy-nav--header" aria-label="Article contents" hidden>
+                <div class="scrollspy-inner">
+                    <button type="button" class="scrollspy-trigger" aria-expanded="false" aria-controls="scrollspy-list" aria-label="Table of contents">
+                        <span class="scrollspy-trigger-label">Contents</span>
+                        <svg class="scrollspy-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div id="scrollspy-list" class="scrollspy-list" role="list"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="swup" class="transition-fade container">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    <!-- Audio Player Bar (Persistent — enhanced with progress, seek, speed) -->
+    <div id="audio-player-bar" class="player-bar glass-panel hidden">
+        <div class="player-bar-top">
+            <div class="player-info">
+                <span id="player-title" class="player-title">Now Playing...</span>
+                <span id="player-time" class="player-time">0:00 / 0:00</span>
+            </div>
+            <div class="player-controls">
+                <button id="player-rewind" class="btn-icon" title="Rewind 15 seconds" aria-label="Rewind 15 seconds">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 4v6h6"></path>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                </button>
+                <button id="player-play-pause" class="btn-icon player-play-pause-btn" title="Play / Pause" aria-label="Play or Pause">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+                <button id="player-forward" class="btn-icon" title="Forward 15 seconds" aria-label="Forward 15 seconds">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6"></path>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </button>
+                <button id="player-speed" class="btn-icon player-speed-btn" title="Playback speed" aria-label="Change playback speed">1&times;</button>
+                <button id="player-close" class="btn-icon" title="Close player" aria-label="Close player">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="player-progress-container" id="player-progress-container" role="slider"
+             aria-label="Audio seek bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="player-progress-track">
+                <div class="player-progress-filled" id="player-progress-filled"></div>
+                <div class="player-progress-thumb" id="player-progress-thumb"></div>
+            </div>
+        </div>
+        <audio id="global-audio" preload="metadata"></audio>
+    </div>
+
+    {{/* AI Chat Panel (Persistent) — commented out, not in use
+    <div id="ai-chat-panel" class="chat-panel surface-panel hidden">
+        <div class="chat-header">
+            <h3>AI Assistant</h3>
+            <button id="chat-close" class="btn-icon" aria-label="Close chat panel">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message system">Hello! I can help you understand this article. Ask me anything.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask a question..." />
+            <button id="chat-send" class="btn-primary">Send</button>
+        </div>
+    </div>
+    */}}
+
+    <!-- Bottom Navigation (Mobile First) -->
+    <nav class="bottom-nav glass-panel">
+        <a href="{{ "" | absLangURL }}" class="nav-item {{ if .IsHome }}active{{ end }}" aria-label="Home">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="label">Home</span>
+        </a>
+        <a href="{{ "/blog/" | absLangURL }}" class="nav-item {{ if eq .Section "blog" }}active{{ end }}" aria-label="Insights">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span class="label">Insights</span>
+        </a>
+        <a href="{{ "/projects/" | absLangURL }}" class="nav-item {{ if eq .Section "projects" }}active{{ end }}" aria-label="Architecture Blueprints">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+            </svg>
+            <span class="label">Blueprints</span>
+        </a>
+        <a href="{{ .Params.githubRepo | default "#" }}" id="bottom-nav-github-link" class="nav-item {{ if not .Params.githubRepo }}hidden{{ end }}" target="_blank" rel="noopener noreferrer" aria-label="View project on GitHub" {{ if not .Params.githubRepo }}aria-hidden="true"{{ end }}>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span class="label">GitHub</span>
+        </a>
+        <button id="audio-player-trigger" class="nav-item" aria-label="Listen">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path
+                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                </path>
+            </svg>
+            <span class="label">Listen</span>
+        </button>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" class="nav-item" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span class="label">Share</span>
+        </a>
+        <a href="{{ "/about/" | absLangURL }}" class="nav-item {{ if eq .Section "about" }}active{{ end }}" aria-label="About">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="label">About</span>
+        </a>
+    </nav>
+
+    <!-- Bottom pane collapse toggle — outside nav so it stays visible when collapsed -->
+    <button id="bottom-nav-toggle" class="bottom-nav-toggle" aria-controls="bottom-nav" aria-expanded="true" aria-label="Hide bottom navigation" title="Hide bottom navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+
+    <!-- Player-bar toggle — only visible when Now Playing bar is shown -->
+    <button id="player-bar-toggle" class="player-bar-toggle" aria-controls="audio-player-bar" aria-expanded="true" aria-label="Hide Now Playing pane" title="Hide Now Playing pane">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19V6l12-3v13"></path><circle cx="6" cy="18" r="3"></circle></svg>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to Top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <!-- Scripts: Swup (self-hosted for better caching; defer to avoid render-blocking) -->
+    {{ $swup := resources.Get "js/vendor/swup.umd.js" }}
+    {{ if $swup }}<script src="{{ ($swup | minify | fingerprint).Permalink }}" defer></script>{{ end }}
+    {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
+    <script src="{{ $appJS.RelPermalink }}" defer></script>
+
+    <!-- Mobile table scroll hint: adds "→ scroll" label to wide scrollable containers -->
+    <script>
+    function addScrollHints(){if(window.innerWidth>768)return;document.querySelectorAll('.post-content .deep-dive-question,.post-content .content-callout').forEach(function(el){if(el.scrollWidth<=el.clientWidth+2)return;if(el.querySelector('.table-scroll-hint'))return;var hint=document.createElement('div');hint.className='table-scroll-hint';hint.textContent='→ swipe to see more';el.appendChild(hint);el.addEventListener('scroll',function(){if(el.scrollLeft>30)hint.style.opacity='0';else hint.style.opacity='1';},{passive:true});});}
+    document.addEventListener('DOMContentLoaded',addScrollHints);
+    </script>
+
+    <!-- Mermaid v11 - Lazy loaded only when page has diagrams -->
+    <script type="module">
+      const initScrollToTop=()=>{const btn=document.getElementById('scrollToTop');if(!btn)return;window.addEventListener('scroll',()=>btn.classList.toggle('visible',window.scrollY>300),{passive:true});btn.addEventListener('click',()=>{const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});});};
+
+      // --- Read theme colors from CSS variables (single source of truth) ---
+      function cssVarToHex(varName) {
+        const el = document.createElement('div');
+        el.style.cssText = `color: var(${varName}); position: absolute; opacity: 0;`;
+        document.documentElement.appendChild(el);
+        const computed = getComputedStyle(el).color;
+        document.documentElement.removeChild(el);
+        const m = computed.match(/^rgb(a?)\((\d+),\s*(\d+),\s*(\d+)/);
+        if (!m) return '#333333';
+        const r = Number(m[2]).toString(16).padStart(2, '0');
+        const g = Number(m[3]).toString(16).padStart(2, '0');
+        const b = Number(m[4]).toString(16).padStart(2, '0');
+        return '#' + r + g + b;
+      }
+      function getThemeColors() {
+        return {
+          brand: cssVarToHex('--color-brand'),
+          bg: cssVarToHex('--color-bg'),
+          surface: cssVarToHex('--color-surface'),
+          textMain: cssVarToHex('--color-text-main'),
+          textMuted: cssVarToHex('--color-text-muted'),
+          border: cssVarToHex('--color-border'),
+          brandGlow: cssVarToHex('--color-brand-glow'),
+          onBrand: cssVarToHex('--color-on-brand'),
+          codeBg: cssVarToHex('--code-bg')
+        };
+      }
+
+      // --- Semantic class color definitions (derived from theme) ---
+      function getSemanticColors() {
+        const c = getThemeColors();
+        const isDark = document.documentElement.dataset.theme === 'dark' ||
+          (document.documentElement.dataset.theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const strokeW = isDark ? '2.5px' : '1.5px';
+        return {
+          primary:   { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          secondary: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          accent:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          highlight: { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.brand },
+          danger:    { fill: c.brandGlow, stroke: c.brand, strokeWidth: strokeW, color: c.textMain },
+          neutral:   { fill: c.surface, stroke: c.textMuted, strokeWidth: strokeW, color: c.textMuted }
+        };
+      }
+      function applySemanticClassOverrides(container) {
+        const palette = getSemanticColors();
+        for (const [cls, colors] of Object.entries(palette)) {
+          container.querySelectorAll(`.node.${cls}`).forEach(node => {
+            node.querySelectorAll('rect, polygon, circle, path').forEach(shape => {
+              shape.style.setProperty('fill', colors.fill, 'important');
+              shape.style.setProperty('stroke', colors.stroke, 'important');
+              shape.style.setProperty('stroke-width', colors.strokeWidth, 'important');
+            });
+            node.querySelectorAll('.nodeLabel').forEach(label => {
+              label.style.setProperty('color', colors.color, 'important');
+              label.style.setProperty('fill', colors.color, 'important');
+            });
+          });
+        }
+      }
+
+      // --- Mermaid State ---
+      let mermaidModule = null;
+      let fullscreenDialog = null;
+      let currentZoom = 1;
+
+      function isDarkMode() {
+        const t = document.documentElement.dataset.theme;
+        return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+
+      function getMermaidConfig() {
+        const dark = isDarkMode();
+        const c = getThemeColors();
+        return {
+          startOnLoad: false,
+          theme: 'base',
+          themeVariables: dark ? {
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, tertiaryColor: c.border,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMuted, edgeLabelBackground: c.bg,
+            fontFamily: 'Inter, system-ui, sans-serif'
+          } : {
+            primaryColor: c.brand, primaryTextColor: c.onBrand,
+            primaryBorderColor: c.border, lineColor: c.textMuted,
+            secondaryColor: c.brand, secondaryTextColor: c.textMain,
+            tertiaryColor: c.border, tertiaryTextColor: c.textMain,
+            noteBkgColor: c.surface, noteTextColor: c.textMain, noteBorderColor: c.border,
+            actorBkg: c.brand, actorTextColor: c.onBrand, actorBorder: c.border,
+            signalColor: c.textMuted, signalTextColor: c.textMuted,
+            background: c.bg, mainBkg: c.brand,
+            nodeBorder: c.border,
+            clusterBkg: c.surface, clusterBorder: c.textMuted,
+            titleColor: c.textMain, edgeLabelBackground: c.bg, textColor: c.textMain,
+            fontFamily: 'Inter, system-ui, sans-serif'
+          },
+          securityLevel: 'loose',
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontSize: 13,
+          flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 15, nodeSpacing: 50, rankSpacing: 50, wrappingWidth: 200 },
+          sequence: { useMaxWidth: false, diagramMarginX: 50, diagramMarginY: 10, actorMargin: 80, width: 180, height: 65, boxMargin: 10, boxTextMargin: 5, noteMargin: 10, messageMargin: 40, mirrorActors: true, wrap: true, wrapPadding: 10 }
+        };
+      }
+
+      // --- Fullscreen Dialog ---
+      function createFullscreenDialog() {
+        if (fullscreenDialog) return fullscreenDialog;
+        fullscreenDialog = document.createElement('div');
+        fullscreenDialog.className = 'mermaid-fullscreen-dialog';
+        fullscreenDialog.innerHTML = `
+          <div class="mermaid-fullscreen-header">
+            <div class="mermaid-fullscreen-title">Diagram Viewer</div>
+            <div class="mermaid-fullscreen-controls">
+              <div class="mermaid-zoom-controls">
+                <button class="mermaid-zoom-btn mermaid-zoom-out" title="Zoom Out (-)" aria-label="Zoom out">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <span class="mermaid-zoom-level">100%</span>
+                <button class="mermaid-zoom-btn mermaid-zoom-in" title="Zoom In (+)" aria-label="Zoom in">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="mermaid-zoom-btn mermaid-zoom-reset" title="Reset (0)" aria-label="Reset zoom">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                </button>
+              </div>
+              <button class="mermaid-zoom-btn mermaid-copy-svg" title="Copy diagram as SVG" aria-label="Copy diagram as SVG">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span class="mermaid-copy-label">Copy SVG</span>
+              </button>
+              <button class="mermaid-fullscreen-close" aria-label="Close diagram viewer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Close
+              </button>
+            </div>
+          </div>
+          <div class="mermaid-fullscreen-content">
+            <div class="mermaid-fullscreen-content-inner"></div>
+          </div>`;
+        document.body.appendChild(fullscreenDialog);
+
+        const contentInner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
+        const zoomLevel = fullscreenDialog.querySelector('.mermaid-zoom-level');
+        const fullscreenContent = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
+
+        function updateZoom(zoom) {
+          currentZoom = Math.max(0.25, Math.min(3, zoom));
+          contentInner.style.transform = `scale(${currentZoom})`;
+          zoomLevel.textContent = `${Math.round(currentZoom * 100)}%`;
+        }
+
+        fullscreenDialog.querySelector('.mermaid-zoom-in').addEventListener('click', () => updateZoom(currentZoom + 0.25));
+        fullscreenDialog.querySelector('.mermaid-zoom-out').addEventListener('click', () => updateZoom(currentZoom - 0.25));
+        fullscreenDialog.querySelector('.mermaid-zoom-reset').addEventListener('click', () => updateZoom(1));
+
+        // Copy SVG button
+        fullscreenDialog.querySelector('.mermaid-copy-svg').addEventListener('click', async () => {
+          const svgEl = contentInner.querySelector('svg');
+          if (!svgEl) return;
+          const svgData = new XMLSerializer().serializeToString(svgEl);
+          const copyLabel = fullscreenDialog.querySelector('.mermaid-copy-label');
+          try {
+            // Try copying as image first (works in Chromium)
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            await navigator.clipboard.write([new ClipboardItem({ 'text/plain': new Blob([svgData], { type: 'text/plain' }) })]);
+            copyLabel.textContent = 'Copied!';
+          } catch {
+            // Fallback: copy SVG markup as text
+            try {
+              await navigator.clipboard.writeText(svgData);
+              copyLabel.textContent = 'Copied!';
+            } catch {
+              copyLabel.textContent = 'Failed';
+            }
+          }
+          setTimeout(() => { copyLabel.textContent = 'Copy SVG'; }, 2000);
+        });
+
+        function closeDialog() {
+          fullscreenDialog.classList.remove('active');
+          document.body.style.overflow = '';
+          updateZoom(1);
+        }
+
+        fullscreenDialog.querySelector('.mermaid-fullscreen-close').addEventListener('click', closeDialog);
+        fullscreenDialog.addEventListener('click', (e) => { if (e.target === fullscreenDialog) closeDialog(); });
+
+        document.addEventListener('keydown', (e) => {
+          if (!fullscreenDialog.classList.contains('active')) return;
+          if (e.key === 'Escape') closeDialog();
+          if (e.key === '+' || e.key === '=') { e.preventDefault(); updateZoom(currentZoom + 0.25); }
+          if (e.key === '-' || e.key === '_') { e.preventDefault(); updateZoom(currentZoom - 0.25); }
+          if (e.key === '0') { e.preventDefault(); updateZoom(1); }
+        });
+
+        // Drag to pan
+        let isDragging = false, dragStartX = 0, dragStartY = 0, scrollStartX = 0, scrollStartY = 0;
+
+        function onDragStart(e) {
+          if (e.target.closest('button')) return;
+          isDragging = true;
+          fullscreenContent.classList.add('is-dragging');
+          const pt = e.touches ? e.touches[0] : e;
+          dragStartX = pt.clientX; dragStartY = pt.clientY;
+          scrollStartX = fullscreenContent.scrollLeft; scrollStartY = fullscreenContent.scrollTop;
+          e.preventDefault();
+        }
+        function onDragMove(e) {
+          if (!isDragging) return;
+          const pt = e.touches ? e.touches[0] : e;
+          fullscreenContent.scrollLeft = scrollStartX - (pt.clientX - dragStartX);
+          fullscreenContent.scrollTop = scrollStartY - (pt.clientY - dragStartY);
+          e.preventDefault();
+        }
+        function onDragEnd() { isDragging = false; fullscreenContent.classList.remove('is-dragging'); }
+
+        fullscreenContent.addEventListener('mousedown', onDragStart);
+        document.addEventListener('mousemove', onDragMove);
+        document.addEventListener('mouseup', onDragEnd);
+
+        // Pinch-to-zoom
+        let pinchStartDist = 0, pinchStartZoom = 1;
+        const getTouchDist = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+
+        fullscreenContent.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 2) {
+            e.preventDefault(); isDragging = false; fullscreenContent.classList.remove('is-dragging');
+            pinchStartDist = getTouchDist(e.touches); pinchStartZoom = currentZoom;
+          } else if (e.touches.length === 1) { onDragStart(e); }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', (e) => {
+          if (e.touches.length === 2 && fullscreenDialog.classList.contains('active')) {
+            e.preventDefault(); updateZoom(pinchStartZoom * (getTouchDist(e.touches) / pinchStartDist));
+          } else if (e.touches.length === 1 && isDragging) { onDragMove(e); }
+        }, { passive: false });
+
+        document.addEventListener('touchend', (e) => {
+          if (e.touches.length < 2) pinchStartDist = 0;
+          if (e.touches.length === 0) onDragEnd();
+        });
+
+        // Mouse wheel scroll zoom
+        fullscreenContent.addEventListener('wheel', (e) => {
+          if (!fullscreenDialog.classList.contains('active')) return;
+          e.preventDefault();
+          const delta = e.deltaY > 0 ? -0.1 : 0.1;
+          updateZoom(currentZoom + delta);
+        }, { passive: false });
+
+        return fullscreenDialog;
+      }
+
+      // --- Mermaid Init (lazy loads library) ---
+      function openFullscreen(svg, diagramTitle) {
+        const inner = fullscreenDialog.querySelector('.mermaid-fullscreen-content-inner');
+        const title = fullscreenDialog.querySelector('.mermaid-fullscreen-title');
+        const area = fullscreenDialog.querySelector('.mermaid-fullscreen-content');
+        inner.innerHTML = svg;
+        applySemanticClassOverrides(inner);
+        title.textContent = diagramTitle;
+        fullscreenDialog.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        currentZoom = 1;
+        inner.style.transform = 'scale(1)';
+        fullscreenDialog.querySelector('.mermaid-zoom-level').textContent = '100%';
+        fullscreenDialog.querySelector('.mermaid-copy-label').textContent = 'Copy SVG';
+        if (area) { area.scrollLeft = 0; area.scrollTop = 0; }
+      }
+
+      async function initMermaid() {
+        const codeBlocks = document.querySelectorAll('pre > code.language-mermaid');
+        if (codeBlocks.length === 0) return; // Skip if no diagrams on page
+
+        // Lazy-load mermaid v11 only when needed
+        if (!mermaidModule) {
+          const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidModule = mermaid;
+        }
+
+        mermaidModule.initialize(getMermaidConfig());
+        createFullscreenDialog();
+
+        for (const [index, codeBlock] of [...codeBlocks].entries()) {
+          const pre = codeBlock.parentNode;
+          const highlight = pre.closest('.highlight');
+          const container = highlight || pre;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid-wrapper';
+
+          const diagramDiv = document.createElement('div');
+          diagramDiv.className = 'mermaid';
+
+          const fullscreenBtn = document.createElement('button');
+          fullscreenBtn.className = 'mermaid-fullscreen-btn';
+          fullscreenBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
+
+          try {
+            const id = `mermaid-diagram-${Date.now()}-${index}`;
+            const { svg } = await mermaidModule.render(id, codeBlock.textContent);
+            diagramDiv.innerHTML = svg;
+            applySemanticClassOverrides(diagramDiv);
+
+            // Find diagram title from nearest preceding heading
+            let diagramTitle = 'Diagram Viewer';
+            let prev = container.previousElementSibling;
+            while (prev) {
+              if (prev.tagName && /^H[1-6]$/.test(prev.tagName)) {
+                diagramTitle = prev.textContent.replace(/\s*#\s*$/, '').trim();
+                break;
+              }
+              prev = prev.previousElementSibling;
+            }
+
+            // Store mermaid source for copy feature
+            diagramDiv.dataset.mermaidSource = codeBlock.textContent;
+
+            fullscreenBtn.addEventListener('click', () => {
+              openFullscreen(svg, diagramTitle);
+            });
+
+            // Double-click on diagram also opens fullscreen
+            diagramDiv.addEventListener('dblclick', (e) => {
+              e.preventDefault();
+              openFullscreen(svg, diagramTitle);
+            });
+
+            wrapper.appendChild(fullscreenBtn);
+            wrapper.appendChild(diagramDiv);
+            container.replaceWith(wrapper);
+          } catch (error) {
+            console.error('Mermaid rendering error:', error);
+            diagramDiv.innerHTML = `<pre class="mermaid-error">Error rendering diagram: ${error.message}</pre>`;
+            wrapper.appendChild(diagramDiv);
+            container.replaceWith(wrapper);
+          }
+        }
+      }
+
+      // --- Bootstrap ---
+      document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+        initScrollToTop();
+      });
+
+      // Hook into Swup page transitions (app.js exposes window.swup)
+      function hookSwup(s) {
+        s.hooks.on('page:view', () => { initMermaid(); initScrollToTop(); });
+      }
+      if (window.swup) {
+        hookSwup(window.swup);
+      } else {
+        const waitId = setInterval(() => {
+          if (window.swup) { hookSwup(window.swup); clearInterval(waitId); }
+        }, 100);
+        setTimeout(() => clearInterval(waitId), 5000);
+      }
+
+      // Re-render mermaid on theme toggle (colors change)
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        setTimeout(() => location.reload(), 100);
+      });
+    </script>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay" aria-hidden="true">
+        <div class="search-overlay-backdrop"></div>
+        <div class="search-overlay-content">
+            <div class="search-overlay-header">
+                <div class="search-overlay-input-wrap">
+                    <svg class="search-overlay-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input id="search-overlay-input" type="search" placeholder="Search site..." autocomplete="off"
+                        aria-label="Search">
+                    <kbd class="search-overlay-kbd">ESC</kbd>
+                </div>
+                <button id="search-overlay-close" class="search-overlay-close" aria-label="Close search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <ul id="search-overlay-results" class="search-overlay-results"></ul>
+            <div id="search-overlay-empty" class="search-overlay-empty" style="display:none;">
+                No results found
+            </div>
+        </div>
+    </div>
+
+    {{- $searchJS := resources.Get "js/search-overlay.js" | minify | fingerprint }}
+    <script src="{{ $searchJS.RelPermalink }}" defer></script>
+</body>
+
+</html>
