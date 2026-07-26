@@ -77,7 +77,7 @@ enableRobotsTXT = true
       icon = "uptime"
     [[params.premium.metrics]]
       value = "$8M+"
-      label = "Zero-Downtime Modernization"
+      label = "Modernization"
       icon = "dollar"
     [[params.premium.metrics]]
       value = "40%"
