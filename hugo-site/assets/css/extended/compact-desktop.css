@@ -10,7 +10,7 @@
      Landing (home): narrower container, tablet hero typography and padding
      ------------------------------------------------------------------------- */
   body.page-home .home-container {
-    max-width: var(--container-home-lg);
+    max-width: var(--container-base);
     padding: 0 var(--home-padding-tablet);
   }
 
