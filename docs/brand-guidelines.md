@@ -1,10 +1,10 @@
 # Visual Brand Guidelines — rajc.work
 
-**Purpose:** Define premium visual identity for elite enterprise architect positioning.
+**Purpose:** Define premium visual identity for elite technical solution architect positioning.
 
 ## Brand Positioning
 
-rajc.work is the digital advisory presence of an Enterprise Architect who serves Fortune 500 clients. The visual identity must communicate:
+rajc.work is the digital advisory presence of an Technical Solution Architect who serves Fortune 500 clients. The visual identity must communicate:
 - **Authority** — Commanding, not decorative
 - **Premium** — Consulting-grade, not weekend-project
 - **Trust** — Institutional credibility, not personal flair

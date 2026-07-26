@@ -1,7 +1,7 @@
 ---
 title: "Insights"
 url: "/blog/"
-summary: "Strategic perspectives on enterprise architecture, systems thinking, and digital transformation"
+summary: "Strategic perspectives on technical solutions, systems thinking, and digital transformation"
 audio: "/blog/audio/Posts.wav"
 audioTitle: "Insights"
 ---
