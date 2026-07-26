@@ -57,7 +57,7 @@ Content here.
 
 ## Brand & Voice
 
-- **Positioning**: Enterprise Architect for Fortune 500 high-stakes transformations
+- **Positioning**: Technical Solution Architect for Fortune 500 high-stakes transformations
 - **Tone**: Executive-grade, authoritative, quantified
 - **Methodology**: "The CARE Architecture Method" (Clarity, Alignment, Reality, Execution)
 - **Audience**: CTOs, VPs of Engineering — not junior devs

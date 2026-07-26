@@ -14,14 +14,14 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  description = "raj see dot work is the portfolio of Raj Champaneriya, an Enterprise Architect & Strategic Technology Leader. He shares views on high-stakes transformations, zero-downtime modernizations, and architecture that protects careers and accelerates change."
+  description = "raj see dot work is the portfolio of Raj Champaneriya, an Technical Solution Architect & Strategic Technology Leader. He shares views on high-stakes transformations, zero-downtime modernizations, and architecture that protects careers and accelerates change."
 
   # Landing page audio (Listen button on home)
   landingAudioSrc = "/audio/landing.wav"
   landingAudioTitle = "Raj Champaneriya — Portfolio Overview"
   author = "Raj Champaneriya"
   mainSections = ["blog"]
-  keywords = ["enterprise architecture", "strategic technology leader", "Fortune 500 transformation", "legacy modernization", "cloud-native architecture", "solution architecture", "event-driven architecture", "system design", "CARE architecture method"]
+  keywords = ["technical solutions", "strategic technology leader", "Fortune 500 transformation", "legacy modernization", "cloud-native architecture", "solution architecture", "event-driven architecture", "system design", "CARE architecture method"]
   
   # Assets (Favicons)
   [params.assets]
@@ -52,11 +52,11 @@ enableRobotsTXT = true
   [params.profileMode]
     enabled = true
     title= "Raj Champaneriya"
-    subtitle = "Enterprise Architecture That Protects Careers and Accelerates Transformations"
+    subtitle = "Technical Solution Architect That Protects Careers and Accelerates Transformations"
     imageUrl = "images/profile.jpg"
     imageWidth = 140
     imageHeight = 140
-    imageTitle = "Raj Champaneriya — Enterprise Architect & Strategic Technology Leader"
+    imageTitle = "Raj Champaneriya — Technical Solution Architect & Strategic Technology Leader"
     buttons = [
       { name = "Architecture Blueprints", url = "/projects" },
       { name = "Strategic Insights", url = "/blog" }
@@ -64,7 +64,7 @@ enableRobotsTXT = true
 
   # Premium positioning (no employer/vendor branding — personal views only)
   [params.premium]
-    headline = "Enterprise Architect & Strategic Technology Leader"
+    headline = "Technical Solution Architect & Strategic Technology Leader"
     tagline = "Architecture that protects careers and accelerates transformations"
     experience = "13+ years across 4 Fortune 500 industries"
     methodology = "The CARE Architecture Method"
@@ -77,7 +77,7 @@ enableRobotsTXT = true
       icon = "uptime"
     [[params.premium.metrics]]
       value = "$8M+"
-      label = "Zero-Downtime Modernization"
+      label = "Modernization"
       icon = "dollar"
     [[params.premium.metrics]]
       value = "40%"
@@ -97,6 +97,10 @@ enableRobotsTXT = true
   [[params.socialIcons]]
     name = "linkedin"
     url = "https://linkedin.com/in/rajchampaneriya"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:champaneriyaraj@gmail.com"
 
   [[params.socialIcons]]
     name = "rss"

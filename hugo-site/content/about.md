@@ -1,8 +1,8 @@
 ---
 title: "About Me"
 layout: "about"
-description: "Enterprise Architect & Strategic Technology Leader specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
-summary: "Enterprise Architect with 13+ years of experience across Fortune 500 transformations. I specialize in de-risking multi-million-dollar modernization initiatives, delivering 99.95% uptime SLAs, and mentoring teams to ship successfully without career-damaging failures. I CARE about Clarity → Alignment → Reality → Execution."
+description: "Technical Solution Architect & Strategic Technology Leader specializing in high-stakes Fortune 500 transformations — $8M+ modernizations, 99.95% uptime SLAs, and zero-downtime migrations across Healthcare, Insurance, Media & Logistics."
+summary: "Technical Solution Architect with 13+ years of experience across Fortune 500 transformations. I specialize in de-risking multi-million-dollar modernization initiatives, delivering 99.95% uptime SLAs, and mentoring teams to ship successfully without career-damaging failures. I CARE about Clarity → Alignment → Reality → Execution."
 audio: "/audio/about-me.wav"
 audioTitle: "About Me"
 ---
@@ -40,7 +40,7 @@ Every high-stakes transformation I lead follows a proven framework:
 ## What I Deliver
 
 <div class="capability-tree scroll-reveal">
-  <div class="capability-root capability-root--blue">Enterprise Architecture</div>
+  <div class="capability-root capability-root--blue">Technical Solutions</div>
   <div class="capability-branches">
     <div class="capability-branch">
       <div class="capability-node capability-node--orange">Legacy Modernization</div>
@@ -122,9 +122,16 @@ Selected outcomes:
     <div class="tech-category__pills">
       <span class="tech-pill">Azure</span>
       <span class="tech-pill">AWS</span>
-      <span class="tech-pill">Kubernetes</span>
+      <span class="tech-pill">Azure Kubernetes Service (AKS)</span>
       <span class="tech-pill">Docker</span>
       <span class="tech-pill">Terraform</span>
+      <span class="tech-pill">Azure DevOps</span>
+      <span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">OpenTelemetry</span>
+      <span class="tech-pill">CI/CD</span>
+      <span class="tech-pill">Azure Service Bus</span>
+      <span class="tech-pill">Azure API Management</span>
+      <span class="tech-pill">Blue-Green Deployments</span>
     </div>
   </div>
   <div class="tech-category tech-category--orange">
@@ -134,7 +141,10 @@ Selected outcomes:
       <span class="tech-pill">DDD</span>
       <span class="tech-pill">Event-Driven</span>
       <span class="tech-pill">CQRS</span>
+      <span class="tech-pill">Event Sourcing</span>
       <span class="tech-pill">Clean Architecture</span>
+      <span class="tech-pill">API Design (REST, GraphQL, gRPC)</span>
+      <span class="tech-pill">Strangler Fig Pattern</span>
     </div>
   </div>
   <div class="tech-category tech-category--purple">
@@ -143,8 +153,12 @@ Selected outcomes:
       <span class="tech-pill">Azure OpenAI</span>
       <span class="tech-pill">Semantic Kernel</span>
       <span class="tech-pill">RAG Pipelines</span>
+      <span class="tech-pill">LangGraph</span>
+      <span class="tech-pill">Azure AI Search</span>
       <span class="tech-pill">Knowledge Graphs</span>
+      <span class="tech-pill">Azure Cognitive Services</span>
       <span class="tech-pill">Databricks</span>
+      <span class="tech-pill">T5 Transformers</span>
     </div>
   </div>
   <div class="tech-category tech-category--green">
@@ -155,6 +169,20 @@ Selected outcomes:
       <span class="tech-pill">TypeScript</span>
       <span class="tech-pill">React</span>
       <span class="tech-pill">Java</span>
+      <span class="tech-pill">Spring Boot</span>
+    </div>
+  </div>
+  <div class="tech-category tech-category--gray">
+    <div class="tech-category__title">Databases & Data</div>
+    <div class="tech-category__pills">
+      <span class="tech-pill">PostgreSQL</span>
+      <span class="tech-pill">Azure SQL</span>
+      <span class="tech-pill">SQL Server</span>
+      <span class="tech-pill">Cosmos DB</span>
+      <span class="tech-pill">MongoDB</span>
+      <span class="tech-pill">Oracle</span>
+      <span class="tech-pill">Azure Data Factory</span>
+      <span class="tech-pill">Polyglot Persistence</span>
     </div>
   </div>
 </div>
@@ -166,7 +194,8 @@ Selected outcomes:
 Whether you're navigating a high-stakes modernization or evaluating cloud strategy for a seven-figure decision — I'm open to strategic conversations.
 
 - **LinkedIn**: [linkedin.com/in/rajchampaneriya](https://linkedin.com/in/rajchampaneriya)
-- **GitHub**: [github.com/raj-champion-trader](https://github.com/raj-champion-trader)
+- **Email**: [champaneriyaraj@gmail.com](mailto:champaneriyaraj@gmail.com)
+
 
 </div>
 

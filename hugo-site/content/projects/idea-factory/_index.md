@@ -82,7 +82,7 @@ We built the prototype in four weeks using .NET Aspire for the runtime, IBM Carb
 
 ## The Blueprint: Transparent and Open
 
-I believe enterprise architecture should be transparent. Over this series we've covered:
+I believe technical solutions should be transparent. Over this series we've covered:
 
 - The innovation barrier caused by budget friction
 - The Idea Factory architecture for local experimentation
@@ -93,7 +93,7 @@ The **source code** is published: architecture diagrams, .NET Aspire stack, depl
 
 | Resource | Link |
 |----------|------|
-| **LinkedIn series (7 parts)** | [Building an Idea Factory for Enterprise Architects](https://www.linkedin.com/posts/rajchampaneriya_enterprisearchitecture-innovation-ideafactory-activity-7428814149134061568-AMK3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAkClyMBSGRUzjDGFxcbTDWSiATbVMVa6FE) |
+| **LinkedIn series (7 parts)** | [Building an Idea Factory for Technical Solutions](https://www.linkedin.com/posts/rajchampaneriya_enterprisearchitecture-innovation-ideafactory-activity-7428814149134061568-AMK3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAkClyMBSGRUzjDGFxcbTDWSiATbVMVa6FE) |
 | **Source code** | [github.com/raj-champion-trader/insight-weaver](https://github.com/raj-champion-trader/insight-weaver) |
 
 The source code is MIT-licensed. Fork it. Adapt it. Build your own Idea Factory.
@@ -115,7 +115,7 @@ If you need help adapting this architecture for your enterprise context, let's t
 
 <div class="content-callout">
 
-> The architectural thinking in this project draws inspiration from the published works, talks, and writings of enterprise architecture practitioners and thought leaders across the industry. Their ideas on governance, layered design, and innovation methodology have shaped how I approach experimentation at scale — and I reference them here with gratitude, not affiliation.
+> The architectural thinking in this project draws inspiration from the published works, talks, and writings of technical solutions practitioners and thought leaders across the industry. Their ideas on governance, layered design, and innovation methodology have shaped how I approach experimentation at scale — and I reference them here with gratitude, not affiliation.
 >
 > All opinions, design decisions, and conclusions in this series are entirely my own. No individual or organisation mentioned has endorsed, reviewed, or contributed to this content. Any errors in interpretation or application are mine alone.
 >

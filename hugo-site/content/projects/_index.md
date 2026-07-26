@@ -10,7 +10,7 @@ disclaimer: true
 
 <div class="content-callout">
 
-Real-world enterprise architecture blueprints & case studies by Raj Champaneriya — Each case study walks through the tradeoffs, constraints, and outcomes
+Real-world technical solution blueprints & case studies by Raj Champaneriya — Each case study walks through the tradeoffs, constraints, and outcomes
 
 </div>
 
@@ -29,7 +29,7 @@ Real-world enterprise architecture blueprints & case studies by Raj Champaneriya
       <span>Governance</span>
       <span>Innovation</span>
       <span>Platform Engineering</span>
-      <span>Enterprise Architecture</span>
+      <span>Technical Solutions</span>
     </div>
   </div>
 </a>

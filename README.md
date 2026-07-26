@@ -1,6 +1,6 @@
-# rajc.work — Enterprise Architecture & Thought Leadership
+# rajc.work — Technical Solutions & Thought Leadership
 
-Enterprise Architect for High-Stakes Transformations — Architecture That Protects Careers and Accelerates Transformations
+Technical Solution Architect for High-Stakes Transformations — Architecture That Protects Careers and Accelerates Transformations
 
 Hugo site deployed to GitHub Pages. Built with the Frontier theme.
 
