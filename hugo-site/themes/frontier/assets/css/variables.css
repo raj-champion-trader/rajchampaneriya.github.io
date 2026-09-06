@@ -80,11 +80,11 @@
   /* Typography — Fluid Scale
      Each step uses clamp(min, preferred, max) for smooth scaling.
      min = mobile floor, max = desktop ceiling, preferred = fluid middle.
-     Playfair Display (serif) for headings — editorial authority.
-     Outfit (geometric sans) for body — clean, premium readability. */
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+     IBM Plex Serif for headings — editorial authority.
+     IBM Plex Sans for body — engineered, premium readability. */
+  --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
   --text-2xs: clamp(0.625rem, 0.6rem + 0.15vw, 0.75rem);
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);

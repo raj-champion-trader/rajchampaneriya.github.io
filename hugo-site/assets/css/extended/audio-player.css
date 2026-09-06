@@ -134,7 +134,7 @@
 .player-speed-btn {
   font-size: var(--text-2xs) !important;
   font-weight: var(--fw-bold) !important;
-  font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
   min-width: var(--touch-target-min) !important;
   min-height: var(--touch-target-min) !important;
   letter-spacing: -0.02em;

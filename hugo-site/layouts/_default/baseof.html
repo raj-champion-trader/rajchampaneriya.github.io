@@ -10,14 +10,14 @@
     <meta name="description" content="{{ .Params.Description | default .Site.Params.Description }}">
     <meta name="theme-color" content="#f5f6f8">
     {{ $themeInit := resources.Get "js/theme-init.js" }}
-    {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).Permalink }}"></script>{{ end }}
+    {{ if $themeInit }}<script src="{{ ($themeInit | minify | fingerprint).RelPermalink }}"></script>{{ end }}
 
     <!-- Prevent local network access prompts on iOS -->
     <meta http-equiv="Permissions-Policy" content="local-network=()">
 
-    <!-- Self-hosted fonts (Playfair Display, Outfit, JetBrains Mono) — preload LCP fonts -->
-    <link rel="preload" href="{{ "fonts/playfair-display-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ "fonts/outfit-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <!-- Self-hosted fonts (IBM Plex Sans/Serif/Mono) — preload LCP fonts -->
+    <link rel="preload" href="{{ "fonts/ibm-plex-sans-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/ibm-plex-serif-latin-700-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
     <!-- Preconnect for Mermaid CDN (only on pages that contain Mermaid diagrams) -->
     {{ $hasMermaid := and .IsPage (or (in .Content "language-mermaid") (in .Content "```mermaid")) }}
@@ -79,7 +79,7 @@
     <header class="site-header glass-panel">
         <div class="header-rows">
             <div class="container header-inner">
-                <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><img src="{{ "images/logo.png" | absURL }}" alt="" class="logo-icon" width="32" height="32" /><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
+                <a href="{{ "" | absLangURL }}" class="logo" aria-label="rajc.work"><img src="{{ "images/logo.png" | relURL }}" alt="" class="logo-icon" width="32" height="32" /><span class="logo-brand">rajc</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-suffix">work</span></a>
                 <!-- Desktop-only top nav (same links as bottom nav); hidden below 1024px -->
                 <nav class="desktop-top-nav" aria-label="Main">
                     <a href="{{ "" | absLangURL }}" class="desktop-nav-link {{ if .IsHome }}active{{ end }}">Home</a>
@@ -286,7 +286,7 @@
 
     <!-- Scripts: Swup (self-hosted for better caching; defer to avoid render-blocking) -->
     {{ $swup := resources.Get "js/vendor/swup.umd.js" }}
-    {{ if $swup }}<script src="{{ ($swup | minify | fingerprint).Permalink }}" defer></script>{{ end }}
+    {{ if $swup }}<script src="{{ ($swup | minify | fingerprint).RelPermalink }}" defer></script>{{ end }}
     {{ $appJS := resources.Get "js/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $appJS.RelPermalink }}" defer></script>
 
@@ -387,7 +387,7 @@
             nodeBorder: c.border,
             clusterBkg: c.surface, clusterBorder: c.textMuted,
             titleColor: c.textMuted, edgeLabelBackground: c.bg,
-            fontFamily: 'Inter, system-ui, sans-serif'
+            fontFamily: 'IBM Plex Sans, system-ui, sans-serif'
           } : {
             primaryColor: c.brand, primaryTextColor: c.onBrand,
             primaryBorderColor: c.border, lineColor: c.textMuted,
@@ -400,10 +400,10 @@
             nodeBorder: c.border,
             clusterBkg: c.surface, clusterBorder: c.textMuted,
             titleColor: c.textMain, edgeLabelBackground: c.bg, textColor: c.textMain,
-            fontFamily: 'Inter, system-ui, sans-serif'
+            fontFamily: 'IBM Plex Sans, system-ui, sans-serif'
           },
           securityLevel: 'loose',
-          fontFamily: 'Inter, system-ui, sans-serif',
+          fontFamily: 'IBM Plex Sans, system-ui, sans-serif',
           fontSize: 13,
           flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 15, nodeSpacing: 50, rankSpacing: 50, wrappingWidth: 200 },
           sequence: { useMaxWidth: false, diagramMarginX: 50, diagramMarginY: 10, actorMargin: 80, width: 180, height: 65, boxMargin: 10, boxTextMargin: 5, noteMargin: 10, messageMargin: 40, mirrorActors: true, wrap: true, wrapPadding: 10 }
