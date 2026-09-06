@@ -69,7 +69,7 @@
 <p>Welcome back, architects and dreamers.</p>
 <p>We live in an age where &ldquo;refreshing&rdquo; a webpage is considered a failure of the human spirit. We want <em>now</em>. We want <em>instant</em>. We want to see numbers on a screen flicker upward like the heartbeat of a capitalist economy.</p>
 <p>Real-time updates are no longer a &ldquo;nice-to-have.&rdquo; They are the air we breathe. Most modern UI applications expect live data streams, because God forbid a user should have to click a button to see if their portfolio is down 20%.</p>
-<p>When building the <a href="https://github.com/raj-champion-trader/stock-market-simulator">Stock Market Simulator</a>—a living laboratory for event-driven patterns that doesn&rsquo;t care about your feelings, only throughput—one of the first architectural decisions was: <strong>How do we push real-time price updates to thousands of concurrent users efficiently?</strong></p>
+<p>When building the <a href="https://github.com/rajchampaneriya/stock-market-simulator">Stock Market Simulator</a>—a living laboratory for event-driven patterns that doesn&rsquo;t care about your feelings, only throughput—one of the first architectural decisions was: <strong>How do we push real-time price updates to thousands of concurrent users efficiently?</strong></p>
 <p>For years, SignalR has been the go-to answer in the .NET ecosystem. And SignalR is wonderful. It&rsquo;s a powerhouse. It&rsquo;s the Swiss Army Knife that also happens to be a chainsaw. But sometimes, you don&rsquo;t need a chainsaw. Sometimes, you just need to whisper into the ear of the browser.</p>
 <p>This post explores both options through the lens of real-world stock market data streaming—and explains why we chose SSE for the Stock Market Simulator, building the plumbing from scratch so we&rsquo;d actually understand what&rsquo;s flowing through the pipes.</p>
 <hr>
@@ -800,10 +800,10 @@ Scaling: Built-in Redis backplane support
 <p>That&rsquo;s all for today. Hope this was helpful.</p>
 <hr>
 <h2 id="explore-the-full-project">Explore the Full Project</h2>
-<p><strong>GitHub Repository</strong>: <a href="https://github.com/raj-champion-trader/stock-market-simulator">Stock Market Simulator</a><br>
-<strong>Architecture Decisions</strong>: <a href="https://github.com/raj-champion-trader/stock-market-simulator/tree/main/reference-docs">ADRs — SSE vs SignalR, Redis Streams vs Kafka, and more</a></p>
+<p><strong>GitHub Repository</strong>: <a href="https://github.com/rajchampaneriya/stock-market-simulator">Stock Market Simulator</a><br>
+<strong>Architecture Decisions</strong>: <a href="https://github.com/rajchampaneriya/stock-market-simulator/tree/main/reference-docs">ADRs — SSE vs SignalR, Redis Streams vs Kafka, and more</a></p>
 <hr>
-<p><em>Questions or feedback? Let&rsquo;s discuss on <a href="https://github.com/raj-champion-trader/stock-market-simulator/issues">GitHub Issues</a>.</em></p>
+<p><em>Questions or feedback? Let&rsquo;s discuss on <a href="https://github.com/rajchampaneriya/stock-market-simulator/issues">GitHub Issues</a>.</em></p>
 
     </div>
 

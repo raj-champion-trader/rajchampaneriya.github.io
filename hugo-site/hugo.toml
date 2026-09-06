@@ -92,7 +92,7 @@ enableRobotsTXT = true
   # Social links
   [[params.socialIcons]]
     name = "github"
-    url = "https://github.com/raj-champion-trader"
+    url = "https://github.com/rajchampaneriya"
 
   [[params.socialIcons]]
     name = "linkedin"

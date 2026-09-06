@@ -11,7 +11,7 @@ cover:
   alt: "Stock Market Simulator — live candlestick charts with real-time streaming data"
   caption: "It's hard to think about volume in a two-dimensional space."
   hidden: true
-githubRepo: "https://github.com/raj-champion-trader/stock-market-simulator"
+githubRepo: "https://github.com/rajchampaneriya/stock-market-simulator"
 weight: 1
 ShowToc: true
 disclaimer: true
@@ -28,7 +28,7 @@ audioTitle: "Stock Market Simulator"
 
 The Stock Market Simulator is a **real-time market data simulation system** that generates statistically realistic synthetic prices and streams them to a web UI. Four Indian symbols—**NIFTY50**, **BANKNIFTY**, **RELIANCE**, and **TCS**—are simulated with distinct volatility profiles. Data flows from a price engine through a message broker to the browser via Server-Sent Events, creating a practical reference for event-driven, low-latency architecture.
 
-**Why it matters for leadership:** The system demonstrates how to achieve reliability, scalability, and observability with a small set of well-chosen patterns—consumer groups, bounded channels, event streaming—without the overhead of heavier enterprise middleware. It is documented with formal Architecture Decision Records and C4-style diagrams in the [repository](https://github.com/raj-champion-trader/stock-market-simulator).
+**Why it matters for leadership:** The system demonstrates how to achieve reliability, scalability, and observability with a small set of well-chosen patterns—consumer groups, bounded channels, event streaming—without the overhead of heavier enterprise middleware. It is documented with formal Architecture Decision Records and C4-style diagrams in the [repository](https://github.com/rajchampaneriya/stock-market-simulator).
 
 ---
 
@@ -38,7 +38,7 @@ The system is organized in four logical layers: **Presentation**, **Application*
 
 <figure class="project-diagram project-diagram-hero">
   {{< projectimg src="images/project/stock-market-simulator/logical-architecture.svg" alt="Logical Architecture: Presentation (Trader/Viewer, Web Frontend), Application (Market Ingestion API, Broker Service, OpenTelemetry), Integration and Data (Redis Streams), Data Source (Market Simulator)" width="1200" height="720" priority="true" >}}
-  <figcaption>Logical architecture — Presentation, Application, Integration &amp; Data, Data Source. For C4 and sequence diagrams see the <a href="https://github.com/raj-champion-trader/stock-market-simulator">repository</a>.</figcaption>
+  <figcaption>Logical architecture — Presentation, Application, Integration &amp; Data, Data Source. For C4 and sequence diagrams see the <a href="https://github.com/rajchampaneriya/stock-market-simulator">repository</a>.</figcaption>
 </figure>
 
 | Layer | Capabilities |
@@ -52,7 +52,7 @@ The system is organized in four logical layers: **Presentation**, **Application*
 
 ## How It Flows
 
-Data is **generated** by the Market Simulator (quantitative models), **ingested** and validated by the API, **stored** and distributed via Redis Streams, and **consumed** by the Broker Service, which aggregates candlesticks and streams updates to the Web Frontend over SSE. End-to-end latency is sub-100ms. Deployment is orchestrated with .NET Aspire (single `dotnet run`); Redis is provisioned via Docker. For detailed data-flow and sequence diagrams, see the [reference docs and mermaid diagrams in the repo](https://github.com/raj-champion-trader/stock-market-simulator/tree/main/reference-docs).
+Data is **generated** by the Market Simulator (quantitative models), **ingested** and validated by the API, **stored** and distributed via Redis Streams, and **consumed** by the Broker Service, which aggregates candlesticks and streams updates to the Web Frontend over SSE. End-to-end latency is sub-100ms. Deployment is orchestrated with .NET Aspire (single `dotnet run`); Redis is provisioned via Docker. For detailed data-flow and sequence diagrams, see the [reference docs and mermaid diagrams in the repo](https://github.com/rajchampaneriya/stock-market-simulator/tree/main/reference-docs).
 
 <figure class="project-diagram project-diagram-flow">
   {{< projectimg src="images/project/stock-market-simulator/train-simulator.svg" alt="End-to-end data flow: price generation through Redis Streams to browser charts" width="1200" height="auto" >}}
@@ -88,7 +88,7 @@ The project maintains **10 formal ADRs** in the repository. Summary for executiv
 | **Backend candlestick aggregation** | Single source of truth; consistent candle boundaries and OHLCV across all clients. |
 | **Custom D3.js charts** | Full control and no licensing dependency; TradingView-style UX without the library. |
 
-Deep dives, alternatives considered, and tradeoffs are in the [ADR folder](https://github.com/raj-champion-trader/stock-market-simulator/tree/main/reference-docs) in the repo.
+Deep dives, alternatives considered, and tradeoffs are in the [ADR folder](https://github.com/rajchampaneriya/stock-market-simulator/tree/main/reference-docs) in the repo.
 
 ---
 
@@ -125,7 +125,7 @@ The Stock Market Simulator shows how a **focused set of architecture decisions**
 
 </div>
 
-**Detailed diagrams and ADRs:** [Stock Market Simulator repository](https://github.com/raj-champion-trader/stock-market-simulator) — C4 model, mermaid diagrams, and Architecture Decision Records are maintained in the repo.
+**Detailed diagrams and ADRs:** [Stock Market Simulator repository](https://github.com/rajchampaneriya/stock-market-simulator) — C4 model, mermaid diagrams, and Architecture Decision Records are maintained in the repo.
 
 ---
 

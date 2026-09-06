@@ -9,7 +9,7 @@ description: "The second part of the Idea Factory series: the layered method, go
 summary: "From method to evidence: how the Idea Factory's three layers work, why governance belongs inside the loop, what the innovation math looks like, and where to get the blueprint and code."
 audio: "/projects/idea-factory/audio/idea-factory.wav"
 audioTitle: "Idea Factory Blueprint"
-githubRepo: "https://github.com/raj-champion-trader/insight-weaver"
+githubRepo: "https://github.com/rajchampaneriya/insight-weaver"
 weight: 2
 disclaimer: true
 ShowToc: true
@@ -94,7 +94,7 @@ The **source code** is published: architecture diagrams, .NET Aspire stack, depl
 | Resource | Link |
 |----------|------|
 | **LinkedIn series (7 parts)** | [Building an Idea Factory for Technical Solutions](https://www.linkedin.com/posts/rajchampaneriya_enterprisearchitecture-innovation-ideafactory-activity-7428814149134061568-AMK3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAkClyMBSGRUzjDGFxcbTDWSiATbVMVa6FE) |
-| **Source code** | [github.com/raj-champion-trader/insight-weaver](https://github.com/raj-champion-trader/insight-weaver) |
+| **Source code** | [github.com/rajchampaneriya/insight-weaver](https://github.com/rajchampaneriya/insight-weaver) |
 
 The source code is MIT-licensed. Fork it. Adapt it. Build your own Idea Factory.
 
